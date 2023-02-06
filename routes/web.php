@@ -19,36 +19,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('home/{id}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('home/{id}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('dashboard/{id}', function () {
-    return view('dashboard');
-});
+// Route::get('dashboard/{id}', function () {
+//     return view('dashboard');
+// });
 
-Route::get('addtag', function () {
-    return view('emailmarketing.addtags');
-});
+// Route::get('addtag', function () {
+//     return view('emailmarketing.addtags');
+// });
 
-Route::get('adduser', function () {
-    return view('emailmarketing.adduser');
-});
+// Route::get('adduser', function () {
+//     return view('emailmarketing.adduser');
+// });
 
-Route::get('addcamp', function () {
-    return view('emailmarketing.createcampaign');
-});
+// Route::get('addcamp', function () {
+//     return view('emailmarketing.createcampaign');
+// });
 
-Route::post('createtag', [EmailmarketingController::class, 'createtag'])->name('createtag');
-Route::get('addsubsc', [EmailmarketingController::class, 'addsubsc'])->name('addsubsc');
-Route::post('createsubscriber', [EmailmarketingController::class, 'createsubscriber'])->name('createsubscriber');
-Route::get('viewtag', [EmailmarketingController::class, 'viewtag'])->name('viewtag');
-Route::get('viewsubsc', [EmailmarketingController::class, 'viewsubscriber'])->name('viewsubsc');
-Route::post('createcampaign', [emailmarketingController::class, 'createcampaign'])->name('createcampaign');
-Route::get('viewcamp', [emailmarketingController::class, 'viewcamp'])->name('viewcamp');
-Route::post('inviteuser', [EmailmarketingController::class, 'inviteuser'])->name('inviteuser');
-Route::get('collaboration', [EmailmarketingController::class, 'collaboration'])->name('collaboration');
-Route::get('collaborator', [EmailmarketingController::class, 'collaborators'])->name('collaborators');
+// Route::post('createtag', [EmailmarketingController::class, 'createtag'])->name('createtag');
+// Route::get('addsubsc', [EmailmarketingController::class, 'addsubsc'])->name('addsubsc');
+// Route::post('createsubscriber', [EmailmarketingController::class, 'createsubscriber'])->name('createsubscriber');
+// Route::get('viewtag', [EmailmarketingController::class, 'viewtag'])->name('viewtag');
+// Route::get('viewsubsc', [EmailmarketingController::class, 'viewsubscriber'])->name('viewsubsc');
+// Route::post('createcampaign', [emailmarketingController::class, 'createcampaign'])->name('createcampaign');
+// Route::get('viewcamp', [emailmarketingController::class, 'viewcamp'])->name('viewcamp');
+// Route::post('inviteuser', [EmailmarketingController::class, 'inviteuser'])->name('inviteuser');
+// Route::get('collaboration', [EmailmarketingController::class, 'collaboration'])->name('collaboration');
+// Route::get('collaborator', [EmailmarketingController::class, 'collaborators'])->name('collaborators');
 //  Route::get('visitacct/{id}', [EmailmarketingController::class, 'visitaact'])->name('visitacct');
 // Route::post('visitaccount/{id}', [EmailmarketingController::class, 'visitaccount'])->name('visitaccount');
