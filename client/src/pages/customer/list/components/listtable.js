@@ -2,7 +2,7 @@ import { FaPencilAlt } from "react-icons/fa"
 
 export const ListTable =()=>{
     return(
-        <>
+        <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
                 <thead>
                     <tr>
@@ -10,7 +10,9 @@ export const ListTable =()=>{
                         <th scope="col">Name</th>
                         <th scope="col">Created At</th>
                         <th scope="col">Subscribers</th>
+                        <th scope="col">Open rate</th>
                         <th scope="col">Updated At</th>
+                        <th scope="col">Click rate</th>                       
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -20,7 +22,37 @@ export const ListTable =()=>{
                         <td>DB Insurance & Finance customers 2022</td>
                         <td>2017-07-13 03:57</td>
                         <td>1,945</td>
+                        <td className="d-flex flex-column">
+                            <div className="fs-6 fw-bold">50%</div>
+                            <div className="progress">
+                                <div 
+                                    className="progress-bar bg-primary" 
+                                    role="progressbar" 
+                                    aria-label="Basic example" 
+                                    aria-valuenow="50%" 
+                                    style={{width:"50%"}}
+                                    aria-valuemin="0" 
+                                    aria-valuemax="100"
+                                >
+                                </div>
+                            </div>
+                        </td>
                         <td>2021-08-26 11:19</td>
+                         <td className="d-flex flex-column">
+                            <div className="fs-6 fw-bold">80%</div>
+                            <div className="progress">
+                                <div 
+                                    className="progress-bar bg-primary" 
+                                    role="progressbar" 
+                                    aria-label="Basic example" 
+                                    aria-valuenow="80%" 
+                                    style={{width:"80%"}}
+                                    aria-valuemin="0" 
+                                    aria-valuemax="100"
+                                >
+                                </div>
+                            </div>
+                        </td>
                         <td>
                             <div className="d-flex align-items-center">
                                 <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
@@ -72,6 +104,6 @@ export const ListTable =()=>{
                     </tr>
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }

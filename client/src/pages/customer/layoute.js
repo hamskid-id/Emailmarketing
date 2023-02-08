@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import "../homepage/home.css";
+// import "../homepage/home.css";
 import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ export const Layout=({routeChildren})=>{
                 </div>
                 <div className="col-md-10 dashboardvh bg-smoke">
                         <div>
-                            <div className="d-flex justify-content-between p-4 navHeader">
+                            <div className="d-flex justify-content-between p-4 navHeader align-items-center">
                                 <span className="fs-4 fw-bold bg-blue">
                                     Dashboard
                                 </span>
@@ -46,8 +46,7 @@ export const Layout=({routeChildren})=>{
                                 routeChildren
                             }
                             </div>
-                        </div>
-                    
+                        </div>                   
                     <NavToggler
                         showNav={showNav}
                     />

@@ -1,12 +1,12 @@
-import { Actions } from "../../../../components/actions"
+import { useNavigate } from "react-router-dom"
+import { Actions } from "./actions"
 import { basicTemp } from "./basictemp"
 
 export const GeneralList =()=>{
+    const navigate = useNavigate();
     return(
         <>
-            <Actions
-                actionName="Create +"
-            />
+            <Actions/>
             <div className="row justify-content-between wrap">
                 {
                     basicTemp.map((tem,index)=>{
@@ -50,6 +50,9 @@ export const GeneralList =()=>{
                                         <ul className="dropdown-menu">
                                             <li 
                                                 className="dropdown-item"
+                                                onClick={
+                                                    ()=>navigate("/create/template")
+                                                }
                                             >
                                                 Preview
                                             </li>

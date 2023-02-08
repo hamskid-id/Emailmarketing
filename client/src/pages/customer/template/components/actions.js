@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom"
+
 export const Actions =()=>{
+    const navigate = useNavigate();
     return(
         <div className="row">
             <div className="col-md-6 mb-2">
@@ -52,6 +55,9 @@ export const Actions =()=>{
                      <button 
                         type="button" 
                         className="btn b-grey btn-md my-2 fl-r"
+                        onClick={
+                            ()=>navigate("/create/template")
+                        }
                     >
                         Create +
                     </button>

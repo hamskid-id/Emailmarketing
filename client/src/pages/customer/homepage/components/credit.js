@@ -57,7 +57,7 @@ export const CreditWrapper=()=>{
                                     </div>
                                     <div className="progress">
                                         <div 
-                                            className="progress-bar " 
+                                            className="progress-bar bg-success" 
                                             role="progressbar" 
                                             aria-label="Basic example" 
                                             aria-valuenow={amount} 

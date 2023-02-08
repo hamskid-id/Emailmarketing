@@ -16,7 +16,8 @@ export const SubContainer =()=>{
         return(
             <>
             <Actions/>
-                 <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
+            <div className="w-overflow">
+                <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -75,6 +76,21 @@ export const SubContainer =()=>{
                                                             <li
                                                                 className="dropdown-item"
                                                             >
+                                                                Subscribe
+                                                            </li>
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
+                                                                Unsubscribe
+                                                            </li>
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
+                                                                Send Confirmation Email
+                                                            </li>
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
                                                                 Delete
                                                             </li>
                                                         </ul>
@@ -87,6 +103,8 @@ export const SubContainer =()=>{
                         }
                     </tbody>
                 </table>
+            </div>
+                 
                  {
                     subsriber
                     .subscribers?.length === 0 &&(

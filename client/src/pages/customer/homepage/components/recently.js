@@ -23,27 +23,30 @@ export const RecentlySent=()=>{
                      Recently sent campaigns
                 </h2>
             </div>
-            <select 
-                name="campains" 
-                id="campains"
-                className="fs-5 p-2 rounded text-white cadetblue"
-                >
-                {
-                    recentDropdown?.map((drop,index)=>{
-                        const {
-                            name,
-                            url
-                        }=drop
-                        return(
-                            <option 
-                                value={name}
-                                key={index}
-                            >{name}
-                            </option>
-                        )
-                    })
-                }
-            </select>
+            <div className="w-100">
+                <select 
+                    name="campains" 
+                    id="campains"
+                    className="fs-5 p-2 rounded text-white b-grey campains-select"
+                    >
+                    {
+                        recentDropdown?.map((drop,index)=>{
+                            const {
+                                name,
+                                url
+                            }=drop
+                            return(
+                                <option 
+                                    value={name}
+                                    key={index}
+                                >{name}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+            </div>
+            
                 <div className="d-flex flex-column">
                     {
                         campaign
@@ -81,7 +84,7 @@ export const RecentlySent=()=>{
                                                     <span className="me-3 fw-bold fs-5">
                                                         Title :
                                                     </span>
-                                                    <span>
+                                                    <span className="fs-5">
                                                         {title}
                                                     </span>
                                                 </div>
@@ -89,7 +92,7 @@ export const RecentlySent=()=>{
                                                     <span className="me-3 fw-bold fs-5">
                                                         From :
                                                     </span>
-                                                    <span>
+                                                    <span className="fs-5">
                                                         {from}
                                                     </span>
                                                 </div>
@@ -97,7 +100,7 @@ export const RecentlySent=()=>{
                                                     <span className="me-3 fw-bold fs-5">
                                                         Subject :
                                                     </span>
-                                                    <span>
+                                                    <span className="fs-5">
                                                     {subject}
                                                     </span>
                                                 </div>
@@ -109,7 +112,7 @@ export const RecentlySent=()=>{
                                                     <span className="me-3 fw-bold fs-5" >
                                                     Recipient :
                                                     </span>
-                                                    <span>
+                                                    <span className="fs-5">
                                                         {recipient}
                                                     </span>
                                                 </div>
@@ -117,7 +120,7 @@ export const RecentlySent=()=>{
                                                     <span className="me-3 fw-bold fs-5">
                                                         Content :
                                                     </span>
-                                                    <span>
+                                                    <span className="fs-5">
                                                         {content}
                                                     </span>
                                                 </div>                      

@@ -1,7 +1,7 @@
 export const Actions =()=>{
     return(
         <div className="row">
-            <div className="col-md-6 mb-2">
+            <div className="col-md-9 mb-2">
                 <div className="d-flex wrap align-items-center">
                     <div  className="me-3 mb-2">
                         <label 
@@ -12,7 +12,7 @@ export const Actions =()=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-5 p-2 rounded b-gainsboro"
+                            className="fs-5 p-2 me-3 rounded b-gainsboro"
                             >
                             {
                                 [
@@ -27,6 +27,10 @@ export const Actions =()=>{
                                     {
                                         name:"Name",
                                         url:"https://hello"
+                                    },
+                                    {
+                                        name:"Updated At",
+                                        url:"https://hello"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
@@ -34,7 +38,102 @@ export const Actions =()=>{
                                         url
                                     }=drop
                                     return(
-                                        <option 
+                                        <option
+                                            className="fs-6" 
+                                            value={name}
+                                            key={index}
+                                        >{name}
+                                        </option>
+                                    )
+                                })
+                            }
+                        </select>
+                        <select 
+                            name="sort" 
+                            id="sort"
+                            className="fs-5 p-2 me-3 rounded b-gainsboro"
+                            >
+                            {
+                                [
+                                    {
+                                        name:"All subscribers",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Subscribed",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Unsubscribed",
+                                        url:"https://hello"
+                                    },{
+
+                                        name:"Unconfirmed",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Spam reported",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Blacklisted",
+                                        url:"https://hello"
+                                    }
+                                ]?.map((drop,index)=>{
+                                    const {
+                                        name,
+                                        url
+                                    }=drop
+                                    return(
+                                        <option
+                                            className="fs-6" 
+                                            value={name}
+                                            key={index}
+                                        >{name}
+                                        </option>
+                                    )
+                                })
+                            }
+                        </select>
+                        <select 
+                            name="sort" 
+                            id="sort"
+                            className="fs-5 p-2 me-3 rounded b-gainsboro"
+                            >
+                            {
+                                [
+                                    {
+                                        name:"All verifcation",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Deliverable",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Undeliverable",
+                                        url:"https://hello"
+                                    },{
+
+                                        name:"Unknown",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Risky",
+                                        url:"https://hello"
+                                    },
+                                    {
+                                        name:"Unverified",
+                                        url:"https://hello"
+                                    }
+                                ]?.map((drop,index)=>{
+                                    const {
+                                        name,
+                                        url
+                                    }=drop
+                                    return(
+                                        <option
+                                            className="fs-6" 
                                             value={name}
                                             key={index}
                                         >{name}
@@ -51,7 +150,7 @@ export const Actions =()=>{
                     />
                 </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-3">
                 <div>
                      <button 
                         className="btn b-grey btn-md my-2 fl-r"

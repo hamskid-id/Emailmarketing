@@ -18,65 +18,68 @@ export const CollabContainer =()=>{
         <Actions 
             actionName="Invite Collaborators"
         />
-        <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Who has invited you for collaborations</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    collab.inviteForCollaborations?.map(
-                        (collaboration,index)=>{
-                        const{
-                            name,
-                            createdAt
-                        }= collaboration
-                    
-                        return(
-                            <tr key={index}>
-                                <th scope="row">{index}</th>
-                                <td>{name}</td>
-                                <td>{createdAt}</td>
-                                <td>
-                                    <div className="d-flex align-items-center">
-                                        <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
-                                            <span className="me-1">
-                                                <FaPencilAlt/>
-                                            </span>
-                                            <span>
-                                                Edit
-                                            </span>
-                                        </div>
-                                        <div className="dropdown">
-                                            <button 
-                                                className="btn btn-secondary dropdown-toggle" 
-                                            >
-                                            </button>
-                                            <ul className="dropdown-menu">
-                                                <li
-                                                    className="dropdown-item"
+        <div className="w-overflow">
+            <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Who has invited you for collaborations</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        collab.inviteForCollaborations?.map(
+                            (collaboration,index)=>{
+                            const{
+                                name,
+                                createdAt
+                            }= collaboration
+                        
+                            return(
+                                <tr key={index}>
+                                    <th scope="row">{index}</th>
+                                    <td>{name}</td>
+                                    <td>{createdAt}</td>
+                                    <td>
+                                        <div className="d-flex align-items-center">
+                                            <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
+                                                <span className="me-1">
+                                                    <FaPencilAlt/>
+                                                </span>
+                                                <span>
+                                                    Edit
+                                                </span>
+                                            </div>
+                                            <div className="dropdown">
+                                                <button 
+                                                    className="btn btn-secondary dropdown-toggle" 
                                                 >
-                                                    Visit Account
-                                                </li>
-                                                <li
-                                                    className="dropdown-item"
-                                                >
-                                                    Delete
-                                                </li>
-                                            </ul>
+                                                </button>
+                                                <ul className="dropdown-menu">
+                                                    <li
+                                                        className="dropdown-item"
+                                                    >
+                                                        Visit Account
+                                                    </li>
+                                                    <li
+                                                        className="dropdown-item"
+                                                    >
+                                                        Delete
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
+        
         {
             collab
             .inviteForCollaborations?.length === 0 &&(

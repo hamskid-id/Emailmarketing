@@ -1,8 +1,8 @@
-import { userdata } from "../../../campaign/component/userdata";
 import { useState } from "react"
 import { FaCircleNotch } from "react-icons/fa";
 import { PieChart } from "../../../../components/piechat";
 import {BarChart} from "../../../../components/barchat";
+import { userdata } from "../../campaign/component/userdata";
 
 export const Subscribers=()=>{
     const piedata=[

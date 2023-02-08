@@ -11,10 +11,10 @@ export const AccordionsRoutes =[
             "Overview",
             "Lists",
             "Subscribers",
-            "Segments",
+            // "Segments",
             "Tags",
             "Collaborations",
-            "Forms"
+            // "Forms"
         ]
     },
     {

@@ -9,7 +9,7 @@ export const TemplateView =()=>{
         SetActiveView
     ]=useState("myList");
     return(
-        <div className="py-3 pdx-6">
+        <div className="py-3">
             <div className="d-flex align-items-center mb-3">
                 <span className="me-3">
                     <FaSlidersH

@@ -1,6 +1,8 @@
 import { FaCircleNotch } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 
 export const QuickActions =()=>{
+    const navigate = useNavigate()
     return(
         <>
             <div className="d-flex align-items-center mt-5 mb-3">
@@ -33,9 +35,8 @@ export const QuickActions =()=>{
                                 /> 
                             </span>
                             <span className="pdw-1">
-                                <h6 className="fw-bold fs-5">
-                                   
-                                    Create a signup form
+                                <h6 className="fw-bold fs-5">                                  
+                                    Invite Collaborators
                                 </h6>
                                 <h6 className="fs-6 break">
                                     Capture subscribers and collect the data you need
@@ -48,8 +49,12 @@ export const QuickActions =()=>{
                         className="col-md-5"
                     >
                         <button
-                            className="btn b-gainsboro btn-sm fl-r">
-                            Create Form
+                            className="btn b-gainsboro btn-md fl-r"
+                            onClick={
+                                ()=>navigate("/Lists/Collaborations")
+                            }
+                        >
+                            Add Collaborators
                         </button>
                     </div>
                 </div>
@@ -80,7 +85,10 @@ export const QuickActions =()=>{
                         className="col-md-5"
                     >
                         <button
-                            className="btn  btn-sm btn-success fl-r"
+                            className="btn  btn-md btn-success fl-r"
+                            onClick={
+                                ()=>navigate("/Lists/Subscribers")
+                            }
                         >
                             Add Subscribers
                         </button>

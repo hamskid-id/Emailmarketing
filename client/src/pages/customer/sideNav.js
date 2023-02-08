@@ -35,21 +35,6 @@ export const SideNav =({navToggler})=>{
                     />
                 </span>
             </div>
-            {/* <div className="d-flex align-items-center"
-                onClick={
-                    ()=>navigate("/wizard/template")
-                }
-            >
-                <span className="me-3 create-btn rounded-circle">
-                    <FaRegEdit
-                        color="black"
-                        size="1.5rem"
-                    />
-                </span>
-                <span className="fs-6 fw-bold text-white">
-                    Create
-                </span>
-            </div> */}
             <div className="dashSideNav">
                 {
                      ListRoute.map((uniqueroute, index)=>{

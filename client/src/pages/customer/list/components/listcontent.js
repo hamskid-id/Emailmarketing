@@ -1,5 +1,7 @@
 import { FaSlidersH } from "react-icons/fa"
 import { Actions } from "../../../../components/actions"
+import { Modal } from "../../../../components/modal/modal"
+import { ListModalContent } from "./listform"
 import { ListTable } from "./listtable"
 
 export const ListContent =()=>{
@@ -19,6 +21,13 @@ export const ListContent =()=>{
                 actionName="+ Create list"
             />
             <ListTable/>
+            <Modal
+                title="Edit your mail list"
+                large={true}
+                body={
+                    <ListModalContent/>
+                }
+            />
         </>
     )
 }

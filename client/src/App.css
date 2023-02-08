@@ -1,6 +1,33 @@
 .App {
   text-align: center;
 }
+.accordion-item:first-of-type .accordion-button{
+  background-color: darkslategray;
+  color:white;
+
+}
+.campains-select{
+  width:auto;
+}
+.dashSideNav{
+  height:70vh;
+}
+.accordion-button:not(.collapsed) {
+  box-shadow:none;
+  }
+  .accordion-button {
+    width:9rem;
+    }
+.accordion-item{
+  border:none;
+}
+.w-97{
+  width:97%;
+}
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 .q-img{
   width:50%;
 }
@@ -27,10 +54,13 @@
 .w-89{
   width:89%;
 }
+.overflow-x{
+  overflow-x:auto;
+}
 .children{
   margin-top: 1rem;
   margin-bottom: 3rem;
-  padding:0 1rem 0 1rem;
+  padding:0 1.5rem 0 1.5rem;
 }
 .bar-container{
   width: 65%;
@@ -132,6 +162,10 @@ i.mdi.mdi-account {
 }
 .cfvAIS .blockbuilder-branding span.brand {
   display: none;
+}
+.decoration-none{
+  text-decoration: none;
+  color:white;
 }
 .pde-5{
   padding-right: 3rem;
@@ -333,9 +367,17 @@ i.mdi.mdi-account {
   
 }
 @media only screen and (max-width : 700px) {
+  .campains-select{
+    width:100%
+  }
   .wt-50{
       width:100%;
       padding: 1rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .chat-container{
+    width:100%;
   }
 }
 @keyframes App-logo-spin {

@@ -5,6 +5,7 @@ export const CustomFormField =({
     value,
     placeholder,
     type,
+    space,
     errors,
     register,
     loadingStatus
@@ -44,7 +45,7 @@ export const CustomFormField =({
         return(
             <div className="d-flex align-items-center mb-2">
                 <input 
-                    className="bg-alice p-2 border border-white rounded me-2"
+                    className="bg-alice p-2 border border-white rounded form-check-input me-1"
                     type={type}
                     name={name}
                     placeholder={placeholder}
@@ -70,7 +71,7 @@ export const CustomFormField =({
                     {label}
                 </label>
                 <textarea 
-                    className="w-100 bg-alice p-2 border border-white rounded"
+                    className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
                     name={name}
                     required
                     {...register(
@@ -95,7 +96,7 @@ export const CustomFormField =({
             {label}
         </label>
         <input 
-            className="w-100 bg-alice p-2 border border-white rounded"
+            className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
             type={type}
             name={name}
             // required
@@ -106,8 +107,7 @@ export const CustomFormField =({
                     required:`${label} field is invalid`,
                     minLength: {
                         value: 8,
-                        message: "password must not be less than 8 characters"
-                    
+                        message: "password must not be less than 8 characters"                   
                     }
                 }
             )
@@ -124,7 +124,7 @@ export const CustomFormField =({
                 {label}
             </label>
             <input 
-                className="w-100 bg-alice p-2 border border-white rounded"
+                className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
                 type={type}
                 name={name}
                 // required

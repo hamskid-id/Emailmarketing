@@ -5,29 +5,29 @@ export const SubscriberStat =()=>{
     const navigate = useNavigate();
     const statDetails=[
         {
-            name:"Subsribers",
+            name:"Subscribers",
             amount:100,
             icon:<FaCodiepie
                 color="goldenrod"
             />,
-            route:"/campaigns/All campaigns"
+            route:"/Lists/Subscribers"
 
         },
         {
-            name:"Active Subsribers",
+            name:"Active Subscribers",
             amount:20,
             icon:<FaHandPeace
                 color="goldenrod"
             />,
-            route:"/Audience/Subscribers"
+            route:"/Lists/Subscribers"
         },
         {
-            name:"Forms",
+            name:"Collaborations",
             amount:3,
             icon:<FaCreativeCommonsBy
                 color="goldenrod"
             />,
-            route:"/Audience/Subscribers"
+            route:"/Lists/Collaborations"
         },
         {
             name:"Blacklisted",
@@ -35,11 +35,11 @@ export const SubscriberStat =()=>{
             icon:<FaAirbnb
                 color="goldenrod"
             />,
-            route:"/Audience/Tags"
+            route:"/Lists/Blacklisted"
         }
     ]
     return(
-        <div className="d-flex justify-content-between w-overflow mb-5 w-89">
+        <div className="d-flex justify-content-between overflow-x mb-5 w-89">
             {
                 statDetails?.map((stat,index)=>{
                     const{

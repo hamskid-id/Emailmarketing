@@ -18,64 +18,67 @@ export const TagContainer =()=>{
         <Actions
             actionName="Add Tag"
         />
-        <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Created By</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    tag
-                        .tags?.map((tag,index)=>{
-                            const{
-                                name,
-                                createdBy,
-                                createdAt
-                            } = tag
-                            return(
-                                <tr>
-                                    <th scope="row">{index}</th>
-                                    <td>{name}</td>
-                                    <td>{createdBy}</td>
-                                    <td>{createdAt}</td>
-                                    <td>
-                                        <div className="d-flex align-items-center">
-                                            <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
-                                                <span className="me-1">
-                                                    <FaPencilAlt/>
-                                                </span>
-                                                <span>
-                                                    Edit
-                                                </span>
-                                            </div>
-                                            <div className="dropdown">
-                                                <button 
-                                                    className="btn btn-secondary dropdown-toggle" 
-                                                >
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li
-                                                        className="dropdown-item"
+        <div className="w-overflow">
+            <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Created By</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        tag
+                            .tags?.map((tag,index)=>{
+                                const{
+                                    name,
+                                    createdBy,
+                                    createdAt
+                                } = tag
+                                return(
+                                    <tr>
+                                        <th scope="row">{index}</th>
+                                        <td>{name}</td>
+                                        <td>{createdBy}</td>
+                                        <td>{createdAt}</td>
+                                        <td>
+                                            <div className="d-flex align-items-center">
+                                                <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
+                                                    <span className="me-1">
+                                                        <FaPencilAlt/>
+                                                    </span>
+                                                    <span>
+                                                        Edit
+                                                    </span>
+                                                </div>
+                                                <div className="dropdown">
+                                                    <button 
+                                                        className="btn btn-secondary dropdown-toggle" 
                                                     >
-                                                        Delete
-                                                    </li>
-                                                </ul>
+                                                    </button>
+                                                    <ul className="dropdown-menu">
+                                                        <li
+                                                            className="dropdown-item"
+                                                        >
+                                                            Delete
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    )
-                }
-                
-            </tbody>
-        </table>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        )
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+       
         {
             tag
             .Tags.length === 0 &&(

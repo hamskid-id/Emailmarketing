@@ -1,4 +1,4 @@
-export const Modal =({title,body})=>{
+export const Modal =({title,body,large})=>{
     return(
         <div 
             className="modal fade" 
@@ -8,10 +8,10 @@ export const Modal =({title,body})=>{
             tabindex="-1" 
             aria-labelledby="staticBackdropLabel" 
             aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div className={`modal-dialog ${large && `modal-lg`} modal-dialog-centered modal-dialog-scrollable`}>
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">
+                        <h5 className="modal-title fw-bold">
                             {title}
                         </h5>
                         <button 
@@ -32,12 +32,6 @@ export const Modal =({title,body})=>{
                         >
                             Close
                         </button>
-                        {/* <button 
-                            type="button" 
-                            className="btn btn-primary"
-                        >
-                            Save changes
-                        </button> */}
                     </div>
                 </div>
             </div>
