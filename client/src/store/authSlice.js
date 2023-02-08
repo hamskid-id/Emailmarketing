@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
             email,
             password)
         const response = await axios.post(
-            `${apiBaseUrl}/register`,{
+            `${apiBaseUrl}/registering`,{
                 name,
                 email,
                 password
@@ -80,7 +80,7 @@ export const SendPasswordResetLink = createAsyncThunk(
         try{
             console.log( email)
             const response = await axios.post(
-                `${apiBaseUrl}/password.email`,{
+                `${apiBaseUrl}/forgetpas`,{
                     email:email
                 }
             );

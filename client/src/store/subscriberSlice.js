@@ -8,7 +8,7 @@ export const GetSubscribers = createAsyncThunk(
     async ({rejectWithValue}) =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/viewsubsc`
+            `${apiBaseUrl}/viewsubscrib`
         )
         return response?.data
     } catch(err){
@@ -36,7 +36,7 @@ export const Createsubscriber = createAsyncThunk(
     },{rejectWithValue}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/createsubscriber`,{
+            `${apiBaseUrl}/addsubscrib`,{
                 email,
                 fname,
                 lname,

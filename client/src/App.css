@@ -376,6 +376,9 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 400px) {
+  .grid{
+    grid-template-columns:1fr;
+  }
   .chat-container{
     width:100%;
   }

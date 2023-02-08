@@ -8,7 +8,7 @@ export const GetTags = createAsyncThunk(
     async ({rejectWithValue}) =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/viewtag`
+            `${apiBaseUrl}/viewtags`
         )
         return response?.data
     } catch(err){
@@ -29,7 +29,7 @@ export const CreateTags  = createAsyncThunk(
     },{rejectWithValue}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/createtag`,{
+            `${apiBaseUrl}/createtags`,{
                 name
             }
         )

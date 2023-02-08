@@ -11,7 +11,7 @@ export const InviteUsers = createAsyncThunk(
     },{rejectWithValue}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/collaboration`,{
+            `${apiBaseUrl}/collaborations`,{
                 name,
                 email
             }
@@ -33,7 +33,7 @@ export const GetInviteForCollaborations = createAsyncThunk(
     async ({rejectWithValue}) =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/invite`)
+            `${apiBaseUrl}/collaborators`)
         return response?.data
     } catch(err){
         console.log(
