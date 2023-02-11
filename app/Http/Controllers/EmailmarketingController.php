@@ -254,7 +254,7 @@ class EmailmarketingController extends Controller
 
     public function addsubscrib(Request $request)
     {
-        if(Auth::check()){
+        // if(Auth::check()){
             $request->validate([
                 'email' => 'required|email|unique:subscribers',
                 'fname' => ['required'],
@@ -267,7 +267,7 @@ class EmailmarketingController extends Controller
             ]);
     
             $subscrib = new subscriber();
-            $subscrib->business_id = auth::user()->business_id;
+            $subscrib->business_id =Auth::user()->business_id;
             $subscrib->email = $request->email;
             $subscrib->fname = $request->fname;
             $subscrib->lname = $request->lname;
@@ -288,12 +288,12 @@ class EmailmarketingController extends Controller
                     'message' => 'Unable to create Subscriber',
                 ]);
             }
-        }else{
-            return response()->json([
-                'status' => false,
-                'message' => 'Unauthorized',
-            ]);
-        }
+        // }else{
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => 'Unauthorized',
+        //     ]);
+        // }
         
 
     }
@@ -326,7 +326,7 @@ class EmailmarketingController extends Controller
             ]);
 
             $camp = new campaign();
-            $camp->business_id = auth::user()->business_id;
+            $camp->business_id = Auth::user()->business_id;
             $camp->title = $request->title;
             $camp->recipient = $request->recipient;
             $camp->from = $request->from;
