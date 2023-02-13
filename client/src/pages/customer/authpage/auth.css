@@ -1,0 +1,20 @@
+.auth_hero{
+    height: 100vh;
+}
+.bg-auth-img{
+    background-image: url("https://res.cloudinary.com/hamskid/image/upload/v1675114460/Pexels_Photo_by_Torsten_Dettlaff_pucrlj.svg");
+    height: 100vh;
+    object-fit: cover;
+}
+.bg-alice{
+    background-color: aliceblue;
+}
+.forget-link{
+    margin-bottom: 1rem;
+}
+.verify-container{
+    padding: 2rem;
+    background: #F8FDFF;
+    box-shadow: 0.75px 1.5px 8px 0.5px rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+}

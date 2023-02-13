@@ -1,0 +1,37 @@
+export  const userdata =[
+    {
+        id:1,
+        name:"Recipients",
+        number:30
+    },
+    {
+        id:2,
+        name:"Delivered",
+        number:50
+    },
+    {
+        id:3,
+        name:"Failed",
+        number:130
+    },
+    {
+        id:4,
+        name:"Open",
+        number:200
+    },
+    {
+        id:5,
+        name:"Click",
+        number:310
+    },
+    {
+        id:6,
+        name:"Report",
+        number:320
+    },
+    {
+        id:7,
+        name:"Unsubscribed",
+        number:390
+    }
+]
