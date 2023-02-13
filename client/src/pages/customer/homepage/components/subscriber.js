@@ -30,7 +30,8 @@ export const Subscribers=()=>{
             label:"key email marketing metrics",
             data:userdata?.map(
                 (data)=>data.number
-            )
+            ),
+            backgroundColor:["#198754","darkslategrey"]
         }]
     });
     const [
@@ -43,7 +44,8 @@ export const Subscribers=()=>{
             label:"Subscribers",
             data:piedata?.map(
                 (data)=>data.number
-            )
+            ),
+            backgroundColor:["darkslategrey","#198754","#3498db","#e74c3c"]
         }]
     });
     return(

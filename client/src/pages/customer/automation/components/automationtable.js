@@ -2,7 +2,7 @@ import { FaWater } from "react-icons/fa"
 
 export const AutoTable =()=>{
     return(
-        <>
+        <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
                 <thead>
                     <tr>
@@ -63,6 +63,6 @@ export const AutoTable =()=>{
                     </tr>
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }

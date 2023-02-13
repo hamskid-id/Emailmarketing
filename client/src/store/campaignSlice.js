@@ -8,7 +8,7 @@ export const GetCampaigns = createAsyncThunk(
     async ({rejectWithValue}) =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/viewcamp`
+            `${apiBaseUrl}/viewcamps`
         )
         return response?.data
     } catch(err){
