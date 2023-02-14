@@ -1,6 +1,8 @@
 import { FaWater } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 
 export const AutoTable =()=>{
+    const navigate = useNavigate()
     return(
         <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
@@ -33,7 +35,10 @@ export const AutoTable =()=>{
                                     <span className="me-1">
                                         <FaWater/>
                                     </span>
-                                    <span>
+                                    <span onClick={
+                                        ()=>navigate("/automations/design")
+                                        }
+                                    >
                                         Design
                                     </span>
                                 </div>
