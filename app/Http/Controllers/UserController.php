@@ -27,13 +27,15 @@ class UserController extends Controller
         $business = new business();
         $business->name = $request->name;
         $business->save();
+        $id = $business->id;
 
-        return User::create([
-            'name' => $request->name,
-            'email' => $request->email,           
-            'business_id' => $business->id,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = new User();
+        $user->business_id = $id;
+        $user->name = $request->name;
+        $user->email = $request->email;          
+        $user->password = Hash::make($request->password);
+        $user->save();
+        
         return response()->json([
             'status' => true,
             'message' => "User Registered Successfully!"], 200);
