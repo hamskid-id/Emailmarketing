@@ -256,15 +256,16 @@ class EmailmarketingController extends Controller
     {
         // if(Auth::check()){
             $request->validate([
-                'email' => 'required|email|unique:subscribers',
+                'email' => 'required',
                 'fname' => ['required'],
                 'lname' => ['required'],
                 'country' => ['required'],
                 'state' => ['required'],
-                'phone' => 'required|min:11',
+                'phone' => ['required'],
                 'dob' => ['required'],
                 'tag' => ['required'],
             ]);
+            $duplicate = subscriber::where('email', $request->email)->where('phone', $request->phone)->exists();
     
             $subscrib = new subscriber();
             $subscrib->business_id =Auth::user()->business_id;
@@ -276,18 +277,26 @@ class EmailmarketingController extends Controller
             $subscrib->phone = $request->phone;
             $subscrib->dob = $request->dob;
             $subscrib->tag = $request->tag;
-            $subscrib->save();
-            if ($subscrib->save()) {
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Subscriber created successfully',
-                ]);
-            } else {
+            if($duplicate){
                 return response()->json([
                     'status' => false,
-                    'message' => 'Unable to create Subscriber',
+                    'message' => 'Email or phone number already exist',
                 ]);
+            }else{
+                $subscrib->save();
+                if ($subscrib->save()) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Subscriber created successfully',
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Unable to create Subscriber',
+                    ]);
+                }
             }
+           
         // }else{
         //     return response()->json([
         //         'status' => false,

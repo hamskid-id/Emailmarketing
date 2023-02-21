@@ -52,7 +52,7 @@ class UserController extends Controller
         $credentials = request(['email', 'password']);
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(["status" => false, 'message' => 'Unauthorized user!'], 401);
+            return response()->json(["status" => false, 'message' => 'Wrong password or email!'], 401);
         }
 
         $user = $request->user();
