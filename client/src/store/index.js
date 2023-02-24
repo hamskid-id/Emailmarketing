@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import auth_Slice, { loadUser } from './authSlice';
+import auth_Slice from './authSlice';
 import campaign_Slice from "./campaignSlice";
 import collab_Slice from "./collaborationSlice";
 import notification_Slice from "./notificationSlice";
@@ -16,5 +16,4 @@ const store = configureStore({
         notification:notification_Slice.reducer
     }
 });
-store.dispatch(loadUser(null));
 export default store;

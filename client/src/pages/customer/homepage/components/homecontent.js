@@ -1,18 +1,22 @@
+import { useSelector } from "react-redux"
 import { ActivitiesLog } from "./activities"
 import { CreditWrapper } from "./credit"
 import { RecentlySent } from "./recently"
 import { Subscribers } from "./subscriber"
 
 export const HomeView =()=>{
+    const auth = useSelector(
+        state => state.auth
+    )
     return(
         <div className="py-3">
             <p 
-                className="fs-1"
+                className="fs-2"
             >
-                Hello, Jolie Kennedy!
+                Hello, {auth.userdata?.user?.name}!
             </p>
-            <h5>Welcome back to your account dashboard.</h5>
-            <h5>Check out your email campaigns' performance statistics and personalized tips from our insight reports.</h5>
+            <h5 className="fs-6">Welcome back to your account dashboard.</h5>
+            <h5 className="fs-6">Check out your email campaigns' performance statistics and personalized tips from our insight reports.</h5>
             <div>
                 <CreditWrapper/>
             </div>

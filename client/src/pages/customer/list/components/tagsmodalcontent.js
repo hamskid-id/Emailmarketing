@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
+import { CreateTags } from "../../../../store/tagSlice";
 
 export const CreateTag =()=>{
     const tag = useSelector(
@@ -17,7 +18,7 @@ export const CreateTag =()=>{
         name
     })=>{
         dispatch(
-            CreateTag({
+            CreateTags({
                 name
             })
         )

@@ -89,7 +89,7 @@ export const AutoDesignContent=()=>{
                                                 className={`fs-6 fw-bold 
                                                     ${
                                                         Autosection.name === name?
-                                                        `bg-slate-grey text-white p-2 rounded`:
+                                                        `border-bottom-slate-grey p-2`:
                                                         null
                                                     }`
                                                 }

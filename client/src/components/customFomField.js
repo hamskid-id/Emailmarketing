@@ -8,7 +8,9 @@ export const CustomFormField =({
     space,
     errors,
     register,
-    loadingStatus
+    loadingStatus,
+    defaultValue,
+    editableValue
 })=>{
     if(errors){
         console.log(errors)
@@ -29,7 +31,7 @@ export const CustomFormField =({
                                 role="status" 
                                 aria-hidden="true">
                             </span>
-                                Loading...
+                                Submitting...Please wait
                         </button>
                     ):(
                         <button 
@@ -72,7 +74,9 @@ export const CustomFormField =({
                 </label>
                 <textarea 
                     className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
-                    name={name}
+                    id={name}
+                    defaultValue={defaultValue?defaultValue:null}
+                    readOnly={defaultValue?true:false}
                     required
                     {...register(
                             `${name}`, 
@@ -82,7 +86,7 @@ export const CustomFormField =({
                         )
                     }
                 >
-                    {label}
+                   
                 </textarea>
                 {errors && (<p className="text-danger ">{errors.message}</p>)}
             </div>
@@ -99,6 +103,7 @@ export const CustomFormField =({
             className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
             type={type}
             name={name}
+            value={editableValue?editableValue:""}
             // required
             placeholder={placeholder}
             {...register(
@@ -127,7 +132,7 @@ export const CustomFormField =({
                 className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
                 type={type}
                 name={name}
-                // required
+                defaultValue={defaultValue?defaultValue:null}
                 placeholder={placeholder}
                 {...register(
                     `${name}`, 

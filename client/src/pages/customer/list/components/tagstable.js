@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../../../components/actions";
+import Spinner from "../../../../components/spinner/spinner";
 import { GetTags } from "../../../../store/tagSlice";
 
 export const TagContainer =()=>{
@@ -13,6 +14,9 @@ export const TagContainer =()=>{
         dispatch(GetTags(null));
     },[dispatch])
 
+    if(tag.GetTagsStatus ==='pending'){
+        return <Spinner/>
+    }
     return(
         <>
         <Actions
@@ -26,37 +30,42 @@ export const TagContainer =()=>{
                         <th scope="col">Name</th>
                         <th scope="col">Created By</th>
                         <th scope="col">Created At</th>
+                        <th scope="col">Updated At</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         tag
-                            .tags?.map((tag,index)=>{
+                            .Tags?.map((tag,index)=>{
                                 const{
                                     name,
-                                    createdBy,
-                                    createdAt
+                                    created_by,
+                                    updated_at,
+                                    created_at
                                 } = tag
                                 return(
-                                    <tr>
+                                    <tr key={index}>
                                         <th scope="row">{index}</th>
                                         <td>{name}</td>
-                                        <td>{createdBy}</td>
-                                        <td>{createdAt}</td>
+                                        <td>{created_by}</td>
+                                        <td>{
+                                                new Date(created_at)
+                                                .toLocaleString()
+                                            }
+                                        </td>
+                                        <td>{
+                                                new Date(updated_at)
+                                                .toLocaleString()
+                                            }</td>
                                         <td>
                                             <div className="d-flex align-items-center">
-                                                <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
-                                                    <span className="me-1">
-                                                        <FaPencilAlt/>
-                                                    </span>
-                                                    <span>
-                                                        Edit
-                                                    </span>
-                                                </div>
                                                 <div className="dropdown">
                                                     <button 
                                                         className="btn btn-secondary dropdown-toggle" 
+                                                        type="button" 
+                                                        data-bs-toggle="dropdown" 
+                                                        aria-expanded="false" 
                                                     >
                                                     </button>
                                                     <ul className="dropdown-menu">
@@ -91,7 +100,7 @@ export const TagContainer =()=>{
                         Your Tags List is presently empty
                     </p>
                     <div>
-                        Dont worry click on new subscribers to get started. 
+                        Dont worry click on Add tags to get started. 
                     </div>
                 </div>
             )

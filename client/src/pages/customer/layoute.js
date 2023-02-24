@@ -4,11 +4,15 @@ import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-
+import LetteredAvatar from 'react-lettered-avatar';
+import { useSelector } from "react-redux";
 
 export const Layout=({routeChildren})=>{
     const navToggler = useRef(null);
     const navigate = useNavigate();
+    const auth = useSelector(
+        state => state.auth
+    )
     const showNav =()=>{
         navToggler.current.classList.add("active");
     }
@@ -20,7 +24,7 @@ export const Layout=({routeChildren})=>{
                 </div>
                 <div className="col-md-10 dashboardvh bg-smoke">
                         <div>
-                            <div className="d-flex justify-content-between p-4 navHeader align-items-center">
+                            <div className="d-flex justify-content-between py-2 px-4 navHeader align-items-center">
                                 <span className="fs-4 fw-bold bg-blue">
                                     Dashboard
                                 </span>
@@ -30,15 +34,29 @@ export const Layout=({routeChildren})=>{
                                             color="goldenrod"
                                         />
                                     </span>
-                                    <span>
-                                        <img 
-                                        src="https://res.cloudinary.com/hamskid/image/upload/v1675341778/Vector_4_daatnj.svg"
-                                        alt="object not found"
-                                        onClick={
-                                            ()=>navigate("/inbox")
-                                        }
-                                    />
-                                    </span>                                   
+                                    <div className="d-flex align-items-center my-3">
+                                        <span className="me-2 dropdown">
+                                            <span 
+                                                className="dropdown-toggle d-flex align-items-center" 
+                                                data-bs-toggle="dropdown" 
+                                                aria-expanded="false">
+                                                <LetteredAvatar
+                                                    backgroundColor="brown"
+                                                    color="white"
+                                                    name={auth.userdata?.user?.name}
+                                                />
+                                            </span>
+                                            <ul className="dropdown-menu">
+                                                <li>
+                                                    <a 
+                                                        className="dropdown-item" 
+                                                        href="/account/profile">
+                                                        Profile
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                     </div>                                   
                                 </span>
                             </div>
                             <div className="children">

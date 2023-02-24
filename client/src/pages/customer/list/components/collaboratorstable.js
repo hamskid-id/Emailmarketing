@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../../../components/actions";
+import Spinner from "../../../../components/spinner/spinner";
 import { GetInviteForCollaborations } from "../../../../store/collaborationSlice";
 
 export const CollabContainer =()=>{
@@ -12,6 +13,10 @@ export const CollabContainer =()=>{
     useEffect(()=>{
         dispatch(GetInviteForCollaborations(null));
     },[dispatch])
+
+    if(collab.GetInviteForCollaborationsStatus ==='pending'){
+        return <Spinner/>
+    }
 
     return(
         <>
@@ -53,8 +58,11 @@ export const CollabContainer =()=>{
                                                 </span>
                                             </div>
                                             <div className="dropdown">
-                                                <button 
+                                                <button
                                                     className="btn btn-secondary dropdown-toggle" 
+                                                    type="button" 
+                                                    data-bs-toggle="dropdown" 
+                                                    aria-expanded="false" 
                                                 >
                                                 </button>
                                                 <ul className="dropdown-menu">
@@ -79,7 +87,6 @@ export const CollabContainer =()=>{
                 </tbody>
             </table>
         </div>
-        
         {
             collab
             .inviteForCollaborations?.length === 0 &&(

@@ -1,105 +1,63 @@
 import { useDispatch, useSelector} from "react-redux";
-import { useEffect } from "react";
-import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
-import { GetCampaigns } from "../../../../store/campaignSlice";
-import { Actions } from "../../../../components/actions";
+import { useEffect, useState } from "react";
+import { FaBacon, FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
+import { GetCampaigns} from "../../../../store/campaignSlice";
+import { useNavigate } from "react-router-dom";
+import { Actions } from "./actions";
 
 export const AllcampaignView =()=>{
+    const navigate = useNavigate();
     const campaign = useSelector(
         state => state.campaign
     )
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(GetCampaigns(null));
-    },[dispatch])
+
     return(
         <>
         <Actions
             actionName="Create Campaign"
         />
-        <div className="d-flex flex-column">
-            {
-                campaign
-                    .Campaigns?.length ===0 &&(
-                    <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
-                        <FaCartArrowDown
-                            color="grey"
-                            size="7rem"
-                        />
-                        <p className="fw-bold">
-                            Your campaign list is presently empty
-                        </p>
-                        <div>
-                            Dont worry click on create campaign to get started. 
-                        </div>
-                    </div>
-                )
-            }
-            {
-                campaign
-                    .Campaigns?.map((camp,index)=>{
-                        const{
-                            title,
-                            recipient,
-                            from,
-                            subject,
-                            content
-                        }=camp
-                        return(
-                            <div className="row bg-fade p-3" key={index}>
-                                <div className="col-md-6 mb-2">
-                                    <div>
+        <div className="w-overflow">
+            <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">From</th>
+                        <th scope="col">Recipient</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Content</th>                       
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    {
+                        campaign
+                        .Campaigns?.map((camp,index)=>{
+                            const{
+                                title,
+                                recipient,
+                                from,
+                                subject,
+                                content
+                            }=camp
+                            return(
+                                <tr key={index}>
+                                    <th scope="row">{index}</th>
+                                    <td>{title}</td>
+                                    <td>{recipient}</td>
+                                    <td>{from}</td>
+                                    <td>{subject}</td>
+                                    <td>{content}</td>
+                                    <td>
                                         <div className="d-flex align-items-center">
-                                            <span className="me-3 fw-bold fs-5">
-                                                Title :
-                                            </span>
-                                            <span>
-                                                {title}
-                                            </span>
-                                        </div>
-                                        <div className="d-flex align-items-center">
-                                            <span className="me-3 fw-bold fs-5">
-                                                From :
-                                            </span>
-                                            <span>
-                                                {from}
-                                            </span>
-                                        </div>
-                                        <div className="d-flex align-items-center">
-                                            <span className="me-3 fw-bold fs-5">
-                                                Subject :
-                                            </span>
-                                            <span>
-                                            {subject}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div>
-                                        <div className="d-flex align-items-center">
-                                            <span className="me-3 fw-bold fs-5" >
-                                            Recipient :
-                                            </span>
-                                            <span>
-                                                {recipient}
-                                            </span>
-                                        </div>
-                                        <div className="d-flex align-items-center">
-                                            <span className="me-3 fw-bold fs-5">
-                                                Content :
-                                            </span>
-                                            <span>
-                                                {content}
-                                            </span>
-                                        </div>
-                                        <div className="d-flex align-items-center">
-                                            <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
+                                            <div 
+                                                className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2"
+                                                onClick={()=>navigate("/campaigns/stat")}>
                                                 <span className="me-1">
-                                                    <FaPencilAlt/>
+                                                    <FaBacon/>
                                                 </span>
                                                 <span>
-                                                    Edit
+                                                    Statistics
                                                 </span>
                                             </div>
                                             <div className="dropdown">
@@ -111,6 +69,11 @@ export const AllcampaignView =()=>{
                                                 >
                                                 </button>
                                                 <ul className="dropdown-menu">
+                                                    <li 
+                                                        className="dropdown-item"
+                                                    >
+                                                        Email verification
+                                                    </li>
                                                     <li
                                                         className="dropdown-item"
                                                     >
@@ -118,15 +81,32 @@ export const AllcampaignView =()=>{
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>                      
-                                    </div>
-                                </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                        }
+                    </tbody>
+                </table>
+                {
+                   campaign
+                   .Campaigns?.length === 0 &&(
+                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                            <FaCartArrowDown
+                                color="grey"
+                                size="7rem"
+                            />
+                            <p className="fw-bold">
+                                Your Campaign List is presently empty
+                            </p>
+                            <div>
+                                Dont worry click on Create  Campaign to get started. 
                             </div>
-                        )
-                    }
-                )
-            }
-        </div>
+                        </div>
+                    )
+                }
+            </div>
         </>
          
     )

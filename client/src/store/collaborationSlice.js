@@ -1,46 +1,43 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
-import { apiBaseUrl } from './api';
+import { apiBaseUrl, setHeaders } from './api';
 
 export const InviteUsers = createAsyncThunk(
     'collab/InviteUsers', 
     async ({
         name,
         email
-    },{rejectWithValue}) =>{
+    }) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/collaborations`,{
+            `${apiBaseUrl}/inviteusers`,{
                 name,
                 email
-            }
+            },
+            setHeaders()
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
-        return rejectWithValue(
-            err.response?.data
+        toast.error(
+            err.response?.data?.message
         )
         }
     }
 )
 
 export const GetInviteForCollaborations = createAsyncThunk(
-    'collab/collaborator', 
-    async ({rejectWithValue}) =>{
+    'collab/GetInviteForCollaborations', 
+    async () =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/collaborators`)
+            `${apiBaseUrl}/collaborations`,
+                setHeaders()
+            )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
-        return rejectWithValue(
-            err.response?.data
+        toast.error(
+            err.response?.data?.message
         )
         }
     }
@@ -48,17 +45,16 @@ export const GetInviteForCollaborations = createAsyncThunk(
 
 export const GetInviteSent = createAsyncThunk(
     'collab/GetInviteSents', 
-    async ({rejectWithValue}) =>{
+    async () =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/usersinvited`)
+            `${apiBaseUrl}/collaborators`,
+                setHeaders()
+            )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
-        return rejectWithValue(
-            err.response?.data
+        toast.error(
+            err.response?.data?.message
         )
         }
     }
@@ -71,11 +67,8 @@ const collab_Slice = createSlice({
         inviteForCollaborations:[],
         inviteSent:[],
         InviteUsersStatus:'',
-        InviteUsersError:'',
         GetInviteForCollaborationsStatus:'',
-        GetInviteForCollaborationsError:'',
         GetInviteSentStatus:'',
-        GetInviteSentError:''
     },
     reducers:{},
 
@@ -95,14 +88,15 @@ const collab_Slice = createSlice({
                     ...state,
                     InviteUsersStatus:"success"
                 }
-            }else return state
+            }else return {
+                ...state,
+                InviteUsersStatus:"failed"
+            }
         })
         builder.addCase(InviteUsers.rejected,(state, action)=>{
-            toast(action.payload)
             return{
                 ...state,
-                InviteUsersStatus:'rejected',
-                InviteUsersError:action.payload
+                InviteUsersStatus:'rejected'
             }
         })
 
@@ -115,19 +109,29 @@ const collab_Slice = createSlice({
         });
         builder.addCase(GetInviteForCollaborations.fulfilled,(state, action)=>{
             if(action.payload){
+                const {
+                    status
+                }= action.payload
+                if(status === true){
+                    return{
+                        ...state,
+                        inviteForCollaborations:action.payload.message,
+                        GetInviteForCollaborationsStatus:"success"
+                    }
+                }
                 return{
                     ...state,
-                    inviteForCollaborations:action.payload,
                     GetInviteForCollaborationsStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                GetInviteForCollaborationsStatus:"failed"
+            }
         })
         builder.addCase(GetInviteForCollaborations.rejected,(state, action)=>{
-            toast(action.payload);
             return{
                 ...state,
                 GetInviteForCollaborationsStatus:'rejected',
-                GetInviteForCollaborationsError:action.payload
             }
         })
 
@@ -139,20 +143,21 @@ const collab_Slice = createSlice({
 
         });
         builder.addCase(GetInviteSent.fulfilled,(state, action)=>{
-            if(action.payload){
+            if(action.payload.message){
                 return{
                     ...state,
-                    inviteSent:action.payload,
+                    inviteSent:action.payload.message,
                     GetInviteSentStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                GetInviteSentStatus:"failed"
+            }
         })
         builder.addCase(GetInviteSent.rejected,(state, action)=>{
-            toast(action.payload);
             return{
                 ...state,
                 GetInviteSentStatus:'rejected',
-                GetInviteSentError:action.payload
             }
         })
     }

@@ -1,47 +1,11 @@
+import { useNavigate } from "react-router-dom"
+
 export const Actions =()=>{
+    const navigate = useNavigate();
     return(
         <div className="row">
             <div className="col-md-7 mb-2">
                 <div className="d-flex wrap justify-content-between align-items-center">
-                    {/* <select 
-                        name="actions" 
-                        id="actions"
-                        className="fs-5 p-2 rounded text-white b-grey me-3 mb-2"
-                        >
-                        {
-                            [
-                                {
-                                    name:"Actions",
-                                    url:"https://hello"
-                                },
-                                {
-                                    name:"resume",
-                                    url:"https://hello"
-                                },
-                                {
-                                    name:"pause",
-                                    url:"https://hello"
-                                },
-                                {
-                                    name: "delete",
-                                    url:"https://hello"
-                                }
-                               
-                            ]?.map((drop,index)=>{
-                                const {
-                                    name,
-                                    url
-                                }=drop
-                                return(
-                                    <option 
-                                        value={name}
-                                        key={index}
-                                    >{name}
-                                    </option>
-                                )
-                            })
-                        }
-                    </select> */}
                     <div  className="me-3 mb-2">
                         <label 
                             htmlFor="sort"
@@ -91,13 +55,24 @@ export const Actions =()=>{
                      <button 
                         type="button" 
                         className="btn b-grey btn-md my-2 fl-r" 
-                        
-                        data-bs-toggle="modal" 
-                        data-bs-target="#staticBackdrop"
+                        onClick={
+                            ()=>navigate("/campaign/select-type")
+                        }
                     >
                         Create Campaign
                     </button>
                 </div>
+                {/* <div>
+                     <button 
+                        type="button" 
+                        className="btn b-grey btn-md my-2 fl-r" 
+                        
+                        data-bs-toggle="modal" 
+                        data-bs-target="#staticBackdrop"
+                    >
+                       + Create Campaign
+                    </button>
+                </div> */}
             </div>
         </div>
     )

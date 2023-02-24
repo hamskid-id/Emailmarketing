@@ -1,7 +1,6 @@
 import {FaMonero,FaTimesCircle} from "react-icons/fa";
-import LetteredAvatar from 'react-lettered-avatar';
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { AccordionsRoutes, ListRoute } from "./routes";
 import { LogOutUser } from "../../store/authSlice";
 
@@ -13,7 +12,6 @@ export const SideNav =({navToggler})=>{
     }
     const handleLogOut =()=>{
         dispatch(LogOutUser(null));
-        navigate("/auth/login")
     }
     return(
         <>
@@ -78,7 +76,7 @@ export const SideNav =({navToggler})=>{
                                     className="accordion" 
                                     id="accordionExample"
                                 >
-                                    <div className="accordion-item bg-slate-grey">
+                                    <div className="accordion-item">
                                         <div className="d-flex align-items-center">
                                             <span className="me-3">
                                                 {icon}
@@ -127,39 +125,12 @@ export const SideNav =({navToggler})=>{
                     })
                 }
             </div>
-            <div className="d-flex align-items-center my-3">
-                <span className="me-2 dropdown">
-                    <span 
-                        className="dropdown-toggle d-flex align-items-center" 
-                        data-bs-toggle="dropdown" 
-                        aria-expanded="false">
-                        <LetteredAvatar
-                            backgroundColor="brown"
-                            color="white"
-                            name="Hamzat Avatar"
-                        />
-                    </span>
-                    <ul className="dropdown-menu">
-                        <li>
-                            <a 
-                                className="dropdown-item" 
-                                href="/account/profile">
-                                Profile
-                            </a>
-                        </li>
-                        <li>
-                            <h6 
-                                className="dropdown-item" 
-                                onClick={handleLogOut}
-                            >
-                                Log Out
-                            </h6>
-                        </li>
-                    </ul>
-                </span>
-                <span className="text-white">
-                    Hamzat
-                </span>
+            <div className="d-flex justify-content-center my-3">
+                <img 
+                    src="https://res.cloudinary.com/hamskid/image/upload/v1677151514/Frame_133_vi0rjh.svg" 
+                    alt="object not found"
+                    onClick={handleLogOut}
+                    />
             </div>
         </>
     )

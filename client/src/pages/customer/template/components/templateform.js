@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
 
 export const TemplateForm =()=>{
     // const tag = useSelector(
     //     state => state.tag
     // )
-    const dispatch = useDispatch();
     const { 
         handleSubmit, 
         register,

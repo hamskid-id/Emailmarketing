@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { CustomFormField } from "../../../../components/customFomField";
 
@@ -6,6 +7,9 @@ export const BasicInfo =()=>{
     const SubmitHandler =(e)=>{
         toast("Password reset successful");
     }
+    const auth = useSelector(
+        state => state.auth
+    )
     const { 
         handleSubmit, 
         register,
@@ -24,31 +28,17 @@ export const BasicInfo =()=>{
                             onSubmit={handleSubmit(SubmitHandler)}
                             >
                             <CustomFormField
-                                label="User Name"
-                                name="uname"
-                                type="text"
-                                placeholder="enter your username"
-                                register={register}
-                                errors={errors.username}
-                            />
-                            <CustomFormField
-                                label="First Name"
+                                label="Full Name"
                                 name="fname"
+                                defaultValue={auth.userdata?.user?.name}
                                 type="text"
                                 placeholder="enter your first name"
                                 register={register}
                                 errors={errors.fname}
                             />
-                            <CustomFormField
-                                 label="Last Name"
-                                 name="lname"
-                                 type="text"
-                                 placeholder="enter your last name"
-                                 register={register}
-                                 errors={errors.lname}
-                            />
                              <CustomFormField
                                 label="Email"
+                                defaultValue={auth.userdata?.user?.email}
                                 name="email"
                                 type="email"
                                 placeholder="enter your email"

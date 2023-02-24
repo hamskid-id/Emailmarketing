@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
-import jwtDecode from 'jwt-decode' 
 import { toast } from 'react-toastify';
-import { apiBaseUrl } from './api';
+import { apiBaseUrl, setHeaders } from './api';
 
 export const registerUser = createAsyncThunk(
     'auth/registerUser', 
@@ -22,17 +21,11 @@ export const registerUser = createAsyncThunk(
                 password
             }
         );
-        localStorage.setItem(
-            'marketingUserToken',
-            response?.data
-        )
+        console.log(response?.data)
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
         return rejectWithValue(
-            err.response?.data
+            err.response?.data?.message
         )
         }
     }
@@ -56,17 +49,15 @@ export const LogInUser = createAsyncThunk(
                     remember:remember
                 }
             );
+
             localStorage.setItem(
                 'marketingUserToken',
-                response?.data
+                JSON.stringify(response?.data?.data)
             )
             return response?.data
         }catch(err){
-            console.log(
-                err.response?.data
-            )
             return rejectWithValue(
-                err.response?.data
+                err.response?.data?.message
             )
         }
     }
@@ -86,30 +77,32 @@ export const SendPasswordResetLink = createAsyncThunk(
             );
             return response?.data
         }catch(err){
-            console.log(
-                err.response?.data
-            )
             return rejectWithValue(
-                err.response?.data
+                err.response?.data?.message
             )
         }
     }
 )
 
-export const ResendVerify = createAsyncThunk(
-    'auth/ResendVerify', 
-    async ({rejectWithValue}) =>{
+export const ResetPassword = createAsyncThunk(
+    'auth/ResetPassword', 
+    async ({
+        old_password,
+        password,
+        confirm_pass
+    },{rejectWithValue}) =>{
         try{
             const response = await axios.post(
-                `${apiBaseUrl}/verification.resend`
+                `${apiBaseUrl}/changepassword`,{
+                    old_password,
+                    password,
+                    confirm_pass
+                },setHeaders()
             );
             return response?.data
         }catch(err){
-            console.log(
-                err.response?.data
-            )
             return rejectWithValue(
-                err.response?.data
+                err.response?.data?.message
             )
         }
     }
@@ -118,10 +111,7 @@ export const ResendVerify = createAsyncThunk(
 const auth_Slice = createSlice({
     name:"auth",
     initialState: {
-       token : localStorage.getItem('marketingUserToken'),
-        name:'',
-        email:'',
-        id:'',
+        userdata:localStorage.getItem('marketingUserToken') ? JSON.parse(localStorage.getItem('marketingUserToken')):[],
         registerStatus:'',
         registerError:'',
        LoginStatus:'',
@@ -129,39 +119,18 @@ const auth_Slice = createSlice({
        SendPasswordResetLinkError:'',
        ResendVerifyStatus:'',
        ResendVerifyError:'',
+       ResetPasswordStatus:'',
+       ResetPasswordError:'',
        LoginError:'',
        userLoaded:false,
     },
     reducers:{
-
-        loadUser(state,action){
-            const token = state.token;
-            if(token){
-                const {
-                    name,
-                    email,
-                    business_id
-                } = jwtDecode(token);
-
-                return {
-                    ...state,
-                    token,
-                    name,
-                    email,
-                    id:business_id,
-                    userLoaded:true
-                }
-            }
-        },
-
         LogOutUser(state, action){
             localStorage.removeItem('marketingUserToken');
+            window.location.replace("/auth/login")
             return {
                 ...state,
-                token : "",
-                name:'',
-                email:'',
-                id:"",
+                userdata:[],
                 registerStatus:'',
                 registerError:'',
                 LoginStatus:'',
@@ -173,28 +142,41 @@ const auth_Slice = createSlice({
 
     extraReducers:(builder)=>{
 
-        builder.addCase(ResendVerify.pending,(state, action)=>{
+        builder.addCase(ResetPassword.pending,(state, action)=>{
             return {
                 ...state,
-                ResendVerifyStatus:'pending'
+                ResetPasswordStatus:'pending'
             }
 
         });
-        builder.addCase(ResendVerify.fulfilled,(state, action)=>{
+        builder.addCase(ResetPassword.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("verificationlink has being resent")
+                const {
+                    status
+                }= action.payload
+                
+                if(status === true){
+                    toast("Please Check your mail for the reset Link")
+                    return{
+                        ...state,
+                        ResetPasswordStatus:"success"
+                    }
+                }
+                toast(action.payload.message)
                 return{
                     ...state,
-                    ResendVerifyStatus:"success"
+                    ResetPasswordStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                ResetPasswordStatus:"failed"
+            }
         })
-        builder.addCase(ResendVerify.rejected,(state, action)=>{
-            toast(action.payload)
+        builder.addCase(ResetPassword.rejected,(state, action)=>{
             return{
                 ...state,
-                ResendVerifyStatus:'rejected',
-                ResendVerifyError:action.payload
+                ResetPasswordStatus:'rejected',
+                ResetPasswordError:action?.payload?.message
             }
         })
 
@@ -207,12 +189,26 @@ const auth_Slice = createSlice({
         });
         builder.addCase(SendPasswordResetLink.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("password reset link successfully sent")
+                const {
+                    status
+                }= action.payload
+                
+                if(status === true){
+                    toast(action.payload.message)
+                    return{
+                        ...state,
+                        SendPasswordResetLinkStatus:"success"
+                    }
+                }
+                toast(action.payload.message)
                 return{
                     ...state,
                     SendPasswordResetLinkStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                SendPasswordResetLinkStatus:"failed"
+            }
         })
         builder.addCase(SendPasswordResetLink.rejected,(state, action)=>{
             toast(action.payload)
@@ -232,23 +228,20 @@ const auth_Slice = createSlice({
         });
         builder.addCase(registerUser.fulfilled,(state, action)=>{
             if(action.payload){
-                const {
-                    name,
-                    email,
-                    business_id
-                } = jwtDecode(action.payload);
+                toast(action.payload);
+                window.location.replace("/auth/login")
                 return{
                     ...state,
-                    token:action.payload,
-                    name,
-                    email,
-                    id:business_id,
                     registerStatus:'success'
                 }
-            }else return state
+            }else return{
+                ...state,
+                registerStatus:'failed'
+            }
         })
         builder.addCase(registerUser.rejected,(state, action)=>{
-            toast(action.payload)
+            toast.error("Registration Failed")
+            console.log(action.payload)
             return{
                 ...state,
                 registerStatus:'rejected',
@@ -264,25 +257,22 @@ const auth_Slice = createSlice({
         });
 
         builder.addCase(LogInUser.fulfilled,(state, action)=>{
-            if(action.payload){
-                const {
-                    name,
-                    email,
-                    business_id
-                } = jwtDecode(action.payload);
+           if(action.payload){
+                toast("LogIn successfull");
+                window.location.replace("/");
                 return{
                     ...state,
-                    token:action.payload,
-                    name,
-                    id:business_id,
-                    email,
+                    userdata:action.payload,
                     LoginStatus:'success'
                 }
-            }else return state;
+            }else return{
+                ...state,
+                LoginStatus:'failed'
+            }
 
         })
         builder.addCase(LogInUser.rejected,(state, action)=>{
-            toast(action.payload)
+            toast.error("Authentication Failed")
             return{
                 ...state,
                LoginStatus:'rejected',
@@ -293,7 +283,6 @@ const auth_Slice = createSlice({
 })
 
 export const {
-    loadUser,
     LogOutUser
 } = auth_Slice.actions;
 export default auth_Slice;

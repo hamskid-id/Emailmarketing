@@ -1,6 +1,5 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link} from "react-router-dom"
 import "./auth.css";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -10,7 +9,6 @@ import { registerUser } from "../../../store/authSlice";
 import { CustomFormField } from "../../../components/customFomField";
 
 export const RegisterView =()=>{
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const auth = useSelector(
         state => state.auth
@@ -27,11 +25,6 @@ export const RegisterView =()=>{
                 password
             })
         )
-        if(auth.id){
-            navigate("/");
-            toast("Registration successful");
-        }
-        
     }
     const validationSchema = Yup.object().shape({
         password: Yup.string()
@@ -109,6 +102,11 @@ export const RegisterView =()=>{
                             loadingStatus={auth.registerStatus}
                         />
                     </form>
+                    {
+                        auth.registerStatus === "rejected" &&(
+                            <p className="text-danger">{auth.registerError}</p>
+                        )
+                    }
                 </div>
             </AuthSideNav>
         </>

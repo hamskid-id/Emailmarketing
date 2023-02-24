@@ -16,7 +16,7 @@ export const TemplateView =()=>{
                         size="1.5rem"
                     />
                 </span>
-                <div className="fs-1 cl-blue fw-bold">
+                <div className="fs-1">
                     Templates
                 </div>
             </div>
@@ -30,7 +30,7 @@ export const TemplateView =()=>{
                     <span className="me-2" >
                         <FaUserAlt/>
                     </span>
-                    <span>
+                    <span className="fs-6">
                         My Templates
                     </span>
                 </div>
@@ -43,7 +43,7 @@ export const TemplateView =()=>{
                     <span className="me-2">
                         <FaImages/>
                     </span>
-                    <span>
+                    <span className="fs-6">
                         Base Template Gallary
                     </span>
                 </div>

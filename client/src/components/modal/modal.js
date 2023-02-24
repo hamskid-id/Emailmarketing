@@ -5,10 +5,10 @@ export const Modal =({title,body,large})=>{
             id="staticBackdrop" 
             data-bs-backdrop="static" 
             data-bs-keyboard="false" 
-            tabindex="-1" 
+            tabIndex="-1" 
             aria-labelledby="staticBackdropLabel" 
             aria-hidden="true">
-            <div className={`modal-dialog ${large && `modal-lg`} modal-dialog-centered modal-dialog-scrollable`}>
+            <div className={`modal-dialog ${large && `modal-xl`} modal-dialog-centered modal-dialog-scrollable`}>
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title fw-bold">
