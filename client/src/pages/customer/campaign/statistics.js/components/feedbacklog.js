@@ -11,7 +11,7 @@ export const FeedbackLog =()=>{
                 HandleDownloadPdf={HandleDownloadPdf}
                 printRef={printRef}
             />
-            <div className="w-overflow p-3">
+            <div className="w-overflow p-3" ref={printRef}>
                 <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                     <thead>
                         <tr>

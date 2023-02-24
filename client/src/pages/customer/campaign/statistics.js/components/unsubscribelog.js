@@ -1,11 +1,17 @@
+import { useRef } from "react";
+import { HandleDownloadPdf } from "./download"
 import { Actions } from "./logActions"
 
 export const UnsubscribeLog =()=>{
+    const printRef = useRef(null);
     return(
         <>
             <p className="fs-3 mb-2">UnSubscribe log</p>
-            <Actions/>
-            <div className="w-overflow">
+            <Actions
+                HandleDownloadPdf={HandleDownloadPdf}
+                printRef={printRef}
+            />
+            <div className="w-overflow p-3" ref={printRef}>
                 <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                     <thead>
                         <tr>
