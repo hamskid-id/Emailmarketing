@@ -1,16 +1,20 @@
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { CustomFormField } from "../../../../components/customFomField";
+import { useDispatch, useSelector } from "react-redux";
+import { ResetPassword } from "../../../../store/authSlice";
 
 export const ChangePassword =()=>{
-
+    const dispatch = useDispatch();
+    const auth = useSelector(
+        state => state.auth
+    )
     const validationSchema = Yup.object().shape({
         password: Yup.string()
             .required('Password is required')
             .min(8, 'Password must be at least 8 characters'),
-        confirmPassword: Yup.string()
+        confirm_pass: Yup.string()
             .required('Confirm Password is required')
             .oneOf([Yup.ref('password')], 'Passwords must match')
             
@@ -19,8 +23,17 @@ export const ChangePassword =()=>{
         resolver: yupResolver(validationSchema) 
     };
 
-    const SubmitHandler =(e)=>{
-        toast("Password reset successful");
+    const SubmitHandler =({
+        old_password,
+        password,
+        confirm_pass
+    })=>{
+        dispatch(
+            ResetPassword({
+                old_password,
+                password,
+                confirm_pass
+        }))
     }
     const { 
         handleSubmit, 
@@ -41,32 +54,34 @@ export const ChangePassword =()=>{
                             >
                             <CustomFormField
                                 label="Verify Current Password"
-                                name="crpassword"
+                                name="old_password"
+                                defaultValue={auth.userdata?.user?.password}
                                 type="password"
                                 placeholder="enter your password"
                                 register={register}
-                                errors={errors.crpassword}
+                                errors={errors.old_password}
                             />
                             <CustomFormField
                                 label="New password"
-                                name="nwpassword"
+                                name="password"
                                 type="password"
                                 placeholder="enter your password"
                                 register={register}
-                                errors={errors.nwpassword}
+                                errors={errors.password}
                                
                             />
                             <CustomFormField
                                 label="Confirm Your New Password"
-                                name="confirmPassword"
+                                name="confirm_pass"
                                 type="password"
                                 placeholder="confirm password"
                                 register={register}
-                                errors={errors.confirmPassword}
+                                errors={errors.confirm_pass}
                             />
                             <CustomFormField
                                 value="Change Password"
                                 type="btn"
+                                loadingStatus={auth.ResetPasswordStatus}
                             />
                         </form>
                     </div>

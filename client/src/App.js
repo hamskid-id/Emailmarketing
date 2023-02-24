@@ -21,6 +21,17 @@ import { CreateView } from './pages/customer/template/create';
 import {RegisterView} from "./pages/customer/authpage/register"
 import {LoginView} from "./pages/customer/authpage/login"
 import {ForgetPassword} from "./pages/customer/authpage/forgetpassword"
+import { InvitesPage } from './pages/customer/list/invites';
+import { ProtectedRoute } from './protectedroute';
+import { ListOverViewPage } from './pages/customer/list/liststat';
+import { SelectTypeSection } from './pages/customer/campaign/component/selectsection';
+import { SelectTypeView } from './pages/customer/campaign/select';
+import { CreateCampaignPage } from './pages/customer/campaign/component/CreateCampaignPage';
+import { SendingDomainPage } from './pages/customer/sending/sending';
+import { TrackingDomainPage } from './pages/customer/sending/trackin';
+import { BlacklistPage } from './pages/customer/sending/blacklisted';
+import { ImportBlacklistPage } from './pages/customer/sending/importblacklist';
+import { CampaignStatistics } from './pages/customer/campaign/statistics.js/stat';
 
 
 const App =()=> {
@@ -28,29 +39,47 @@ const App =()=> {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route exact path='/' element={ <CustomerHomePage/>}/>
           <Route exact path='/auth'>
             <Route exact path='/auth/register' element={ <RegisterView/>}/>
             <Route exact path='/auth/login' element={ <LoginView/>}/>
             <Route exact path='/auth/forget/password' element={ <ForgetPassword/>}/>
           </Route>
-          <Route exact path='/Lists'>
-            <Route exact path='/Lists/Overview' element={ <OverviewsPage/>}/>
-            <Route exact path='/Lists/Lists' element={ <ListsPage/>}/>
-            <Route exact path='/Lists/Subscribers' element={ <SubscribersPage/>}/>
-            <Route exact path='/Lists/Tags' element={ <TagsPage/>}/>
-            <Route exact path='/Lists/Collaborations' element={ <CollabsPage/>}/>
+          <Route
+              element={
+                  <ProtectedRoute/>
+              }
+          >
+            <Route exact path='/' element={ <CustomerHomePage/>}/>
+            <Route exact path='/Lists'>
+              <Route exact path='/Lists/Overview' element={ <OverviewsPage/>}/>
+              <Route exact path='/Lists/Lists' element={ <ListsPage/>}/>
+              <Route exact path='/Lists/Subscribers' element={ <SubscribersPage/>}/>
+              <Route exact path='/Lists/Tags' element={ <TagsPage/>}/>
+              <Route exact path='/Lists/Lists/stat' element={ <ListOverViewPage/>}/>
+              <Route exact path='/Lists/Collaborations' element={ <CollabsPage/>}/>
+              <Route exact path='/Lists/Invites' element={ <InvitesPage/>}/>
+            </Route>
+            <Route eaxct path="/Sending">
+              <Route exact path='/Sending/Sending domains' element={ <SendingDomainPage/>}/>
+              <Route exact path='/Sending/Tracking domains' element={ <TrackingDomainPage/>}/>
+              <Route exact path='/Sending/Blacklist' element={ <BlacklistPage/>}/>
+              <Route exact path='/Sending/Blacklist/import' element={ <ImportBlacklistPage/>}/>
+            </Route>
+            <Route exact path='/campaigns'  element={ <AllCampaign/>} />
+            <Route exact path='/campaigns/stat'  element={ <CampaignStatistics/>} />
+             <Route exact path='/campaigns/Create'  element={ <CreateCampaignPage/>} />
+            <Route exact path='/campaign/select-type'  element={ <SelectTypeView/>} />
+            <Route exact path='/templates'  element={ <TemplateList/>} />
+            <Route exact path='/automations'  element={ <AutoPage/>} />
+            <Route exact path='/automations/design'  element={ <AutomationDesign/>} />
+            <Route exact path='/inbox' element={ <Inbox/>}/>
+            <Route exact path="/create/template" element={<CreateView/>}/>
+            <Route exact path="/preview/template/:id" element={<CreateView/>}/>
+            <Route exact path="/account/profile" element={<ProfilePage/>}/>
           </Route>
-          <Route exact path='/campaigns'  element={ <AllCampaign/>} />
-          <Route exact path='/templates'  element={ <TemplateList/>} />
-          <Route exact path='/automations'  element={ <AutoPage/>} />
-          <Route exact path='/automations/design'  element={ <AutomationDesign/>} />
-          <Route exact path='/inbox' element={ <Inbox/>}/>
-          <Route exact path="/create/template" element={<CreateView/>}/>
-          <Route exact path="/preview/template/:id" element={<CreateView/>}/>
-          <Route exact path="/account/profile" element={<ProfilePage/>}/>
         </Routes>
       </Router>
+
       <ToastContainer />
     </Provider>
   );

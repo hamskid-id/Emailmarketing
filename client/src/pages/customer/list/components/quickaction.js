@@ -8,16 +8,16 @@ export const QuickActions =()=>{
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
                 <FaCircleNotch
-                        size="2rem"
+                        size="1.5rem"
                     />
                 </span>
                 <h2 
-                    className="fs-3 w-100 mb-0"
+                    className="fs-4 w-100 mb-0"
                 >
                     Quick action
                 </h2>
             </div>
-            <h2 className="fs-5">
+            <h2 className="fs-6">
                 We'll show you how to grow your audience and add contacts quickly
             </h2>
             <hr className="mb-4"/>

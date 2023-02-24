@@ -1,22 +1,20 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
-import { apiBaseUrl } from './api';
+import { apiBaseUrl, setHeaders } from './api';
 
 export const GetTags = createAsyncThunk(
     'tag/GetTags ', 
-    async ({rejectWithValue}) =>{
+    async () =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/viewtags`
+            `${apiBaseUrl}/viewtags`,
+             setHeaders()
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
-        return rejectWithValue(
-            err.response?.data
+        toast.error(
+            err.response?.data?.message
         )
         }
     }
@@ -26,20 +24,18 @@ export const CreateTags  = createAsyncThunk(
     'tag/CreateTags ', 
     async ({
         name
-    },{rejectWithValue}) =>{
+    },) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/createtags`,{
                 name
-            }
+            },
+            setHeaders()
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
-        return rejectWithValue(
-            err.response?.data
+        toast.error(
+            err.response?.data?.message
         )
         }
     }
@@ -67,20 +63,22 @@ const Tag_Slice = createSlice({
 
         });
         builder.addCase(GetTags.fulfilled,(state, action)=>{
-            if(action.payload){
+            if(action.payload.message){
                 return{
                     ...state,
-                    Tags:action.payload,
+                    Tags:action.payload.message,
                     GetTagsStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                GetTagsStatus:"failed"
+            }
         })
         builder.addCase(GetTags.rejected,(state, action)=>{
-            toast(action.payload)
+            toast(action.payload?.message)
             return{
                 ...state,
-                GetTagsStatus:'rejected',
-                GetTagsError:action.payload
+                GetTagsStatus:'rejected'
             }
         })
 
@@ -98,14 +96,15 @@ const Tag_Slice = createSlice({
                     ...state,
                     CreateTagsStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                CreateTagsStatus:"failed"
+            }
         })
         builder.addCase(CreateTags.rejected,(state, action)=>{
-            toast(action.payload);
             return{
                 ...state,
-                CreateTagsStatus:'rejected',
-                CreateTagsError:action.payload
+                CreateTagsStatus:'rejected'
             }
         })
     }

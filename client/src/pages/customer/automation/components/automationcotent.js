@@ -22,7 +22,7 @@ export const AutoContent =()=>{
                         size="1.5rem"
                     />
                 </span>
-                <div className="fs-1 cl-blue fw-bold">
+                <div className="fs-1">
                     Automations
                 </div>
             </div>
@@ -31,7 +31,7 @@ export const AutoContent =()=>{
             />
             <AutoTable/>
             <Modal
-                title="Invite Collaborators"
+                title="Add New Automations"
                 body={        
                     modalView.name ==="first"?
                         <ModalContentFirstView

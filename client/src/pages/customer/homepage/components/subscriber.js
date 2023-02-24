@@ -30,8 +30,7 @@ export const Subscribers=()=>{
             label:"key email marketing metrics",
             data:userdata?.map(
                 (data)=>data.number
-            ),
-            backgroundColor:["#198754","darkslategrey"]
+            )
         }]
     });
     const [
@@ -44,8 +43,7 @@ export const Subscribers=()=>{
             label:"Subscribers",
             data:piedata?.map(
                 (data)=>data.number
-            ),
-            backgroundColor:["darkslategrey","#198754","#3498db","#e74c3c"]
+            )
         }]
     });
     return(
@@ -53,20 +51,20 @@ export const Subscribers=()=>{
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
                    <FaCircleNotch
-                        size="2rem"
+                        size="1.5rem"
                     />
                 </span>
                 <h2 
-                    className="fs-3 w-100 mb-0"
+                    className="fs-4 w-100 mb-0"
                 >
                     List growth
                 </h2>
             </div>
             <div className="chat-flex align-items-end wrap">
-                <div className="my-3 rounded border p-1 bar-container me-3">
+                <div className="my-3 rounded border p-1 bar-container me-3 w-63">
                     <BarChart data={userData}/>
                 </div>                  
-                <div className="my-3 rounded border p-1 chat-container me-3">
+                <div className="my-3 rounded border p-1 chat-container me-3 w-32">
                     <PieChart data={subData}/>
                 </div>                  
             </div>

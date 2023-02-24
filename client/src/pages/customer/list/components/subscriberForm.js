@@ -1,13 +1,21 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
 import { Createsubscriber } from "../../../../store/subscriberSlice";
+import { GetTags } from "../../../../store/tagSlice";
 
 export const SubscriberModalContent =()=>{
     const subsriber = useSelector(
         state => state.subscriber
     )
+    const Tags = useSelector(
+        state => state.tag
+    )
     const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(GetTags(null));
+    },[dispatch])
     const { 
         handleSubmit, 
         register,
@@ -95,19 +103,46 @@ export const SubscriberModalContent =()=>{
                 register={register}
                 errors={errors.dob}
             />
-            <CustomFormField
-                label ="Tag"
-                name ="tag"
-                placeholder="tag"
-                type="text"
-                register={register}
-                errors={errors.tag}
-            />
+            <div className="w-100 mb-2">
+                <label
+                    className="fw-bold" 
+                    htmlFor="tag">
+                    Tags
+                </label>
+                <select 
+                    name="tag" 
+                    id="tag"
+                    className="bg-alice p-2 border border-white rounded w-100"
+                    {...register(
+                        "tag", 
+                        {
+                            required:`tag field is invalid`,
+                        }
+                    )
+                    }
+                    >
+                    {
+                        Tags.Tags?.map((tag,index)=>{
+                            const{
+                                name
+                            }=tag
+                            return(
+                                <option 
+                                    value={name}
+                                    key={index}
+                                >{name}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+            </div>
             <CustomFormField
                 value="submit"
                 type="btn"
                 loadingStatus={subsriber.CreatesubscriberStatus}
             />
+
         </form>
     )
 }

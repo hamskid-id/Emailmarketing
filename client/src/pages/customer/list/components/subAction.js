@@ -1,4 +1,10 @@
+import { useSelector } from "react-redux"
+import { toast } from "react-toastify"
+
 export const Actions =()=>{
+    const tag = useSelector(
+        state => state.tag
+    )
     return(
         <div className="row">
             <div className="col-md-9 mb-2">
@@ -152,14 +158,27 @@ export const Actions =()=>{
             </div>
             <div className="col-md-3">
                 <div>
-                     <button 
-                        className="btn b-grey btn-md my-2 fl-r"
-                        type="button"                            
-                        data-bs-toggle="modal" 
-                        data-bs-target="#staticBackdrop"
-                    >
-                        + New Subscribers
-                    </button>
+                    {
+                        tag.Tags.length>0?(
+                            <button 
+                                className="btn b-grey btn-md my-2 fl-r"
+                                type="button"                            
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
+                            >
+                                + New Subscribers
+                            </button>
+                        ):(
+                             <button 
+                                className="btn b-grey btn-md my-2 fl-r"
+                                onClick={
+                                    ()=>toast.error("You do not have permission for this action,Please Update you tag list to add Subscribers")
+                                }
+                            >
+                                + New Subscribers
+                            </button>
+                        )
+                    }
                 </div>
             </div>
         </div>

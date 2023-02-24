@@ -1,6 +1,28 @@
 .App {
   text-align: center;
 }
+.w-63{
+  width:63%;
+}
+.w-32{
+  width:32%
+}
+.c-gainsboro{
+  color:gainsboro
+}
+input[id="upload"]{
+  display:none;
+}
+
+.border-bottom-slate-grey{
+  border-bottom:4px solid rgba(0, 25, 39, 0.75);
+}
+.dotted{
+  border:1px dotted grey;
+}
+.dotted-buttom{
+  border-bottom: 1px dotted grey;
+}
 .wt-12{
   width:12rem;
 }
@@ -8,8 +30,12 @@
   height:100vh;
   overflow-y: auto;
 }
+.accordion-item{
+  background-color: rgba(0, 25, 39, 0.01);
+}
 .accordion-item:first-of-type .accordion-button{
-  background-color: darkslategray;
+  background-color:rgba(0, 25, 39, 0.01);
+  border:rgba(0, 25, 39, 0.01);
   color:white;
 }
 .campains-select{
@@ -17,6 +43,9 @@
 }
 .dashSideNav{
   height:70vh;
+}
+.w-fit-content{
+  width:fit-content;
 }
 .accordion-button:not(.collapsed) {
   box-shadow:none;
@@ -55,7 +84,6 @@
 }
 .chat-container{
   position:relative;
-  width:fit-content;
 }
 .w-89{
   width:89%;
@@ -69,7 +97,6 @@
   padding:0 1.5rem 0 1.5rem;
 }
 .bar-container{
-  width: 65%;
   position:relative;
 }
 .campaign-select{
@@ -127,7 +154,7 @@
   background-color: grey;
 }
 .border-drakslate-grey{
-  border: 1px solid darkslategray;
+  border: 1px solid rgba(0, 25, 39, 0.75);
 }
 .b-gainsboro{
   background-color: gainsboro;
@@ -180,7 +207,7 @@ i.mdi.mdi-account {
   display: flex;
 }
 .bg-slate-grey{
-  background-color: darkslategrey;
+  background-color: rgba(0, 25, 39, 0.75);
 }
 .w-overflow{
   width:100%;
@@ -266,10 +293,10 @@ i.mdi.mdi-account {
   width:75%;
 }
 .bg-blue{
-  color:darkslategrey;
+  color:rgba(0, 25, 39, 0.75);
 }
 .cl-blue{
-  color:darkslategrey;
+  color:rgba(0, 25, 39, 0.75)y;
 }
 .mt-7{
   margin-top: 7rem;
@@ -300,6 +327,12 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .w-63{
+    width:100%;
+  }
+  .w-32{
+    width:100%
+  }
   .automationEnv{
     height:40vh;
   }

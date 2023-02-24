@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { ResendVerify } from "../../../../store/authSlice";
+import { SendPasswordResetLink } from "../../../../store/authSlice";
 export const VerifyResetPassword =({
     email
 })=>{
@@ -9,11 +8,13 @@ export const VerifyResetPassword =({
         state => state.auth
     )
     const handleClick =()=>{
-        dispatch(ResendVerify(null));
-        if(auth.ResendVerifyStatus === "success"){
-            toast("A fresh verification link has being sent to your email");
-        }
+        dispatch(
+            SendPasswordResetLink({
+                email
+            })
+        )
     }
+    
     return(
         <div className="verify-container">
             <p className="fs-2 text-center fw-bold">
@@ -27,7 +28,7 @@ export const VerifyResetPassword =({
                     If you did not receive the email
                 </p>
                 {
-                   auth.ResendVerifyStatus === "pending"?(
+                   auth.SendPasswordResetLinkStatus === "pending"?(
                         <button
                             className="btn btn-md bg-slate-grey text-white" 
                             type="button" 
@@ -38,7 +39,7 @@ export const VerifyResetPassword =({
                                 role="status" 
                                 aria-hidden="true">
                             </span>
-                                Loading...
+                                Loading...Please wait
                         </button>
                     ):(
                         <button 

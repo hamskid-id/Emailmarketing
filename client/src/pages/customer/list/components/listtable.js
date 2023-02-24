@@ -1,6 +1,8 @@
-import { FaPencilAlt } from "react-icons/fa"
+import { FaBacon} from "react-icons/fa"
+import {useNavigate} from "react-router-dom";
 
 export const ListTable =()=>{
+    const navigate = useNavigate()
     return(
         <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
@@ -29,7 +31,7 @@ export const ListTable =()=>{
                                     className="progress-bar bg-primary" 
                                     role="progressbar" 
                                     aria-label="Basic example" 
-                                    aria-valuenow="50%" 
+                                    aria-valuenow={50} 
                                     style={{width:"50%"}}
                                     aria-valuemin="0" 
                                     aria-valuemax="100"
@@ -45,7 +47,7 @@ export const ListTable =()=>{
                                     className="progress-bar bg-primary" 
                                     role="progressbar" 
                                     aria-label="Basic example" 
-                                    aria-valuenow="80%" 
+                                    aria-valuenow={80}
                                     style={{width:"80%"}}
                                     aria-valuemin="0" 
                                     aria-valuemax="100"
@@ -55,12 +57,14 @@ export const ListTable =()=>{
                         </td>
                         <td>
                             <div className="d-flex align-items-center">
-                                <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
+                                <div 
+                                    className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2"
+                                    onClick={()=>navigate("/Lists/Lists/stat")}>
                                     <span className="me-1">
-                                        <FaPencilAlt/>
+                                        <FaBacon/>
                                     </span>
                                     <span>
-                                        Edit
+                                        Statistics
                                     </span>
                                 </div>
                                 <div className="dropdown">
@@ -72,21 +76,6 @@ export const ListTable =()=>{
                                     >
                                     </button>
                                     <ul className="dropdown-menu">
-                                        <li
-                                            className="dropdown-item"
-                                        >
-                                            Statistics
-                                        </li>
-                                        <li 
-                                            className="dropdown-item"
-                                        >
-                                            Add subscribers
-                                        </li>
-                                        <li 
-                                            className="dropdown-item"
-                                        >
-                                            Subscribers
-                                        </li>
                                         <li 
                                             className="dropdown-item"
                                         >

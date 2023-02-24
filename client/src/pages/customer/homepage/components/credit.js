@@ -22,16 +22,16 @@ export const CreditWrapper=()=>{
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
                    <FaCircleNotch
-                        size="2rem"
+                        size="1.5rem"
                     />
                 </span>
                 <h2 
-                    className="fs-3 w-100 mb-0"
+                    className="fs-4 w-100 mb-0"
                 >
                     Credits used
                 </h2>
             </div>
-            <p className="fs-5">
+            <p className="fs-6">
                 Below is the summary of how you spend your credits
             </p>
             <div className="row">

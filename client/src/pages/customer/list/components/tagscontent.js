@@ -12,7 +12,7 @@ export const TagsContent =()=>{
                         size="1.5rem"
                     />
                 </span>
-                <div className="fs-1 cl-blue fw-bold">
+                <div className="fs-1">
                     Tags
                 </div>
             </div>

@@ -1,23 +1,24 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
-import { apiBaseUrl } from './api';
+import { apiBaseUrl, setHeaders } from './api';
 
 export const GetCampaigns = createAsyncThunk(
     'campaign/GetCampaigns ', 
-    async ({rejectWithValue}) =>{
+    async () =>{
     try{
         const response = await axios.get(
-            `${apiBaseUrl}/viewcamps`
+            `${apiBaseUrl}/viewcamps`,
+                setHeaders()
+        )
+        console.log(
+           response?.data
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
-        return rejectWithValue(
-            err.response?.data
-        )
+            console.log(
+                err.response?.data
+            )
         }
     }
 )
@@ -33,13 +34,14 @@ export const CreateCampaigns  = createAsyncThunk(
     },{rejectWithValue}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/createcampaign`,{
+            `${apiBaseUrl}/createcampaigns`,{
                 title,
                 recipient,
                 from,
                 subject,
                 content
-            }
+            },
+            setHeaders()
         )
         return response?.data
     } catch(err){
@@ -47,7 +49,7 @@ export const CreateCampaigns  = createAsyncThunk(
             err.response?.data
         )
         return rejectWithValue(
-            err.response?.data
+            err.response?.data?.message
         )
         }
     }
@@ -76,19 +78,29 @@ const campaign_Slice = createSlice({
         });
         builder.addCase(GetCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
+                const {
+                    status
+                }= action.payload
+                if(status === true){
+                    return{
+                        ...state,
+                        Campaigns:action.payload.message,
+                        GetCampaignsStatus:"success"
+                    }
+                }
                 return{
                     ...state,
-                    Campaigns:action.payload,
                     GetCampaignsStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                GetCampaignsStatus:"failed"
+            }
         })
         builder.addCase(GetCampaigns.rejected,(state, action)=>{
-            toast(action.payload)
             return{
                 ...state,
-                GetCampaignsStatus:'rejected',
-                GetCampaignsError:action.payload
+                GetCampaignsStatus:'rejected'
             }
         })
 
@@ -101,19 +113,20 @@ const campaign_Slice = createSlice({
         });
         builder.addCase(CreateCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("Campaign successfully created")
+                toast("Campaign successfully created");
                 return{
                     ...state,
                     CreateCampaignsStatus:"success"
                 }
-            }else return state
+            }else return{
+                ...state,
+                CreateCampaignsStatus:"failed"
+            }
         })
         builder.addCase(CreateCampaigns.rejected,(state, action)=>{
-            toast(action.payload);
             return{
                 ...state,
-                CreateCampaignsStatus:'rejected',
-                CreateCampaignsError:action.payload
+                CreateCampaignsStatus:'rejected'
             }
         })
     }

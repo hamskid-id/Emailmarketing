@@ -26,11 +26,6 @@ export const LoginView =()=>{
             })
             
         )
-        if(auth.id){
-            navigate("/");
-            toast("Login successful");
-        }
-       
     }
     const { 
         register, 
@@ -92,6 +87,11 @@ export const LoginView =()=>{
                             loadingStatus={auth.LoginStatus}
                         />
                     </form>
+                    {
+                        auth.LoginStatus === "rejected" &&(
+                            <p className="text-danger">{auth.LoginError}</p>
+                        )
+                    }
                 </div>
             </AuthSideNav> 
         </>

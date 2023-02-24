@@ -1,4 +1,4 @@
-import { FaQuestionCircle, FaRegFolderOpen, FaShippingFast, FaUserCog,FaHome,FaPaperPlane,FaRegClock,FaThList,FaSync,FaTable } from "react-icons/fa";
+import {FaHome,FaPaperPlane,FaRegClock,FaThList,FaSync,FaTable } from "react-icons/fa";
 export const AccordionsRoutes =[
     {
         id:"collapseOne",
@@ -11,10 +11,9 @@ export const AccordionsRoutes =[
             "Overview",
             "Lists",
             "Subscribers",
-            // "Segments",
             "Tags",
             "Collaborations",
-            // "Forms"
+            "Invites"
         ]
     },
     {
@@ -63,14 +62,6 @@ export const ListRoute=[
     />,
         name:"Templates",
         route:"/templates"     
-    },
-    {
-        icon:<FaUserCog
-        size="1.5rem"
-        color="white"
-    />,
-        name:"Campaign api",
-        route:"/campaignApi"      
     }
     
 ]

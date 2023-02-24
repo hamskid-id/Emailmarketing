@@ -5,7 +5,7 @@ export const AllCampaign =()=>{
     return(
         <>
             <Layout
-                routeChildren={ <AllCampaignComponent/>  }
+                routeChildren={<AllCampaignComponent/>}
             />
         </>
     )
