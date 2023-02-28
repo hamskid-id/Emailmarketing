@@ -1,4 +1,4 @@
-import { FaSlidersH } from "react-icons/fa"
+import { FaSlidersH, FaUserFriends } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { Modal } from "../../../../components/modal/modal"
 import { SubscriberModalContent } from "./subscriberForm"
@@ -12,7 +12,7 @@ export const SubsrcibersContent =()=>{
         <>
             <div className="d-flex align-items-center">
                 <span className="me-3">
-                    <FaSlidersH
+                    <FaUserFriends
                         size="1.5rem"
                     />
                 </span>

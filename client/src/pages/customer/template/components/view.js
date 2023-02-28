@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FaImages, FaSlidersH, FaUserAlt } from "react-icons/fa"
+import { FaImages, FaTable, FaUserAlt } from "react-icons/fa"
 import { GeneralList } from "./generalTemplate";
 import { MyTemplateList } from "./templateList"
 
@@ -12,7 +12,7 @@ export const TemplateView =()=>{
         <div className="py-3">
             <div className="d-flex align-items-center mb-3">
                 <span className="me-3">
-                    <FaSlidersH
+                    <FaTable
                         size="1.5rem"
                     />
                 </span>

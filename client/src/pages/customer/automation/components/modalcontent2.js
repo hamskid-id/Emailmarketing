@@ -1,4 +1,11 @@
 import { FaArrowLeft } from "react-icons/fa";
+import { MonthlyRecurring } from "./automationForms/monthlyrecurring";
+import { SayGoodByeToSubscriber } from "./automationForms/sayGoodbye";
+import { SayHappyBirthDay } from "./automationForms/sayHappyBirsthday";
+import { SpecificDate } from "./automationForms/specificdate";
+import { SubscriberAddedDate } from "./automationForms/subscriberAddeddate";
+import { WeeklyRecurring } from "./automationForms/weeklyrecurring";
+import { WelcoemNewSub } from "./automationForms/welocomenewSub";
 
 export const ModalContentSecondView =({
     setModalView,
@@ -6,50 +13,58 @@ export const ModalContentSecondView =({
 })=>{
     const arr =[
         {
-            title:"Welcome New Subscribers",
-            subtitle:"Introduce yourself| your organization to people when they sign up for your audience",
+            component:<WelcoemNewSub
+                setModalView={setModalView}
+            />,
             id:1
         },
         {
-            title:"Say Happy birthday",
-            subtitle:"Celebrate with an exclusive offer or cheerful message that sends based on the birthday field in your audience.",
+            component:<SayHappyBirthDay
+                setModalView={setModalView}          
+            />,
             id:2
         },
         {
-            title:"Subscriber added date",
-            subtitle:"Send an email based on when a subscriber joined your audience.",
+            component:<SubscriberAddedDate
+                setModalView={setModalView}
+            />,
             id:3
         },
         {
-            title:"Specific date",
-            subtitle:"Send a one-time message based on an individual date field, like an appointment.",
+            component:<SpecificDate
+                setModalView={setModalView}
+            />,
             id:4
         },
         {
-            title:"Say goodbye to subscriber",
-            subtitle:"Send an email to say sorry when a subscriber unsubscribe from your audience.",
+            component:<SayGoodByeToSubscriber
+                setModalView={setModalView}
+            />,
             id:5
         },
         {
-            title:"API 3.0",
-            subtitle:"Trigger an email series with an API call from your application, if you've got a developer on hand.",
+            component:<SayGoodByeToSubscriber
+                setModalView={setModalView}
+            />,
             id:6
         },
         {
-            title:"Weekly recurring",
-            subtitle:"Schedule your campaign to automatically send on a weekly basis, on a particular week day you choose.",
+            component:<WeeklyRecurring
+                setModalView={setModalView}
+            />,
             id:7
         },
         {
-            title:"Monthly recurring",
-            subtitle:"Schedule your campaign to automatically send on a monthly basis, on a particular day of the month",
+            component:<MonthlyRecurring
+                setModalView={setModalView}
+            />,
             id:8
         }
     ]
 
 
     return(
-        <>
+        <div className="wt-50 rounded shadow d-flex flex-column m-auto p-3">
             <FaArrowLeft
                 onClick={
                     ()=>setModalView({
@@ -58,12 +73,12 @@ export const ModalContentSecondView =({
                     })
                 }
             />
+            <hr className="b-grey"/>
             <div className="row">
                 {
                     arr?.map((item,index)=>{
                         const{
-                            title,
-                            subtitle,
+                            component,
                             id
                         }=item;
                         if(id === modalView.id){
@@ -72,11 +87,7 @@ export const ModalContentSecondView =({
                                     className="col-md-12 col-sm-12 col-xs-12"
                                     key={index}                                
                                 >
-                                    <div className="border rounded d-flex flex-column align-items-center p-3 m-2 justify-content-center">
-                                        <p>{modalView.id}</p>
-                                        <p className="fw-bold text-center">{title}</p>
-                                        <p className="fs-6 text-center">{subtitle}</p>
-                                    </div>  
+                                    {component}
                                 </div>
                             )
                         }
@@ -84,7 +95,7 @@ export const ModalContentSecondView =({
                     })
                 }
             </div>
-        </>
+        </div>
         
     )
 }

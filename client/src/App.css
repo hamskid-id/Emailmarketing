@@ -1,11 +1,17 @@
 .App {
   text-align: center;
 }
+.web-dash{
+  display: block;
+}
 .w-63{
   width:63%;
 }
+.mobile-logo{
+  display:none;
+}
 .w-32{
-  width:32%
+  width:32%;
 }
 .c-gainsboro{
   color:gainsboro
@@ -254,6 +260,13 @@ i.mdi.mdi-account {
 .pd-1,.pdw-1{
   padding: 1rem;
 }
+.pdx-5{
+  padding-right: 3rem;
+  padding-left:3rem;
+}
+.pde-5{
+  padding-left:3rem;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -327,6 +340,20 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .pdx-5{
+    padding-right: 1rem;
+    padding-left:1rem;
+  }
+  .pde-5{
+    padding-right:1rem;
+  }
+  .web-dash{
+    display:none;
+  }
+  .mobile-logo{
+    display:flex;
+    align-items:center;
+  }
   .w-63{
     width:100%;
   }
@@ -354,9 +381,6 @@ i.mdi.mdi-account {
   .chat-container{
     width:fit-content;
   }
-  .bar-container{
-    display: none;
-  }
   .campaign-select{
     width:100%;
   }
@@ -376,9 +400,6 @@ i.mdi.mdi-account {
   }
   .w-230{
     width:100%;
-  }
-  .pde-5{
-    padding-right: 0;
   }
   .sideNav.active{
     display: block;

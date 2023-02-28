@@ -16,14 +16,19 @@ export const SideNav =({navToggler})=>{
     return(
         <>
             <div className="d-flex justify-content-between align-items-center py-3">
-                <span>
-                    <FaMonero
-                        size="3rem"
-                        color="white"
-                        onClick={
-                            ()=>navigate("/")
-                        }
-                    />
+                <span className="d-flex align-items-start">
+                    <span className="me-1">
+                        <FaMonero
+                            size="3rem"
+                            color="white"
+                            onClick={
+                                ()=>navigate("/")
+                            }
+                        />
+                    </span>
+                    <span className="fs-3 fw-bold text-white">
+                        5star
+                    </span>
                 </span>
                 <span className="hide-toggler">
                     <FaTimesCircle

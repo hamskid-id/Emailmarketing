@@ -1,4 +1,4 @@
-import { FaSlidersH } from "react-icons/fa"
+import { FaTags } from "react-icons/fa"
 import { Modal } from "../../../../components/modal/modal"
 import { CreateTag } from "./tagsmodalcontent"
 import { TagContainer } from "./tagstable"
@@ -8,7 +8,7 @@ export const TagsContent =()=>{
         <>
             <div className="d-flex align-items-center mb-5">
                 <span className="me-3">
-                    <FaSlidersH
+                    <FaTags
                         size="1.5rem"
                     />
                 </span>

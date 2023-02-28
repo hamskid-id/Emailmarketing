@@ -1,4 +1,4 @@
-import { FaCartArrowDown, FaCircleNotch } from "react-icons/fa"
+import {FaPaperPlane } from "react-icons/fa"
 import { recentDropdown } from "./recentcampaindropdown"
 
 export const RecentlySent=()=>{
@@ -13,7 +13,7 @@ export const RecentlySent=()=>{
         <>
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <FaPaperPlane
                         size="1.5rem"
                     />
                 </span>
@@ -75,7 +75,10 @@ export const RecentlySent=()=>{
                             content
                         }=camp
                         return(
-                            <div className="d-flex wt-50 mb-3">
+                            <div 
+                                className="d-flex wt-50 mb-3"
+                                key={index}
+                                >
                                 <span className="rounded border px-2 py-1 me-3">
                                    {action}
                                 </span>

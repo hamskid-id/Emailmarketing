@@ -12,7 +12,7 @@ export const ApiToken=()=>{
                 </label>
                 <p 
                     id="docs"
-                    className="text-danger fs-5"
+                    className="text-danger fs-5 break"
                     >
                     https://demo.acellemail.com/frontend/docs/api/v1 link
                 </p>
@@ -26,7 +26,7 @@ export const ApiToken=()=>{
                 </label>
                 <p 
                     id="docs"
-                    className="text-danger fs-5"
+                    className="text-danger fs-5 break"
                     >
                     OMVRVE986THjQZcqlNQXsogLKjtgEdTrEzsLtBfsRhyRrAhfWlu3aPhinQvK
                 </p>

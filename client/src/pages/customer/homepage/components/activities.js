@@ -1,4 +1,4 @@
-import { FaCircleNotch } from "react-icons/fa"
+import { FaCircleNotch, FaRegClone } from "react-icons/fa"
 import LetteredAvatar from 'react-lettered-avatar';
 
 export const ActivitiesLog =()=>{
@@ -6,7 +6,7 @@ export const ActivitiesLog =()=>{
         <>
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <FaRegClone
                         size="1.5rem"
                     />
                 </span>
