@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CommunicationJob;
 use App\Mail\sendemails;
 use App\Models\campaign;
 use App\Models\country;
@@ -304,7 +305,6 @@ class EmailmarketingController extends Controller
         //     ]);
         // }
         
-
     }
 
     public function viewsubscribers()
@@ -337,12 +337,20 @@ class EmailmarketingController extends Controller
             $camp = new campaign();
             $camp->business_id = Auth::user()->business_id;
             $camp->title = $request->title;
-            $camp->recipient = $request->recipient;
+            $camp->receipient = $request->receipient;
             $camp->from = $request->from;
             $camp->subject = $request->subject;
             $camp->content = $request->content;
             $camp->save();
             if ($camp->save()) {
+
+                //Do not remove
+                $data['campaign'] = $camp->toArray();
+                $data['subscribers'] = Subscriber::where('tag', 'materials')->get()->toArray();
+                CommunicationJob::dispatch($data);
+
+                //do not remove ends
+                
                 return response()->json([
                     'status' => true,
                     'message' => 'Campgn created Successully!',

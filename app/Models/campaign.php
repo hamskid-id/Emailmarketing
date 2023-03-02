@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\business;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class campaign extends Model
 {
@@ -16,4 +17,12 @@ class campaign extends Model
         'subject',
         'content',
     ];
+
+    public function business(){
+        return $this->belongsTo(business::class);
+    }
+
+    public function tags(){
+
+    }
 }
