@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class emtemplate extends Model
+class Blacklisted extends Model
 {
     use HasFactory;
 }
