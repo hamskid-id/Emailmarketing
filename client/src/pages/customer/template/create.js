@@ -2,8 +2,7 @@ import { useRef, useState } from "react";
 import { Modal } from "../../../components/modal/modal";
 import { CreateNav } from "./components/createNav";
 import EmailEditor from 'react-email-editor';
-import { TemplateForm } from "./components/templateform";
-
+import { TemplateForm } from "./components/createTemplateForm";
 export const CreateView =()=>{
     const emailEditorRef = useRef(null);
     const [
@@ -22,7 +21,7 @@ export const CreateView =()=>{
             console.log('exportHtml', html);
             setEditedInfo({
                 html,
-                design
+                design:JSON.stringify(design)
             })
         });
     };
@@ -59,7 +58,9 @@ export const CreateView =()=>{
             </div>          
             <Modal
                 title="Template Information"
-                body={<TemplateForm/>}
+                body={<TemplateForm
+                    EditedInfo={EditedInfo}
+                />}
             />
         </>
     )

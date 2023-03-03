@@ -11,6 +11,8 @@ export const AccordionsRoutes =[
             "Overview",
             "Lists",
             "Subscribers",
+            "Unsubscribe",
+            "Spam Report",
             "Tags",
             "Collaborations",
             "Invites"

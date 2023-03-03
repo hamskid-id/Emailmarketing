@@ -1,7 +1,11 @@
-import { FaCartArrowDown, FaCircleNotch } from "react-icons/fa"
+import {FaPaperPlane } from "react-icons/fa"
+import { useSelector } from "react-redux"
 import { recentDropdown } from "./recentcampaindropdown"
 
 export const RecentlySent=()=>{
+    const recentCampaigns = useSelector(
+        state => state.campaign
+    )
     const campaign=[{
         title:"title",
         recipient:"recipient",
@@ -13,7 +17,7 @@ export const RecentlySent=()=>{
         <>
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <FaPaperPlane
                         size="1.5rem"
                     />
                 </span>
@@ -46,42 +50,70 @@ export const RecentlySent=()=>{
                     }
                 </select>
             </div>
-            <div className="d-flex wrap justify-content-between mt-5">
+            <div className="mt-5">
                 {
-                    [
-                        {
-                            action:"Title",
-                            content:"Mail lists from ClickFunnel"
-                        },
-                        {
-                            action:"From",
-                            content:"Mail lists from ClickFunnel"
-                        },
-                        {
-                            action:"Recipient",
-                            content:"Mail lists from ClickFunnel"
-                        },
-                        {
-                            action:"Subject",
-                            content:"Newsletter test #0041"
-                        },
-                        {
-                            action:"Content",
-                            content:"Newsletter test #0041"
-                        }
-                    ]?.map((camp,index)=>{
+                    recentCampaigns.recentCampaigns?.map((camp,index)=>{
                         const{
-                            action,
-                            content
+                            content,
+                            from_email,
+                            receipient,
+                            subject,
+                            title,
                         }=camp
                         return(
-                            <div className="d-flex wt-50 mb-3">
-                                <span className="rounded border px-2 py-1 me-3">
-                                   {action}
-                                </span>
-                                <span className="text-primary">
-                                    {content}
-                                </span>
+                            <div 
+                                key={index}
+                                className="d-flex wrap justify-content-between">
+                                <div 
+                                    className="d-flex wt-50 mb-3"
+                                    >
+                                    <span className="rounded border px-2 py-1 me-3">
+                                        Title
+                                    </span>
+                                    <span className="text-primary">
+                                        {title}
+                                    </span>
+                                </div>
+                                <div 
+                                    className="d-flex wt-50 mb-3"
+                                    >
+                                    <span className="rounded border px-2 py-1 me-3">
+                                        From
+                                    </span>
+                                    <span className="text-primary">
+                                        {from_email}
+                                    </span>
+                                </div>
+                                <div 
+                                    className="d-flex wt-50 mb-3"
+                                    >
+                                    <span className="rounded border px-2 py-1 me-3">
+                                        Subject
+                                    </span>
+                                    <span className="text-primary break">
+                                        {subject}
+                                    </span>
+                                </div>
+                                <div 
+                                    className="d-flex wt-50 mb-3"
+                                    >
+                                    <span className="rounded border px-2 py-1 me-3">
+                                        Recipient
+                                    </span>
+                                    <span className="text-primary">
+                                        {receipient}
+                                    </span>
+                                </div>
+                                <div 
+                                    className="d-flex wt-50 mb-3"
+                                    >
+                                    <span className="rounded border px-2 py-1 me-3 break">
+                                        Content
+                                    </span>
+                                    <span className="text-primary">
+                                        {content}
+                                    </span>
+                                </div>
                             </div>
                         )
                     })

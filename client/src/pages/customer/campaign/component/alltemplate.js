@@ -66,7 +66,7 @@ export const GeneralList =({
                                                         })
                                                     }}
                                             >
-                                                Choose
+                                                Edit
                                             </li>
                                         </ul>
                                     </div>

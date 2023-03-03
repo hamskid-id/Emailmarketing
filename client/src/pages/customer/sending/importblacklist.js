@@ -1,5 +1,5 @@
 import { Layout } from "../layoute"
-import { ImportBlacklist } from "./components/importblacklistfile"
+import { ImportBlacklist } from "./components/blacklistcomponent/importblacklistfile"
 
 export const ImportBlacklistPage=()=>{
     return(

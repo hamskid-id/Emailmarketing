@@ -1,5 +1,5 @@
 import { Layout } from "../layoute"
-import { BlacklistContent } from "./components/blacklistedcontent"
+import { BlacklistContent } from "./components/blacklistcomponent/blacklistedcontent"
 
 export const BlacklistPage=()=>{
     return(

@@ -37,6 +37,9 @@ export const CreateCampaignContent =()=>{
         CTD:false,
         SDV:false,
         DeliveryTime:"",
+        tag_id:null,
+        content_type:"",
+        status:1,
         TemplateName:"",
         templateDesign:{},
         TempalateDesc:"",
@@ -98,6 +101,7 @@ export const CreateCampaignContent =()=>{
             }
         })      
     },[campaignParams])
+
     return(
             <div>
                 <div className="d-flex align-items-center">
@@ -129,18 +133,17 @@ export const CreateCampaignContent =()=>{
                                             `c-gainsboro`
                                         }`
                                     }
-                                        onClick={
-                                            ()=>{
-                                                    setCampaignSection({
-                                                        name:name,
-                                                        components:components
-                                                    })
-                                                    setCampaignparams({
-                                                        ...campaignParams,
-                                                        sectionCompleted:index
-                                                    })
-                                            }
-                                    }
+                                    
+                                    onClick={()=>{
+                                        setCampaignSection({
+                                            name:name,
+                                            components:components
+                                        })
+                                        setCampaignparams({
+                                            ...campaignParams,
+                                            sectionCompleted:index
+                                        })
+                                    }}
                                     >
                                         {name}
                                     </h6>

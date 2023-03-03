@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField"
 export const Setup=({
     campaignParams,
@@ -11,11 +11,16 @@ export const Setup=({
         formState: { errors } 
     } = useForm();
 
+    const Tags = useSelector(
+        state => state.tag
+    )
+
     const SubmitHandler=({
         campaign,
         ADS,
         emailSubject,
         CTD,
+        tag,
         FromName,
         FromEmail,
         SDV,
@@ -26,6 +31,7 @@ export const Setup=({
             NameYourCampaign:campaign,
             EmailSubject:emailSubject,
             FromName:FromName,
+            tag_id:tag,
             ADS:ADS,
             CTD:CTD,
             SDV:SDV,
@@ -85,6 +91,41 @@ export const Setup=({
                             register={register}
                             errors={errors.emailSubject}
                         />
+                        <div className="w-100 mb-2">
+                            <label
+                                className="fw-bold" 
+                                htmlFor="tag">
+                                Tags
+                            </label>
+                            <select 
+                            name="tag" 
+                            id="tag"
+                            className="bg-alice p-2 border border-white rounded w-100"
+                            {...register(
+                                "tag", 
+                                {
+                                    required:`tag field is invalid`,
+                                }
+                            )
+                            }
+                            >
+                            {
+                                Tags.Tags?.map((tag,index)=>{
+                                    const{
+                                        name,
+                                        id
+                                    }=tag
+                                    return(
+                                        <option 
+                                            value={id}
+                                            key={index}
+                                        >{name}
+                                        </option>
+                                    )
+                                })
+                            }
+                        </select>
+                        </div>
                         <div className="d-flex flex-column mb-2">
                             <div>
                                 <label 

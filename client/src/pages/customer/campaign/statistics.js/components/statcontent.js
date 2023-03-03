@@ -28,7 +28,6 @@ export const CampaignStatisticsContent =()=>{
                             {
                                 name:"Overview",
                                 components:<Overview
-                                    ListSection={ListSection}
                                     setListSection={setListSection}
                                 />
                             },

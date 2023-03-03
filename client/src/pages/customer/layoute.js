@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
 import { useNavigate } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { FaMonero, FaSearch } from "react-icons/fa";
 import LetteredAvatar from 'react-lettered-avatar';
 import { useSelector } from "react-redux";
 
@@ -25,10 +25,22 @@ export const Layout=({routeChildren})=>{
                 <div className="col-md-10 dashboardvh bg-smoke">
                         <div>
                             <div className="d-flex justify-content-between py-2 px-4 navHeader align-items-center">
-                                <span className="fs-4 fw-bold bg-blue">
-                                    Dashboard
+                                <span className="mobile-logo">
+                                    <span className="me-1">
+                                        <FaMonero
+                                            size="3rem"
+                                            color="darkslategrey"
+                                            onClick={
+                                                ()=>navigate("/")
+                                            }
+                                        />
+                                    </span>
+                                    <span className="fs-3 fw-bold cl-blue">
+                                        5star
+                                    </span>
                                 </span>
-                                <span className="d-flex align-items-center">
+                                <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
+                                <span className="d-flex align-items-center justify-content-end">
                                     <span className="me-3 rounded-circle border search-icon">
                                         <FaSearch
                                             color="goldenrod"

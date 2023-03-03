@@ -2,7 +2,6 @@ import { ClickLog } from "./clicklog"
 import { OpenLog } from "./openlog"
 
 export const Rate =({
-    ListSection,
     setListSection
 })=>{
     return(
@@ -66,7 +65,7 @@ export const Rate =({
                          className="btn btn-md btn-success mt-3"
                          onClick={
                             ()=>setListSection({
-                                    ...ListSection,
+                                    name:"Sending Logs",
                                     components:<OpenLog/>
                             })
                         }
@@ -126,7 +125,7 @@ export const Rate =({
                         className="btn btn-md btn-success mt-3"
                         onClick={
                             ()=>setListSection({
-                                    ...ListSection,
+                                    name:"Sending Logs",
                                     components:<ClickLog/>
                             })
                         }

@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
+import { CreateTemplate } from "../../../../store/templateSlice";
 
-export const TemplateForm =()=>{
-    // const tag = useSelector(
-    //     state => state.tag
-    // )
+export const TemplateForm =({EditedInfo})=>{
+    const template = useSelector(
+        state => state.template
+    )
+    const dispatch  = useDispatch()
     const { 
         handleSubmit, 
         register,
@@ -12,13 +15,18 @@ export const TemplateForm =()=>{
     } = useForm();
 
     const SubmitHandler=({
-        name
+        template_name,
+        template_describ
     })=>{
-        // dispatch(
-        //     CreateTag({
-        //         name
-        //     })
-        // )
+        dispatch(
+            CreateTemplate({
+                template_name,
+                template_describ,
+                design_content:EditedInfo.design_content,
+                design_html:EditedInfo.design_html,
+                template_type:"private"
+            })
+        )
         
     }
     return(
@@ -26,24 +34,26 @@ export const TemplateForm =()=>{
         <form onSubmit={handleSubmit(SubmitHandler)}>
             <CustomFormField
                 label ="Name"
-                name ="name"
+                name ="template_name"
+                defaultValue={EditedInfo.template_name}
                 placeholder="name"
                 type="text"
                 register={register}
-                errors={errors.name}
+                errors={errors.template_name}
             />
             <CustomFormField
                 label ="Brief description"
-                name ="bdesc"
+                name ="template_describ"
+                defaultValue={EditedInfo.template_describ}
                 placeholder="Brief description"
                 type="text"
                 register={register}
-                errors={errors.bdesc}
+                errors={errors.template_describ}
             />
             <CustomFormField
                 value="submit"
                 type="btn"
-                loadingStatus="success"
+                loadingStatus={template.CreateTemplateStatus}
             />
         </form>
     )
