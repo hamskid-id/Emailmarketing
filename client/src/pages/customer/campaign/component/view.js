@@ -25,7 +25,8 @@ export const AllcampaignView =()=>{
                         <th scope="col">From</th>
                         <th scope="col">Recipient</th>
                         <th scope="col">Subject</th>
-                        <th scope="col">Content</th>                       
+                        <th scope="col">Content</th>
+                         <th scope="col">Status</th>                       
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -34,25 +35,28 @@ export const AllcampaignView =()=>{
                         campaign
                         .Campaigns?.map((camp,index)=>{
                             const{
+                                id,
                                 title,
-                                recipient,
-                                from,
+                                receipient,
+                                from_email,
                                 subject,
-                                content
+                                content,
+                                status
                             }=camp
                             return(
                                 <tr key={index}>
                                     <th scope="row">{index}</th>
                                     <td>{title}</td>
-                                    <td>{recipient}</td>
-                                    <td>{from}</td>
+                                    <td>{receipient}</td>
+                                    <td>{from_email}</td>
                                     <td>{subject}</td>
                                     <td>{content}</td>
+                                     <td>{status}</td>
                                     <td>
                                         <div className="d-flex align-items-center">
                                             <div 
                                                 className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2"
-                                                onClick={()=>navigate("/campaigns/stat")}>
+                                                onClick={()=>navigate(`/campaigns/stat/${id}`)}>
                                                 <span className="me-1">
                                                     <FaBacon/>
                                                 </span>

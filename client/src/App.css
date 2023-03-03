@@ -4,6 +4,10 @@
 .web-dash{
   display: block;
 }
+.h5-overflow{
+  height:10rem;
+  overflow-y: auto;
+}
 .w-63{
   width:63%;
 }
@@ -12,6 +16,9 @@
 }
 .w-32{
   width:32%;
+}
+.c-grey{
+  color:grey;
 }
 .c-gainsboro{
   color:gainsboro
@@ -340,6 +347,12 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .navHeader{
+    position:fixed;
+  }
+  .children {
+    margin-top: 7rem;
+  }
   .pdx-5{
     padding-right: 1rem;
     padding-left:1rem;

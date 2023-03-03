@@ -1,5 +1,5 @@
 import { Layout } from "../layoute"
-import { CollabContent } from "./components/collaboratorscontent"
+import { CollabContent } from "./components/collabcomponent/collaboratorscontent"
 
 export const CollabsPage=()=>{
     return(

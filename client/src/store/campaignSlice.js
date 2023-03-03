@@ -3,6 +3,27 @@ import  axios  from 'axios';
 import { toast } from 'react-toastify';
 import { apiBaseUrl, setHeaders } from './api';
 
+
+export const GetRecentCampaigns = createAsyncThunk(
+    'campaign/GetRecentCampaigns ', 
+    async () =>{
+    try{
+        const response = await axios.get(
+            `${apiBaseUrl}/recentcamp`,
+                setHeaders()
+        )
+        console.log(
+           response?.data
+        )
+        return response?.data
+    } catch(err){
+            console.log(
+                err.response?.data
+            )
+        }
+    }
+)
+
 export const GetCampaigns = createAsyncThunk(
     'campaign/GetCampaigns ', 
     async () =>{
@@ -24,22 +45,30 @@ export const GetCampaigns = createAsyncThunk(
 )
 
 export const CreateCampaigns  = createAsyncThunk(
-    'campaign/CreateCampaigns ', 
+    'campaign/CreateCampaigns', 
     async ({
         title,
-        recipient,
-        from,
+        receipient,
+        from_email,
         subject,
-        content
+        content,
+        tag_id,
+        content_type,
+        schedule_date,
+        status
     },{rejectWithValue}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/createcampaigns`,{
                 title,
-                recipient,
-                from,
+                receipient,
+                from_email,
                 subject,
-                content
+                content,
+                tag_id,
+                content_type,
+                schedule_date,
+                status
             },
             setHeaders()
         )
@@ -59,15 +88,55 @@ export const CreateCampaigns  = createAsyncThunk(
 const campaign_Slice = createSlice({
     name:"campaign",
     initialState: {
+        recentCampaigns:[],
         Campaigns:[],
         CreateCampaignsStatus:'',
         CreateCampaignsError:'',
         GetCampaignsStatus:'',
-        GetCampaignsError:''
+        GetCampaignsError:'',
+        GetRecentCampaignsStatus:'',
+        GetRecentCampaignsError:''
     },
     reducers:{},
 
     extraReducers:(builder)=>{
+
+        builder.addCase(GetRecentCampaigns.pending,(state, action)=>{
+            return {
+                ...state,
+                GetRecentCampaignsStatus:'pending'
+            }
+
+        });
+
+        builder.addCase(GetRecentCampaigns.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status
+                }= action.payload
+                if(status === true){
+                    console.log("recent",action.payload.message)
+                    return{
+                        ...state,
+                        recentCampaigns:action.payload.message,
+                        GetRecentCampaignsStatus:"success"
+                    }
+                }
+                return{
+                    ...state,
+                    GetRecentCampaignsStatus:"success"
+                }
+            }else return{
+                ...state,
+                GetRecentCampaignsStatus:"failed"
+            }
+        })
+        builder.addCase(GetRecentCampaigns.rejected,(state, action)=>{
+            return{
+                ...state,
+                GetRecentCampaignsStatus:'rejected'
+            }
+        })
 
         builder.addCase(GetCampaigns.pending,(state, action)=>{
             return {

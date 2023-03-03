@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
+import { UpdateActivities } from "../../../../store/activitiesSlice"
 import { CreateCampaigns } from "../../../../store/campaignSlice"
 import { Recipient } from "./recipient"
 import { Schedule } from "./schedule"
@@ -15,14 +16,19 @@ export const Confirm =({
         state => state.campaign
     )
     const dispatch = useDispatch()
+
     const handleSend=()=>{
         let filledRequired = false;
         [
             campaignParams.ToWhichListShallWeSend,
             campaignParams.NameYourCampaign,
             campaignParams.EmailSubject,
-            campaignParams.FromName,
-            campaignParams.ReplyTo
+            campaignParams.FromEmail,
+            campaignParams.ReplyTo,
+            campaignParams.DeliveryDate,
+            campaignParams.tag_id,
+            campaignParams.campaignType,
+            campaignParams.status
         ]?.map((camp)=>{
             if(!camp){
                 filledRequired= true;
@@ -34,14 +40,28 @@ export const Confirm =({
             dispatch(
                 CreateCampaigns({
                     title:campaignParams.NameYourCampaign,
-                    recipient:campaignParams.ReplyTo,
-                    from:campaignParams.FromName,
+                    receipient:campaignParams.ReplyTo,
+                    from_email:campaignParams.FromEmail,
                     subject:campaignParams.ToWhichListShallWeSend,
-                    content:campaignParams.EmailSubject
+                    content:campaignParams.EmailSubject,
+                    tag_id:campaignParams.tag_id,
+                    content_type: campaignParams.campaignType,
+                    schedule_date:campaignParams.DeliveryDate,
+                    status:campaignParams.status
                 })
+            )
+
+            dispatch(
+                UpdateActivities({
+                    action:`New campaign 
+                        "${campaignParams.NameYourCampaign}" 
+                        was created`
+                    }
+                )
             )
         }
     }
+
     return(
         <div className="d-flex flex-column justify-content-center m-auto wt-75">
             <p className="fs-2 text-center fw-bold">You're all set to send!</p>
@@ -207,8 +227,8 @@ export const Confirm =({
                                 key={index}
                             >
                                 <div>
-                                    <h6 className="fs-4">{name}</h6>
-                                    <h6 className="fs-6">{content?content:"Unavailable"}</h6>
+                                    <h6 className="fs-4 break">{name}</h6>
+                                    <h6 className="fs-6 break">{content?content:"Unavailable"}</h6>
                                 </div>
                                 <div>
                                     <button 

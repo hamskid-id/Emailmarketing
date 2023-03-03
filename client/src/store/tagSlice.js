@@ -41,6 +41,51 @@ export const CreateTags  = createAsyncThunk(
     }
 )
 
+// export const EditTags  = createAsyncThunk(
+//     'tag/EditTags ', 
+//     async ({
+//         name
+//     },) =>{
+//     try{
+//         const response = await axios.post(
+//             `${apiBaseUrl}/createtags`,{
+//                 name
+//             },
+//             setHeaders()
+//         )
+//         return response?.data
+//     } catch(err){
+//         toast.error(
+//             err.response?.data?.message
+//         )
+//         }
+//     }
+// )
+
+
+export const UpdateTags  = createAsyncThunk(
+    'tag/UpdateTags ', 
+    async ({
+        name,
+        id
+    },) =>{
+    try{
+        const response = await axios.put(
+            `${apiBaseUrl}/updatetags/${id}`,{
+                name
+            },
+            setHeaders()
+        )
+        return response?.data
+    } catch(err){
+        toast.error(
+            err.response?.data?.message
+        )
+        }
+    }
+)
+
+
 
 const Tag_Slice = createSlice({
     name:"tag",
@@ -48,6 +93,8 @@ const Tag_Slice = createSlice({
         Tags:[],
         CreateTagsStatus:'',
         CreateTagsError:'',
+        UpdateTagsStatus:'',
+        UpdateTagsError:'',
         GetTagsStatus:'',
         GetTagsError:''
     },
@@ -105,6 +152,32 @@ const Tag_Slice = createSlice({
             return{
                 ...state,
                 CreateTagsStatus:'rejected'
+            }
+        })
+
+        builder.addCase(UpdateTags.pending,(state, action)=>{
+            return {
+                ...state,
+                UpdateTagsStatus:'pending'
+            }
+
+        });
+        builder.addCase(UpdateTags.fulfilled,(state, action)=>{
+            if(action.payload){
+                toast("Tag successfully created")
+                return{
+                    ...state,
+                    UpdateTagsStatus:"success"
+                }
+            }else return{
+                ...state,
+                UpdateTagsStatus:"failed"
+            }
+        })
+        builder.addCase(UpdateTags.rejected,(state, action)=>{
+            return{
+                ...state,
+                UpdateTagsStatus:'rejected'
             }
         })
     }

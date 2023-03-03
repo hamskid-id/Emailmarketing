@@ -20,6 +20,23 @@ export const GetSubscribers = createAsyncThunk(
     }
 )
 
+export const GetTotalSubscribers = createAsyncThunk(
+    'subscriber/GetTotalSubscribers', 
+    async () =>{
+    try{
+        const response = await axios.get(
+            `${apiBaseUrl}/totalsubscriber`,
+                setHeaders()
+        )
+        return response?.data
+    } catch(err){
+        toast.error(
+            err.response?.data?.message
+        )
+        }
+    }
+)
+
 export const Createsubscriber = createAsyncThunk(
     'subscriber/Createsubscriber', 
     async ({
@@ -60,6 +77,9 @@ const subscriber_Slice = createSlice({
     name:"subscriber",
     initialState: {
         subscribers:[],
+        totalsub:0,
+        GetTotalSubscribersStatus:'',
+        GetTotalSubscribersError:'',
         CreatesubscriberStatus:'',
         CreatesubscriberError:'',
         GetSubscribersStatus:'',
@@ -68,6 +88,32 @@ const subscriber_Slice = createSlice({
     reducers:{},
 
     extraReducers:(builder)=>{
+
+        builder.addCase(GetTotalSubscribers.pending,(state, action)=>{
+            return {
+                ...state,
+                GetTotalSubscribersStatus:'pending'
+            }
+
+        });
+        builder.addCase(GetTotalSubscribers.fulfilled,(state, action)=>{
+            if(action.payload.message){
+                return{
+                    ...state,
+                    totalsub:action.payload.message,
+                   GetTotalSubscribersStatus:"success"
+                }
+            }else return{
+                ...state,
+                GetTotalSubscribersStatus:"failed"
+            }
+        })
+        builder.addCase(GetTotalSubscribers.rejected,(state, action)=>{
+            return{
+                ...state,
+                GetTotalSubscribersStatus:'rejected'
+            }
+        })
 
         builder.addCase(GetSubscribers.pending,(state, action)=>{
             return {
