@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Modal } from "../../../components/modal/modal";
 import { CreateNav } from "./components/createNav";
 import EmailEditor from 'react-email-editor';
@@ -54,17 +54,23 @@ export const EditView =()=>{
                 design_content:JSON.stringify(design),
                 design_html:html
             })
+            
         });
     };
+
+    useEffect(()=>{
+        if(EditedInfo.design_content){
+            emailEditorRef.current.editor.loadDesign(JSON.parse(EditedInfo.design_content))
+        }
+    },[EditedInfo])
 
     const onLoad = () => {
         // editor instance is created
         // you can load your template here;
         // const templateJson = {};
         FetchTemplate()
-        if(EditedInfo.design_content){
-            emailEditorRef.current.editor.loadDesign(JSON.parse(EditedInfo.design_content))
-        }
+        console.log(EditedInfo.design_content)
+       
     }
 
     const onReady = () => {
