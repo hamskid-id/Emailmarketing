@@ -66,11 +66,13 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
     Route::post('addactivitylog', [EmailmarketingController::class, 'addactivitylog'])->name('addactivitylog');
     Route::get('viewactivitylog', [EmailmarketingController::class, 'viewactivitylog'])->name('viewactivitylog');
     //for api for general and user template
-    Route::post('generaltemp', [EmailmarketingController::class, 'generaltemp'])->name('generaltemp');
+    Route::get('generaltemp', [EmailmarketingController::class, 'generaltemp'])->name('generaltemp');
     Route::post('usertemplate', [EmailmarketingController::class, 'usertemplate'])->name('usertemplate');
     Route::get('viewusertemp', [EmailmarketingController::class, 'viewusertemp'])->name('viewusertemp');
     //for list subscriber email
     Route::get('subscribermail', [EmailmarketingController::class, 'subscribermail'])->name('subscribermail');
+    //for recent campaigns
+    Route::get('recentcamp', [EmailmarketingController::class, 'recentcamp'])->name('recentcamp');
     
 
 
