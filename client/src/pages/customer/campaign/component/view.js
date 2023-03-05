@@ -16,8 +16,8 @@ export const AllcampaignView =()=>{
         <Actions
             actionName="Create Campaign"
         />
-        <div className="w-overflow">
-            <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
+        <div>
+            <table className=" table table-striped table-hover table-bordered table-responsive mb-3 w-overflow">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -37,7 +37,7 @@ export const AllcampaignView =()=>{
                             const{
                                 id,
                                 title,
-                                receipient,
+                                reply_to,
                                 from_email,
                                 subject,
                                 content,
@@ -47,23 +47,13 @@ export const AllcampaignView =()=>{
                                 <tr key={index}>
                                     <th scope="row">{index}</th>
                                     <td>{title}</td>
-                                    <td>{receipient}</td>
+                                    <td>{reply_to}</td>
                                     <td>{from_email}</td>
                                     <td>{subject}</td>
                                     <td>{content}</td>
                                      <td>{status}</td>
                                     <td>
                                         <div className="d-flex align-items-center">
-                                            <div 
-                                                className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2"
-                                                onClick={()=>navigate(`/campaigns/stat/${id}`)}>
-                                                <span className="me-1">
-                                                    <FaBacon/>
-                                                </span>
-                                                <span>
-                                                    Statistics
-                                                </span>
-                                            </div>
                                             <div className="dropdown">
                                                 <button 
                                                     className="btn btn-secondary dropdown-toggle" 
@@ -73,6 +63,12 @@ export const AllcampaignView =()=>{
                                                 >
                                                 </button>
                                                 <ul className="dropdown-menu">
+                                                    <li 
+                                                        className="dropdown-item"
+                                                        onClick={()=>navigate(`/campaigns/stat/${id}`)}
+                                                    >
+                                                        Statistics
+                                                    </li>
                                                     <li 
                                                         className="dropdown-item"
                                                     >
@@ -96,7 +92,7 @@ export const AllcampaignView =()=>{
                 {
                    campaign
                    .Campaigns?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
                             <FaCartArrowDown
                                 color="grey"
                                 size="7rem"

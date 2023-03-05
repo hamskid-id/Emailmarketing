@@ -119,6 +119,11 @@ export const RecentlySent=()=>{
                     })
                 }
             </div>
+            <div>
+                {
+                    recentCampaigns.recentCampaigns?.length ===0 && <p className="fs-5 text-center c-grey">No campaign has being sent </p>
+                }
+            </div>
         </>
     )
 }

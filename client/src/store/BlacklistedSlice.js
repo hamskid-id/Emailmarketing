@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetBlacklist = createAsyncThunk(
@@ -10,9 +11,6 @@ export const GetBlacklist = createAsyncThunk(
         const response = await axios.get(
             `${apiBaseUrl}/viewblacklisted`,
                 setHeaders()
-        )
-        console.log(
-           response?.data
         )
         return response?.data
     } catch(err){
@@ -27,7 +25,9 @@ export const CreateBlacklist  = createAsyncThunk(
     'blacklist/CreateBlacklist ', 
     async ({
         email
-    },{rejectWithValue}) =>{
+    },{
+        rejectWithValue,
+        dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/blasklisted`,{
@@ -35,6 +35,12 @@ export const CreateBlacklist  = createAsyncThunk(
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`You added "${email}" to your blacklist`
+            }));
+            dispatch(GetBlacklist())
+        }
         return response?.data
     } catch(err){
         console.log(

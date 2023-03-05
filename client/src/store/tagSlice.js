@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetTags = createAsyncThunk(
@@ -24,7 +25,7 @@ export const CreateTags  = createAsyncThunk(
     'tag/CreateTags ', 
     async ({
         name
-    },) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/createtags`,{
@@ -32,6 +33,12 @@ export const CreateTags  = createAsyncThunk(
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`You created a new tag "${name}" `
+            }));
+            dispatch(GetTags())
+        }
         return response?.data
     } catch(err){
         toast.error(

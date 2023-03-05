@@ -1,44 +1,86 @@
-import { useRef, useState } from "react";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import EmailEditor from 'react-email-editor';
+import { toast } from "react-toastify";
 import { Modal } from "../../../../components/modal/modal";
+import { apiBaseUrl, setHeaders } from "../../../../store/api";
 import { TemplateForm } from "./templateform";
 
 export const EditTemplateView =({
     campaignParams,
-    setCampaignparams
+    setCampaignparams,
+    id
 })=>{
-    const emailEditorRef = useRef(null);
-    const [
-        EditedInfo, 
-        setEditedInfo
-    ] = useState({
-        html:null,
-        design:null
-    })    
+    
+   const emailEditorRef = useRef(null);
+   const[ 
+    EditedInfo, 
+    setEditedInfo
+    ] = useState({})
+
+    const FetchTemplate = async () =>{
+        try{
+            const response = await axios.get(
+                `${apiBaseUrl}/viewusertemp`,
+                    setHeaders()
+            )
+            const {
+                status,
+                message
+            }=response?.data
+
+            if(status){
+                message?.map((temp)=>{ 
+                    if(temp.id == id ){
+                        setEditedInfo(temp)
+                    }
+                })
+            }
+            return response?.data
+        } catch(err){
+                toast(err.response?.data?.message)
+        }
+    }
     const exportHtml = () => {
         emailEditorRef
             .current.editor
             .exportHtml((data) => {
             const { design, html } = data;
-            console.log('exportHtml', html);
             setEditedInfo({
-                html,
-                design
+                ...EditedInfo,
+                design_content:JSON.stringify(design),
+                design_html:html
             })
+            
         });
     };
+
+    useEffect(()=>{
+        if(EditedInfo.design_content){
+            emailEditorRef.current.editor.loadDesign(JSON.parse(EditedInfo.design_content))
+        }
+    },[EditedInfo])
 
     const onLoad = () => {
         // editor instance is created
         // you can load your template here;
         // const templateJson = {};
-        // emailEditorRef.current.editor.loadDesign(templateJson);
+        if(id){
+            FetchTemplate()
+        }
     }
 
     const onReady = () => {
         // editor is ready
         console.log('onReady');
     };
+
+    const handleSave=()=>{
+        exportHtml();
+        // console.log("html", EditedInfo.html);
+        console.log("design", EditedInfo.design_content);
+    }
+
 
     return(
         <>
@@ -58,7 +100,7 @@ export const EditTemplateView =({
                     onLoad={onLoad} 
                     onReady={onReady} 
                 />
-            </div>          
+            </div>                  
             <Modal
                 title="Template Information"
                 body={<TemplateForm

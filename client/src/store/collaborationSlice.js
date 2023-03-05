@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const InviteUsers = createAsyncThunk(
@@ -8,7 +9,7 @@ export const InviteUsers = createAsyncThunk(
     async ({
         name,
         email
-    }) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/inviteusers`,{
@@ -17,6 +18,12 @@ export const InviteUsers = createAsyncThunk(
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`An invite was sent to "${email}" `
+            }));
+            dispatch(GetInviteSent())
+        }
         return response?.data
     } catch(err){
         toast.error(

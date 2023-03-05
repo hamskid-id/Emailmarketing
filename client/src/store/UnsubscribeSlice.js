@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetUnSubscribers = createAsyncThunk(
@@ -31,7 +32,7 @@ export const CreateUnsubscriber = createAsyncThunk(
         phone,
         dob,
         tag
-    },) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/addunsubscrib`,{
@@ -46,6 +47,12 @@ export const CreateUnsubscriber = createAsyncThunk(
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`You added "${email}" to your Unsubscribed list`
+            }));
+            dispatch(GetUnSubscribers())
+        }
         return response?.data
     } catch(err){
             toast.error(

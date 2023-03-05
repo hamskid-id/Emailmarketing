@@ -15,20 +15,20 @@ export const SideNav =({navToggler})=>{
     }
     return(
         <>
-            <div className="d-flex justify-content-between align-items-center py-3">
-                <span className="d-flex align-items-start">
+            <div className="d-flex justify-content-between align-items-center py-3 mb-2">
+                <span className="d-flex align-items-center">
                     <span className="me-1">
                         <FaMonero
-                            size="3rem"
+                            size="3.5rem"
                             color="white"
                             onClick={
                                 ()=>navigate("/")
                             }
                         />
                     </span>
-                    <span className="fs-3 fw-bold text-white">
+                    <em className="fs-2 fw-bold text-white">
                         5star
-                    </span>
+                    </em>
                 </span>
                 <span className="hide-toggler">
                     <FaTimesCircle

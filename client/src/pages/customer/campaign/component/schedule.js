@@ -21,10 +21,6 @@ export const Schedule =({
             DeliveryTime:time,
             sectionCompleted:4
         })
-        console.log(
-            Ddate,
-            time
-        )
     }
     return(
         <>

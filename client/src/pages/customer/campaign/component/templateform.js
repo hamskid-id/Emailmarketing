@@ -1,14 +1,17 @@
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
-import { Confirm } from "./confirm";
+import { CreateTemplate } from "../../../../store/templateSlice";
 
 export const TemplateForm =({
     campaignParams,
     setCampaignparams,
     EditedInfo
 })=>{
-    
+    const template = useSelector(
+        state => state.template
+    )
+    const dispatch = useDispatch()
     const { 
         handleSubmit, 
         register,
@@ -19,24 +22,22 @@ export const TemplateForm =({
         name,
         bdesc
     })=>{
-        console.log(name,bdesc,EditedInfo)
-        setCampaignparams({
-            ...campaignParams,
-            TemplateName:name,
-            TempalateDesc:bdesc,
-            template:EditedInfo.html,
-            templateDesign:EditedInfo.design,
-            sectionCompleted:3
-
-        })
-        toast("submitted succesfully you can now proceed"); 
+        dispatch(
+            CreateTemplate({
+                template_name:name,
+                template_describ:bdesc,
+                design_content:EditedInfo.design_content,
+                design_html:EditedInfo.design_html,
+                template_type:"private"
+            })
+        ) 
     }
-    console.log(campaignParams)
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>
             <CustomFormField
                 label ="Name"
+                defaultValue={EditedInfo.template_name?EditedInfo.template_name:""}
                 name ="name"
                 placeholder="name"
                 type="text"
@@ -44,6 +45,7 @@ export const TemplateForm =({
                 errors={errors.name}
             />
             <CustomFormField
+                defaultValue={EditedInfo.template_describ?EditedInfo.template_describ:""}
                 label ="Brief description"
                 name ="bdesc"
                 placeholder="Brief description"
@@ -51,12 +53,27 @@ export const TemplateForm =({
                 register={register}
                 errors={errors.bdesc}
             />
-            <button 
-                className="btn btn-sm bg-slate-grey text-white fs-5"
-                data-bs-dismiss="modal"
-                >
-                submit
-            </button>
+            <CustomFormField
+                value="submit"
+                type="btn"
+                loadingStatus={template.CreateTemplateStatus}
+            />
+            {
+                template.CreateTemplateStatus === 'success'&&(
+                    <button
+                        onClick={()=>{
+                            setCampaignparams({
+                                ...campaignParams,
+                                sectionCompleted:3
+                            })
+                        }}
+                        className="btn btn-sm bg-slate-grey text-white fs-5 fl-r"
+                        data-bs-dismiss="modal"
+                        >
+                        Proceed
+                    </button>
+                )
+            }
         </form>
     )
 }

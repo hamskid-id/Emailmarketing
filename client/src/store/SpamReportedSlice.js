@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetSpamReported = createAsyncThunk(
     'SpamReported/GetSpamReported ', 
-    async () =>{
+    async ({dispatch}) =>{
     try{
         const response = await axios.get(
             `${apiBaseUrl}/list_spamreport`,
@@ -27,7 +28,7 @@ export const CreateSpamReported  = createAsyncThunk(
     'SpamReported/CreateSpamReported ', 
     async ({
         email
-    },{rejectWithValue}) =>{
+    },{rejectWithValue,dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/create_spamreport`,{
@@ -35,6 +36,12 @@ export const CreateSpamReported  = createAsyncThunk(
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`"${email}" was reported as a spam`
+            }));
+            dispatch(GetSpamReported());
+        }
         return response?.data
     } catch(err){
         console.log(

@@ -37,7 +37,7 @@ export const LoginView =()=>{
         <>
             <AuthSideNav>
                 <p className="fs-2 text-center">
-                    Log In
+                     Sign In to your account
                 </p>
                 <div>
                     <span className="fs-6 me-1">
@@ -45,7 +45,7 @@ export const LoginView =()=>{
                     </span>
                     <span>
                         <Link to="/auth/register">
-                            Create an account
+                            Create your account
                         </Link>
                     </span>
                 </div>

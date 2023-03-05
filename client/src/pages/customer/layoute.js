@@ -24,20 +24,20 @@ export const Layout=({routeChildren})=>{
                 </div>
                 <div className="col-md-10 dashboardvh bg-smoke">
                         <div>
-                            <div className="d-flex justify-content-between py-2 px-4 navHeader align-items-center">
+                            <div className="d-flex justify-content-between px-4 navHeader align-items-center">
                                 <span className="mobile-logo">
                                     <span className="me-1">
                                         <FaMonero
-                                            size="3rem"
-                                            color="darkslategrey"
+                                            size="3.5rem"
+                                            color="white"
                                             onClick={
                                                 ()=>navigate("/")
                                             }
                                         />
                                     </span>
-                                    <span className="fs-3 fw-bold cl-blue">
+                                    <em className="fs-2 fw-bold text-white">
                                         5star
-                                    </span>
+                                    </em>
                                 </span>
                                 <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
                                 <span className="d-flex align-items-center justify-content-end">

@@ -125,7 +125,7 @@ export const IndividualSubTable =({
                  {
                     subsriber
                     .subscribers?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
                             <FaCartArrowDown
                                 color="grey"
                                 size="7rem"

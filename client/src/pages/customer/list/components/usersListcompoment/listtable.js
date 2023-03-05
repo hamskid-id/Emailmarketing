@@ -1,98 +1,135 @@
-import { FaBacon} from "react-icons/fa"
-import {useNavigate} from "react-router-dom";
+import { useEffect } from "react";
+import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "../../../../../components/spinner/spinner";
+import { GetSubscribers } from "../../../../../store/subscriberSlice";
+import { Actions } from "../subscribercomponent/subAction";
 
-export const ListTable =()=>{
-    const navigate = useNavigate()
-    return(
-        <div className="w-overflow">
-            <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Created At</th>
-                        <th scope="col">Subscribers</th>
-                        <th scope="col">Open rate</th>
-                        <th scope="col">Updated At</th>
-                        <th scope="col">Click rate</th>                       
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody> 
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>DB Insurance & Finance customers 2022</td>
-                        <td>2017-07-13 03:57</td>
-                        <td>1,945</td>
-                        <td className="d-flex flex-column">
-                            <div className="fs-6 fw-bold">50%</div>
-                            <div className="progress">
-                                <div 
-                                    className="progress-bar bg-primary" 
-                                    role="progressbar" 
-                                    aria-label="Basic example" 
-                                    aria-valuenow={50} 
-                                    style={{width:"50%"}}
-                                    aria-valuemin="0" 
-                                    aria-valuemax="100"
-                                >
-                                </div>
-                            </div>
-                        </td>
-                        <td>2021-08-26 11:19</td>
-                         <td className="d-flex flex-column">
-                            <div className="fs-6 fw-bold">80%</div>
-                            <div className="progress">
-                                <div 
-                                    className="progress-bar bg-primary" 
-                                    role="progressbar" 
-                                    aria-label="Basic example" 
-                                    aria-valuenow={80}
-                                    style={{width:"80%"}}
-                                    aria-valuemin="0" 
-                                    aria-valuemax="100"
-                                >
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div className="d-flex align-items-center">
-                                <div 
-                                    className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2"
-                                    onClick={()=>navigate("/Lists/Lists/stat")}>
-                                    <span className="me-1">
-                                        <FaBacon/>
-                                    </span>
-                                    <span>
-                                        Statistics
-                                    </span>
-                                </div>
-                                <div className="dropdown">
-                                    <button 
-                                        className="btn btn-secondary dropdown-toggle" 
-                                        type="button" 
-                                        data-bs-toggle="dropdown" 
-                                        aria-expanded="false"
-                                    >
-                                    </button>
-                                    <ul className="dropdown-menu">
-                                        <li 
-                                            className="dropdown-item"
-                                        >
-                                            Email verification
-                                        </li>
-                                        <li
-                                            className="dropdown-item"
-                                        >
-                                            Delete
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+export const UsersListContainer =()=>{
+    const subsriber = useSelector(
+        state => state.subscriber
     )
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(GetSubscribers(null));
+    },[dispatch])
+    
+    if(subsriber.GetSubscribersStatus ==='pending'){
+        return <Spinner/>
+    }
+        return(
+            <>
+            <Actions/>
+            <div className="w-overflow">
+                <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">DOB</th>
+                            <th scope="col">Tag</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            subsriber
+                                .subscribers?.map((sub,index)=>{
+                                    const{
+                                        email,
+                                        fname,
+                                        lname,
+                                        country,
+                                        state,
+                                        phone,
+                                        dob,
+                                        tag
+                                    }=sub
+                                    return(
+                                        <tr key={index}>
+                                            <th scope="row">{index}</th>
+                                            <td>{email}</td>
+                                            <td>{fname}</td>
+                                            <td>{lname}</td>
+                                            <td>{country}</td>
+                                            <td>{state}</td>
+                                            <td>{phone}</td>
+                                            <td>{dob}</td>
+                                            <td>{tag}</td>
+                                            <td>
+                                                <div className="d-flex align-items-center">
+                                                    <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
+                                                        <span className="me-1">
+                                                            <FaPencilAlt/>
+                                                        </span>
+                                                        <span>
+                                                            Edit
+                                                        </span>
+                                                    </div>
+                                                    <div className="dropdown">
+                                                        <button 
+                                                            className="btn btn-secondary dropdown-toggle"
+                                                            type="button" 
+                                                            data-bs-toggle="dropdown" 
+                                                            aria-expanded="false" 
+                                                        >
+                                                        </button>
+                                                        <ul className="dropdown-menu">
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
+                                                                Subscribe
+                                                            </li>
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
+                                                                Unsubscribe
+                                                            </li>
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
+                                                                Send Confirmation Email
+                                                            </li>
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
+                                                                Delete
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                        }
+                    </tbody>
+                </table>
+            </div>
+                 
+                 {
+                    subsriber
+                    .subscribers?.length === 0 &&(
+                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
+                            <FaCartArrowDown
+                                color="grey"
+                                size="7rem"
+                            />
+                            <p className="fw-bold">
+                                Your Subscribers List is presently empty
+                            </p>
+                            <div>
+                                Dont worry click on new subscribers to get started. 
+                            </div>
+                        </div>
+                    )
+                }
+            </>
+           
+        )
 }

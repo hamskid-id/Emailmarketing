@@ -18,7 +18,7 @@ export const Actions =()=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-5 p-2 me-3 rounded b-gainsboro"
+                            className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -57,7 +57,7 @@ export const Actions =()=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-5 p-2 me-3 rounded b-gainsboro"
+                            className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -104,7 +104,7 @@ export const Actions =()=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-5 p-2 me-3 rounded b-gainsboro"
+                            className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -166,7 +166,7 @@ export const Actions =()=>{
                                 data-bs-toggle="modal" 
                                 data-bs-target="#staticBackdrop"
                             >
-                                + New Subscribers
+                                + New
                             </button>
                         ):(
                              <button 
@@ -175,7 +175,7 @@ export const Actions =()=>{
                                     ()=>toast.error("You do not have permission for this action,Please Update you tag list to add Subscribers")
                                 }
                             >
-                                + New Subscribers
+                                + New 
                             </button>
                         )
                     }
