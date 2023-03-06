@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\tags;
 use App\Models\business;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,6 +24,6 @@ class campaign extends Model
     }
 
     public function tags(){
-
+        return $this->belongsTo(tags::class);
     }
 }
