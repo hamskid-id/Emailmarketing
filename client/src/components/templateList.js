@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { FaPencilAlt } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import Spinner from "./spinner/spinner";
@@ -38,7 +37,7 @@ export const MyTemplateList =({
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Thumbnail</th>
+                            {/* <th scope="col">Thumbnail</th> */}
                             <th scope="col">Name</th>
                             <th scope="col">Created At</th>
                             <th scope="col">Updated At</th>
@@ -59,13 +58,13 @@ export const MyTemplateList =({
                                 return(
                                     <tr key={index}>
                                         <th scope="row">1</th>
-                                        <td>
+                                        {/* <td>
                                             <img 
                                                 src="https://res.cloudinary.com/hamskid/image/upload/v1675956826/import-contacts_rymusv.png"
                                                 alt="object not found"
                                                 className="thumb rounded"
                                             />
-                                        </td>
+                                        </td> */}
                                         <td>{template_name}</td>
                                         <td>{template_describ}</td>
                                         <td>
@@ -80,41 +79,6 @@ export const MyTemplateList =({
                                             }</td>
                                         <td>
                                         <div className="d-flex align-items-center">
-                                                <div 
-                                                    onClick={()=>{
-
-                                                    }}
-                                                    className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
-                                                    {
-                                                        campaign?(
-                                                            <span 
-                                                                onClick={
-                                                                    ()=>{
-                                                                        setCampaignSection({
-                                                                            name:"Template",
-                                                                            components:<EditTemplateView 
-                                                                                id={id}
-                                                                                campaignParams={campaignParams}
-                                                                                setCampaignparams={setCampaignparams}
-                                                                                setCampaignSection={setCampaignSection}
-                                                                            />
-                                                                        })
-                                                                    }
-                                                                }
-                                                            >
-                                                                Edit
-                                                            </span>
-                                                        ):(
-                                                            <span 
-                                                                onClick={
-                                                                    ()=>navigate(`/edit/template/${category}/${id}`)
-                                                                }
-                                                            >
-                                                                Edit
-                                                            </span>
-                                                        )
-                                                    }
-                                                </div>
                                                 <div className="dropdown">
                                                     <button 
                                                         className="btn btn-secondary dropdown-toggle" 
@@ -124,6 +88,37 @@ export const MyTemplateList =({
                                                     >
                                                     </button>
                                                     <ul className="dropdown-menu">
+                                                        {
+                                                            campaign?(
+                                                                <li
+                                                                    className="dropdown-item"
+                                                                    onClick={
+                                                                        ()=>{
+                                                                            setCampaignSection({
+                                                                                name:"Template",
+                                                                                components:<EditTemplateView 
+                                                                                    id={id}
+                                                                                    campaignParams={campaignParams}
+                                                                                    setCampaignparams={setCampaignparams}
+                                                                                    setCampaignSection={setCampaignSection}
+                                                                                />
+                                                                            })
+                                                                        }
+                                                                    }
+                                                                >
+                                                                Edit
+                                                                </li>
+                                                            ):(
+                                                                <li 
+                                                                    className="dropdown-item"
+                                                                    onClick={
+                                                                        ()=>navigate(`/edit/template/${category}/${id}`)
+                                                                    }
+                                                                >
+                                                                    Edit
+                                                                </li>
+                                                            )
+                                                        }
                                                         <li
                                                             className="dropdown-item"
                                                         >

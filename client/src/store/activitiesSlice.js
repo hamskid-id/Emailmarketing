@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
-import { toast } from 'react-toastify';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetActivities = createAsyncThunk(
@@ -11,14 +10,10 @@ export const GetActivities = createAsyncThunk(
             `${apiBaseUrl}/viewactivitylog`,
                 setHeaders()
         )
-        console.log(
-           response?.data
-        )
         return response?.data
     } catch(err){
-            console.log(
-                err.response?.data
-            )
+                return err.response?.data
+            
         }
     }
 )
@@ -37,9 +32,6 @@ export const UpdateActivities  = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
         return rejectWithValue(
             err.response?.data?.message
         )
@@ -109,7 +101,6 @@ const activities_Slice = createSlice({
                     status
                 }= action.payload
                 if(status === true){
-                    toast(action.payload.message);
                     return{
                         ...state,
                         GetActivitiesStatus:"success"

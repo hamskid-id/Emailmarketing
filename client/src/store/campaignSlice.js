@@ -13,14 +13,9 @@ export const GetRecentCampaigns = createAsyncThunk(
             `${apiBaseUrl}/recentcamp`,
                 setHeaders()
         )
-        console.log(
-           response?.data
-        )
         return response?.data
     } catch(err){
-            console.log(
-                err.response?.data
-            )
+        console.log(err.response?.data?.message);
         }
     }
 )
@@ -92,14 +87,9 @@ export const GetCampaigns = createAsyncThunk(
             `${apiBaseUrl}/viewcamps`,
                 setHeaders()
         )
-        console.log(
-           response?.data
-        )
         return response?.data
     } catch(err){
-            console.log(
-                err.response?.data
-            )
+        toast.error(err.response?.data?.message);
         }
     }
 )
@@ -142,9 +132,6 @@ export const CreateCampaigns  = createAsyncThunk(
         
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
         return rejectWithValue(
             err.response?.data?.message
         )
@@ -188,7 +175,6 @@ const campaign_Slice = createSlice({
                     status
                 }= action.payload
                 if(status === true){
-                    console.log("recent",action.payload.message)
                     return{
                         ...state,
                         recentCampaigns:action.payload.message,
@@ -266,7 +252,6 @@ const campaign_Slice = createSlice({
             }
         })
         builder.addCase(CreateCampaigns.rejected,(state, action)=>{
-            toast.error(action.payload);
             return{
                 ...state,
                 CreateCampaignsStatus:'rejected'

@@ -14,7 +14,7 @@ export const GetUnSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(
+        console.log(
             err.response?.data?.message
         )
         }

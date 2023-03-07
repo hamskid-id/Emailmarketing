@@ -17,17 +17,14 @@ export const Actions =()=>{
                             {
                                 [
                                     {
-                                        name:"Name",
-                                        url:"https://hello"
+                                        name:"Name"
                                     },
                                     {
-                                        name:"Email",
-                                        url:"https://hello"
+                                        name:"Email"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
-                                        name,
-                                        url
+                                        name
                                     }=drop
                                     return(
                                         <option 

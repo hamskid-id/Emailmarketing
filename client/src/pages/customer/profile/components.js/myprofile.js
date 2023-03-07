@@ -1,11 +1,15 @@
 import { BasicInfo } from "./basicinfo"
 import { ChangePassword } from "./resetPassword"
 import LetteredAvatar from 'react-lettered-avatar';
+import { useSelector } from "react-redux";
 
 export const MyProfile =()=>{
     const handleChange =(e)=>{
         console.log(e.target.files[0]);
     }
+    const auth = useSelector(
+        state => state.auth
+    )
     return(
         <>
             <div className="row">
@@ -20,7 +24,7 @@ export const MyProfile =()=>{
                                 color="white"
                                 size={100}
                                 radius={50}
-                                name="Hamzat Avatar"
+                                name={auth.userdata?.user?.name}
                             />
                         </div>
                         <div className="mb-pd">

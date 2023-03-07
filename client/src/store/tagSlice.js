@@ -14,7 +14,7 @@ export const GetTags = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(
+        console.log(
             err.response?.data?.message
         )
         }

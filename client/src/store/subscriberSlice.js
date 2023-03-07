@@ -14,7 +14,7 @@ export const GetSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(
+        console.log(
             err.response?.data?.message
         )
         }
@@ -31,7 +31,7 @@ export const GetTotalSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(
+        console.log(
             err.response?.data?.message
         )
         }

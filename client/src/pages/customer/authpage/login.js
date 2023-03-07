@@ -1,14 +1,12 @@
 import { Link, useNavigate } from "react-router-dom"
 import { CustomFormField } from "../../../components/customFomField"; 
 import "./auth.css";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSideNav } from "./components/sidenav";
 import { LogInUser } from "../../../store/authSlice";
 
 export const LoginView =()=>{
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const auth = useSelector(
         state => state.auth

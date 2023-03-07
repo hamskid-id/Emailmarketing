@@ -1,19 +1,12 @@
-import { useEffect } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetSubscribers } from "../../../../../store/subscriberSlice";
 import { Actions} from "./subAction"
 
 export const SubContainer =()=>{
     const subsriber = useSelector(
         state => state.subscriber
     )
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(GetSubscribers(null));
-    },[dispatch])
-    
     if(subsriber.GetSubscribersStatus ==='pending'){
         return <Spinner/>
     }

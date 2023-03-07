@@ -14,9 +14,7 @@ export const GetBlacklist = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-            console.log(
-                err.response?.data
-            )
+            return err.response?.data
         }
     }
 )
@@ -43,9 +41,6 @@ export const CreateBlacklist  = createAsyncThunk(
         }
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
         return rejectWithValue(
             err.response?.data?.message
         )

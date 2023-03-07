@@ -1,41 +1,43 @@
-import { FaAirbnb, FaCodiepie, FaCreativeCommonsBy, FaHandPeace } from "react-icons/fa"
+import {FaCodiepie} from "react-icons/fa"
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 
 export const SubscriberStat =()=>{
+    const spam = useSelector(
+        state => state.SpamReported
+    )
+    const subsriber = useSelector(
+        state => state.subscriber
+    )
+    const unsub = useSelector(
+        state => state.unsubscriber
+    )
+    const blacklist = useSelector(
+        state => state.blacklist
+    )
+    
     const navigate = useNavigate();
     const statDetails=[
         {
             name:"Subscribers",
-            amount:100,
-            icon:<FaCodiepie
-                color="goldenrod"
-            />,
+            amount: subsriber.subscribers?.length,
             route:"/Lists/Subscribers"
 
         },
         {
-            name:"Active Subscribers",
-            amount:20,
-            icon:<FaHandPeace
-                color="goldenrod"
-            />,
-            route:"/Lists/Subscribers"
+            name:"UnSubscribe",
+            amount:unsub.unsubscribers?.length,
+            route:"/Lists/Unsubscribe"
         },
         {
-            name:"Collaborations",
-            amount:3,
-            icon:<FaCreativeCommonsBy
-                color="goldenrod"
-            />,
-            route:"/Lists/Collaborations"
+            name:"Spam Reported",
+            amount:spam.SpamReported.length,
+            route:"/Lists/Spam Report"
         },
         {
             name:"Blacklisted",
-            amount:4,
-            icon:<FaAirbnb
-                color="goldenrod"
-            />,
-            route:"/Lists/Blacklisted"
+            amount:blacklist.blacklist.length,
+            route:"/Sending/Blacklist"
         }
     ]
     return(
@@ -45,7 +47,6 @@ export const SubscriberStat =()=>{
                     const{
                         name,
                         amount,
-                        icon,
                         route
                     }=stat
                     return(
@@ -69,7 +70,9 @@ export const SubscriberStat =()=>{
                                         see all {name}
                                     </span>
                                     <span className="p-1 rounded bg-lightblue">
-                                        {icon}
+                                       <FaCodiepie
+                                            color="goldenrod"
+                                        />
                                     </span>
                                 </div>
                             </div>

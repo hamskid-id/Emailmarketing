@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
@@ -120,11 +119,12 @@ export const SubscriberModalContent =()=>{
                     {
                         Tags.Tags?.map((tag,index)=>{
                             const{
-                                name
+                                name,
+                                id
                             }=tag
                             return(
                                 <option 
-                                    value={name}
+                                    value={id}
                                     key={index}
                                 >{name}
                                 </option>

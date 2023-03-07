@@ -4,7 +4,7 @@ export const NavToggler=({showNav})=>{
     return(
         <div className="rounded-circle p-3 show-toggler">
              <FaAlignRight
-                size="2rem"
+                size="1.5rem"
                 color="white"
                 onClick={showNav}
             />

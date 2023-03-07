@@ -39,6 +39,7 @@ import { UpdateTagPage } from './pages/customer/list/updateTag';
 
 
 const App =()=> {
+  
   return (
     <Provider store={store}>
       <Router>

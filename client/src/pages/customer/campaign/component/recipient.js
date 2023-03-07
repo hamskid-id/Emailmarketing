@@ -18,9 +18,14 @@ export const Recipient =({
         tag,
         status
     })=>{
+        const newTag = JSON.parse(tag)
+        console.log(newTag)
         setCampaignparams({
             ...campaignParams,
-            tag_id:tag,
+            tag_id:{
+                name:newTag.name,
+                id:newTag.id
+            },
             status:status,
             sectionCompleted:1
         })
@@ -66,7 +71,7 @@ export const Recipient =({
                             }=tag
                             return(
                                 <option 
-                                    value={id}
+                                    value={JSON.stringify({id:id,name:name})}
                                     key={index}
                                 >{name}
                                 </option>

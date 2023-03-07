@@ -4,6 +4,9 @@
 .web-dash{
   display: block;
 }
+.pde-2{
+  padding-right: 1rem;
+}
 .h5-overflow{
   height:10rem;
   overflow-y: auto;
@@ -346,6 +349,9 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .pde-2{
+    padding-right:0;
+  }
   .bg-slate-grey {
     background-color: darkslategray;
   }
@@ -396,7 +402,8 @@ i.mdi.mdi-account {
     margin-bottom: 0.5rem;
   }
   .chat-container{
-    width:fit-content;
+    display: flex;
+    justify-content: center;
   }
   .campaign-select{
     width:100%;
@@ -447,7 +454,6 @@ i.mdi.mdi-account {
 .grid{
   grid-template-columns: 1fr;
 }
-  
 }
 @media only screen and (max-width : 700px) {
   .campains-select{

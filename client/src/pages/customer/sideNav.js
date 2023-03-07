@@ -3,18 +3,32 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { AccordionsRoutes, ListRoute } from "./routes";
 import { LogOutUser } from "../../store/authSlice";
+import { motion } from "framer-motion";
 
-export const SideNav =({navToggler})=>{
+export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const hideNav =()=>{
-        navToggler.current.classList.remove("active");
+        setShowNavToggler(false)
+        setTimeout(()=>{
+            navToggler.current.classList.remove("active");
+            setShowNavToggler(null)
+        },400)
+       
+    }
+    const variants = {
+        open: { opacity: 1, x: 0, transition: { staggerChildren: 0.07, delayChildren: 0.2 } },
+        default: { opacity: 1},
+        closed: { opacity: 0, x: "-100%",transition: { staggerChildren: 0.05, staggerDirection: -1 } },
     }
     const handleLogOut =()=>{
         dispatch(LogOutUser(null));
     }
     return(
-        <>
+        <motion.div
+        animate={showNavToggler? "open": showNavToggler===false ? "closed":"default"}
+        variants={variants}
+        >
             <div className="d-flex justify-content-between align-items-center py-3 mb-2">
                 <span className="d-flex align-items-center">
                     <span className="me-1">
@@ -137,7 +151,7 @@ export const SideNav =({navToggler})=>{
                     onClick={handleLogOut}
                     />
             </div>
-        </>
+        </motion.div>
     )
     
 }

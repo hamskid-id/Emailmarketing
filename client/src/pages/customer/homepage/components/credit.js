@@ -46,7 +46,7 @@ export const CreditWrapper=()=>{
                                 key={index}
                                 className="col-md-6 mb-2"
                             >
-                                <div className="pe-3">
+                                <div className="pde-2">
                                     <div className="d-flex justify-content-between align-items-center mb-1">
                                         <span className="fw-bold">
                                             {name}

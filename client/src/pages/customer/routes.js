@@ -26,8 +26,8 @@ export const AccordionsRoutes =[
             />,
         name:"Sending",
         subName:[
-            "Sending domains",
-            "Tracking domains",
+            // "Sending domains",
+            // "Tracking domains",
             "Blacklist"
         ]
     }
@@ -49,14 +49,14 @@ export const ListRoute=[
         name:"Campaigns" ,
         route:"/campaigns"   
     },
-    {
-        icon:<FaRegClock
-        size="1.5rem"
-        color="white"
-    />,
-        name:"Automations",
-        route:"/automations"    
-    },
+    // {
+    //     icon:<FaRegClock
+    //     size="1.5rem"
+    //     color="white"
+    // />,
+    //     name:"Automations",
+    //     route:"/automations"    
+    // },
     {
         icon:<FaTable
         size="1.5rem"

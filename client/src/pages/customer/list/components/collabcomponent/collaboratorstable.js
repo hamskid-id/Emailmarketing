@@ -98,9 +98,6 @@ export const CollabContainer =()=>{
                     <p className="fw-bold">
                         Your Collaborations List is presently empty
                     </p>
-                    <div>
-                        Dont worry click on Add Collaborations to get started. 
-                    </div>
                 </div>
             )
         }

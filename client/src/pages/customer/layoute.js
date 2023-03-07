@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 // import "../homepage/home.css";
 import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
@@ -13,14 +13,19 @@ export const Layout=({routeChildren})=>{
     const auth = useSelector(
         state => state.auth
     )
+    const [showNavToggler,setShowNavToggler] = useState(null);
     const showNav =()=>{
-        navToggler.current.classList.add("active");
+        setShowNavToggler(false)
+        setTimeout(()=>{
+            navToggler.current.classList.add("active");
+            setShowNavToggler(null)
+        },100)
     }
     return(
         <div className="container-fluid whitesmoke">
             <div className="row no-wrap">
                 <div className="col-md-2 px-3 sideNav bg-slate-grey w-230" ref={navToggler}>
-                   <SideNav navToggler={navToggler}/>
+                   <SideNav navToggler={navToggler} showNavToggler={showNavToggler} setShowNavToggler={setShowNavToggler}/>
                 </div>
                 <div className="col-md-10 dashboardvh bg-smoke">
                         <div>

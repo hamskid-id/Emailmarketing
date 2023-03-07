@@ -31,8 +31,8 @@ export const CreateCampaignContent =()=>{
         FromEmail:auth.userdata?.user?.email,
         ReplyTo:"",
         DeliveryDate:"",
-        DeliveryTime:"",
-        tag_id:null,
+        // DeliveryTime:"",
+        tag_id:{name:null,id:null},
         status:0,
         sectionCompleted:0
     })

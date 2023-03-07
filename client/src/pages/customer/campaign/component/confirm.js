@@ -1,12 +1,9 @@
-import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { UpdateActivities } from "../../../../store/activitiesSlice"
 import { CreateCampaigns } from "../../../../store/campaignSlice"
 import { Recipient } from "./recipient"
 import { Schedule } from "./schedule"
 import { Setup } from "./setup"
-import { TemplateChoice } from "./templatechoice"
 
 export const Confirm =({
     setCampaignSection,
@@ -17,6 +14,7 @@ export const Confirm =({
         state => state.campaign
     )
     const dispatch = useDispatch()
+    console.log(campaignParams.tag_id)
 
     const handleSend=()=>{
         let filledRequired = false;
@@ -28,7 +26,8 @@ export const Confirm =({
             campaignParams.FromName,
             campaignParams.ReplyTo,
             campaignParams.DeliveryDate,
-            campaignParams.tag_id,
+            // campaignParams.DeliveryTime,
+            campaignParams.tag_id?.id,
             campaignParams.campaignType,
             campaignParams.status
         ]?.map((camp)=>{
@@ -48,7 +47,7 @@ export const Confirm =({
                     from_name:campaignParams.FromName,
                     subject:campaignParams.EmailSubject,
                     content:campaignParams.content,
-                    tag_id:campaignParams.tag_id,
+                    tag_id:campaignParams.tag_id?.id,
                     content_type: campaignParams.campaignType,
                     schedule_date:campaignParams.DeliveryDate,
                     status:campaignParams.status
@@ -77,7 +76,7 @@ export const Confirm =({
                         },
                         {
                             name:"Tag *",
-                            content:campaignParams.tag_id,
+                            content:campaignParams.tag_id?.name,
                             section:"Recipients",
                             components:<Recipient
                                 campaignParams={campaignParams}
@@ -162,18 +161,18 @@ export const Confirm =({
                                 setCampaignSection={setCampaignSection}
                             />,
                             active:3
-                        },
-                        {
-                            name:"Delivery Time *",
-                            content:campaignParams.DeliveryTime,
-                            section:"Schedule",
-                            components:<Schedule                           
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}                           
-                            />,
-                            active:3
                         }
+                        // {
+                        //     name:"Delivery Time *",
+                        //     content:campaignParams.DeliveryTime,
+                        //     section:"Schedule",
+                        //     components:<Schedule                           
+                        //         campaignParams={campaignParams}
+                        //         setCampaignparams={setCampaignparams}
+                        //         setCampaignSection={setCampaignSection}                           
+                        //     />,
+                        //     active:3
+                        // }
                     ]?.map((sect,index)=>{
                         const{
                             name,

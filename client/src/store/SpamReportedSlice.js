@@ -6,20 +6,15 @@ import { apiBaseUrl, setHeaders } from './api';
 
 export const GetSpamReported = createAsyncThunk(
     'SpamReported/GetSpamReported ', 
-    async ({dispatch}) =>{
+    async () =>{
     try{
         const response = await axios.get(
             `${apiBaseUrl}/list_spamreport`,
                 setHeaders()
         )
-        console.log(
-           response?.data
-        )
         return response?.data
-    } catch(err){
-            console.log(
-                err.response?.data
-            )
+    } catch(err){ 
+            return err.response?.data
         }
     }
 )
@@ -44,9 +39,6 @@ export const CreateSpamReported  = createAsyncThunk(
         }
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
         return rejectWithValue(
             err.response?.data?.message
         )

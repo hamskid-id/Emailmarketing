@@ -53,13 +53,8 @@ export const TemplateForm =({
                 register={register}
                 errors={errors.bdesc}
             />
-            <CustomFormField
-                value="submit"
-                type="btn"
-                loadingStatus={template.CreateTemplateStatus}
-            />
             {
-                template.CreateTemplateStatus === 'success'&&(
+                template.CreateTemplateStatus === 'success'?(
                     <button
                         onClick={()=>{
                             setCampaignparams({
@@ -72,6 +67,12 @@ export const TemplateForm =({
                         >
                         Proceed
                     </button>
+                ):(
+                    <CustomFormField
+                        value="submit"
+                        type="btn"
+                        loadingStatus={template.CreateTemplateStatus}
+                    />
                 )
             }
         </form>

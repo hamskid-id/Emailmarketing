@@ -1,19 +1,12 @@
-import { useEffect } from "react";
 import { FaCartArrowDown} from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetSpamReported } from "../../../../../store/SpamReportedSlice";
 import { Actions } from "./spamaction";
 
 export const SpamContainer = () => {
     const spam = useSelector(
         state => state.SpamReported
     )
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(GetSpamReported(null));
-    }, [dispatch])
-
     if (spam.GetSpamReportedStatus === 'pending') {
         return <Spinner />
     }
