@@ -1,15 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import activities_Slice, { GetActivities } from "./activitiesSlice";
 import auth_Slice from './authSlice';
-import blacklist_Slice from "./BlacklistedSlice";
+import blacklist_Slice, { GetBlacklist } from "./BlacklistedSlice";
 import campaign_Slice, { GetRecentCampaigns } from "./campaignSlice";
 import collab_Slice from "./collaborationSlice";
 import notification_Slice from "./notificationSlice";
-import SpamReported_Slice from "./SpamReportedSlice";
-import subscriber_Slice from "./subscriberSlice";
+import SpamReported_Slice, { GetSpamReported } from "./SpamReportedSlice";
+import subscriber_Slice, { GetSubscribers } from "./subscriberSlice";
 import Tag_Slice, { GetTags } from "./tagSlice";
 import template_Slice from "./templateSlice";
-import unsubscriber_Slice from "./UnsubscribeSlice";
+import unsubscriber_Slice, { GetUnSubscribers } from "./UnsubscribeSlice";
 
 const store = configureStore({
     reducer:{
@@ -28,6 +28,10 @@ const store = configureStore({
 });
 
 store.dispatch(GetActivities(null));
-store.dispatch(GetTags(null))
-store.dispatch(GetRecentCampaigns(null))
+store.dispatch(GetTags(null));
+store.dispatch(GetBlacklist(null));
+store.dispatch(GetSpamReported(null));
+store.dispatch(GetUnSubscribers(null));
+store.dispatch(GetSubscribers(null));
+store.dispatch(GetRecentCampaigns(null));
 export default store;

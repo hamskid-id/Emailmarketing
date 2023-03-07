@@ -1,7 +1,18 @@
-import { FaCheck, FaMonero } from "react-icons/fa";
+import { FaCheckCircle, FaMonero } from "react-icons/fa";
 export const AuthSideNav =({children})=>{
     return(
         <div className="container-fluid">
+            <span className="mobile-logo p-3">
+                <span className="me-1">
+                    <FaMonero
+                        size="3.5rem"
+                        color="white"
+                    />
+                </span>
+                <em className="fs-2 fw-bold text-white">
+                    5star
+                </em>
+            </span>
             <div className="row fixedHeightcover">
                 <div className="col-md-5 m-auto mt-5">
                     <div className="pt-7 px-5">
@@ -23,7 +34,7 @@ export const AuthSideNav =({children})=>{
                         <div>
                             <div className="d-flex align-items-center">
                                 <span className="me-3">
-                                    <FaCheck
+                                    <FaCheckCircle
                                     color="white"
                                     />
                                 </span>
@@ -33,7 +44,7 @@ export const AuthSideNav =({children})=>{
                             </div>
                             <div className="d-flex align-items-center">
                                 <span className="me-3">
-                                    <FaCheck
+                                    <FaCheckCircle
                                     color="white"
                                     />
                                 </span>
@@ -43,7 +54,7 @@ export const AuthSideNav =({children})=>{
                             </div>
                             <div className="d-flex align-items-center">
                                 <span className="me-3">
-                                    <FaCheck
+                                    <FaCheckCircle
                                     color="white"
                                     />
                                 </span>
@@ -53,7 +64,7 @@ export const AuthSideNav =({children})=>{
                             </div>
                             <div className="d-flex align-items-center">
                                 <span className="me-3">
-                                    <FaCheck
+                                    <FaCheckCircle
                                     color="white"
                                     />
                                 </span>

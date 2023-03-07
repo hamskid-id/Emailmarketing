@@ -20,17 +20,14 @@ export const Actions =()=>{
                             {
                                 [
                                     {
-                                        name:"Created At",
-                                        url:"https://hello"
+                                        name:"Created At"
                                     },
                                     {
-                                        name:"Name",
-                                        url:"https://hello"
+                                        name:"Name"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
-                                        name,
-                                        url
+                                        name
                                     }=drop
                                     return(
                                         <option 

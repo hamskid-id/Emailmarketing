@@ -11,14 +11,9 @@ export const GetUserTemplate = createAsyncThunk(
             `${apiBaseUrl}/viewusertemp`,
                 setHeaders()
         )
-        console.log(
-           response?.data
-        )
         return response?.data
     } catch(err){
-            console.log(
-                err.response?.data
-            )
+           toast.error(err.response?.data?.message);
         }
     }
 )
@@ -31,14 +26,9 @@ export const GetGeneralTemplate = createAsyncThunk(
             `${apiBaseUrl}/generaltemp`,
                 setHeaders()
         )
-        console.log(
-           response?.data
-        )
         return response?.data
     } catch(err){
-            console.log(
-                err.response?.data
-            )
+            toast.error(err.response?.data?.message)
         }
     }
 )
@@ -65,9 +55,6 @@ export const CreateTemplate  = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
         return rejectWithValue(
             err.response?.data?.message
         )

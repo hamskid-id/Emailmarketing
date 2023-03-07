@@ -50,7 +50,7 @@ export const RegisterView =()=>{
         <>
             <AuthSideNav>
                 <p className="fs-2 text-center">
-                    Register
+                    Create your account
                 </p>
                 <div>
                     <span className="fs-5 me-1">

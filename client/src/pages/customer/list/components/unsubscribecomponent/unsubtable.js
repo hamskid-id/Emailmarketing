@@ -1,8 +1,7 @@
-import { useEffect, useRef } from "react";
+import {useRef } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetUnSubscribers } from "../../../../../store/UnsubscribeSlice";
 import { HandleDownloadPdf } from "../../../campaign/statistics.js/components/download";
 import { Actions } from "./unsubaction";
 
@@ -12,11 +11,6 @@ export const UnSubContainer =()=>{
     const unsub = useSelector(
         state => state.unsubscriber
     )
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(GetUnSubscribers(null));
-    },[dispatch])
-    
     if(unsub.GetUnSubscribersStatus ==='pending'){
         return <Spinner/>
     }
@@ -108,7 +102,7 @@ export const UnSubContainer =()=>{
                  {
                     unsub
                     .unsubscribers?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
                             <FaCartArrowDown
                                 color="grey"
                                 size="7rem"

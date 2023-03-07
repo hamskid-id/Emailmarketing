@@ -63,7 +63,7 @@ export const Nav =()=>{
                     }                   
                 </div>
             </div>
-            <div className="auth-mobile-nav" ref={mobileNav}>
+            <div className="auth-mobile-nav bg-slate-grey" ref={mobileNav}>
                 <div 
                     className="me-5 text-white"
                 >

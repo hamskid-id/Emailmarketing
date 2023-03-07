@@ -1,8 +1,7 @@
 import { FaSlidersH } from "react-icons/fa"
-import { Actions } from "../../../../../components/actions"
 import { Modal } from "../../../../../components/modal/modal"
-import { ListModalContent } from "./listform"
-import { ListTable } from "./listtable"
+import { SubscriberModalContent } from "../subscribercomponent/subscriberForm"
+import {UsersListContainer } from "./listtable"
 
 export const ListContent =()=>{
     return(
@@ -17,15 +16,11 @@ export const ListContent =()=>{
                     My lists
                 </div>
             </div>
-            <Actions
-                actionName="+ Create list"
-            />
-            <ListTable/>
+            <UsersListContainer/>
             <Modal
                 title="Edit your mail list"
-                large={true}
                 body={
-                    <ListModalContent/>
+                    <SubscriberModalContent/>
                 }
             />
         </>

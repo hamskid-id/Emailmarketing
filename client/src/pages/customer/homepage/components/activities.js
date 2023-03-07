@@ -22,45 +22,49 @@ export const ActivitiesLog =()=>{
                     Activity log
                 </h2>
             </div>
-            <div className="mb-2 h5-overflow">
-                {
-                    activities.activities?.map((active,index)=>{
-                        const{
-                            action,
-                            created_at
-                        }=active
-                        return(
-                            <div
-                                key={index} 
-                                className="row align-items-center mb-3">
-                                <div className="col-md-12">
-                                    <div className="d-flex flex-row align-items-center justify-content-between border rounded p-2 wrap">
-                                        <span className="d-flex flex-column">
-                                            <h3 className="fw-bold fs-6">
-                                                {auth.userdata?.user?.name}
-                                            </h3>
-                                            <h3 className="fs-6 break">
-                                               {action}
-                                            </h3>
-                                        </span>
-                                        <span className="fs-6">
-                                            {
-                                                new Date(created_at)
-                                                    .toLocaleString()
-                                            }
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        )
-                    })
-                }
-            </div>
             <div>
                 {
-                    activities.activities?.length ===0 && <p className="fs-5 text-center c-grey">Your activities log is empty</p>
-                }</div>
+                    activities.activities?.length ===0?(
+                        <p className="fs-5 text-center c-grey">Your activities log is empty</p>
+                    ) :(
+                        <div className="mb-2 h5-overflow mt-3 py-1">
+                        {
+                            activities.activities?.map((active,index)=>{
+                                const{
+                                    action,
+                                    created_at
+                                }=active
+                                return(
+                                    <div
+                                        key={index} 
+                                        className="row align-items-center">
+                                        <div className="col-md-12">
+                                            <div className="d-flex flex-row align-items-center justify-content-between border rounded shadow p-2 my-1 rounded bg bg-white wrap">
+                                                <span className="d-flex flex-column">
+                                                    <h3 className="fw-bold fs-6">
+                                                        {auth.userdata?.user?.name}
+                                                    </h3>
+                                                    <h3 className="fs-6 break">
+                                                    {action}
+                                                    </h3>
+                                                </span>
+                                                <span className="fs-6">
+                                                    {
+                                                        new Date(created_at)
+                                                            .toLocaleString()
+                                                    }
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )
+                            })
+                        }
+                    </div>
+                    )
+                }
+            </div>
         </>
     )
 }

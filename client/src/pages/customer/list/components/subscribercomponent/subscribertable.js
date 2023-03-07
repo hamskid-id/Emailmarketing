@@ -1,19 +1,12 @@
-import { useEffect } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetSubscribers } from "../../../../../store/subscriberSlice";
 import { Actions} from "./subAction"
 
 export const SubContainer =()=>{
     const subsriber = useSelector(
         state => state.subscriber
     )
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(GetSubscribers(null));
-    },[dispatch])
-    
     if(subsriber.GetSubscribersStatus ==='pending'){
         return <Spinner/>
     }
@@ -115,17 +108,14 @@ export const SubContainer =()=>{
                  {
                     subsriber
                     .subscribers?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
                             <FaCartArrowDown
                                 color="grey"
                                 size="7rem"
                             />
                             <p className="fw-bold">
-                                Your Subscribers List is presently empty
+                                Your List is presently empty
                             </p>
-                            <div>
-                                Dont worry click on new subscribers to get started. 
-                            </div>
                         </div>
                     )
                 }

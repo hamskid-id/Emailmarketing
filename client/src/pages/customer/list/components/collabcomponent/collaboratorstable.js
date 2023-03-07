@@ -90,7 +90,7 @@ export const CollabContainer =()=>{
         {
             collab
             .inviteForCollaborations?.length === 0 &&(
-                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
                     <FaCartArrowDown
                         color="grey"
                         size="7rem"
@@ -98,9 +98,6 @@ export const CollabContainer =()=>{
                     <p className="fw-bold">
                         Your Collaborations List is presently empty
                     </p>
-                    <div>
-                        Dont worry click on Add Collaborations to get started. 
-                    </div>
                 </div>
             )
         }

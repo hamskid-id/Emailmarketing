@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 // import "../homepage/home.css";
 import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
@@ -13,31 +13,36 @@ export const Layout=({routeChildren})=>{
     const auth = useSelector(
         state => state.auth
     )
+    const [showNavToggler,setShowNavToggler] = useState(null);
     const showNav =()=>{
-        navToggler.current.classList.add("active");
+        setShowNavToggler(false)
+        setTimeout(()=>{
+            navToggler.current.classList.add("active");
+            setShowNavToggler(null)
+        },100)
     }
     return(
         <div className="container-fluid whitesmoke">
             <div className="row no-wrap">
                 <div className="col-md-2 px-3 sideNav bg-slate-grey w-230" ref={navToggler}>
-                   <SideNav navToggler={navToggler}/>
+                   <SideNav navToggler={navToggler} showNavToggler={showNavToggler} setShowNavToggler={setShowNavToggler}/>
                 </div>
                 <div className="col-md-10 dashboardvh bg-smoke">
                         <div>
-                            <div className="d-flex justify-content-between py-2 px-4 navHeader align-items-center">
+                            <div className="d-flex justify-content-between px-4 navHeader align-items-center">
                                 <span className="mobile-logo">
                                     <span className="me-1">
                                         <FaMonero
-                                            size="3rem"
-                                            color="darkslategrey"
+                                            size="3.5rem"
+                                            color="white"
                                             onClick={
                                                 ()=>navigate("/")
                                             }
                                         />
                                     </span>
-                                    <span className="fs-3 fw-bold cl-blue">
+                                    <em className="fs-2 fw-bold text-white">
                                         5star
-                                    </span>
+                                    </em>
                                 </span>
                                 <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
                                 <span className="d-flex align-items-center justify-content-end">

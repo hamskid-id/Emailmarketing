@@ -1,19 +1,12 @@
-import { useEffect } from "react";
 import { FaCartArrowDown} from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetSpamReported } from "../../../../../store/SpamReportedSlice";
 import { Actions } from "./spamaction";
 
 export const SpamContainer = () => {
     const spam = useSelector(
         state => state.SpamReported
     )
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(GetSpamReported(null));
-    }, [dispatch])
-
     if (spam.GetSpamReportedStatus === 'pending') {
         return <Spinner />
     }
@@ -86,7 +79,7 @@ export const SpamContainer = () => {
             {
                 spam
                     .SpamReported.length === 0 && (
-                    <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                    <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
                         <FaCartArrowDown
                             size="7rem"
                             color="grey"

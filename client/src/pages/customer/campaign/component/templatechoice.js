@@ -1,17 +1,17 @@
 import { FaFileUpload, FaLaptopMedical } from "react-icons/fa"
-import { GeneralList } from "./alltemplate"
+import {GeneralTemplateList } from "./alltemplate"
 
 export const TemplateChoice =({
     campaignParams,
     setCampaignparams,
     setCampaignSection
 })=>{
-    const handleChange=(e)=>{
-        setCampaignparams({
-            ...campaignParams,
-            template:e.target.files[0]
-        })
-    }
+    // const handleChange=(e)=>{
+    //     setCampaignparams({
+    //         ...campaignParams,
+    //         template:e.target.files[0]
+    //     })
+    // }
     return(
         <>
             <p className="fs-1 mb-3">Content Management</p>
@@ -24,7 +24,7 @@ export const TemplateChoice =({
                     onClick={()=>{
                         setCampaignSection({
                             name:"Template",
-                            components:<GeneralList
+                            components:<GeneralTemplateList
                                 campaignParams={campaignParams}
                                 setCampaignparams={setCampaignparams}
                                 setCampaignSection={setCampaignSection}
@@ -43,7 +43,7 @@ export const TemplateChoice =({
                         <h6 className="fs-5 wt-50">Craft your beutiful email based off a prebuild template we made for you</h6>
                     </span>
                 </div>
-                <div>
+                {/* <div>
                     <label 
                         className="d-flex align-items-start rounded wt-50 dotted pdw-1"
                         htmlFor="upload"
@@ -65,7 +65,7 @@ export const TemplateChoice =({
                         accept=".zip,.rar,.7z,.gz" 
                         onChange={handleChange}
                     />
-                </div>
+                </div> */}
             </div>
         </>
     )

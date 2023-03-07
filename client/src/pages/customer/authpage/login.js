@@ -1,14 +1,12 @@
 import { Link, useNavigate } from "react-router-dom"
 import { CustomFormField } from "../../../components/customFomField"; 
 import "./auth.css";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSideNav } from "./components/sidenav";
 import { LogInUser } from "../../../store/authSlice";
 
 export const LoginView =()=>{
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const auth = useSelector(
         state => state.auth
@@ -37,7 +35,7 @@ export const LoginView =()=>{
         <>
             <AuthSideNav>
                 <p className="fs-2 text-center">
-                    Log In
+                     Sign In to your account
                 </p>
                 <div>
                     <span className="fs-6 me-1">
@@ -45,7 +43,7 @@ export const LoginView =()=>{
                     </span>
                     <span>
                         <Link to="/auth/register">
-                            Create an account
+                            Create your account
                         </Link>
                     </span>
                 </div>

@@ -4,6 +4,9 @@
 .web-dash{
   display: block;
 }
+.pde-2{
+  padding-right: 1rem;
+}
 .h5-overflow{
   height:10rem;
   overflow-y: auto;
@@ -28,7 +31,7 @@ input[id="upload"]{
 }
 
 .border-bottom-slate-grey{
-  border-bottom:4px solid rgba(0, 25, 39, 0.75);
+  border-bottom:4px solid darkslategray;
 }
 .dotted{
   border:1px dotted grey;
@@ -44,11 +47,11 @@ input[id="upload"]{
   overflow-y: auto;
 }
 .accordion-item{
-  background-color: rgba(0, 25, 39, 0.01);
+  background-color: darkslategray;
 }
 .accordion-item:first-of-type .accordion-button{
-  background-color:rgba(0, 25, 39, 0.01);
-  border:rgba(0, 25, 39, 0.01);
+  background-color:darkslategray;
+  border:darkslategray;
   color:white;
 }
 .campains-select{
@@ -117,7 +120,6 @@ input[id="upload"]{
 }
 *{
   font-family: 'Outfit', sans-serif;
-  font-style: normal;
 }
 .fixedHeightcover{
   height:100vh
@@ -146,7 +148,7 @@ input[id="upload"]{
 }
 .bg-fade{
   background: #F8FDFF;
-  box-shadow: 0.75px 1.5px 8px 0.5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0.75px 1.5px 8px 0.5px darkslategray;
   border-radius: 8px;
 }
 .row {
@@ -167,7 +169,7 @@ input[id="upload"]{
   background-color: grey;
 }
 .border-drakslate-grey{
-  border: 1px solid rgba(0, 25, 39, 0.75);
+  border: 1px solid darkslategray;
 }
 .b-gainsboro{
   background-color: gainsboro;
@@ -220,7 +222,7 @@ i.mdi.mdi-account {
   display: flex;
 }
 .bg-slate-grey{
-  background-color: rgba(0, 25, 39, 0.75);
+  background-color: darkslategray;
 }
 .w-overflow{
   width:100%;
@@ -313,10 +315,10 @@ i.mdi.mdi-account {
   width:75%;
 }
 .bg-blue{
-  color:rgba(0, 25, 39, 0.75);
+  color:darkslategray;
 }
 .cl-blue{
-  color:rgba(0, 25, 39, 0.75)y;
+  color:darkslategray;
 }
 .mt-7{
   margin-top: 7rem;
@@ -347,8 +349,15 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .pde-2{
+    padding-right:0;
+  }
+  .bg-slate-grey {
+    background-color: darkslategray;
+  }
   .navHeader{
     position:fixed;
+    background-color: darkslategray;
   }
   .children {
     margin-top: 7rem;
@@ -366,6 +375,7 @@ i.mdi.mdi-account {
   .mobile-logo{
     display:flex;
     align-items:center;
+    background:darkslategray;
   }
   .w-63{
     width:100%;
@@ -392,7 +402,8 @@ i.mdi.mdi-account {
     margin-bottom: 0.5rem;
   }
   .chat-container{
-    width:fit-content;
+    display: flex;
+    justify-content: center;
   }
   .campaign-select{
     width:100%;
@@ -440,7 +451,9 @@ i.mdi.mdi-account {
   padding-right: 1rem;
   padding-left: 1rem;
 }
-  
+.grid{
+  grid-template-columns: 1fr;
+}
 }
 @media only screen and (max-width : 700px) {
   .campains-select{
@@ -452,9 +465,6 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 400px) {
-  .grid{
-    grid-template-columns:1fr;
-  }
   .chat-container{
     width:100%;
   }

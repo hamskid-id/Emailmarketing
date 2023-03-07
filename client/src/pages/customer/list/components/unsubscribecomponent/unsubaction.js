@@ -1,4 +1,3 @@
-import { toast } from "react-toastify"
 
 export const Actions =({
     HandleDownloadPdf,
@@ -22,25 +21,20 @@ export const Actions =({
                             {
                                 [
                                     {
-                                        name:"Created At",
-                                        url:"https://hello"
+                                        name:"Created At"
                                     },
                                     {
-                                        name:"Email",
-                                        url:"https://hello"
+                                        name:"Email"
                                     },
                                     {
-                                        name:"Name",
-                                        url:"https://hello"
+                                        name:"Name"
                                     },
                                     {
-                                        name:"Updated At",
-                                        url:"https://hello"
+                                        name:"Updated At"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
-                                        name,
-                                        url
+                                        name
                                     }=drop
                                     return(
                                         <option
@@ -61,33 +55,26 @@ export const Actions =({
                             {
                                 [
                                     {
-                                        name:"All subscribers",
-                                        url:"https://hello"
+                                        name:"All subscribers"
                                     },
                                     {
-                                        name:"Subscribed",
-                                        url:"https://hello"
+                                        name:"Subscribed"
                                     },
                                     {
-                                        name:"Unsubscribed",
-                                        url:"https://hello"
+                                        name:"Unsubscribed"
                                     },{
 
-                                        name:"Unconfirmed",
-                                        url:"https://hello"
+                                        name:"Unconfirmed"
                                     },
                                     {
-                                        name:"Spam reported",
-                                        url:"https://hello"
+                                        name:"Spam reported"
                                     },
                                     {
-                                        name:"Blacklisted",
-                                        url:"https://hello"
+                                        name:"Blacklisted"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
-                                        name,
-                                        url
+                                        name
                                     }=drop
                                     return(
                                         <option
@@ -108,33 +95,26 @@ export const Actions =({
                             {
                                 [
                                     {
-                                        name:"All verifcation",
-                                        url:"https://hello"
+                                        name:"All verifcation"
                                     },
                                     {
-                                        name:"Deliverable",
-                                        url:"https://hello"
+                                        name:"Deliverable"
                                     },
                                     {
-                                        name:"Undeliverable",
-                                        url:"https://hello"
+                                        name:"Undeliverable"
                                     },{
 
-                                        name:"Unknown",
-                                        url:"https://hello"
+                                        name:"Unknown"
                                     },
                                     {
-                                        name:"Risky",
-                                        url:"https://hello"
+                                        name:"Risky"
                                     },
                                     {
-                                        name:"Unverified",
-                                        url:"https://hello"
+                                        name:"Unverified"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
-                                        name,
-                                        url
+                                        name
                                     }=drop
                                     return(
                                         <option

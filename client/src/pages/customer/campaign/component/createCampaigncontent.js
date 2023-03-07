@@ -24,25 +24,16 @@ export const CreateCampaignContent =()=>{
         setCampaignparams
     ]=useState({
         campaignType:localStorage.getItem("campaigns") ? localStorage.getItem("campaigns"):"",
-        default:false,
-        ToWhichListShallWeSend:"",
+        content:"",
         NameYourCampaign:"",
         EmailSubject :"",
         FromName:auth.userdata?.user?.name,
         FromEmail:auth.userdata?.user?.email,
         ReplyTo:"",
-        template:"",
         DeliveryDate:"",
-        ADS:false,
-        CTD:false,
-        SDV:false,
-        DeliveryTime:"",
-        tag_id:null,
-        content_type:"",
-        status:1,
-        TemplateName:"",
-        templateDesign:{},
-        TempalateDesc:"",
+        // DeliveryTime:"",
+        tag_id:{name:null,id:null},
+        status:0,
         sectionCompleted:0
     })
 

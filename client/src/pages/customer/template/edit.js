@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 export const EditView =()=>{
     const emailEditorRef = useRef(null);
-    const {id} = useParams();
+    const {id,category} = useParams();
 
     const [
         EditedInfo, 
@@ -19,10 +19,14 @@ export const EditView =()=>{
 
     const FetchTemplate = async () =>{
         try{
-            const response = await axios.get(
-                `${apiBaseUrl}/viewusertemp`,
-                    setHeaders()
-            )
+            const response = category=="personal"?
+                await axios.get(
+                    `${apiBaseUrl}/viewusertemp`,
+                        setHeaders()
+                ):await axios.get(
+                    `${apiBaseUrl}/generaltemp`,
+                        setHeaders()
+                )
             console.log(
                response?.data
             )

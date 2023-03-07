@@ -39,6 +39,7 @@ import { UpdateTagPage } from './pages/customer/list/updateTag';
 
 
 const App =()=> {
+  
   return (
     <Provider store={store}>
       <Router>
@@ -77,7 +78,7 @@ const App =()=> {
              <Route exact path="/user/tag/update/:id"  element={ <UpdateTagPage/>} />
             <Route exact path='/campaign/select-type'  element={ <SelectTypeView/>} />
             <Route exact path='/templates'  element={ <TemplateList/>} />
-            <Route exact path='/edit/template/:id'  element={ <EditView/>} />
+            <Route exact path='/edit/template/:category/:id'  element={ <EditView/>} />
             <Route exact path='/automations'  element={ <AutoPage/>} />
             <Route exact path='/automations/design'  element={ <AutomationDesign/>} />
             <Route exact path='/inbox' element={ <Inbox/>}/>

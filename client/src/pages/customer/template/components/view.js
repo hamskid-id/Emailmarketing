@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FaImages, FaTable, FaUserAlt } from "react-icons/fa"
-import { GeneralList } from "./generalTemplate";
-import { MyTemplateList } from "./templateList"
+import { GeneralList } from "../../../../components/generalTemplate";
+import { MyTemplateList } from "../../../../components/templateList"
 
 export const TemplateView =()=>{
     const [

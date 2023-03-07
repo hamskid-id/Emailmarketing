@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { UpdateActivities } from "../../../../store/activitiesSlice"
 import { CreateCampaigns } from "../../../../store/campaignSlice"
 import { Recipient } from "./recipient"
 import { Schedule } from "./schedule"
 import { Setup } from "./setup"
-import { TemplateChoice } from "./templatechoice"
 
 export const Confirm =({
     setCampaignSection,
@@ -16,17 +14,20 @@ export const Confirm =({
         state => state.campaign
     )
     const dispatch = useDispatch()
+    console.log(campaignParams.tag_id)
 
     const handleSend=()=>{
         let filledRequired = false;
         [
-            campaignParams.ToWhichListShallWeSend,
             campaignParams.NameYourCampaign,
             campaignParams.EmailSubject,
+            campaignParams.content,
             campaignParams.FromEmail,
+            campaignParams.FromName,
             campaignParams.ReplyTo,
             campaignParams.DeliveryDate,
-            campaignParams.tag_id,
+            // campaignParams.DeliveryTime,
+            campaignParams.tag_id?.id,
             campaignParams.campaignType,
             campaignParams.status
         ]?.map((camp)=>{
@@ -37,27 +38,20 @@ export const Confirm =({
         if(filledRequired){
                 toast.error('Please fill in all the required information')
         }else{
+            
             dispatch(
                 CreateCampaigns({
                     title:campaignParams.NameYourCampaign,
-                    receipient:campaignParams.ReplyTo,
+                    reply_to:campaignParams.ReplyTo,
                     from_email:campaignParams.FromEmail,
-                    subject:campaignParams.ToWhichListShallWeSend,
-                    content:campaignParams.EmailSubject,
-                    tag_id:campaignParams.tag_id,
+                    from_name:campaignParams.FromName,
+                    subject:campaignParams.EmailSubject,
+                    content:campaignParams.content,
+                    tag_id:campaignParams.tag_id?.id,
                     content_type: campaignParams.campaignType,
                     schedule_date:campaignParams.DeliveryDate,
                     status:campaignParams.status
                 })
-            )
-
-            dispatch(
-                UpdateActivities({
-                    action:`New campaign 
-                        "${campaignParams.NameYourCampaign}" 
-                        was created`
-                    }
-                )
             )
         }
     }
@@ -70,8 +64,8 @@ export const Confirm =({
                 {
                     [
                         {
-                            name:"Campaign Default",
-                            content:campaignParams.default?"true":"false",
+                            name:"Status *",
+                            content:campaignParams.status,
                             section:"Recipients",
                             components:<Recipient
                                 campaignParams={campaignParams}
@@ -81,8 +75,8 @@ export const Confirm =({
                             active:0
                         },
                         {
-                            name:"To which list shall we send?",
-                            content:campaignParams.ToWhichListShallWeSend,
+                            name:"Tag *",
+                            content:campaignParams.tag_id?.name,
                             section:"Recipients",
                             components:<Recipient
                                 campaignParams={campaignParams}
@@ -147,8 +141,8 @@ export const Confirm =({
                             active:1
                         },
                         {
-                            name:"Add DKIM signature  *",
-                            content:campaignParams.ADS?"true":"false",
+                            name:"Content *",
+                            content:campaignParams.content,
                             section:"Setup",
                             components:<Setup                           
                                 campaignParams={campaignParams}
@@ -157,40 +151,6 @@ export const Confirm =({
                             />,
                             active:1
                         },
-                        {
-                            name:"Custom Tracking Domain *",
-                            content:campaignParams.CTD?"true":"false",
-                            section:"Setup",
-                            components:<Setup                           
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
-                            name:"Use sending server's default value * *",
-                            content:campaignParams.SDV?"true":"false",
-                            section:"Setup",
-                            components:<Setup                           
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
-                            name:"Template",
-                            content:campaignParams.template?"Available":"Unavailable",
-                            section:"Template",
-                            components:<TemplateChoice                                           
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection} 
-                            />,
-                            active:2
-                        }
-                        ,
                         {
                             name:"Delivery date *",
                             content:campaignParams.DeliveryDate,
@@ -201,18 +161,18 @@ export const Confirm =({
                                 setCampaignSection={setCampaignSection}
                             />,
                             active:3
-                        },
-                        {
-                            name:"Delivery Time *",
-                            content:campaignParams.DeliveryTime,
-                            section:"Schedule",
-                            components:<Schedule                           
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}                           
-                            />,
-                            active:3
                         }
+                        // {
+                        //     name:"Delivery Time *",
+                        //     content:campaignParams.DeliveryTime,
+                        //     section:"Schedule",
+                        //     components:<Schedule                           
+                        //         campaignParams={campaignParams}
+                        //         setCampaignparams={setCampaignparams}
+                        //         setCampaignSection={setCampaignSection}                           
+                        //     />,
+                        //     active:3
+                        // }
                     ]?.map((sect,index)=>{
                         const{
                             name,

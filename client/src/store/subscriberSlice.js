@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetSubscribers = createAsyncThunk(
@@ -13,7 +14,7 @@ export const GetSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(
+        console.log(
             err.response?.data?.message
         )
         }
@@ -30,7 +31,7 @@ export const GetTotalSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(
+        console.log(
             err.response?.data?.message
         )
         }
@@ -48,7 +49,7 @@ export const Createsubscriber = createAsyncThunk(
         phone,
         dob,
         tag
-    },) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/addsubscrib`,{
@@ -63,6 +64,12 @@ export const Createsubscriber = createAsyncThunk(
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`You added "${email}" to your subscribers list`
+            }));
+            dispatch(GetSubscribers())
+        }
         return response?.data
     } catch(err){
             toast.error(
