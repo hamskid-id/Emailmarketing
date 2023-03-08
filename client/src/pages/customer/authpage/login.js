@@ -79,17 +79,18 @@ export const LoginView =()=>{
                         >
                             Forgot password?
                         </Link>
+                        {
+                            auth.LoginStatus === "rejected" &&(
+                                <p className="text-danger">{auth.LoginError}</p>
+                            )
+                        }
                         <CustomFormField
                             value="Log In"
                             type="btn"
                             loadingStatus={auth.LoginStatus}
                         />
                     </form>
-                    {
-                        auth.LoginStatus === "rejected" &&(
-                            <p className="text-danger">{auth.LoginError}</p>
-                        )
-                    }
+                   
                 </div>
             </AuthSideNav> 
         </>

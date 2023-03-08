@@ -36,7 +36,7 @@ export const SubscriberModalContent =()=>{
                 state,
                 phone,
                 dob,
-                tag
+                tag_id:tag
             })
         )
     }

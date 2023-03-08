@@ -12,7 +12,7 @@ export const GetActivities = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-                return err.response?.data
+            return err.response?.data
             
         }
     }

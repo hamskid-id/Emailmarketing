@@ -12,10 +12,6 @@ export const CustomFormField =({
     defaultValue,
     editableValue
 })=>{
-    if(errors){
-        console.log(errors)
-    }
-
     if(type === "btn"){
         return(
             <div className="w-100">

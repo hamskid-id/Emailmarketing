@@ -55,18 +55,18 @@ export const TemplateForm =({
             />
             {
                 template.CreateTemplateStatus === 'success'?(
-                    <button
+                    <div
                         onClick={()=>{
                             setCampaignparams({
                                 ...campaignParams,
                                 sectionCompleted:3
                             })
                         }}
-                        className="btn btn-sm bg-slate-grey text-white fs-5 fl-r"
+                        className="btn btn-sm bg-slate-grey text-white fs-5"
                         data-bs-dismiss="modal"
                         >
                         Proceed
-                    </button>
+                    </div>
                 ):(
                     <CustomFormField
                         value="submit"

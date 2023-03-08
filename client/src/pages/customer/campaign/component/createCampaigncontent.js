@@ -88,7 +88,6 @@ export const CreateCampaignContent =()=>{
                     name:name,
                     components:components
                 })
-                console.log("set")
             }
         })      
     },[campaignParams])

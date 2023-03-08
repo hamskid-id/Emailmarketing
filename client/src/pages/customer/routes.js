@@ -1,4 +1,4 @@
-import {FaHome,FaPaperPlane,FaRegClock,FaThList,FaSync,FaTable } from "react-icons/fa";
+import {FaHome,FaPaperPlane,FaThList,FaSync,FaTable } from "react-icons/fa";
 export const AccordionsRoutes =[
     {
         id:"collapseOne",

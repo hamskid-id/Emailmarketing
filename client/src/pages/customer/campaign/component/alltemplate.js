@@ -1,5 +1,4 @@
 import {FaImages, FaTable, FaUserAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"
 import { MyTemplateList } from "../../../../components/templateList";
 import { GeneralList } from "../../../../components/generalTemplate";
 import { useState } from "react";
@@ -9,8 +8,6 @@ export const GeneralTemplateList =({
     setCampaignparams,
     setCampaignSection
 })=>{
-    const navigate = useNavigate();
-    const templates=[]
     const [
         activeView,
         SetActiveView
