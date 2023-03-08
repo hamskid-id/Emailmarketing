@@ -23,6 +23,7 @@ export const CreditWrapper=()=>{
                 <span className="me-3">
                    <FaCircleNotch
                         size="1.5rem"
+                        color="grey"
                     />
                 </span>
                 <h2 
@@ -57,7 +58,7 @@ export const CreditWrapper=()=>{
                                     </div>
                                     <div className="progress">
                                         <div 
-                                            className="progress-bar bg-success" 
+                                            className="progress-bar bg-progress-success" 
                                             role="progressbar" 
                                             aria-label="Basic example" 
                                             aria-valuenow={amount} 

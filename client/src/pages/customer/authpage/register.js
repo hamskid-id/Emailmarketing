@@ -96,17 +96,17 @@ export const RegisterView =()=>{
                             register={register}
                             errors={errors.confirmPassword}
                         />
+                        {
+                            auth.registerStatus === "rejected" &&(
+                                <p className="text-danger">{auth.registerError}</p>
+                            )
+                        }
                         <CustomFormField
                             value="register"
                             type="btn"
                             loadingStatus={auth.registerStatus}
                         />
                     </form>
-                    {
-                        auth.registerStatus === "rejected" &&(
-                            <p className="text-danger">{auth.registerError}</p>
-                        )
-                    }
                 </div>
             </AuthSideNav>
         </>

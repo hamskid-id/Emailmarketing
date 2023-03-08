@@ -36,6 +36,7 @@ import { UnSubsrcibedPage } from './pages/customer/list/unsubscribe';
 import { SpamReportPage } from './pages/customer/list/spamreport';
 import { EditView } from './pages/customer/template/edit';
 import { UpdateTagPage } from './pages/customer/list/updateTag';
+// import './interceptors/axios';
 
 
 const App =()=> {

@@ -48,7 +48,7 @@ export const Createsubscriber = createAsyncThunk(
         state,
         phone,
         dob,
-        tag
+        tag_id
     },{dispatch}) =>{
     try{
         const response = await axios.post(
@@ -60,7 +60,7 @@ export const Createsubscriber = createAsyncThunk(
                 state,
                 phone,
                 dob,
-                tag
+                tag_id
             },
             setHeaders()
         )

@@ -14,8 +14,6 @@ export const Confirm =({
         state => state.campaign
     )
     const dispatch = useDispatch()
-    console.log(campaignParams.tag_id)
-
     const handleSend=()=>{
         let filledRequired = false;
         [

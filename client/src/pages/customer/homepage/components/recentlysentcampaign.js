@@ -1,24 +1,21 @@
 import {FaPaperPlane } from "react-icons/fa"
 import { useSelector } from "react-redux"
-import { recentDropdown } from "./recentcampaindropdown"
 
 export const RecentlySent=()=>{
     const recentCampaigns = useSelector(
         state => state.campaign
     )
-    const campaign=[{
-        title:"title",
-        recipient:"recipient",
-        from:"hamzat",
-        subject:"hellow orld",
-        content:"greetins to the wolrd"
-    }]
+    const Tags = useSelector(
+        state => state.tag
+    )
+
     return(
         <>
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
                    <FaPaperPlane
                         size="1.5rem"
+                        color="grey"
                     />
                 </span>
                 <h2 
@@ -34,10 +31,9 @@ export const RecentlySent=()=>{
                     className="fs-6 p-2 rounded text-white b-grey campains-select"
                     >
                     {
-                        recentDropdown?.map((drop,index)=>{
+                         Tags?.Tags?.map((drop,index)=>{
                             const {
-                                name,
-                                url
+                                name
                             }=drop
                             return(
                                 <option 
@@ -56,7 +52,7 @@ export const RecentlySent=()=>{
                         const{
                             content,
                             from_email,
-                            receipient,
+                            reply_to,
                             subject,
                             title,
                         }=camp
@@ -67,9 +63,11 @@ export const RecentlySent=()=>{
                                 <div 
                                     className="d-flex wt-50 mb-3"
                                     >
-                                    <span className="rounded border px-2 py-1 me-3">
-                                        Title
-                                    </span>
+                                    <div>
+                                        <span className="rounded border px-2 py-1 me-3">
+                                            Title
+                                        </span>
+                                    </div>
                                     <span className="text-primary">
                                         {title}
                                     </span>
@@ -77,9 +75,11 @@ export const RecentlySent=()=>{
                                 <div 
                                     className="d-flex wt-50 mb-3"
                                     >
-                                    <span className="rounded border px-2 py-1 me-3">
-                                        From
-                                    </span>
+                                    <div>
+                                        <span className="rounded border px-2 py-1 me-3">
+                                            From
+                                        </span>
+                                    </div>
                                     <span className="text-primary">
                                         {from_email}
                                     </span>
@@ -87,9 +87,11 @@ export const RecentlySent=()=>{
                                 <div 
                                     className="d-flex wt-50 mb-3"
                                     >
-                                    <span className="rounded border px-2 py-1 me-3">
-                                        Subject
-                                    </span>
+                                    <div>
+                                        <span className="rounded border px-2 py-1 me-3">
+                                            Subject
+                                        </span>
+                                    </div>
                                     <span className="text-primary break">
                                         {subject}
                                     </span>
@@ -97,19 +99,23 @@ export const RecentlySent=()=>{
                                 <div 
                                     className="d-flex wt-50 mb-3"
                                     >
-                                    <span className="rounded border px-2 py-1 me-3">
-                                        Recipient
-                                    </span>
+                                    <div>
+                                        <span className="rounded border px-2 py-1 me-3">
+                                            Recipient
+                                        </span>
+                                    </div>
                                     <span className="text-primary">
-                                        {receipient}
+                                        {reply_to}
                                     </span>
                                 </div>
                                 <div 
                                     className="d-flex wt-50 mb-3"
                                     >
-                                    <span className="rounded border px-2 py-1 me-3 break">
-                                        Content
-                                    </span>
+                                    <div>
+                                        <span className="rounded border px-2 py-1 me-3 break">
+                                            Content
+                                        </span>
+                                    </div>
                                     <span className="text-primary">
                                         {content}
                                     </span>

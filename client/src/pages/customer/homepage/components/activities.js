@@ -14,6 +14,7 @@ export const ActivitiesLog =()=>{
                 <span className="me-3">
                    <FaRegClone
                         size="1.5rem"
+                        color="grey"
                     />
                 </span>
                 <h2 
@@ -41,9 +42,11 @@ export const ActivitiesLog =()=>{
                                         <div className="col-md-12">
                                             <div className="d-flex flex-row align-items-center justify-content-between border rounded shadow p-2 my-1 rounded bg bg-white wrap">
                                                 <span className="d-flex flex-column">
-                                                    <h3 className="fw-bold fs-6">
-                                                        {auth.userdata?.user?.name}
-                                                    </h3>
+                                                    <FaUserCircle  
+                                                        size="1.5rem"
+                                                        color="gainsboro"
+                                                        className="mb-1"
+                                                    />
                                                     <h3 className="fs-6 break">
                                                     {action}
                                                     </h3>
