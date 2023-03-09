@@ -5,7 +5,7 @@ import { SubscriberStat } from "./statbox"
 export const ListOverview =()=>{
     return(
         <>
-             <p className="fs-1">
+             <p className="fs-2">
                 Manage your audience
             </p>
             <h6 className="fs-6">

@@ -68,7 +68,7 @@ export const RecentlySent=()=>{
                                             Title
                                         </span>
                                     </div>
-                                    <span className="text-primary">
+                                    <span className="text-primary break">
                                         {title}
                                     </span>
                                 </div>
@@ -80,7 +80,7 @@ export const RecentlySent=()=>{
                                             From
                                         </span>
                                     </div>
-                                    <span className="text-primary">
+                                    <span className="text-primary break">
                                         {from_email}
                                     </span>
                                 </div>
@@ -104,7 +104,7 @@ export const RecentlySent=()=>{
                                             Recipient
                                         </span>
                                     </div>
-                                    <span className="text-primary">
+                                    <span className="text-primary break">
                                         {reply_to}
                                     </span>
                                 </div>
@@ -112,11 +112,11 @@ export const RecentlySent=()=>{
                                     className="d-flex wt-50 mb-3"
                                     >
                                     <div>
-                                        <span className="rounded border px-2 py-1 me-3 break">
+                                        <span className="rounded border px-2 py-1 me-3">
                                             Content
                                         </span>
                                     </div>
-                                    <span className="text-primary">
+                                    <span className="text-primary break">
                                         {content}
                                     </span>
                                 </div>

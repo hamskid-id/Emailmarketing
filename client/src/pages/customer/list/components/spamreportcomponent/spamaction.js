@@ -12,7 +12,7 @@ export const Actions =()=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-5 p-2 rounded b-gainsboro"
+                            className="fs-6 p-2 rounded b-gainsboro"
                             >
                             {
                                 [

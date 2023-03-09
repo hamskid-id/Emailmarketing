@@ -4,6 +4,7 @@ import { useDispatch} from "react-redux";
 import { AccordionsRoutes, ListRoute } from "./routes";
 import { LogOutUser } from "../../store/authSlice";
 import { motion } from "framer-motion";
+import { Brand } from "../../components/navbarbrand";
 
 export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
     const dispatch = useDispatch();
@@ -31,18 +32,9 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
         >
             <div className="d-flex justify-content-between align-items-center py-3 mb-2">
                 <span className="d-flex align-items-center">
-                    <span className="me-1">
-                        <FaMonero
-                            size="3.5rem"
-                            color="white"
-                            onClick={
-                                ()=>navigate("/")
-                            }
-                        />
-                    </span>
-                    <em className="fs-2 fw-bold text-white">
-                        5star
-                    </em>
+                   <Brand
+                        handleClick={()=>navigate("/")}
+                   />
                 </span>
                 <span className="hide-toggler">
                     <FaTimesCircle

@@ -92,6 +92,7 @@ export const Audygrowth =()=>{
                 <span className="me-3">
                    <FaCircleNotch
                         size="1.5rem"
+                        color="grey"
                     />
                 </span>
                 <h2 

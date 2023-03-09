@@ -9,9 +9,10 @@ export const UpdateTagsContent =()=>{
                 <span className="me-3">
                     <FaTags
                         size="1.5rem"
+                        color="grey"
                     />
                 </span>
-                <div className="fs-1">
+                <div className="fs-2">
                     Update Tag
                 </div>
             </div>

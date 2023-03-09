@@ -51,6 +51,7 @@ export const CreateView =()=>{
             />
             <div className="w-overflow">
                 <EmailEditor 
+                    editorId="editor_container"
                     ref={emailEditorRef} 
                     onLoad={onLoad} 
                     onReady={onReady} 
