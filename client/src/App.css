@@ -1,8 +1,14 @@
 .App {
   text-align: center;
 }
+.navbrand{
+  display:none;
+}
 .web-dash{
   display: block;
+}
+#editor_container{
+  height:86vh;
 }
 .bg-progress-success{
   background-color: #198754;
@@ -250,7 +256,6 @@ i.mdi.mdi-account {
   flex-wrap: nowrap;
 }
 .navHeader{
-  background: white;
   z-index: 1;
   width: 100%;
   top: 0;
@@ -354,6 +359,9 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .navbrand{
+    display:block;
+  }
   .pde-2{
     padding-right:0;
   }

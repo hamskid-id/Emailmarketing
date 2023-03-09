@@ -19,26 +19,22 @@ export const Actions=({setListSection})=>{
                     <select 
                         name="sort" 
                         id="sort"
-                        className="fs-5 p-2 me-3 rounded b-gainsboro"
+                        className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
                         >
                         {
                             [
                                 {
-                                    name:"Created At",
-                                    url:"https://hello"
+                                    name:"Created At"
                                 },
                                 {
-                                    name:"Name",
-                                    url:"https://hello"
+                                    name:"Name"
                                 },
                                 {
-                                    name:"Updated At",
-                                    url:"https://hello"
+                                    name:"Updated At"
                                 }
                             ]?.map((drop,index)=>{
                                 const {
-                                    name,
-                                    url
+                                    name
                                 }=drop
                                 return(
                                     <option
@@ -54,26 +50,22 @@ export const Actions=({setListSection})=>{
                     <select 
                         name="sort" 
                         id="sort"
-                        className="fs-5 p-2 me-3 rounded b-gainsboro"
+                        className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
                         >
                         {
                             [
                                 {
-                                    name:"Open",
-                                    url:"https://hello"
+                                    name:"Open"
                                 },
                                 {
-                                    name:"Opened",
-                                    url:"https://hello"
+                                    name:"Opened"
                                 },
                                 {
-                                    name:"Not Opened",
-                                    url:"https://hello"
+                                    name:"Not Opened"
                                 }
                             ]?.map((drop,index)=>{
                                 const {
-                                    name,
-                                    url
+                                    name
                                 }=drop
                                 return(
                                     <option
@@ -89,26 +81,22 @@ export const Actions=({setListSection})=>{
                     <select 
                         name="sort" 
                         id="sort"
-                        className="fs-5 p-2 me-3 rounded b-gainsboro"
+                        className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
                         >
                         {
                             [
                                 {
-                                    name:"Click",
-                                    url:"https://hello"
+                                    name:"Click"
                                 },
                                 {
-                                    name:"Cliked",
-                                    url:"https://hello"
+                                    name:"Cliked"
                                 },
                                 {
-                                    name:"Not Clicked",
-                                    url:"https://hello"
+                                    name:"Not Clicked"
                                 }
                             ]?.map((drop,index)=>{
                                 const {
-                                    name,
-                                    url
+                                    name
                                 }=drop
                                 return(
                                     <option

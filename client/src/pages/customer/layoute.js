@@ -3,9 +3,10 @@ import { useRef, useState } from "react";
 import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
 import { useNavigate } from "react-router-dom";
-import { FaMonero, FaSearch } from "react-icons/fa";
+// import { FaMonero, FaSearch } from "react-icons/fa";
 import LetteredAvatar from 'react-lettered-avatar';
 import { useSelector } from "react-redux";
+import { Brand } from "../../components/navbarbrand";
 
 export const Layout=({routeChildren})=>{
     const navToggler = useRef(null);
@@ -24,33 +25,31 @@ export const Layout=({routeChildren})=>{
     return(
         <div className="container-fluid whitesmoke">
             <div className="row no-wrap">
-                <div className="col-md-2 px-3 sideNav bg-slate-grey w-230" ref={navToggler}>
-                   <SideNav navToggler={navToggler} showNavToggler={showNavToggler} setShowNavToggler={setShowNavToggler}/>
+                <div 
+                    className="col-md-2 px-3 sideNav bg-slate-grey w-230" 
+                    ref={navToggler}
+                >
+                   <SideNav 
+                        navToggler={navToggler} 
+                        showNavToggler={showNavToggler} 
+                        setShowNavToggler={setShowNavToggler}
+                    />
                 </div>
                 <div className="col-md-10 dashboardvh bg-smoke">
                         <div>
                             <div className="d-flex justify-content-between px-4 navHeader align-items-center">
-                                <span className="mobile-logo">
-                                    <span className="me-1">
-                                        <FaMonero
-                                            size="3.5rem"
-                                            color="white"
-                                            onClick={
-                                                ()=>navigate("/")
-                                            }
-                                        />
-                                    </span>
-                                    <em className="fs-2 fw-bold text-white">
-                                        5star
-                                    </em>
+                                <span className="navbrand">
+                                    <Brand
+                                        handleClick={()=>navigate("/")}
+                                    />
                                 </span>
                                 <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
                                 <span className="d-flex align-items-center justify-content-end">
-                                    <span className="me-3 rounded-circle border search-icon">
+                                    {/* <span className="me-3 rounded-circle border search-icon">
                                         <FaSearch
                                             color="goldenrod"
                                         />
-                                    </span>
+                                    </span> */}
                                     <div className="d-flex align-items-center my-3">
                                         <span className="me-2 dropdown">
                                             <span 

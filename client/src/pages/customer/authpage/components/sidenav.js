@@ -9,9 +9,9 @@ export const AuthSideNav =({children})=>{
                         color="white"
                     />
                 </span>
-                <em className="fs-2 fw-bold text-white">
-                    5star
-                </em>
+                <span className="fs-2 fw-bold text-white">
+                    5star Mail
+                </span>
             </span>
             <div className="row fixedHeightcover">
                 <div className="col-md-5 m-auto mt-5">

@@ -98,6 +98,7 @@ export const EditView =()=>{
                     ref={emailEditorRef} 
                     onLoad={onLoad} 
                     onReady={onReady} 
+                    editorId="editor_container"
                 />
             </div>          
             <Modal
