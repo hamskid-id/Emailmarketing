@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
 import { CreateSpamReported } from "../../../../../store/SpamReportedSlice";
 
-export const CreateSpam =()=>{
+export const CreateSpam =({hidemodal})=>{
     const spam = useSelector(
         state => state.SpamReported
     )
@@ -24,6 +25,13 @@ export const CreateSpam =()=>{
         )
         
     }
+
+    useEffect(()=>{
+        if( spam.CreateSpamReportedStatus ==="success"){
+            hidemodal.current.click()
+        }
+    },[ spam.CreateSpamReportedStatus])
+
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>

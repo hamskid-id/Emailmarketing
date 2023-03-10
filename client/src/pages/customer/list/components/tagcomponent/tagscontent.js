@@ -1,9 +1,11 @@
+import { useRef } from "react"
 import { FaTags } from "react-icons/fa"
 import { Modal } from "../../../../../components/modal/modal"
 import { CreateTag } from "./tagsmodalcontent"
 import { TagContainer } from "./tagstable"
 
 export const TagsContent =()=>{
+    const hidemodal = useRef(null);
     return(
         <>
             <div className="d-flex align-items-center mb-5">
@@ -20,8 +22,11 @@ export const TagsContent =()=>{
             <Modal
                 title="Add Tag"
                 body={                  
-                    <CreateTag/>
+                    <CreateTag
+                        hidemodal={hidemodal}
+                    />
                 }
+                 hidemodal={hidemodal}
             />
         </>
     )

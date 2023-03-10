@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { CustomFormField } from "../../../../components/customFomField";
 export const Recipient =({
     campaignParams,
     setCampaignparams
@@ -15,8 +14,7 @@ export const Recipient =({
     } = useForm();
 
     const SubmitHandler=({
-        tag,
-        status
+        tag
     })=>{
         const newTag = JSON.parse(tag)
         console.log(newTag)
@@ -26,7 +24,6 @@ export const Recipient =({
                 name:newTag.name,
                 id:newTag.id
             },
-            status:status,
             sectionCompleted:1
         })
     }
@@ -35,16 +32,6 @@ export const Recipient =({
         <>
             <p className="fs-4">Choose a tag for sending email</p>
             <form onSubmit={handleSubmit(SubmitHandler)}>
-                <CustomFormField
-                    label ="Status *"
-                    defaultValue={campaignParams.status}
-                    space={true}
-                    name ="status"
-                    placeholder="status"
-                    type="number"
-                    register={register}
-                    errors={errors.status}
-                />
                 <div className="w-100 mb-2">
                     <label
                         className="fw-bold" 

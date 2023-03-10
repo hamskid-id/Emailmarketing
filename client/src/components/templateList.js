@@ -39,6 +39,7 @@ export const MyTemplateList =({
                             <th scope="col">#</th>
                             {/* <th scope="col">Thumbnail</th> */}
                             <th scope="col">Name</th>
+                            <th scope="col">Description</th>
                             <th scope="col">Created At</th>
                             <th scope="col">Updated At</th>
                             <th scope="col">Actions</th>
@@ -57,7 +58,7 @@ export const MyTemplateList =({
                                 const category="personal"
                                 return(
                                     <tr key={index}>
-                                        <th scope="row">1</th>
+                                        <th scope="row">{index}</th>
                                         {/* <td>
                                             <img 
                                                 src="https://res.cloudinary.com/hamskid/image/upload/v1675956826/import-contacts_rymusv.png"

@@ -1,9 +1,11 @@
+import { useRef } from "react"
 import { FaTags } from "react-icons/fa"
 import { Modal } from "../../../../../components/modal/modal"
 import { CreateSpam } from "./spamform"
 import { SpamContainer } from "./spamtable"
 
 export const SpamsContent =()=>{
+    const hidemodal = useRef(null);
     return(
         <>
             <div className="d-flex align-items-center mb-5">
@@ -21,8 +23,11 @@ export const SpamsContent =()=>{
             <Modal
                 title="Report Spam"
                 body={                  
-                    <CreateSpam/>
+                    <CreateSpam
+                        hidemodal={hidemodal}
+                    />
                 }
+                hidemodal={hidemodal}
             />
         </>
     )

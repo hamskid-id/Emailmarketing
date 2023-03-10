@@ -1,6 +1,6 @@
-export const Modal =({title,body,large})=>{
+export const Modal =({title,body,large,hidemodal})=>{
     return(
-        <div 
+        <div
             className="modal fade" 
             id="staticBackdrop" 
             data-bs-backdrop="static" 
@@ -29,6 +29,7 @@ export const Modal =({title,body,large})=>{
                             type="button" 
                             className="btn btn-secondary" 
                             data-bs-dismiss="modal"
+                            ref={hidemodal}
                         >
                             Close
                         </button>

@@ -1,4 +1,6 @@
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { CreateCampaigns } from "../../../../store/campaignSlice"
 import { Recipient } from "./recipient"
@@ -10,12 +12,15 @@ export const Confirm =({
     setCampaignparams,
     campaignParams
 })=>{
+    const navigate = useNavigate()
     const campaign = useSelector(
         state => state.campaign
     )
     const dispatch = useDispatch()
     const handleSend=()=>{
         let filledRequired = false;
+
+        //check if all field has being filled
         [
             campaignParams.NameYourCampaign,
             campaignParams.EmailSubject,
@@ -26,8 +31,7 @@ export const Confirm =({
             campaignParams.DeliveryDate,
             // campaignParams.DeliveryTime,
             campaignParams.tag_id?.id,
-            campaignParams.campaignType,
-            campaignParams.status
+            campaignParams.campaignType
         ]?.map((camp)=>{
             if(!camp){
                 filledRequired= true;
@@ -54,6 +58,13 @@ export const Confirm =({
         }
     }
 
+    //redirects if camapign was successfully created
+    useEffect(()=>{
+        if(campaign.CreateCampaignsStatus ==="success"){
+            navigate("/campaigns")
+        }
+    },[campaign.CreateCampaignsStatus])
+
     return(
         <div className="d-flex flex-column justify-content-center m-auto wt-75">
             <p className="fs-2 text-center fw-bold">You're all set to send!</p>
@@ -61,17 +72,6 @@ export const Confirm =({
             <div>
                 {
                     [
-                        {
-                            name:"Status *",
-                            content:campaignParams.status,
-                            section:"Recipients",
-                            components:<Recipient
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:0
-                        },
                         {
                             name:"Tag *",
                             content:campaignParams.tag_id?.name,
@@ -139,17 +139,6 @@ export const Confirm =({
                             active:1
                         },
                         {
-                            name:"Content *",
-                            content:campaignParams.content,
-                            section:"Setup",
-                            components:<Setup                           
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
                             name:"Delivery date *",
                             content:campaignParams.DeliveryDate,
                             section:"Schedule",
@@ -160,17 +149,6 @@ export const Confirm =({
                             />,
                             active:3
                         }
-                        // {
-                        //     name:"Delivery Time *",
-                        //     content:campaignParams.DeliveryTime,
-                        //     section:"Schedule",
-                        //     components:<Schedule                           
-                        //         campaignParams={campaignParams}
-                        //         setCampaignparams={setCampaignparams}
-                        //         setCampaignSection={setCampaignSection}                           
-                        //     />,
-                        //     active:3
-                        // }
                     ]?.map((sect,index)=>{
                         const{
                             name,
@@ -213,26 +191,26 @@ export const Confirm =({
             </div>
             <hr className="b-grey mb-0 mt-0"/>
             {
-                    campaign.CreateCampaignsStatus === "pending"?(
-                        <button 
-                            className="btn btn-md btn-success mt-0 fl-r mb-5 mt-2 me-2 w-fit-content"
-                        >
-                            <span 
-                                className="spinner-border spinner-border-sm" 
-                                role="status" 
-                                aria-hidden="true">
-                            </span>
-                                Submitting...Please wait
-                        </button>
-                    ):(
-                        <button 
-                            className="btn btn-md btn-success mt-0 fl-r mb-5 mt-2 me-2 w-fit-content"
-                            onClick={handleSend}
-                        >
-                            Send Now
-                        </button>
-                    )
-                }
+                campaign.CreateCampaignsStatus === "pending"?(
+                    <button 
+                        className="btn btn-md btn-success mt-0 fl-r mb-5 mt-2 me-2 w-fit-content"
+                    >
+                        <span 
+                            className="spinner-border spinner-border-sm" 
+                            role="status" 
+                            aria-hidden="true">
+                        </span>
+                            Please wait...
+                    </button>
+                ):(
+                    <button 
+                        className="btn btn-md btn-success mt-0 fl-r mb-5 mt-2 me-2 w-fit-content"
+                        onClick={handleSend}
+                    >
+                        Send Now
+                    </button>
+                )
+            }
             
         </div>
     )
