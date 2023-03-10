@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
@@ -32,6 +33,7 @@ export const TemplateForm =({
             })
         ) 
     }
+
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>
@@ -59,6 +61,7 @@ export const TemplateForm =({
                         onClick={()=>{
                             setCampaignparams({
                                 ...campaignParams,
+                                 content:EditedInfo.design_html,
                                 sectionCompleted:3
                             })
                         }}

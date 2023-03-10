@@ -4,7 +4,7 @@ export const Setup=({
     campaignParams,
     setCampaignparams
 })=>{
-    const { 
+    const {
         handleSubmit, 
         register,
         formState: { errors } 
@@ -15,14 +15,12 @@ export const Setup=({
         emailSubject,
         FromName,
         FromEmail,
-        ReplyTo,
-        content
+        ReplyTo
     })=>{
         setCampaignparams({
             ...campaignParams,
             NameYourCampaign:campaign,
             EmailSubject:emailSubject,
-            content:content,
             FromName:FromName,
             FromEmail:FromEmail,
             ReplyTo:ReplyTo,
@@ -54,16 +52,6 @@ export const Setup=({
                             type="textArea"
                             register={register}
                             errors={errors.emailSubject}
-                        />
-                        <CustomFormField
-                            label ="Content *"
-                            space={true}
-                            defaultValue={campaignParams.Content}
-                            name ="content"
-                            placeholder="content"
-                            type="textArea"
-                            register={register}
-                            errors={errors.content}
                         />
                         <CustomFormField
                             label ="From name *"

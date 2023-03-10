@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
 import { InviteUsers } from "../../../../../store/collaborationSlice";
 
-export const CollaboratorForm=()=>{
+export const CollaboratorForm=({hidemodal})=>{
+    
     const collab = useSelector(
         state => state.collab
     )
@@ -23,6 +25,12 @@ export const CollaboratorForm=()=>{
             email
         }))
     }
+
+    useEffect(()=>{
+        if(collab.InviteUsersStatus ==="success"){
+            hidemodal.current.click()
+        }
+    },[collab.InviteUsersStatus])
 
     return(
         <form onSubmit={handleSubmit(SubmitHandler)}>

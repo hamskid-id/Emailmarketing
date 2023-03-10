@@ -24,9 +24,7 @@ export const AllcampaignView =()=>{
                         <th scope="col">Title</th>
                         <th scope="col">From</th>
                         <th scope="col">Recipient</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Content</th>
-                         <th scope="col">Status</th>                       
+                        <th scope="col">Subject</th>                       
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -39,9 +37,7 @@ export const AllcampaignView =()=>{
                                 title,
                                 reply_to,
                                 from_email,
-                                subject,
-                                content,
-                                status
+                                subject
                             }=camp
                             return(
                                 <tr key={index}>
@@ -50,8 +46,6 @@ export const AllcampaignView =()=>{
                                     <td>{reply_to}</td>
                                     <td>{from_email}</td>
                                     <td>{subject}</td>
-                                    <td>{content}</td>
-                                     <td>{status}</td>
                                     <td>
                                         <div className="d-flex align-items-center">
                                             <div className="dropdown">

@@ -33,7 +33,7 @@ export const CreateCampaignContent =()=>{
         DeliveryDate:"",
         // DeliveryTime:"",
         tag_id:{name:null,id:null},
-        status:0,
+        status:1,
         sectionCompleted:0
     })
 
@@ -82,14 +82,14 @@ export const CreateCampaignContent =()=>{
             const{
                 name,
                 components
-            }=sec   
+            }=sec
             if(campaignParams?.sectionCompleted===index){
                 setCampaignSection({
                     name:name,
                     components:components
                 })
             }
-        })      
+        })     
     },[campaignParams])
 
     return(

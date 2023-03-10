@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { FaSlidersH, FaUserFriends } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { Modal } from "../../../../../components/modal/modal"
@@ -5,6 +6,7 @@ import { SubscriberModalContent } from "./subscriberForm"
 import { SubContainer } from "./subscribertable"
 
 export const SubsrcibersContent =()=>{
+    const hidemodal = useRef(null);
     const subscriber = useSelector(
         state => state.subscriber
     )
@@ -28,8 +30,11 @@ export const SubsrcibersContent =()=>{
             <Modal
                 title="New Subscribers"
                 body={
-                    <SubscriberModalContent/>
+                    <SubscriberModalContent
+                        hidemodal={hidemodal}
+                    />
                 }
+                hidemodal={hidemodal}
             />
         </>
     )

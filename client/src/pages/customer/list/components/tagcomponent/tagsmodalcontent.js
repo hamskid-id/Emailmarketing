@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
 import { CreateTags } from "../../../../../store/tagSlice";
 
-export const CreateTag =()=>{
+export const CreateTag =({hidemodal})=>{
     const tag = useSelector(
         state => state.tag
     )
@@ -24,6 +25,13 @@ export const CreateTag =()=>{
         )
         
     }
+
+    useEffect(()=>{
+        if(tag.CreateTagsStatus ==="success"){
+            hidemodal.current.click()
+        }
+    },[tag.CreateTagsStatus])
+
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>

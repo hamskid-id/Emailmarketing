@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
 import { Createsubscriber } from "../../../../../store/subscriberSlice";
 
-export const SubscriberModalContent =()=>{
+export const SubscriberModalContent =({hidemodal})=>{
     const subsriber = useSelector(
         state => state.subscriber
     )
@@ -40,6 +41,11 @@ export const SubscriberModalContent =()=>{
             })
         )
     }
+    useEffect(()=>{
+        if(subsriber.CreatesubscriberStatus ==="success"){
+            hidemodal.current.click()
+        }
+    },[subsriber.CreatesubscriberStatus])
     return(
         <form onSubmit={handleSubmit(SubmitHandler)}>
             <CustomFormField

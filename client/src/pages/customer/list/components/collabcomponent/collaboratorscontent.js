@@ -4,8 +4,10 @@ import { CollaboratorForm } from "./collaboratorForm"
 import { CollabContainer } from "./collaboratorstable"
 import { CreateTag } from "../tagcomponent/tagsmodalcontent"
 import { TagContainer } from "../tagcomponent/tagstable"
+import { useRef } from "react"
 
 export const CollabContent =()=>{
+    const hidemodal = useRef(null);
     return(
         <>
             <div className="d-flex align-items-center mb-5">
@@ -23,8 +25,11 @@ export const CollabContent =()=>{
             <Modal
                 title="Invite Collaborators"
                 body={                  
-                    <CollaboratorForm/>
+                    <CollaboratorForm
+                    hidemodal={hidemodal}
+                    />
                 }
+                hidemodal={hidemodal}
             />
         </>
     )

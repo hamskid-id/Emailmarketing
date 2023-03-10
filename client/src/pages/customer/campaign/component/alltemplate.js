@@ -19,9 +19,10 @@ export const GeneralTemplateList =({
                     <span className="me-3">
                         <FaTable
                             size="1.5rem"
+                            color="grey"
                         />
                     </span>
-                    <div className="fs-1">
+                    <div className="fs-2">
                         Templates
                     </div>
                 </div>
@@ -33,7 +34,9 @@ export const GeneralTemplateList =({
                         }
                     >
                         <span className="me-2" >
-                            <FaUserAlt/>
+                            <FaUserAlt
+                                color="grey"
+                            />
                         </span>
                         <span className="fs-6">
                             My Templates
@@ -46,7 +49,9 @@ export const GeneralTemplateList =({
                         }
                     >
                         <span className="me-2">
-                            <FaImages/>
+                            <FaImages
+                                color="grey"
+                            />
                         </span>
                         <span className="fs-6">
                             Base Template Gallary

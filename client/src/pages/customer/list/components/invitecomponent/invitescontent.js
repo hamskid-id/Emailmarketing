@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { FaSlidersH } from "react-icons/fa"
 import { Modal } from "../../../../../components/modal/modal"
 import { CollaboratorForm } from "../collabcomponent/collaboratorForm"
@@ -5,6 +6,7 @@ import { InvitesContainer } from "./invitesTable"
 
 
 export const InvitesContent =()=>{
+    const hidemodal = useRef(null);
     return(
         <>
             <div className="d-flex align-items-center mb-5">
@@ -22,8 +24,11 @@ export const InvitesContent =()=>{
             <Modal
                 title="Invite Collaborators"
                 body={                  
-                    <CollaboratorForm/>
+                    <CollaboratorForm
+                        hidemodal={hidemodal}
+                    />
                 }
+                hidemodal={hidemodal}
             />
         </>
     )
