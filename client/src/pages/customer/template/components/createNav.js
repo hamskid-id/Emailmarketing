@@ -1,4 +1,4 @@
-import {  FaMonero } from "react-icons/fa"
+import {  FaMailBulk } from "react-icons/fa"
 import { useNavigate } from "react-router-dom";
 
 export const CreateNav =({
@@ -9,7 +9,7 @@ export const CreateNav =({
         <div className="d-flex justify-content-between align-items-center bg-slate-grey text-white px-3  py-3">
             <span>
                 <div className="d-flex align-items-center">
-                    < FaMonero
+                    <FaMailBulk
                         size="3.5rem"
                         color="white"
                         onClick={

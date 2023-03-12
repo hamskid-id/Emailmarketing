@@ -1,4 +1,4 @@
-import {FaMonero,FaTimesCircle} from "react-icons/fa";
+import {FaTimesCircle} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { AccordionsRoutes, ListRoute } from "./routes";
@@ -18,17 +18,36 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
        
     }
     const variants = {
-        open: { opacity: 1, x: 0, transition: { staggerChildren: 0.07, delayChildren: 0.2 } },
-        default: { opacity: 1},
-        closed: { opacity: 0, x: "-100%",transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+        open: { 
+            opacity: 1, 
+            x: 0, 
+            transition: { 
+                staggerChildren: 0.07, 
+                delayChildren: 0.2 
+            } 
+        },
+        default: { 
+            opacity: 1
+        },
+        closed: {
+             opacity: 0, 
+             x: "-100%",
+             transition: { 
+                staggerChildren: 0.05, 
+                staggerDirection: -1 
+            } },
     }
     const handleLogOut =()=>{
         dispatch(LogOutUser(null));
     }
     return(
         <motion.div
-        animate={showNavToggler? "open": showNavToggler===false ? "closed":"default"}
-        variants={variants}
+            animate={
+                showNavToggler? "open": 
+                showNavToggler===false ? 
+                "closed":"default"
+            }
+            variants={variants}
         >
             <div className="d-flex justify-content-between align-items-center py-3 mb-2">
                 <span className="d-flex align-items-center">

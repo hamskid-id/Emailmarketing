@@ -55,29 +55,30 @@ export const TemplateForm =({
                 register={register}
                 errors={errors.bdesc}
             />
-            {
-                template.CreateTemplateStatus === 'success'?(
-                    <div
-                        onClick={()=>{
-                            setCampaignparams({
-                                ...campaignParams,
-                                 content:EditedInfo.design_html,
-                                sectionCompleted:3
-                            })
-                        }}
-                        className="btn btn-sm bg-slate-grey text-white fs-5"
-                        data-bs-dismiss="modal"
-                        >
-                        Proceed
-                    </div>
-                ):(
-                    <CustomFormField
-                        value="submit"
-                        type="btn"
-                        loadingStatus={template.CreateTemplateStatus}
-                    />
-                )
-            }
+            <div className="d-flex justify-content-between">
+                <CustomFormField
+                    value="submit"
+                    type="btn"
+                    loadingStatus={template.CreateTemplateStatus}
+                />
+                {
+                    template.CreateTemplateStatus === 'success'&&(
+                        <div
+                            onClick={()=>{
+                                setCampaignparams({
+                                    ...campaignParams,
+                                    content:EditedInfo.design_html,
+                                    sectionCompleted:3
+                                })
+                            }}
+                            className="btn btn-sm bg-success text-white fs-5 fl-r"
+                            data-bs-dismiss="modal"
+                            >
+                            Proceed
+                        </div>
+                    )
+                }
+            </div>
         </form>
     )
 }

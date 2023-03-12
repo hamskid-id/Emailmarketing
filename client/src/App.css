@@ -112,6 +112,9 @@ input[id="upload"]{
 .chat-container{
   position:relative;
 }
+.text-slategrey{
+  color:darkslategrey;
+}
 .w-89{
   width:89%;
 }
@@ -359,6 +362,9 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .wt-89{
+    width:100%;
+  }
   .navbrand{
     display:block;
   }
