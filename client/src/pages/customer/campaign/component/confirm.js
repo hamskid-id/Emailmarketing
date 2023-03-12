@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { CreateCampaigns } from "../../../../store/campaignSlice"
-import { Recipient } from "./recipient"
-import { Schedule } from "./schedule"
-import { Setup } from "./setup"
+import { AllFieldSection } from "./allfilledsection"
+
 
 export const Confirm =({
     setCampaignSection,
@@ -21,7 +20,7 @@ export const Confirm =({
         let filledRequired = false;
 
         //check if all field has being filled
-        [
+        const allParameters =[
             campaignParams.NameYourCampaign,
             campaignParams.EmailSubject,
             campaignParams.content,
@@ -32,7 +31,9 @@ export const Confirm =({
             // campaignParams.DeliveryTime,
             campaignParams.tag_id?.id,
             campaignParams.campaignType
-        ]?.map((camp)=>{
+        ]
+
+        allParameters.map((camp)=>{
             if(!camp){
                 filledRequired= true;
             }
@@ -69,126 +70,11 @@ export const Confirm =({
         <div className="d-flex flex-column justify-content-center m-auto wt-75">
             <p className="fs-2 text-center fw-bold">You're all set to send!</p>
             <p className="fs-6 text-center">Review the feedback below before sending your campaignParams.</p>
-            <div>
-                {
-                    [
-                        {
-                            name:"Tag *",
-                            content:campaignParams.tag_id?.name,
-                            section:"Recipients",
-                            components:<Recipient
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:0
-                        },
-                        {
-                            name:"Name your campaign *",
-                            content:campaignParams.NameYourCampaign,
-                            section:"Setup",
-                            components:<Setup
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
-                            name:"Email subject *",
-                            content:campaignParams.EmailSubject,
-                            section:"Setup",
-                            components:<Setup                            
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
-                            name:"From name *",
-                            content:campaignParams.FromName,
-                            section:"Setup",
-                            components:<Setup                            
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
-                            name:"From email *",
-                            content:campaignParams.FromEmail,
-                            section:"Setup",
-                            components:<Setup                            
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
-                            name:"Reply To *",
-                            content:campaignParams.ReplyTo,
-                            section:"Setup",
-                            components:<Setup                           
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:1
-                        },
-                        {
-                            name:"Delivery date *",
-                            content:campaignParams.DeliveryDate,
-                            section:"Schedule",
-                            components:<Schedule                            
-                                campaignParams={campaignParams}
-                                setCampaignparams={setCampaignparams}
-                                setCampaignSection={setCampaignSection}
-                            />,
-                            active:3
-                        }
-                    ]?.map((sect,index)=>{
-                        const{
-                            name,
-                            content,
-                            section,
-                            components,
-                            active
-                        }=sect
-                        return(
-                            <div 
-                                className="d-flex justify-content-between align-items-center"
-                                key={index}
-                            >
-                                <div>
-                                    <h6 className="fs-4 break">{name}</h6>
-                                    <h6 className="fs-6 break">{content?content:"Unavailable"}</h6>
-                                </div>
-                                <div>
-                                    <button 
-                                        className="btn btn-md b-grey"
-                                        onClick={
-                                            ()=>
-                                            {
-                                                setCampaignSection({
-                                                    name:section,
-                                                    components:components
-                                                })
-                                                 setCampaignparams({
-                                                    ...campaignParams,
-                                                    sectionCompleted:active
-                                                })
-                                            }
-                                        }
-                                        >Edit</button>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            <AllFieldSection
+                 setCampaignSection={setCampaignSection}
+                 setCampaignparams={setCampaignparams}
+                 campaignParams={campaignParams}
+            />
             <hr className="b-grey mb-0 mt-0"/>
             {
                 campaign.CreateCampaignsStatus === "pending"?(
