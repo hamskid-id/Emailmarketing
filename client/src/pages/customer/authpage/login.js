@@ -34,7 +34,7 @@ export const LoginView =()=>{
     return(
         <>
             <AuthSideNav>
-                <p className="fs-2 text-center">
+                <p className="fs-2 text-center fw-bold">
                      Sign In to your account
                 </p>
                 <div>
@@ -87,6 +87,7 @@ export const LoginView =()=>{
                         <CustomFormField
                             value="Log In"
                             type="btn"
+                            btnFluid={true}
                             loadingStatus={auth.LoginStatus}
                         />
                     </form>

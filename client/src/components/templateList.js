@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import Spinner from "./spinner/spinner";
@@ -20,6 +20,23 @@ export const MyTemplateList =({
     useEffect(()=>{
         dispatch(GetUserTemplate(null));
     },[dispatch])
+    const[
+        itemToDelete,
+        setItemToDelete
+    ]=useState([])
+    const handleChange=(e,{id})=>{
+        if(e.target.checked){
+            setItemToDelete((prevState)=>{
+                return[
+                ...prevState,
+                    id
+                ]
+            })
+        }else{
+            const newArray = itemToDelete.filter(item=>item!==id)
+            setItemToDelete(newArray)
+        }
+    }
     
     if(template.GetUserTemplateStatus ==='pending'){
         return <Spinner/>
@@ -31,13 +48,14 @@ export const MyTemplateList =({
                 setCampaignSection={setCampaignSection}
                 setCampaignparams={setCampaignparams}
                 campaignParams={campaignParams}
+                deleteArray={itemToDelete}
             />
             <div className="w-overflow">
                 <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            {/* <th scope="col">Thumbnail</th> */}
+                            <th scope="col"></th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Created At</th>
@@ -58,14 +76,14 @@ export const MyTemplateList =({
                                 const category="personal"
                                 return(
                                     <tr key={index}>
-                                        <th scope="row">{index}</th>
-                                        {/* <td>
-                                            <img 
-                                                src="https://res.cloudinary.com/hamskid/image/upload/v1675956826/import-contacts_rymusv.png"
-                                                alt="object not found"
-                                                className="thumb rounded"
+                                        <th scope="row">{index+1}</th>
+                                        <td>
+                                            <input 
+                                                className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
+                                                type="checkbox"
+                                                onChange={(e)=>handleChange(e,{id})}
                                             />
-                                        </td> */}
+                                        </td>
                                         <td>{template_name}</td>
                                         <td>{template_describ}</td>
                                         <td>

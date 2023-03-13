@@ -1,19 +1,35 @@
-import { useDispatch, useSelector} from "react-redux";
-import { useEffect, useState } from "react";
-import { FaBacon, FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
-import { GetCampaigns} from "../../../../store/campaignSlice";
+import {useSelector} from "react-redux";
+import { FaCartArrowDown} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Actions } from "./actions";
+import { useState } from "react";
 
 export const AllcampaignView =()=>{
     const navigate = useNavigate();
     const campaign = useSelector(
         state => state.campaign
     )
-
+    const[
+        itemToDelete,
+        setItemToDelete
+    ]=useState([])
+    const handleChange=(e,{id})=>{
+        if(e.target.checked){
+            setItemToDelete((prevState)=>{
+                return[
+                ...prevState,
+                    id
+                ]
+            })
+        }else{
+            const newArray = itemToDelete.filter(item=>item!==id)
+            setItemToDelete(newArray)
+        }
+    }
     return(
         <>
         <Actions
+            deleteArray={itemToDelete}
             actionName="Create Campaign"
         />
         <div>
@@ -21,6 +37,7 @@ export const AllcampaignView =()=>{
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col"></th>
                         <th scope="col">Title</th>
                         <th scope="col">From</th>
                         <th scope="col">Recipient</th>
@@ -41,7 +58,14 @@ export const AllcampaignView =()=>{
                             }=camp
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index}</th>
+                                    <th scope="row">{index+1}</th>
+                                    <td>
+                                        <input 
+                                            className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
+                                            type="checkbox"
+                                            onChange={(e)=>handleChange(e,{id})}
+                                        />
+                                    </td>
                                     <td>{title}</td>
                                     <td>{reply_to}</td>
                                     <td>{from_email}</td>

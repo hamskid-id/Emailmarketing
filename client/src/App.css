@@ -4,6 +4,10 @@
 .navbrand{
   display:none;
 }
+.darkform-check-input{
+  background-color: darkgray;
+  border:1px solid aliceblue;
+}
 .web-dash{
   display: block;
 }
@@ -133,7 +137,7 @@ input[id="upload"]{
   width:40%;
 }
 *{
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 .fixedHeightcover{
   height:100vh
@@ -362,7 +366,7 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
-  .wt-89{
+  .w-89{
     width:100%;
   }
   .navbrand{
@@ -394,7 +398,7 @@ i.mdi.mdi-account {
   .mobile-logo{
     display:flex;
     align-items:center;
-    background:darkslategray;
+    margin-bottom: 1rem;
   }
   .w-63{
     width:100%;
