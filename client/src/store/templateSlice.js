@@ -159,18 +159,21 @@ const template_Slice = createSlice({
         builder.addCase(CreateTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
-                    toast(action.payload.message);
+                    toast(message);
                     return{
                         ...state,
                         CreateTemplateStatus:"success"
                     }
-                }
-                return{
-                    ...state,
-                    CreateTemplateStatus:"success"
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreateTemplateStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,

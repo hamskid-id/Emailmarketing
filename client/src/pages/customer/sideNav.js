@@ -154,7 +154,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                     src="https://res.cloudinary.com/hamskid/image/upload/v1677151514/Frame_133_vi0rjh.svg" 
                     alt="object not found"
                     data-bs-toggle="modal" 
-                    data-bs-target="#staticBackdrop"
+                    data-bs-target="#alertStaticBackdrop"
                     onClick={()=>navToggler.current.classList.remove("active")}
                 />
             </div>

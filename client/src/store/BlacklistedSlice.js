@@ -107,18 +107,21 @@ const blacklist_Slice = createSlice({
         builder.addCase(CreateBlacklist.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
-                    toast(action.payload.message);
+                    toast(message);
+                        return{
+                            ...state,
+                            GetBlacklistStatus:"success"
+                        }
+                }else{
+                    toast.error(message);
                     return{
                         ...state,
-                        GetBlacklistStatus:"success"
+                        CreateBlacklistStatus:"failed"
                     }
-                }
-                return{
-                    ...state,
-                    CreateBlacklistStatus:"success"
                 }
             }else return{
                 ...state,

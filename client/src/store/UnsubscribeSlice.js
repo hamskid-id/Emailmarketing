@@ -111,10 +111,22 @@ const unsubscriber_Slice = createSlice({
         });
         builder.addCase(CreateUnsubscriber.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("Suscriber added successfully")
-                return{
-                    ...state,
-                    CreateUnsubscriberStatus:"success"
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreateUnsubscriberStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                     return{
+                        ...state,
+                        CreateUnsubscriberStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,

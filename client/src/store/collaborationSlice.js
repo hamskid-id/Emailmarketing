@@ -90,10 +90,22 @@ const collab_Slice = createSlice({
         });
         builder.addCase(InviteUsers.fulfilled,(state, action)=>{
             if(action.payload){
-                toast('You have Successfully Invited to your account. An email has being notifying Them of your invitation!!');
-                return{
-                    ...state,
-                    InviteUsersStatus:"success"
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message);
+                    return{
+                        ...state,
+                        InviteUsersStatus:"success"
+                    }
+                }else{
+                     toast.error(message);
+                     return {
+                        ...state,
+                        InviteUsersStatus:"failed"
+                    }
                 }
             }else return {
                 ...state,

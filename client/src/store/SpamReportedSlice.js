@@ -105,18 +105,21 @@ const SpamReported_Slice = createSlice({
         builder.addCase(CreateSpamReported.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
-                    toast(action.payload.message);
+                    toast(message);
                     return{
                         ...state,
                         CreateSpamReportedStatus:"success"
                     }
-                }
-                return{
-                    ...state,
-                    CreateSpamReportedStatus:"success"
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreateSpamReportedStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,

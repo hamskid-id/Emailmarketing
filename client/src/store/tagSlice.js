@@ -145,10 +145,22 @@ const Tag_Slice = createSlice({
         });
         builder.addCase(CreateTags.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("Tag successfully created")
-                return{
-                    ...state,
-                    CreateTagsStatus:"success"
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreateTagsStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreateTagsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -171,10 +183,22 @@ const Tag_Slice = createSlice({
         });
         builder.addCase(UpdateTags.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("Tag successfully created")
-                return{
-                    ...state,
-                    UpdateTagsStatus:"success"
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message);
+                    return{
+                        ...state,
+                        UpdateTagsStatus:"success"
+                    }
+                }else {
+                    toast.error(message)
+                    return{
+                        ...state,
+                        UpdateTagsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,

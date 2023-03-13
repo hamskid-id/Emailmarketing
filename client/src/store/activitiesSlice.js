@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
+import { toast } from 'react-toastify';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetActivities = createAsyncThunk(
@@ -98,17 +99,20 @@ const activities_Slice = createSlice({
         builder.addCase(UpdateActivities.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        GetActivitiesStatus:"success"
+                        UpdateActivitiesStatus:"success"
                     }
-                }
-                return{
-                    ...state,
-                    UpdateActivitiesStatus:"success"
+                }else{
+                    toast.error(message)
+                    return{
+                        ...state,
+                        UpdateActivitiesStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
