@@ -241,10 +241,22 @@ const campaign_Slice = createSlice({
         });
         builder.addCase(CreateCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("Campaign successfully created");
-                return{
-                    ...state,
-                    CreateCampaignsStatus:"success"
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreateCampaignsStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreateCampaignsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
