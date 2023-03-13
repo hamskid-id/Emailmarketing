@@ -2,20 +2,20 @@ import { FaCheckCircle, FaMailBulk} from "react-icons/fa";
 export const AuthSideNav =({children})=>{
     return(
         <div className="container-fluid">
-            <span className="mobile-logo p-3">
-                <span className="me-2">
-                    <FaMailBulk
-                        size="3rem"
-                        color="white"
-                    />
-                </span>
-                <span className="fs-6 fw-bold text-white">
-                    5star Mail
-                </span>
-            </span>
             <div className="row fixedHeightcover">
                 <div className="col-md-5 m-auto mt-5">
-                    <div className="pt-7 px-5">
+                    <div className="pt-7 px-4 d-flex flex-column">
+                        <span className="mobile-logo p-1 flex-column">
+                            <span className="me-2">
+                                <FaMailBulk
+                                    size="8rem"
+                                    color="darkslategrey"
+                                />
+                            </span>
+                            <span className="fs-6 fw-bold text-slategrey">
+                                5STAR MAIL
+                            </span>
+                        </span>
                         {children}
                     </div>
                 </div>

@@ -1,10 +1,13 @@
 import { useSelector } from "react-redux"
 import { toast } from "react-toastify"
 
-export const Actions =()=>{
+export const Actions =({deleteArray})=>{
     const tag = useSelector(
         state => state.tag
     )
+    const handleClick=()=>{
+        console.log(deleteArray)
+    }
     return(
         <div className="row">
             <div className="col-md-9 mb-2">
@@ -130,6 +133,15 @@ export const Actions =()=>{
                             }
                         </select>
                     </div>
+                    {
+                        deleteArray &&( 
+                            <button
+                                onClick={handleClick}
+                                className="btn btn-md  b-grey fs-6 me-2 mb-1">
+                                delete
+                            </button>
+                        )
+                    }
                     <input  
                         type="text"
                         placeholder="Type to search"

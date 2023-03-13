@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
 import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
@@ -7,17 +8,39 @@ export const SubContainer =()=>{
     const subsriber = useSelector(
         state => state.subscriber
     )
+    const[
+        itemToDelete,
+        setItemToDelete
+    ]=useState([])
+
     if(subsriber.GetSubscribersStatus ==='pending'){
         return <Spinner/>
     }
+    const handleChange=(e,{id})=>{
+        const newArray = itemToDelete.filter(item=>item!==id)
+        setItemToDelete((prevState)=>{
+            if(e.target.checked){
+                return[
+                ...prevState,
+                    id
+                ]
+            }else{
+                return newArray
+            }
+        })
+        
+    }
         return(
             <>
-            <Actions/>
+            <Actions
+                deleteArray={itemToDelete}
+            />
             <div className="w-overflow">
                 <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col"></th>
                             <th scope="col">Email</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
@@ -41,11 +64,19 @@ export const SubContainer =()=>{
                                         state,
                                         phone,
                                         dob,
-                                        tag
+                                        tag,
+                                        id
                                     }=sub
                                     return(
                                         <tr key={index}>
-                                            <th scope="row">{index}</th>
+                                            <th scope="row">{index+1}</th>
+                                            <td>
+                                                <input 
+                                                    className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
+                                                    type="checkbox"
+                                                    onChange={(e)=>handleChange(e,{id})}
+                                                />
+                                            </td>
                                             <td>{email}</td>
                                             <td>{fname}</td>
                                             <td>{lname}</td>

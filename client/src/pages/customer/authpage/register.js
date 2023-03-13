@@ -49,7 +49,7 @@ export const RegisterView =()=>{
     return(
         <>
             <AuthSideNav>
-                <p className="fs-2 text-center">
+                <p className="fs-2 text-center fw-bold">
                     Create your account
                 </p>
                 <div>
@@ -104,6 +104,7 @@ export const RegisterView =()=>{
                         <CustomFormField
                             value="register"
                             type="btn"
+                            btnFluid={true}
                             loadingStatus={auth.registerStatus}
                         />
                     </form>

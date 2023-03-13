@@ -1,13 +1,10 @@
 import {FaTimesCircle} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
 import { AccordionsRoutes, ListRoute } from "./routes";
-import { LogOutUser } from "../../store/authSlice";
 import { motion } from "framer-motion";
 import { Brand } from "../../components/navbarbrand";
 
 export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const hideNav =()=>{
         setShowNavToggler(false)
@@ -36,9 +33,6 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                 staggerChildren: 0.05, 
                 staggerDirection: -1 
             } },
-    }
-    const handleLogOut =()=>{
-        dispatch(LogOutUser(null));
     }
     return(
         <motion.div
@@ -159,8 +153,10 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                 <img 
                     src="https://res.cloudinary.com/hamskid/image/upload/v1677151514/Frame_133_vi0rjh.svg" 
                     alt="object not found"
-                    onClick={handleLogOut}
-                    />
+                    data-bs-toggle="modal" 
+                    data-bs-target="#staticBackdrop"
+                    onClick={()=>navToggler.current.classList.remove("active")}
+                />
             </div>
         </motion.div>
     )

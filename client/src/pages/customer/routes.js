@@ -3,7 +3,7 @@ export const AccordionsRoutes =[
     {
         id:"collapseOne",
         icon:<FaThList
-                size="1.5rem"
+                size="1.3rem"
                 color="white"
             />,
         name:"Lists",
@@ -21,7 +21,7 @@ export const AccordionsRoutes =[
     {
         id:"collapseTwo",
         icon:<FaSync
-                size="1.5rem"
+                size="1.3rem"
                 color="white"
             />,
         name:"Sending",
@@ -35,7 +35,7 @@ export const AccordionsRoutes =[
 export const ListRoute=[
     {
         icon:<FaHome
-                size="1.5rem"
+                size="1.3rem"
                 color="white"
             />,
         name:"DashBoard",
@@ -43,7 +43,7 @@ export const ListRoute=[
     },
     {
         icon:<FaPaperPlane
-        size="1.5rem"
+        size="1.3rem"
         color="white"
     />,
         name:"Campaigns" ,
@@ -51,7 +51,7 @@ export const ListRoute=[
     },
     // {
     //     icon:<FaRegClock
-    //     size="1.5rem"
+    //     size="1.3rem"
     //     color="white"
     // />,
     //     name:"Automations",
@@ -59,7 +59,7 @@ export const ListRoute=[
     // },
     {
         icon:<FaTable
-        size="1.5rem"
+        size="1.3rem"
         color="white"
     />,
         name:"Templates",

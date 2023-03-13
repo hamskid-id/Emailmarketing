@@ -11,7 +11,7 @@ export const Brand =({handleClick})=>{
                 />
             </span>
             <span className="fs-6 fw-bold text-white">
-                5star Mail
+                5STAR MAIL
             </span>
         </>
     )
