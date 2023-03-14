@@ -11,9 +11,6 @@ export const registerUser = createAsyncThunk(
         password
     }, {rejectWithValue}) =>{
     try{
-        console.log(name,
-            email,
-            password)
         const response = await axios.post(
             `${apiBaseUrl}/registering`,{
                 name,
@@ -21,7 +18,6 @@ export const registerUser = createAsyncThunk(
                 password
             }
         );
-        console.log(response?.data)
         return response?.data
     } catch(err){
         return rejectWithValue(
@@ -39,9 +35,6 @@ export const LogInUser = createAsyncThunk(
         remember
     },{rejectWithValue}) =>{
         try{
-            console.log( remember,
-                email,
-                password)
             const response = await axios.post(
                 `${apiBaseUrl}/login`,{
                     email:email,
@@ -69,7 +62,6 @@ export const SendPasswordResetLink = createAsyncThunk(
         email,
     },{rejectWithValue}) =>{
         try{
-            console.log( email)
             const response = await axios.post(
                 `${apiBaseUrl}/forgetpas`,{
                     email:email
@@ -258,6 +250,10 @@ const auth_Slice = createSlice({
 
         builder.addCase(LogInUser.fulfilled,(state, action)=>{
            if(action.payload){
+            const{
+                data
+            }=action.payload;
+                localStorage.setItem("tokenExpiry",data?.expires_at);
                 toast("LogIn successfull");
                 window.location.replace("/");
                 return{

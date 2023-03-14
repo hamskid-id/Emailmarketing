@@ -12,19 +12,15 @@ export const Schedule =({
     } = useForm();
 
     const SubmitHandler=({
-        Ddate,
-        time
+        Ddate
+        // time
     })=>{
         setCampaignparams({
             ...campaignParams,
             DeliveryDate:Ddate,
-            DeliveryTime:time,
+            // DeliveryTime:time,
             sectionCompleted:4
         })
-        console.log(
-            Ddate,
-            time
-        )
     }
     return(
         <>
@@ -37,14 +33,14 @@ export const Schedule =({
                     register={register}
                     errors={errors.Ddate}
                 />
-                <CustomFormField
+                {/* <CustomFormField
                     label ="Delivery Time *"
                     defaultValue={campaignParams.DeliveryTime}
                     name ="time"
                     type="time"
                     register={register}
                     errors={errors.time}
-                />
+                /> */}
                 <hr className="b-grey"/>
                 <button className="btn btn-md b-grey mt-5 fl-r">Schedule & Send Now</button>   
             </form>

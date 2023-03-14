@@ -1,29 +1,53 @@
-import {FaMonero,FaTimesCircle} from "react-icons/fa";
+import {FaTimesCircle} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
 import { AccordionsRoutes, ListRoute } from "./routes";
-import { LogOutUser } from "../../store/authSlice";
+import { motion } from "framer-motion";
+import { Brand } from "../../components/navbarbrand";
 
-export const SideNav =({navToggler})=>{
-    const dispatch = useDispatch();
+export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
     const navigate = useNavigate();
     const hideNav =()=>{
-        navToggler.current.classList.remove("active");
+        setShowNavToggler(false)
+        setTimeout(()=>{
+            navToggler.current.classList.remove("active");
+            setShowNavToggler(null)
+        },400)
+       
     }
-    const handleLogOut =()=>{
-        dispatch(LogOutUser(null));
+    const variants = {
+        open: { 
+            opacity: 1, 
+            x: 0, 
+            transition: { 
+                staggerChildren: 0.07, 
+                delayChildren: 0.2 
+            } 
+        },
+        default: { 
+            opacity: 1
+        },
+        closed: {
+             opacity: 0, 
+             x: "-100%",
+             transition: { 
+                staggerChildren: 0.05, 
+                staggerDirection: -1 
+            } },
     }
     return(
-        <>
-            <div className="d-flex justify-content-between align-items-center py-3">
-                <span>
-                    <FaMonero
-                        size="3rem"
-                        color="white"
-                        onClick={
-                            ()=>navigate("/")
-                        }
-                    />
+        <motion.div
+            animate={
+                showNavToggler? "open": 
+                showNavToggler===false ? 
+                "closed":"default"
+            }
+            variants={variants}
+        >
+            <div className="d-flex justify-content-between align-items-center py-3 mb-2">
+                <span className="d-flex align-items-center">
+                   <Brand
+                        handleClick={()=>navigate("/")}
+                   />
                 </span>
                 <span className="hide-toggler">
                     <FaTimesCircle
@@ -129,10 +153,12 @@ export const SideNav =({navToggler})=>{
                 <img 
                     src="https://res.cloudinary.com/hamskid/image/upload/v1677151514/Frame_133_vi0rjh.svg" 
                     alt="object not found"
-                    onClick={handleLogOut}
-                    />
+                    data-bs-toggle="modal" 
+                    data-bs-target="#alertStaticBackdrop"
+                    onClick={()=>navToggler.current.classList.remove("active")}
+                />
             </div>
-        </>
+        </motion.div>
     )
     
 }

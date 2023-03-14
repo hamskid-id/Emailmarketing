@@ -1,5 +1,5 @@
 import { Layout } from "../layoute"
-import { ListOverview } from "./components/overContent"
+import { ListOverview } from "./components/overviewcomponent/overContent"
 
 export const OverviewsPage=()=>{
     return(

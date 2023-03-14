@@ -1,8 +1,12 @@
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 export const Recipient =({
     campaignParams,
     setCampaignparams
 })=>{
+    const Tags = useSelector(
+        state => state.tag
+    )
     const { 
         handleSubmit, 
         register,
@@ -10,80 +14,59 @@ export const Recipient =({
     } = useForm();
 
     const SubmitHandler=({
-        defaultaction,
-        list
+        tag
     })=>{
+        const newTag = JSON.parse(tag)
+        console.log(newTag)
         setCampaignparams({
             ...campaignParams,
-            default:defaultaction,
-            ToWhichListShallWeSend:list,
+            tag_id:{
+                name:newTag.name,
+                id:newTag.id
+            },
             sectionCompleted:1
         })
     }
     
     return(
         <>
-            <p className="fs-4">Choose one or more lists for sending email</p>
+            <p className="fs-4">Choose a tag for sending email</p>
             <form onSubmit={handleSubmit(SubmitHandler)}>
-                <div className="d-flex flex-column mb-4">
-                    <div className="d-flex me-5 mb-3">
-                        <label 
-                            htmlFor="defaultaction"
-                            className="me-3 fw-bold">
-                            Default
-                        </label>
-                        <input 
-                            className="bg-alice p-2 border border-white rounded form-check-input me-1"
-                            type="checkbox"
-                            defaultValue={campaignParams.default}
-                            name="defaultaction"
-                            {...register(
-                                "defaultaction"
+                <div className="w-100 mb-2">
+                    <label
+                        className="fw-bold" 
+                        htmlFor="tag">
+                        Tags
+                    </label>
+                    <select 
+                    name="tag" 
+                    id="tag"
+                    className="bg-alice p-2 border border-white rounded w-100"
+                    {...register(
+                        "tag", 
+                        {
+                            required:`tag field is invalid`,
+                        }
+                    )
+                    }
+                    >
+                    {
+                        Tags.Tags?.map((tag,index)=>{
+                            const{
+                                name,
+                                id
+                            }=tag
+                            return(
+                                <option 
+                                    value={JSON.stringify({id:id,name:name})}
+                                    key={index}
+                                >{name}
+                                </option>
                             )
-                            }
-                        />
-                    </div>
-                    <div className="d-flex">
-                        <label 
-                            htmlFor="list"
-                            className="me-3 fw-bold">
-                            To which list shall we send?
-                        </label>
-                        <select 
-                            name="list" 
-                            id="list"
-                            defaultValue={campaignParams.ToWhichListShallWeSend}
-                            className="bg-alice p-2 border border-white rounded w-97"
-                            required
-                            {...register(
-                                "list", 
-                                {
-                                    required:`List field is invalid`,
-                                }
-                            )
-                            }
-                            >
-                            {
-                                [
-                                    {name:"firat list"}
-                                ]?.map((tag,index)=>{
-                                    const{
-                                        name
-                                    }=tag
-                                    return(
-                                        <option 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select><br/>
-                        {errors && (<p className="text-danger ">{errors.message}</p>)}
-                    </div>
-                    
-                </div>               
+                        })
+                    }
+                </select>
+                </div>              
                 <hr className="b-grey"/>
                 <button className="btn btn-md b-grey mt-5 fl-r">Save & Next</button>
             </form>

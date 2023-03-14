@@ -1,5 +1,5 @@
 import { Layout } from "../layoute"
-import { TagsContent } from "./components/tagscontent"
+import { TagsContent } from "./components/tagcomponent/tagscontent"
 
 export const TagsPage =()=>{
     return(

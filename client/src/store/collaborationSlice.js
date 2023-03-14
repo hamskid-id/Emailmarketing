@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const InviteUsers = createAsyncThunk(
@@ -8,7 +9,7 @@ export const InviteUsers = createAsyncThunk(
     async ({
         name,
         email
-    }) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/inviteusers`,{
@@ -17,6 +18,12 @@ export const InviteUsers = createAsyncThunk(
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`An invite was sent to "${email}" `
+            }));
+            dispatch(GetInviteSent())
+        }
         return response?.data
     } catch(err){
         toast.error(
@@ -83,10 +90,22 @@ const collab_Slice = createSlice({
         });
         builder.addCase(InviteUsers.fulfilled,(state, action)=>{
             if(action.payload){
-                toast('You have Successfully Invited to your account. An email has being notifying Them of your invitation!!');
-                return{
-                    ...state,
-                    InviteUsersStatus:"success"
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message);
+                    return{
+                        ...state,
+                        InviteUsersStatus:"success"
+                    }
+                }else{
+                     toast.error(message);
+                     return {
+                        ...state,
+                        InviteUsersStatus:"failed"
+                    }
                 }
             }else return {
                 ...state,

@@ -24,22 +24,16 @@ export const CreateCampaignContent =()=>{
         setCampaignparams
     ]=useState({
         campaignType:localStorage.getItem("campaigns") ? localStorage.getItem("campaigns"):"",
-        default:false,
-        ToWhichListShallWeSend:"",
+        content:"",
         NameYourCampaign:"",
         EmailSubject :"",
         FromName:auth.userdata?.user?.name,
         FromEmail:auth.userdata?.user?.email,
         ReplyTo:"",
-        template:"",
         DeliveryDate:"",
-        ADS:false,
-        CTD:false,
-        SDV:false,
-        DeliveryTime:"",
-        TemplateName:"",
-        templateDesign:{},
-        TempalateDesc:"",
+        // DeliveryTime:"",
+        tag_id:{name:null,id:null},
+        status:1,
         sectionCompleted:0
     })
 
@@ -88,16 +82,16 @@ export const CreateCampaignContent =()=>{
             const{
                 name,
                 components
-            }=sec   
+            }=sec
             if(campaignParams?.sectionCompleted===index){
                 setCampaignSection({
                     name:name,
                     components:components
                 })
-                console.log("set")
             }
-        })      
+        })     
     },[campaignParams])
+
     return(
             <div>
                 <div className="d-flex align-items-center">
@@ -129,18 +123,17 @@ export const CreateCampaignContent =()=>{
                                             `c-gainsboro`
                                         }`
                                     }
-                                        onClick={
-                                            ()=>{
-                                                    setCampaignSection({
-                                                        name:name,
-                                                        components:components
-                                                    })
-                                                    setCampaignparams({
-                                                        ...campaignParams,
-                                                        sectionCompleted:index
-                                                    })
-                                            }
-                                    }
+                                    
+                                    onClick={()=>{
+                                        setCampaignSection({
+                                            name:name,
+                                            components:components
+                                        })
+                                        setCampaignparams({
+                                            ...campaignParams,
+                                            sectionCompleted:index
+                                        })
+                                    }}
                                     >
                                         {name}
                                     </h6>

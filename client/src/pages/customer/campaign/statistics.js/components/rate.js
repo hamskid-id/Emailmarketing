@@ -2,7 +2,6 @@ import { ClickLog } from "./clicklog"
 import { OpenLog } from "./openlog"
 
 export const Rate =({
-    ListSection,
     setListSection
 })=>{
     return(
@@ -12,7 +11,7 @@ export const Rate =({
                 Open rate is a measure that tells you how many delivered emails were opened by subscribers.
                 Click rate is a measure of how many people clicked on one of the links in your email campaign.
              </p>
-             <div className="d-flex justify-content-between">
+             <div className="d-flex justify-content-between wrap">
              <div className="wt-50 pe-3">
                 <div className="flex justify-content-between">
                     <h6 className="fs-5">Open rate</h6>
@@ -66,7 +65,7 @@ export const Rate =({
                          className="btn btn-md btn-success mt-3"
                          onClick={
                             ()=>setListSection({
-                                    ...ListSection,
+                                    name:"Sending Logs",
                                     components:<OpenLog/>
                             })
                         }
@@ -126,7 +125,7 @@ export const Rate =({
                         className="btn btn-md btn-success mt-3"
                         onClick={
                             ()=>setListSection({
-                                    ...ListSection,
+                                    name:"Sending Logs",
                                     components:<ClickLog/>
                             })
                         }

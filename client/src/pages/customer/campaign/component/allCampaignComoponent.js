@@ -1,4 +1,4 @@
-import { FaSlidersH } from "react-icons/fa"
+import { FaPaperPlane} from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux"
 import { Modal } from "../../../../components/modal/modal"
 import { CreateCampaignModal } from "./createCampaginmodal"
@@ -20,11 +20,12 @@ export const AllCampaignComponent =()=>{
         <div className="py-3">
             <div className="d-flex align-items-center mb-5">
                 <span className="me-3">
-                    <FaSlidersH
+                    <FaPaperPlane
                         size="1.5rem"
+                        color="grey"
                     />
                 </span>
-                <div className="fs-1">
+                <div className="fs-2">
                     Campaigns
                 </div>
             </div>

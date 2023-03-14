@@ -12,9 +12,6 @@ export const GetNotifications = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data
-        )
         return rejectWithValue(
             err.response?.data
         )

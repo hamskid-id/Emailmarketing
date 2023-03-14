@@ -43,7 +43,7 @@ export const ChangePassword =()=>{
     return(
         <>
             <div className="container-fluid">
-            <div className="ps-3 pe-5 m-auto mt-5">
+            <div className="ps-3 pde-5 m-auto mt-5">
                 <div>
                     <p className="fs-2 text-center">
                         Reset Password

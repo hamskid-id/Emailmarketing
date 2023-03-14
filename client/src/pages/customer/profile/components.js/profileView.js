@@ -31,11 +31,11 @@ export const ProfileView =()=>{
                         {
                             name:"Contact information",
                             components:<ContactInformation/>
-                        },
-                        {
-                            name:"Api token",
-                            components:<ApiToken/>
-                        },
+                        }
+                        // {
+                        //     name:"Api token",
+                        //     components:<ApiToken/>
+                        // },
                     ]?.map((section,index)=>{
                         const{
                             name,

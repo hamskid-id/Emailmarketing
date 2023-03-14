@@ -13,7 +13,7 @@ export const InitialResetView =({
     )
     return(
         <>
-            <p className="fs-2 text-center">
+            <p className="fs-2 text-center fw-bold">
                {title}
             </p>
             <div>
@@ -31,6 +31,7 @@ export const InitialResetView =({
                     <CustomFormField
                         value="Send password reset Link"
                         type="btn"
+                        btnFluid={true}
                         loadingStatus={auth.SendPasswordResetLinkStatus}
                     />
                 </form>

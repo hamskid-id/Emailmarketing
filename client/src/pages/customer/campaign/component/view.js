@@ -1,31 +1,47 @@
-import { useDispatch, useSelector} from "react-redux";
-import { useEffect, useState } from "react";
-import { FaBacon, FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
-import { GetCampaigns} from "../../../../store/campaignSlice";
+import {useSelector} from "react-redux";
+import { FaCartArrowDown} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Actions } from "./actions";
+import { useState } from "react";
 
 export const AllcampaignView =()=>{
     const navigate = useNavigate();
     const campaign = useSelector(
         state => state.campaign
     )
-
+    const[
+        itemToDelete,
+        setItemToDelete
+    ]=useState([])
+    const handleChange=(e,{id})=>{
+        if(e.target.checked){
+            setItemToDelete((prevState)=>{
+                return[
+                ...prevState,
+                    id
+                ]
+            })
+        }else{
+            const newArray = itemToDelete.filter(item=>item!==id)
+            setItemToDelete(newArray)
+        }
+    }
     return(
         <>
         <Actions
+            deleteArray={itemToDelete}
             actionName="Create Campaign"
         />
-        <div className="w-overflow">
-            <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
+        <div>
+            <table className=" table table-striped table-hover table-bordered table-responsive mb-3 w-overflow">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col"></th>
                         <th scope="col">Title</th>
                         <th scope="col">From</th>
                         <th scope="col">Recipient</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Content</th>                       
+                        <th scope="col">Subject</th>                       
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -34,32 +50,28 @@ export const AllcampaignView =()=>{
                         campaign
                         .Campaigns?.map((camp,index)=>{
                             const{
+                                id,
                                 title,
-                                recipient,
-                                from,
-                                subject,
-                                content
+                                reply_to,
+                                from_email,
+                                subject
                             }=camp
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index}</th>
+                                    <th scope="row">{index+1}</th>
+                                    <td>
+                                        <input 
+                                            className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
+                                            type="checkbox"
+                                            onChange={(e)=>handleChange(e,{id})}
+                                        />
+                                    </td>
                                     <td>{title}</td>
-                                    <td>{recipient}</td>
-                                    <td>{from}</td>
+                                    <td>{reply_to}</td>
+                                    <td>{from_email}</td>
                                     <td>{subject}</td>
-                                    <td>{content}</td>
                                     <td>
                                         <div className="d-flex align-items-center">
-                                            <div 
-                                                className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2"
-                                                onClick={()=>navigate("/campaigns/stat")}>
-                                                <span className="me-1">
-                                                    <FaBacon/>
-                                                </span>
-                                                <span>
-                                                    Statistics
-                                                </span>
-                                            </div>
                                             <div className="dropdown">
                                                 <button 
                                                     className="btn btn-secondary dropdown-toggle" 
@@ -69,6 +81,12 @@ export const AllcampaignView =()=>{
                                                 >
                                                 </button>
                                                 <ul className="dropdown-menu">
+                                                    <li 
+                                                        className="dropdown-item"
+                                                        onClick={()=>navigate(`/campaigns/stat/${id}`)}
+                                                    >
+                                                        Statistics
+                                                    </li>
                                                     <li 
                                                         className="dropdown-item"
                                                     >
@@ -92,7 +110,7 @@ export const AllcampaignView =()=>{
                 {
                    campaign
                    .Campaigns?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5">
+                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
                             <FaCartArrowDown
                                 color="grey"
                                 size="7rem"

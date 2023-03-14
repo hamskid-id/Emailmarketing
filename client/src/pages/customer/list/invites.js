@@ -1,5 +1,5 @@
 import { Layout } from "../layoute"
-import { InvitesContent } from "./components/invitescontent"
+import { InvitesContent } from "./components/invitecomponent/invitescontent"
 
 export const InvitesPage=()=>{
     return(

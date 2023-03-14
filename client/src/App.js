@@ -32,9 +32,15 @@ import { TrackingDomainPage } from './pages/customer/sending/trackin';
 import { BlacklistPage } from './pages/customer/sending/blacklisted';
 import { ImportBlacklistPage } from './pages/customer/sending/importblacklist';
 import { CampaignStatistics } from './pages/customer/campaign/statistics.js/stat';
+import { UnSubsrcibedPage } from './pages/customer/list/unsubscribe';
+import { SpamReportPage } from './pages/customer/list/spamreport';
+import { EditView } from './pages/customer/template/edit';
+import { UpdateTagPage } from './pages/customer/list/updateTag';
+// import './interceptors/axios';
 
 
 const App =()=> {
+  
   return (
     <Provider store={store}>
       <Router>
@@ -54,6 +60,8 @@ const App =()=> {
               <Route exact path='/Lists/Overview' element={ <OverviewsPage/>}/>
               <Route exact path='/Lists/Lists' element={ <ListsPage/>}/>
               <Route exact path='/Lists/Subscribers' element={ <SubscribersPage/>}/>
+            <Route exact path='/Lists/Unsubscribe' element={ <UnSubsrcibedPage/>}/>
+            <Route exact path='/Lists/Spam Report' element={ <SpamReportPage/>}/>
               <Route exact path='/Lists/Tags' element={ <TagsPage/>}/>
               <Route exact path='/Lists/Lists/stat' element={ <ListOverViewPage/>}/>
               <Route exact path='/Lists/Collaborations' element={ <CollabsPage/>}/>
@@ -66,10 +74,12 @@ const App =()=> {
               <Route exact path='/Sending/Blacklist/import' element={ <ImportBlacklistPage/>}/>
             </Route>
             <Route exact path='/campaigns'  element={ <AllCampaign/>} />
-            <Route exact path='/campaigns/stat'  element={ <CampaignStatistics/>} />
+            <Route exact path='/campaigns/stat/:id'  element={ <CampaignStatistics/>} />
              <Route exact path='/campaigns/Create'  element={ <CreateCampaignPage/>} />
+             <Route exact path="/user/tag/update/:id"  element={ <UpdateTagPage/>} />
             <Route exact path='/campaign/select-type'  element={ <SelectTypeView/>} />
             <Route exact path='/templates'  element={ <TemplateList/>} />
+            <Route exact path='/edit/template/:category/:id'  element={ <EditView/>} />
             <Route exact path='/automations'  element={ <AutoPage/>} />
             <Route exact path='/automations/design'  element={ <AutomationDesign/>} />
             <Route exact path='/inbox' element={ <Inbox/>}/>

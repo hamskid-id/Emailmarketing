@@ -1,5 +1,5 @@
 import { Layout } from "../layoute"
-import { SendingDomain } from "./components/sendingcontent"
+import { SendingDomain } from "./components/sendingcomponent/sendingcontent"
 
 export const SendingDomainPage=()=>{
     return(

@@ -1,7 +1,7 @@
 export const TopPerformance =()=>{
     return(
         <>
-           <div className="d-flex justify-content-between">
+           <div className="d-flex justify-content-between wrap">
                 <div className="wt-50 pe-3">
                     <p className="fs-4"> Subscribers with most opens</p>
                     {

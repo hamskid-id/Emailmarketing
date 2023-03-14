@@ -484,7 +484,7 @@ class EmailmarketingController extends Controller
     public function viewcamps()
     {
         if (Auth::check()) {
-            $camp = campaign::where('business_id', auth::user()->business_id)->latest()->get();
+            $camp = campaign::where('business_id', auth::user()->business_id)->get();
             return response()->json([
                 'status' => true,
                 'message' => $camp,
@@ -843,10 +843,13 @@ class EmailmarketingController extends Controller
         if (Auth::check()) {
             $subscrib = subscriber::where('business_id', Auth::user()->business_id)->where('status', 1)->get();
             if ($subscrib) {
-                return response()->json([
-                    'status' => true,
-                    'message' => $subscrib->email,
-                ]);
+                foreach($subscrib as $sub) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => $sub->email,
+                    ]);
+                }
+                
             } else {
                 return response()->json([
                     'status' => true,
@@ -861,4 +864,21 @@ class EmailmarketingController extends Controller
         }
 
     }
+
+    public function recentcamp()
+    {
+        if (Auth::check()) {
+            $camp = campaign::where('business_id', auth::user()->business_id)->latest()->take(1)->get();
+            return response()->json([
+                'status' => true,
+                'message' => $camp,
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+    }
+
 }

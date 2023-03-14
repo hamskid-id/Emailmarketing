@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { FaSlidersH } from "react-icons/fa"
+import { FaRegClock, FaSlidersH } from "react-icons/fa"
 import { Actions } from "../../../../components/actions"
 import { Modal } from "../../../../components/modal/modal"
 import { AutoTable } from "./automationtable"
 import { ModalContentFirstView } from "./modalcontent1"
 import { ModalContentSecondView } from "./modalcontent2"
+import { CreateAutomation } from "./modalcontent3"
 
 export const AutoContent =()=>{
     const[
@@ -18,7 +19,7 @@ export const AutoContent =()=>{
         <>
             <div className="d-flex align-items-center mb-5">
                 <span className="me-3">
-                    <FaSlidersH
+                    <FaRegClock
                         size="1.5rem"
                     />
                 </span>
@@ -37,9 +38,13 @@ export const AutoContent =()=>{
                         <ModalContentFirstView
                             setModalView={setModalView}
                         />:
+                     modalView.name ==="second"?
                         <ModalContentSecondView
                             setModalView={setModalView}
                             modalView={modalView}
+                        />:
+                        <CreateAutomation
+                            setModalView={setModalView}
                         />
                 }
                 large={true}

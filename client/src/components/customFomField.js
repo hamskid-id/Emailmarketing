@@ -10,19 +10,16 @@ export const CustomFormField =({
     register,
     loadingStatus,
     defaultValue,
-    editableValue
+    editableValue,
+    btnFluid
 })=>{
-    if(errors){
-        console.log(errors)
-    }
-
     if(type === "btn"){
         return(
             <div className="w-100">
                 {
                     loadingStatus === "pending"?(
                         <button
-                            className="btn btn-sm bg-slate-grey text-white fs-5" 
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm bg-slate-grey text-white fs-5`}
                             type="button" 
                             disabled
                         >
@@ -35,7 +32,7 @@ export const CustomFormField =({
                         </button>
                     ):(
                         <button 
-                            className="btn btn-sm bg-slate-grey text-white fs-5">
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm bg-slate-grey text-white fs-5`}>
                             {value}
                         </button>
                     )

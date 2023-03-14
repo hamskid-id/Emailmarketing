@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import  axios  from 'axios';
 import { toast } from 'react-toastify';
+import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
 export const GetSubscribers = createAsyncThunk(
@@ -13,7 +14,24 @@ export const GetSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(
+        console.log(
+            err.response?.data?.message
+        )
+        }
+    }
+)
+
+export const GetTotalSubscribers = createAsyncThunk(
+    'subscriber/GetTotalSubscribers', 
+    async () =>{
+    try{
+        const response = await axios.get(
+            `${apiBaseUrl}/totalsubscriber`,
+                setHeaders()
+        )
+        return response?.data
+    } catch(err){
+        console.log(
             err.response?.data?.message
         )
         }
@@ -30,8 +48,8 @@ export const Createsubscriber = createAsyncThunk(
         state,
         phone,
         dob,
-        tag
-    },) =>{
+        tag_id
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/addsubscrib`,{
@@ -42,10 +60,16 @@ export const Createsubscriber = createAsyncThunk(
                 state,
                 phone,
                 dob,
-                tag
+                tag_id
             },
             setHeaders()
         )
+        if(response?.data){
+            dispatch(UpdateActivities({
+                action:`You added "${email}" to your subscribers list`
+            }));
+            dispatch(GetSubscribers())
+        }
         return response?.data
     } catch(err){
             toast.error(
@@ -60,6 +84,9 @@ const subscriber_Slice = createSlice({
     name:"subscriber",
     initialState: {
         subscribers:[],
+        totalsub:0,
+        GetTotalSubscribersStatus:'',
+        GetTotalSubscribersError:'',
         CreatesubscriberStatus:'',
         CreatesubscriberError:'',
         GetSubscribersStatus:'',
@@ -68,6 +95,32 @@ const subscriber_Slice = createSlice({
     reducers:{},
 
     extraReducers:(builder)=>{
+
+        builder.addCase(GetTotalSubscribers.pending,(state, action)=>{
+            return {
+                ...state,
+                GetTotalSubscribersStatus:'pending'
+            }
+
+        });
+        builder.addCase(GetTotalSubscribers.fulfilled,(state, action)=>{
+            if(action.payload.message){
+                return{
+                    ...state,
+                    totalsub:action.payload.message,
+                   GetTotalSubscribersStatus:"success"
+                }
+            }else return{
+                ...state,
+                GetTotalSubscribersStatus:"failed"
+            }
+        })
+        builder.addCase(GetTotalSubscribers.rejected,(state, action)=>{
+            return{
+                ...state,
+                GetTotalSubscribersStatus:'rejected'
+            }
+        })
 
         builder.addCase(GetSubscribers.pending,(state, action)=>{
             return {
@@ -104,14 +157,28 @@ const subscriber_Slice = createSlice({
         });
         builder.addCase(Createsubscriber.fulfilled,(state, action)=>{
             if(action.payload){
-                toast("Suscriber added successfully")
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreatesubscriberStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreatesubscriberStatus:"failed"
+                    }
+                }
+            }else{
                 return{
                     ...state,
-                    CreatesubscriberStatus:"success"
+                    CreatesubscriberStatus:"failed"
                 }
-            }else return{
-                ...state,
-                CreatesubscriberStatus:"failed"
             }
         })
         builder.addCase(Createsubscriber.rejected,(state, action)=>{

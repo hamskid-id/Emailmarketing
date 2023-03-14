@@ -49,8 +49,8 @@ export const RegisterView =()=>{
     return(
         <>
             <AuthSideNav>
-                <p className="fs-2 text-center">
-                    Register
+                <p className="fs-2 text-center fw-bold">
+                    Create your account
                 </p>
                 <div>
                     <span className="fs-5 me-1">
@@ -96,17 +96,18 @@ export const RegisterView =()=>{
                             register={register}
                             errors={errors.confirmPassword}
                         />
+                        {
+                            auth.registerStatus === "rejected" &&(
+                                <p className="text-danger">{auth.registerError}</p>
+                            )
+                        }
                         <CustomFormField
                             value="register"
                             type="btn"
+                            btnFluid={true}
                             loadingStatus={auth.registerStatus}
                         />
                     </form>
-                    {
-                        auth.registerStatus === "rejected" &&(
-                            <p className="text-danger">{auth.registerError}</p>
-                        )
-                    }
                 </div>
             </AuthSideNav>
         </>

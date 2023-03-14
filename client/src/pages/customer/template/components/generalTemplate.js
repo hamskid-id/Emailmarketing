@@ -1,29 +1,43 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
+import Spinner from "../../../../components/spinner/spinner";
+import { GetGeneralTemplate } from "../../../../store/templateSlice";
 import { Actions } from "./actions"
-import { basicTemp } from "./basictemp"
 
 export const GeneralList =()=>{
     const navigate = useNavigate();
+    const template = useSelector(
+        state => state.template
+    )
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(GetGeneralTemplate(null));
+    },[dispatch])
+    
+    if(template.GetGeneralTemplateStatus ==='pending'){
+        return <Spinner/>
+    }
     return(
         <>
             <Actions/>
             <div className="row justify-content-between wrap">
                 {
-                    basicTemp.map((tem,index)=>{
+                    template.generalTemp?.map((tem,index)=>{
                         const{
-                            head,
-                            subHead,
-                            img,
+                            template_name,
+                            id,
+                            template_describ,
                         }=tem
                         return(
                             <div 
                                 className="col-lg-2 col-md-3 col-sm-4 col-xs-6"                           
                                 key={index}
                             >
-                                <div className="d-flex flex-column m-3 border rounded"
+                                <div className="d-flex flex-column m-3 border rounded bg bg-white shadow"
                                 >
                                     <img
-                                        src={img}
+                                        src="https://res.cloudinary.com/hamskid/image/upload/v1675956824/thumb_ymavb0.svg"
                                         className="w-100 rounded"
                                         alt="object not found"
                                     />
@@ -31,12 +45,12 @@ export const GeneralList =()=>{
                                         <p 
                                             className="fw-bold break"
                                         >
-                                            {head}
+                                            {template_name}
                                         </p>
                                         <p 
                                             className="break"
                                         >
-                                            {subHead}
+                                            {template_describ}
                                         </p>
                                         <div className="dropdown">
                                         <button 
@@ -51,7 +65,7 @@ export const GeneralList =()=>{
                                             <li 
                                                 className="dropdown-item"
                                                 onClick={
-                                                    ()=>navigate("/create/template")
+                                                    ()=>navigate(`/edit/template/${id}`)
                                                 }
                                             >
                                                 Preview

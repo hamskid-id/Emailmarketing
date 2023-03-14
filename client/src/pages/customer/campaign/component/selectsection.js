@@ -63,9 +63,6 @@ export const SelectTypeSection=()=>{
                                                         localStorage.setItem(
                                                             "campaigns",type
                                                         )
-                                                        console.log(localStorage.getItem(
-                                                            "campaigns"
-                                                        ))
                                                         if(localStorage.getItem(
                                                             "campaigns"
                                                         )){

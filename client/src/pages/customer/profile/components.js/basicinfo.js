@@ -18,7 +18,7 @@ export const BasicInfo =()=>{
     return(
         <>
             <div className="container-fluid">
-            <div className="px-5 m-auto mt-5">
+            <div className="pdx-5 m-auto mt-5">
                 <div>
                     <p className="fs-2 text-center">
                         Basic Information

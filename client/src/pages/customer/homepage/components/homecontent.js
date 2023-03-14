@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { ActivitiesLog } from "./activities"
 import { CreditWrapper } from "./credit"
-import { RecentlySent } from "./recently"
+import { RecentlySent } from "./recentlysentcampaign"
 import { Subscribers } from "./subscriber"
 
 export const HomeView =()=>{

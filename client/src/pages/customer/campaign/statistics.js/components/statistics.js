@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { BarChart } from "../../../../../components/barchat";
 import { userdata } from "../../component/userdata";
+import { BounceLog } from "./bouncelog";
+import { ClickLog } from "./clicklog";
+import { FeedbackLog } from "./feedbacklog";
+import { OpenLog } from "./openlog";
+import { UnsubscribeLog } from "./unsubscribelog";
 
-export const Statistics =()=>{
+export const Statistics =({setListSection})=>{
     const [
         userData
     ] = useState({
@@ -36,38 +41,39 @@ export const Statistics =()=>{
                             {
                                 name:"Opened",
                                 amount:0,
-                                log:"log"
+                                log:<OpenLog/>
                             },
                             {
                                 name:"Not opened",
                                 amount:0,
-                                log:"log"
+                                log:<OpenLog/>
                             },
                             {
                                 name:"Unique clicks",
                                 amount:0,
-                                log:"log"
+                                log:<ClickLog/>
                             },
                             {
                                 name:" Unsubscribed",
                                 amount:0,
-                                log:"log"
+                                log:<UnsubscribeLog/>
                             },
                             {
                                 name:"Bounced",
                                 amount:0,
-                                log:"log"
+                                log:<BounceLog/>
                             },
                             {
                                 name:"Reported",
                                 amount:0,
-                                log:"log"
+                                log:<FeedbackLog/>
                             }
 
                         ]?.map((activ,index)=>{
                             const{
                                 name,
-                                amount
+                                amount,
+                                log
                             }=activ
                             return(
                                 <div key={index}>
@@ -77,7 +83,15 @@ export const Statistics =()=>{
                                     <span className="fs-6 fw-bold me-2">
                                         {amount} {name} .
                                     </span>
-                                    <span className="fs-6 text-primary">View Log</span>
+                                    <span 
+                                        className="fs-6 text-primary"
+                                        onClick={
+                                            ()=>setListSection({
+                                                name:"Sending Logs",
+                                                components:log
+                                            })
+                                        }
+                                    >View Log</span>
                                 </div>
                             )
                         })
