@@ -438,14 +438,15 @@ class EmailmarketingController extends Controller
                 'content_type' => 'required',
                 'schedule_date' => 'required',
                 'status' => 'required',
-
             ]);
 
             $camp = new campaign();
             $camp->business_id = Auth::user()->business_id;
             $camp->tag_id = $request->tag_id;
             $camp->title = $request->title;
-            $camp->receipient = $request->receipient;
+            // $camp->receipient = $request->receipient;
+            $camp->reply_to = $request->reply_to;
+            $camp->from_name = $request->from_name;
             $camp->from_email = $request->from_email;
             $camp->subject = $request->subject;
             $camp->content = $request->content;
@@ -458,7 +459,7 @@ class EmailmarketingController extends Controller
 
                 //Do not remove
                 $data['campaign'] = $camp;
-                $data['subscribers'] = Subscriber::where('tag', 'student')->get();
+                $data['subscribers'] = Subscriber::where('tag_id', $camp->tag_id )->get();
                 CommunicationJob::dispatch($data);
 
                 //do not remove ends
