@@ -12,9 +12,7 @@ export const Overview=({
             <Statistics
                 setListSection={setListSection}
             />
-            <Rate 
-                setListSection={setListSection}
-            />
+            <Rate/>
             <TopPerformance/>
         </>
     )

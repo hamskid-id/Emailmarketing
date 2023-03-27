@@ -1,9 +1,7 @@
 import { ClickLog } from "./clicklog"
 import { OpenLog } from "./openlog"
 
-export const Rate =({
-    setListSection
-})=>{
+export const Rate =()=>{
     return(
         <div className="py-4">
             <p className="fs-3">Performace Rate</p>
@@ -61,15 +59,6 @@ export const Rate =({
                             )
                         })
                     }
-                    <button
-                         className="btn btn-md btn-success mt-3"
-                         onClick={
-                            ()=>setListSection({
-                                    name:"Sending Logs",
-                                    components:<OpenLog/>
-                            })
-                        }
-                         >Open Log</button>
                 </div>
             </div>
             <div className="wt-50">
@@ -121,15 +110,6 @@ export const Rate =({
                             )
                         })
                     }
-                    <button 
-                        className="btn btn-md btn-success mt-3"
-                        onClick={
-                            ()=>setListSection({
-                                    name:"Sending Logs",
-                                    components:<ClickLog/>
-                            })
-                        }
-                        >Click Log</button>
                 </div>
              </div>            
 

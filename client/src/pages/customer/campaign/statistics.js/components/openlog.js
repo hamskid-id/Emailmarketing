@@ -19,7 +19,6 @@ export const OpenLog =()=>{
                             <th scope="col">Recipient</th>
                             <th scope="col">IP address</th>
                             <th scope="col">Area</th>
-                            <th scope="col">Campaign</th>
                             <th scope="col">Created at</th>
                         </tr>
                     </thead>
@@ -29,7 +28,6 @@ export const OpenLog =()=>{
                                 recipient:"stacey_lortz@aol.com",
                                 ip:"181.209.150.0",
                                 area:"Ipala, Chiquimula, United States",
-                                Campaign:"Special offer!",
                                 CreatedAt:"2017-07-13 15:06"
                            }]?.map((log,index)=>{
                                     const{
@@ -37,7 +35,6 @@ export const OpenLog =()=>{
                                         ip,
                                         area,
                                         Status,
-                                        Campaign,
                                         CreatedAt
                                     }=log
                                     return(
@@ -47,7 +44,6 @@ export const OpenLog =()=>{
                                             <td>{ip}</td>
                                             <td>{area}</td>
                                             <td>{Status}</td>
-                                             <td>{Campaign}</td>
                                             <td>{CreatedAt}</td>
                                         </tr>
                                     )
