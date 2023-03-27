@@ -30,7 +30,7 @@ export const Layout=({routeChildren})=>{
         },100)
     }
     return(
-        <div className="container-fluid whitesmoke">
+        <div className="container-fluid">
             <div className="row no-wrap">
                 <div 
                     className="col-md-2 px-3 sideNav bg-slate-grey w-230" 
@@ -42,7 +42,7 @@ export const Layout=({routeChildren})=>{
                         setShowNavToggler={setShowNavToggler}
                     />
                 </div>
-                <div className="col-md-10 dashboardvh bg-smoke">
+                <div className="col-md-10 dashboardvh bg bg-white">
                         <div>
                             <div className="d-flex justify-content-between px-4 navHeader align-items-center">
                                 <span className="navbrand">

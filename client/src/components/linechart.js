@@ -3,7 +3,11 @@ import 'chart.js/auto';
 export const LineChart =({
     data
 })=>{
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false
+      };
     return(
-        <Line data={data}/>
+        <Line data={data} options={options}/>
     )
 }

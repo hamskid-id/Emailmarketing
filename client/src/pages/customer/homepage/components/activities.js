@@ -1,5 +1,6 @@
 import {FaRegClone, FaUserCircle } from "react-icons/fa"
 import { useSelector } from "react-redux";
+import { Audygrowth } from "../../list/components/usersListcompoment/audygrowth";
 
 export const ActivitiesLog =()=>{
     const  activities = useSelector(
@@ -9,7 +10,11 @@ export const ActivitiesLog =()=>{
         state => state.auth
     )
     return(
-        <>
+        <div className="row">
+            <div className="col-md-6">
+                <Audygrowth/>
+            </div>
+            <div className="col-md-6">
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
                    <FaRegClone
@@ -40,23 +45,21 @@ export const ActivitiesLog =()=>{
                                         key={index} 
                                         className="row align-items-center">
                                         <div className="col-md-12">
-                                            <div className="d-flex flex-row align-items-center justify-content-between border rounded shadow p-2 my-1 rounded bg bg-white wrap">
-                                                <span className="d-flex flex-column">
-                                                    <FaUserCircle  
-                                                        size="1.5rem"
-                                                        color="gainsboro"
-                                                        className="mb-1"
-                                                    />
-                                                    <h3 className="fs-6 break">
+                                            <div className="d-flex flex-column align-items-start py-2 px-3 my-1 bg bg-white wrap">
+                                                <FaUserCircle  
+                                                    size="1.5rem"
+                                                    color="gainsboro"
+                                                    className="mb-3"
+                                                />
+                                                <h3 className="fs-6 break">
                                                     {action}
-                                                    </h3>
-                                                </span>
-                                                <span className="fs-6">
+                                                </h3>
+                                                <p className="fs-6">
                                                     {
                                                         new Date(created_at)
                                                             .toLocaleString()
                                                     }
-                                                </span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -68,6 +71,7 @@ export const ActivitiesLog =()=>{
                     )
                 }
             </div>
-        </>
+            </div>
+        </div>
     )
 }

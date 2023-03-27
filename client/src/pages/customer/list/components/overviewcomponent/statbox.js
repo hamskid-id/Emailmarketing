@@ -41,7 +41,7 @@ export const SubscriberStat =()=>{
         }
     ]
     return(
-        <div className="d-flex justify-content-between overflow-x mb-5 w-89">
+        <div className="d-flex justify-content-between overflow-x mb-5 w-100">
             {
                 statDetails?.map((stat,index)=>{
                     const{
@@ -54,7 +54,7 @@ export const SubscriberStat =()=>{
                             key={index}
                             className="bg-azur rounded">
                             <div 
-                                className="m-2 rounded shadow p-2 border w-15 bg-white">
+                                className="m-2 rounded p-2 border w-15 bg-white">
                                 <p className="fw-bold">
                                     {name}
                                 </p>

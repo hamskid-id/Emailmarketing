@@ -28,6 +28,8 @@ export const Subscribers=()=>{
         ),
         datasets:[{
             label:"key email marketing metrics",
+            borderColor: 'lemonchiffon',
+            backgroundColor: 'lemonchiffon',
             data:userdata?.map(
                 (data)=>data.number
             )
@@ -41,6 +43,8 @@ export const Subscribers=()=>{
         ),
         datasets:[{
             label:"Subscribers",
+            borderColor: 'white',
+            backgroundColor: ['lemonchiffon','mintcream'],
             data:piedata?.map(
                 (data)=>data.number
             )
@@ -62,10 +66,10 @@ export const Subscribers=()=>{
                 </h2>
             </div>
             <div className="chat-flex align-items-end wrap">
-                <div className="my-3 rounded border p-1 bar-container me-3 w-63">
+                <div className="my-3 rounded border bar-container me-3 w-63">
                     <BarChart data={userData}/>
                 </div>                  
-                <div className="my-3 rounded border p-1 chat-container me-3 w-32">
+                <div className="my-3 rounded border chat-container me-3 w-32">
                     <PieChart data={subData}/>
                 </div>                  
             </div>
