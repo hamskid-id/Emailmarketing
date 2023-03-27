@@ -31,7 +31,7 @@ export const CreateSpamReported  = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`"${email}" was reported as a spam`
             }));

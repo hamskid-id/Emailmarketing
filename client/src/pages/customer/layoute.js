@@ -52,11 +52,6 @@ export const Layout=({routeChildren})=>{
                                 </span>
                                 <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
                                 <span className="d-flex align-items-center justify-content-end">
-                                    {/* <span className="me-3 rounded-circle border search-icon">
-                                        <FaSearch
-                                            color="goldenrod"
-                                        />
-                                    </span> */}
                                     <div className="d-flex align-items-center my-3">
                                         <span className="me-2 dropdown">
                                             <span 
@@ -100,7 +95,7 @@ export const Layout=({routeChildren})=>{
                         <span className="me-2">
                             <FaExclamationTriangle
                                 size="1.5rem"
-                                color="red"
+                                color="#dc3545"
                             />
                         </span>
                         <span>Are you sure you want to log Out?</span>

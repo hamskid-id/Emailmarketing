@@ -48,7 +48,6 @@ export const UsersListContainer =()=>{
                             <th scope="col">State</th>
                             <th scope="col">Phone</th>
                             <th scope="col">DOB</th>
-                            <th scope="col">Tag</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -64,7 +63,6 @@ export const UsersListContainer =()=>{
                                         state,
                                         phone,
                                         dob,
-                                        tag,
                                         id
                                     }=sub
                                     return(
@@ -84,17 +82,8 @@ export const UsersListContainer =()=>{
                                             <td>{state}</td>
                                             <td>{phone}</td>
                                             <td>{dob}</td>
-                                            <td>{tag}</td>
                                             <td>
                                                 <div className="d-flex align-items-center">
-                                                    <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
-                                                        <span className="me-1">
-                                                            <FaPencilAlt/>
-                                                        </span>
-                                                        <span>
-                                                            Edit
-                                                        </span>
-                                                    </div>
                                                     <div className="dropdown">
                                                         <button 
                                                             className="btn btn-secondary dropdown-toggle"
@@ -118,6 +107,11 @@ export const UsersListContainer =()=>{
                                                                 className="dropdown-item"
                                                             >
                                                                 Send Confirmation Email
+                                                            </li>
+                                                            <li
+                                                                className="dropdown-item"
+                                                            >
+                                                               Edit
                                                             </li>
                                                             <li
                                                                 className="dropdown-item"

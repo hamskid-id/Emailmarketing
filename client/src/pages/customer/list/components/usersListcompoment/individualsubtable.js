@@ -37,7 +37,6 @@ export const IndividualSubTable =({
                             <th scope="col">State</th>
                             <th scope="col">Phone</th>
                             <th scope="col">DOB</th>
-                            <th scope="col">Tag</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -52,8 +51,7 @@ export const IndividualSubTable =({
                                         country,
                                         state,
                                         phone,
-                                        dob,
-                                        tag
+                                        dob
                                     }=sub
                                     return(
                                         <tr key={index}>
@@ -65,7 +63,6 @@ export const IndividualSubTable =({
                                             <td>{state}</td>
                                             <td>{phone}</td>
                                             <td>{dob}</td>
-                                            <td>{tag}</td>
                                             <td>
                                                 <div className="d-flex align-items-center">
                                                     <div

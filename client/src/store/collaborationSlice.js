@@ -18,7 +18,7 @@ export const InviteUsers = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`An invite was sent to "${email}" `
             }));
