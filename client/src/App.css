@@ -423,10 +423,13 @@ i.mdi.mdi-account {
     padding: 1rem 0;
   }
   .pde-3{
-    padding-right: 1rem;
+    padding-right: 0rem;
   }
   .mbm-2{
     margin-bottom: 0.5rem;
+  }
+  .mbm-3{
+    margin-bottom:1rem;
   }
   .chat-container{
     display: flex;
@@ -488,7 +491,6 @@ i.mdi.mdi-account {
   }
   .wt-50{
       width:100%;
-      padding: 1rem;
   }
 }
 @media only screen and (max-width: 400px) {

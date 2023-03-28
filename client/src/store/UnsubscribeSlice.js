@@ -47,7 +47,7 @@ export const CreateUnsubscriber = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`You added "${email}" to your Unsubscribed list`
             }));

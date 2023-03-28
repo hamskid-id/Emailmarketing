@@ -10,7 +10,7 @@ export const Rate =()=>{
                 Click rate is a measure of how many people clicked on one of the links in your email campaign.
              </p>
              <div className="d-flex justify-content-between wrap">
-             <div className="wt-50 pe-3">
+             <div className="wt-50 pde-3 mbm-3">
                 <div className="flex justify-content-between">
                     <h6 className="fs-5">Open rate</h6>
                     <div className="progress">

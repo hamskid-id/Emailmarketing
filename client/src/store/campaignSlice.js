@@ -124,7 +124,7 @@ export const CreateCampaigns  = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`New Campaign "${title}" was created`
             }));

@@ -33,7 +33,7 @@ export const CreateTags  = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`You created a new tag "${name}" `
             }));

@@ -10,7 +10,7 @@ export const Brand =({handleClick})=>{
                     onClick={handleClick }
                 />
             </span>
-            <span className="fs-6 fw-bold text-white">
+            <span className="fs-6 fw-bold text-white fw-bold">
                 5STAR MAIL
             </span>
         </>

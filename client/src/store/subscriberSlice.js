@@ -64,7 +64,7 @@ export const Createsubscriber = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`You added "${email}" to your subscribers list`
             }));
