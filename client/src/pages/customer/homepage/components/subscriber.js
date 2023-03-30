@@ -2,7 +2,7 @@ import { useState } from "react"
 import { FaCircleNotch } from "react-icons/fa";
 import { PieChart } from "../../../../components/piechat";
 import {BarChart} from "../../../../components/barchat";
-import { userdata } from "../../campaign/component/userdata";
+import { subcriberdata  } from "../../campaign/component/userdata";
 
 export const Subscribers=()=>{
     const piedata=[
@@ -23,14 +23,14 @@ export const Subscribers=()=>{
     const [
         userData
     ] = useState({
-        labels:userdata?.map(
+        labels:subcriberdata?.map(
             (data)=>data.name
         ),
         datasets:[{
-            label:"key email marketing metrics",
+            label:"Subscrbers growth chart",
             borderColor: 'lemonchiffon',
             backgroundColor: 'lemonchiffon',
-            data:userdata?.map(
+            data:subcriberdata?.map(
                 (data)=>data.number
             )
         }]

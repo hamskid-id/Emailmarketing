@@ -14,7 +14,6 @@ import { ListsPage } from './pages/customer/list/list';
 import { SubscribersPage } from './pages/customer/list/subscribers';
 import { TagsPage } from './pages/customer/list/tags';
 import { CollabsPage } from './pages/customer/list/collaborators';
-import { Inbox } from './pages/customer/notification/inbox';
 import { AutoPage } from './pages/customer/automation/automation';
 import { AutomationDesign } from './pages/customer/automation/automationdesign';
 import { CreateView } from './pages/customer/template/create';
@@ -82,7 +81,6 @@ const App =()=> {
             <Route exact path='/edit/template/:category/:id'  element={ <EditView/>} />
             <Route exact path='/automations'  element={ <AutoPage/>} />
             <Route exact path='/automations/design'  element={ <AutomationDesign/>} />
-            <Route exact path='/inbox' element={ <Inbox/>}/>
             <Route exact path="/create/template" element={<CreateView/>}/>
             <Route exact path="/preview/template/:id" element={<CreateView/>}/>
             <Route exact path="/account/profile" element={<ProfilePage/>}/>
