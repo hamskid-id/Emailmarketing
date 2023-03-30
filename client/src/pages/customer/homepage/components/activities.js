@@ -1,6 +1,6 @@
 import {FaRegClone, FaUserCircle } from "react-icons/fa"
 import { useSelector } from "react-redux";
-import { Audygrowth } from "../../list/components/usersListcompoment/audygrowth";
+import { CamapaignMetrics } from "./ststistics";
 
 export const ActivitiesLog =()=>{
     const  activities = useSelector(
@@ -12,7 +12,7 @@ export const ActivitiesLog =()=>{
     return(
         <div className="row">
             <div className="col-md-6">
-                <Audygrowth/>
+                <CamapaignMetrics/>
             </div>
             <div className="col-md-6">
             <div className="d-flex align-items-center mt-5 mb-3">

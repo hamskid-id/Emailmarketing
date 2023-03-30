@@ -8,15 +8,10 @@ export const AutoTable =()=>{
             <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Action Time</th>
-                        <th scope="col">Subscribers</th>
-                        <th scope="col">Emails</th>
-                        <th scope="col">Complete</th>
-                        <th scope="col">Last Updated</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Actions</th>
+                        {
+                            ["#","Name","Action Time","Subscribers","Email","Complete","Last Updated","Status","Actions"]
+                            .map((tableHead,index)=><th scope="col" key={index}>{tableHead}</th>)
+                        }
                     </tr>
                 </thead>
                 <tbody> 

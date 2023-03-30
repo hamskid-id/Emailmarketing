@@ -75,17 +75,6 @@ export const Actions =({
                         Create Campaign
                     </button>
                 </div>
-                {/* <div>
-                     <button 
-                        type="button" 
-                        className="btn b-grey btn-md my-2 fl-r" 
-                        
-                        data-bs-toggle="modal" 
-                        data-bs-target="#staticBackdrop"
-                    >
-                       + Create Campaign
-                    </button>
-                </div> */}
             </div>
         </div>
     )
