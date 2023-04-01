@@ -49,11 +49,11 @@ export const RegisterView =()=>{
     return(
         <>
             <AuthSideNav>
-                <p className="fs-2 text-center fw-bold">
+                <p className="fs-2 text-center fw-bold text-white">
                     Create your account
                 </p>
                 <div>
-                    <span className="fs-5 me-1">
+                    <span className="fs-5 me-1 text-white">
                         Already have an account ?
                     </span>
                     <span>
@@ -67,6 +67,7 @@ export const RegisterView =()=>{
                         <CustomFormField
                             label="Full Name"
                             name="name"
+                            color="text-white"
                             type="text"
                             placeholder="enter your Full Name"
                             register={register}
@@ -74,6 +75,7 @@ export const RegisterView =()=>{
                         />
                         <CustomFormField
                             label="Email"
+                            color="text-white"
                             type="email"
                             name="email"
                             placeholder="enter your email"
@@ -83,6 +85,7 @@ export const RegisterView =()=>{
                         <CustomFormField
                             label="Password"
                             name="password"
+                            color="text-white"
                             type="password"
                             placeholder="enter your password"
                             register={register}
@@ -92,6 +95,8 @@ export const RegisterView =()=>{
                             label="Confirm Password"
                             name="confirmPassword"
                             type="password"
+                            color="text-white"
+                            btnBg="btn-primary"
                             placeholder="confirm password"
                             register={register}
                             errors={errors.confirmPassword}
@@ -104,6 +109,7 @@ export const RegisterView =()=>{
                         <CustomFormField
                             value="register"
                             type="btn"
+                            btnBg="btn-primary"
                             btnFluid={true}
                             loadingStatus={auth.registerStatus}
                         />

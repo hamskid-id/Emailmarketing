@@ -13,7 +13,7 @@ export const InitialResetView =({
     )
     return(
         <>
-            <p className="fs-2 text-center fw-bold">
+            <p className="fs-2 text-center fw-bold text-white">
                {title}
             </p>
             <div>
@@ -23,6 +23,7 @@ export const InitialResetView =({
                     <CustomFormField
                         label="Email"
                         name="email"
+                        color="text-white"
                         type="email"
                         placeholder="enter your email"
                         register={register}
@@ -31,6 +32,7 @@ export const InitialResetView =({
                     <CustomFormField
                         value="Send password reset Link"
                         type="btn"
+                        btnBg="btn-primary"
                         btnFluid={true}
                         loadingStatus={auth.SendPasswordResetLinkStatus}
                     />
