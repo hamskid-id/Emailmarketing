@@ -57,7 +57,7 @@ export const AuthSideNav =({children})=>{
                                     className="w-100 mt-4"
                                 />
                             </span>
-                            <span className="fs-6 text-white">
+                            <span className="fs-6 text-white text-center">
                                 Track every single email sent out for your campaign
                             </span>
                         </span>
