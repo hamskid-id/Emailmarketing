@@ -4,12 +4,21 @@
 .navbrand{
   display:none;
 }
+.imgBg{
+  background-image: url(https://demo.acellemail.com/core/ux/image/login-bg.png?v=122);
+  background-repeat: no-repeat;
+  background-position: 60%;
+  background-size: cover;
+}
 .darkform-check-input{
   background-color: darkgray;
   border:1px solid aliceblue;
 }
 .web-dash{
   display: block;
+}
+.saddlebrown{
+  background:saddlebrown;
 }
 #editor_container{
   height:86vh;

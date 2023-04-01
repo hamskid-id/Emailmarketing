@@ -6,12 +6,14 @@ export const CustomFormField =({
     placeholder,
     type,
     space,
+    color,
     errors,
     register,
     loadingStatus,
     defaultValue,
     editableValue,
-    btnFluid
+    btnFluid,
+    btnBg
 })=>{
     if(type === "btn"){
         return(
@@ -19,7 +21,7 @@ export const CustomFormField =({
                 {
                     loadingStatus === "pending"?(
                         <button
-                            className={`${btnFluid && `p-2 w-100`} btn btn-sm bg-slate-grey text-white fs-5`}
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white fs-5`}
                             type="button" 
                             disabled
                         >
@@ -32,7 +34,7 @@ export const CustomFormField =({
                         </button>
                     ):(
                         <button 
-                            className={`${btnFluid && `p-2 w-100`} btn btn-sm bg-slate-grey text-white fs-5`}>
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white fs-5`}>
                             {value}
                         </button>
                     )
@@ -54,7 +56,7 @@ export const CustomFormField =({
                 }
                 />
                  <label
-                    className="fw-bold" 
+                    className={`fw-bold ${color && color}`}
                     htmlFor={name}>
                     {label}
                 </label>
@@ -65,7 +67,7 @@ export const CustomFormField =({
         return(
             <div className="w-100 mb-2">
                 <label
-                    className="fw-bold" 
+                    className={`fw-bold ${color && color}`}
                     htmlFor={name}>
                     {label}
                 </label>
@@ -92,7 +94,7 @@ export const CustomFormField =({
     if(type==="password"){
         <div className="w-100 mb-2">
         <label
-            className="fw-bold" 
+            className={`fw-bold ${color && color}`}
             htmlFor={name}>
             {label}
         </label>
@@ -121,7 +123,7 @@ export const CustomFormField =({
     return(
         <div className="w-100 mb-2">
             <label
-                className="fw-bold" 
+                className={`fw-bold ${color && color}`}
                 htmlFor={name}>
                 {label}
             </label>
