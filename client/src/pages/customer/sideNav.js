@@ -47,6 +47,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                 <span className="d-flex align-items-center">
                    <Brand
                         handleClick={()=>navigate("/")}
+                        iconColor="white"
                    />
                 </span>
                 <span className="hide-toggler">
