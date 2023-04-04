@@ -11,7 +11,7 @@ export const HomeView =()=>{
         state => state.auth
     )
     return(
-        <div className="py-3">
+        <div className="pb-3">
             <p 
                 className="fs-2"
             >

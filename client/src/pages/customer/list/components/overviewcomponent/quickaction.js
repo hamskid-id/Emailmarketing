@@ -5,7 +5,7 @@ export const QuickActions =()=>{
     const navigate = useNavigate()
     return(
         <>
-            <div className="d-flex align-items-center mt-5 mb-3">
+            <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
                 <FaCircleNotch
                         size="1.5rem"

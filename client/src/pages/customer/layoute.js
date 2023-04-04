@@ -44,10 +44,11 @@ export const Layout=({routeChildren})=>{
                 </div>
                 <div className="col-md-10 dashboardvh bg bg-white">
                         <div>
-                            <div className="d-flex justify-content-between px-4 navHeader align-items-center">
+                            <div className="d-flex justify-content-between pdx-4 navHeader align-items-center">
                                 <span className="navbrand">
                                     <Brand
                                         handleClick={()=>navigate("/")}
+                                        iconColor="#122D36"
                                     />
                                 </span>
                                 <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
@@ -61,6 +62,7 @@ export const Layout=({routeChildren})=>{
                                                 <LetteredAvatar
                                                     backgroundColor="brown"
                                                     color="white"
+                                                    size={38}
                                                     name={auth.userdata?.user?.name}
                                                 />
                                             </span>

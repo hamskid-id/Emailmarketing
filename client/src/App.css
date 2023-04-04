@@ -55,7 +55,7 @@ input[id="upload"]{
 }
 
 .border-bottom-slate-grey{
-  border-bottom:4px solid darkslategray;
+  border-bottom:4px solid #122D36;
 }
 .dotted{
   border:1px dotted grey;
@@ -71,11 +71,11 @@ input[id="upload"]{
   overflow-y: auto;
 }
 .accordion-item{
-  background-color: darkslategray;
+  background-color: #122D36;
 }
 .accordion-item:first-of-type .accordion-button{
-  background-color:darkslategray;
-  border:darkslategray;
+  background-color:#122D36;
+  border:#122D36;
   color:white;
 }
 .campains-select{
@@ -115,8 +115,15 @@ input[id="upload"]{
 .search-icon{
   padding: 0.8rem 1rem;
 }
+.pdx-4{
+  padding-right: 1rem!important;
+  padding-left: 1rem!important;
+}
 .mar-5{
   margin-right: 2.2rem;
+}
+.brand{
+  color:white;
 }
 .action-inpt{
   border:1px solid grey;
@@ -128,7 +135,7 @@ input[id="upload"]{
   padding: 2rem;
 }
 .text-slategrey{
-  color:darkslategrey;
+  color:#122D36;
 }
 .w-89{
   width:89%;
@@ -179,7 +186,7 @@ input[id="upload"]{
 }
 .bg-fade{
   background: #F8FDFF;
-  box-shadow: 0.75px 1.5px 8px 0.5px darkslategray;
+  box-shadow: 0.75px 1.5px 8px 0.5px #122D36;
   border-radius: 8px;
 }
 .row {
@@ -200,7 +207,7 @@ input[id="upload"]{
   background-color: grey;
 }
 .border-drakslate-grey{
-  border: 1px solid darkslategray;
+  border: 1px solid #122D36;
 }
 .b-gainsboro{
   background-color: gainsboro;
@@ -239,6 +246,10 @@ i.mdi.mdi-account {
   height: 100vh;
   background: gainsboro;
 }
+.space{
+  letter-spacing: 0.5rem;
+  font-size: 0.6rem;
+}
 .cfvAIS .blockbuilder-branding span.brand {
   display: none;
 }
@@ -253,7 +264,7 @@ i.mdi.mdi-account {
   display: flex;
 }
 .bg-slate-grey{
-  background-color: darkslategray;
+  background-color: #122D36;
 }
 .w-overflow{
   width:100%;
@@ -313,7 +324,7 @@ i.mdi.mdi-account {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #122D36;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -382,18 +393,24 @@ i.mdi.mdi-account {
   .w-89{
     width:100%;
   }
+  .brand{
+    color:#122D36;
+  }
   .navbrand{
     display:block;
   }
+
   .pde-2{
     padding-right:0;
   }
   .bg-slate-grey {
-    background-color: darkslategray;
+    background-color: #122D36;
   }
   .navHeader{
     position:fixed;
-    background-color: darkslategray;
+    background-color: white;
+    border-bottom:1px solid #dee2e6;
+
   }
   .children {
     margin-top: 7rem;

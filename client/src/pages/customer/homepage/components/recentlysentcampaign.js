@@ -11,7 +11,7 @@ export const RecentlySent=()=>{
 
     return(
         <>
-            <div className="d-flex align-items-center mt-5 mb-3">
+            <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
                    <FaPaperPlane
                         size="1.5rem"
@@ -46,7 +46,7 @@ export const RecentlySent=()=>{
                     }
                 </select>
             </div>
-            <div className="mt-5">
+            <div className="mt-3">
                 {
                     recentCampaigns.recentCampaigns?.map((camp,index)=>{
                         const{
