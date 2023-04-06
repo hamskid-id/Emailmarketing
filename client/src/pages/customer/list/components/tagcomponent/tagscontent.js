@@ -12,6 +12,7 @@ export const TagsContent =()=>{
                 <span className="me-3">
                     <FaTags
                         size="1.5rem"
+                        color='grey'
                     />
                 </span>
                 <div className="fs-1">

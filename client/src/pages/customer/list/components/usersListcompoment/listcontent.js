@@ -1,10 +1,14 @@
 import { useRef} from "react"
 import { FaSlidersH } from "react-icons/fa"
+import { useSelector } from "react-redux"
 import { Modal } from "../../../../../components/modal/modal"
 import { SubscriberModalContent } from "../subscribercomponent/subscriberForm"
-import {UsersListContainer } from "./listtable"
+import { SubscriberTable } from "../subscriberTable"
 
 export const ListContent =()=>{
+    const subsriber = useSelector(
+        state => state.subscriber
+    )
     const hidemodal = useRef(null);
     return(
         <>
@@ -18,16 +22,18 @@ export const ListContent =()=>{
                     My lists
                 </div>
             </div>
-            <UsersListContainer/>
-                    <Modal
-                        title="Edit your mail list"
-                        body={
-                            <SubscriberModalContent
-                                hidemodal={hidemodal}
-                            />
-                        }
+            <SubscriberTable
+                content={subsriber}
+            />
+            <Modal
+                title="Edit your mail list"
+                body={
+                    <SubscriberModalContent
                         hidemodal={hidemodal}
                     />
+                }
+                hidemodal={hidemodal}
+            />
             
         </>
     )

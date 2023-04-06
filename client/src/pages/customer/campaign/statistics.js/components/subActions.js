@@ -19,7 +19,7 @@ export const Actions=({setListSection})=>{
                     <select 
                         name="sort" 
                         id="sort"
-                        className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
+                        className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
                         >
                         {
                             [
@@ -50,7 +50,7 @@ export const Actions=({setListSection})=>{
                     <select 
                         name="sort" 
                         id="sort"
-                        className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
+                        className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
                         >
                         {
                             [
@@ -81,7 +81,7 @@ export const Actions=({setListSection})=>{
                     <select 
                         name="sort" 
                         id="sort"
-                        className="fs-5 p-2 me-3 rounded b-gainsboro mb-1"
+                        className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
                         >
                         {
                             [

@@ -1,9 +1,9 @@
 import { useRef } from "react"
-import { FaSlidersH, FaUserFriends } from "react-icons/fa"
+import { FaUserFriends } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { Modal } from "../../../../../components/modal/modal"
+import { SubscriberTable } from "../subscriberTable"
 import { SubscriberModalContent } from "./subscriberForm"
-import { SubContainer } from "./subscribertable"
 
 export const SubsrcibersContent =()=>{
     const hidemodal = useRef(null);
@@ -26,7 +26,9 @@ export const SubsrcibersContent =()=>{
             <p className="mb-5 fs-5 fw-bold">
                 {subscriber.subscribers.length} Subscribers
             </p>
-            <SubContainer/>
+            <SubscriberTable
+                content={subscriber}
+            />
             <Modal
                 title="New Subscribers"
                 body={

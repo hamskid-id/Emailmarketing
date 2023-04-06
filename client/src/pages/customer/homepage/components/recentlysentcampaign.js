@@ -24,28 +24,38 @@ export const RecentlySent=()=>{
                      Recently sent campaigns
                 </h2>
             </div>
-            <div className="w-100">
-                <select 
-                    name="campains" 
-                    id="campains"
-                    className="fs-6 p-2 rounded text-white b-grey campains-select"
-                    >
-                    {
-                         Tags?.Tags?.map((drop,index)=>{
-                            const {
-                                name
-                            }=drop
-                            return(
-                                <option 
-                                    value={name}
-                                    key={index}
-                                >{name}
-                                </option>
-                            )
-                        })
-                    }
-                </select>
-            </div>
+
+            {/*Tags Created*/}
+
+            {
+                Tags?.Tags.length !==0 &&(
+                    <div className="w-100">
+                        <select 
+                            name="campains" 
+                            id="campains"
+                            className="fs-6 p-2 rounded text-white b-grey campains-select"
+                            >
+                            {
+                                Tags?.Tags?.map((drop,index)=>{
+                                    const {
+                                        name
+                                    }=drop
+                                    return(
+                                        <option 
+                                            value={name}
+                                            key={index}
+                                        >{name}
+                                        </option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+                )
+            }
+
+            {/*Recently sent campaign*/}
+
             <div className="mt-3">
                 {
                     recentCampaigns.recentCampaigns?.map((camp,index)=>{
@@ -59,54 +69,46 @@ export const RecentlySent=()=>{
                             <div 
                                 key={index}
                                 className="d-flex wrap justify-content-between">
-                                <div 
-                                    className="d-flex wt-50 mb-3"
-                                    >
-                                    <div>
-                                        <span className="rounded border px-2 py-1 me-3">
-                                            Title
-                                        </span>
-                                    </div>
-                                    <span className="text-primary break">
-                                        {title}
-                                    </span>
-                                </div>
-                                <div 
-                                    className="d-flex wt-50 mb-3"
-                                    >
-                                    <div>
-                                        <span className="rounded border px-2 py-1 me-3">
-                                            From
-                                        </span>
-                                    </div>
-                                    <span className="text-primary break">
-                                        {from_email}
-                                    </span>
-                                </div>
-                                <div 
-                                    className="d-flex wt-50 mb-3"
-                                    >
-                                    <div>
-                                        <span className="rounded border px-2 py-1 me-3">
-                                            Subject
-                                        </span>
-                                    </div>
-                                    <span className="text-primary break">
-                                        {subject}
-                                    </span>
-                                </div>
-                                <div 
-                                    className="d-flex wt-50 mb-3"
-                                    >
-                                    <div>
-                                        <span className="rounded border px-2 py-1 me-3">
-                                            Recipient
-                                        </span>
-                                    </div>
-                                    <span className="text-primary break">
-                                        {reply_to}
-                                    </span>
-                                </div>
+                                    {
+                                        [
+                                            {
+                                                "title":"Title",
+                                                "value":title
+                                            },
+                                            {
+                                                "title":"From",
+                                                "value":from_email
+                                            },
+                                            {
+                                                "title":"Subject",
+                                                "value":subject
+                                            },
+                                            {
+                                                "title":"Recipient",
+                                                "value":reply_to
+                                            },
+                                        ].map((details,index)=>{
+                                            const{
+                                                title,
+                                                value
+                                            }=details;
+                                            return(
+                                                <div 
+                                                    className="d-flex wt-50 mb-3"
+                                                    key={index}
+                                                    >
+                                                    <div>
+                                                        <span className="rounded border px-2 py-1 me-3">
+                                                            {title}
+                                                        </span>
+                                                    </div>
+                                                    <span className="text-primary break">
+                                                        {value}
+                                                    </span>
+                                                </div>
+                                            )
+                                        })
+                                    }
                             </div>
                         )
                     })

@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { FaSlidersH } from "react-icons/fa"
+import { FaUserFriends } from "react-icons/fa"
 import { Modal } from "../../../../../components/modal/modal"
 import { CollaboratorForm } from "../collabcomponent/collaboratorForm"
 import { InvitesContainer } from "./invitesTable"
@@ -11,7 +11,7 @@ export const InvitesContent =()=>{
         <>
             <div className="d-flex align-items-center mb-5">
                 <span className="me-3">
-                    <FaSlidersH
+                   <FaUserFriends
                         size="1.5rem"
                         color="grey"
                     />
