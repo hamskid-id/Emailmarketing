@@ -30,7 +30,6 @@ export const CustomFormField =({
                                 role="status" 
                                 aria-hidden="true">
                             </span>
-                                Submitting...Please wait
                         </button>
                     ):(
                         <button 

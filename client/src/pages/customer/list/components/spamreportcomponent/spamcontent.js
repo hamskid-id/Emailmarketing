@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { FaTags } from "react-icons/fa"
+import { FaUserFriends } from "react-icons/fa"
 import { Modal } from "../../../../../components/modal/modal"
 import { CreateSpam } from "./spamform"
 import { SpamContainer } from "./spamtable"
@@ -10,9 +10,9 @@ export const SpamsContent =()=>{
         <>
             <div className="d-flex align-items-center mb-5">
                 <span className="me-3">
-                    <FaTags
+                    <FaUserFriends
                         size="1.5rem"
-                        color='grey'
+                        color="grey"
                     />
                 </span>
                 <div className="fs-2">

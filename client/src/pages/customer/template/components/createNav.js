@@ -10,7 +10,7 @@ export const CreateNav =({
             <span>
                 <div className="d-flex align-items-center">
                     <FaMailBulk
-                        size="3.5rem"
+                        size="2.5rem"
                         color="white"
                         onClick={
                             ()=>navigate("/")

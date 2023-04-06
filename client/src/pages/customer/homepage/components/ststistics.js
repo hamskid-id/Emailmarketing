@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FaCircleNotch } from "react-icons/fa";
+import { FaRegChartBar } from "react-icons/fa";
 import { LineChart } from "../../../../components/linechart";
 import { userdata } from "../../campaign/component/userdata";
 
@@ -24,7 +24,7 @@ export const CamapaignMetrics=()=>{
         <>
             <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <FaRegChartBar
                         size="1.5rem"
                         color="grey"
                     />

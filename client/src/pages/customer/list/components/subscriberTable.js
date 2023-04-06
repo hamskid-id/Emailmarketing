@@ -1,37 +1,41 @@
 import {useState } from "react";
-import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
+import { FaCartArrowDown} from "react-icons/fa";
 import {useSelector } from "react-redux";
-import Spinner from "../../../../../components/spinner/spinner";
-import { Actions } from "../subscribercomponent/subAction";
+import Spinner from "../../../../components/spinner/spinner";
+import { Actions } from "./subAction";
 
-export const UsersListContainer =()=>{
-    const subsriber = useSelector(
-        state => state.subscriber
-    )
-    const[
-        itemToDelete,
-        setItemToDelete
-    ]=useState([])
+export const SubscriberTable=({
+    content
+})=>{
+        const subsriber = useSelector(
+            state => state.subscriber
+        )
 
-    if(subsriber.GetSubscribersStatus ==='pending'){
-        return <Spinner/>
-    }
-    const handleChange=(e,{id})=>{
-        const newArray = itemToDelete.filter(item=>item!==id)
-        setItemToDelete((prevState)=>{
-            if(e.target.checked){
-                return[
-                ...prevState,
-                    id
-                ]
-            }else{
-                return newArray
-            }
-        })
-        
-    }
-        return(
-            <>
+        const[
+            itemToDelete,
+            setItemToDelete
+        ]=useState([])
+
+        if(subsriber.GetSubscribersStatus ==='pending'){
+            return <Spinner/>
+        }
+        const handleChange=(e,{id})=>{
+            const newArray = itemToDelete.filter(item=>item!==id)
+            setItemToDelete((prevState)=>{
+                if(e.target.checked){
+                    return[
+                    ...prevState,
+                        id
+                    ]
+                }else{
+                    return newArray
+                }
+            })
+            
+        }
+
+    return(
+        <>
             <Actions
                 deleteArray={itemToDelete}
             />
@@ -53,7 +57,7 @@ export const UsersListContainer =()=>{
                     </thead>
                     <tbody>
                         {
-                            subsriber
+                            content
                                 .subscribers?.map((sub,index)=>{
                                     const{
                                         email,
@@ -129,22 +133,20 @@ export const UsersListContainer =()=>{
                     </tbody>
                 </table>
             </div>
-                 
-                 {
-                    subsriber
-                    .subscribers?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                            <FaCartArrowDown
-                                color="grey"
-                                size="7rem"
-                            />
-                            <p className="fw-bold">
-                                Your List is presently empty
-                            </p>
-                        </div>
-                    )
-                }
-            </>
-           
-        )
+            {
+                content
+                .subscribers?.length === 0 &&(
+                    <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
+                        <FaCartArrowDown
+                            color="grey"
+                            size="7rem"
+                        />
+                        <p className="fw-bold">
+                            Your List is presently empty
+                        </p>
+                    </div>
+                )
+            }
+        </>
+    )
 }
