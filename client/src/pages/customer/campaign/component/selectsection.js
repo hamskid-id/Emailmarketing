@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom"
 export const SelectTypeSection=()=>{
     const navigate = useNavigate();
     return(
-        <>
-            <div className="d-flex align-items-center">
+        <div>
+            <div className="d-flex align-items-center bg-lightBlue pdx-4 pb-3 mb-3">
                 <span className="me-3">
                     <FaRegCompass
                         size="1.5rem"
@@ -15,7 +15,7 @@ export const SelectTypeSection=()=>{
                     Select campaign type
                 </span>
             </div>
-            <div>
+            <div className="pdx-4">
                 {
                     [
                         {
@@ -78,6 +78,6 @@ export const SelectTypeSection=()=>{
                     })
                 }
             </div>
-        </>
+        </div>
     )
 }

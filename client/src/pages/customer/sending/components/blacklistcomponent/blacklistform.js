@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
 import { CreateBlacklist } from "../../../../../store/BlacklistedSlice";
+import { useEffect } from "react";
 
-export const AddBlacklist =()=>{
+export const AddBlacklist =({hidemodal})=>{
     const blacklist = useSelector(
         state => state.blacklist
     )
@@ -24,6 +25,13 @@ export const AddBlacklist =()=>{
         )
         
     }
+
+    useEffect(()=>{
+        if(blacklist.CreateBlacklistStatus ==="success"){
+            hidemodal.current.click()
+        }
+    },[blacklist.CreateBlacklistStatus,hidemodal])
+
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>
