@@ -21,7 +21,6 @@ export const ListContent =()=>{
                         color="grey"
                     />
                 }
-                subNumber={subscriber.subscribers.length}
                 tableContainer={<SubscriberTable
                         content={subscriber}
                     />}

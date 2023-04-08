@@ -4,6 +4,10 @@
 .navbrand{
   display:none;
 }
+
+.leftIcon{
+  margin-left:auto;
+}
 .imgBg{
   background-image: url(https://demo.acellemail.com/core/ux/image/login-bg.png?v=122);
   background-repeat: no-repeat;
@@ -410,9 +414,6 @@ i.mdi.mdi-account {
   }
   .bg-slate-grey {
     background-color: #252727;
-  }
-  .leftIcon{
-    margin-left:auto;
   }
   .stat{
     margin-right:0.5rem;

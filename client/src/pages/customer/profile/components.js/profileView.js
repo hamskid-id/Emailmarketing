@@ -17,11 +17,11 @@ export const ProfileView =()=>{
     })
 
     return(
-        <div className="mt-5">
-            <p className="fs-1 cl-blue fw-bold text-center">
+        <div className="pt-5 bg-lightBlue">
+            <p className="fs-1 cl-blue fw-bold text-center pdx-4">
                 {auth.userdata?.user?.name}
             </p>
-            <div className="d-flex align-items-center w-overflow mt-4">
+            <div className="d-flex align-items-center w-overflow mt-4 pdx-4">
                 {
                     [
                         {
@@ -68,8 +68,8 @@ export const ProfileView =()=>{
                     })
                 }
             </div>
-            <hr className="b-grey mt-0"/>
-            <div>
+            <hr className="b-grey mt-0 pdx-4"/>
+            <div className="bg bg-white pdx-4">
                 {
                     ListSection.components
                 }
