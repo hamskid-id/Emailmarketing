@@ -66,10 +66,10 @@ export const Subscribers=()=>{
                 </h2>
             </div>
             <div className="chat-flex align-items-end wrap">
-                <div className="my-3 rounded border bar-container me-3 w-63">
+                <div className="my-3 rounded bg bg-white bar-container me-3 w-63">
                     <BarChart data={userData}/>
                 </div>                  
-                <div className="my-3 rounded border chat-container me-3 w-32">
+                <div className="my-3 rounded bg bg-white chat-container me-3 w-32">
                     <PieChart data={subData}/>
                 </div>                  
             </div>

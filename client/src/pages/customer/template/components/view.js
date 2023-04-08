@@ -9,8 +9,8 @@ export const TemplateView =()=>{
         SetActiveView
     ]=useState("myList");
     return(
-        <div className="py-3">
-            <div className="d-flex align-items-center mb-3">
+        <div className="pb-3">
+            <div className="d-flex align-items-center pb-3 pdx-4 bg-lightBlue pt-3">
                 <span className="me-3">
                     <FaTable
                         size="1.5rem"
@@ -21,9 +21,9 @@ export const TemplateView =()=>{
                     Templates
                 </div>
             </div>
-            <div className="d-flex wrap justify-content-end mb-5">
+            <div className="d-flex wrap justify-content-end pb-3 pdx-4 mb-3 bg-lightBlue">
                 <div 
-                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 border-drakslate-grey mrx-5 mbm-2"
+                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 bg bg-white mrx-5 mbm-2"
                     onClick={
                         ()=>SetActiveView("myList")
                     }
@@ -53,7 +53,7 @@ export const TemplateView =()=>{
                     </span>
                 </div>
             </div>
-            <div>
+            <div className="pdx-4">
                 {
                     activeView === 'myList'?
                     <MyTemplateList/>:

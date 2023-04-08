@@ -98,11 +98,11 @@ export const RecentlySent=()=>{
                                                     key={index}
                                                     >
                                                     <div>
-                                                        <span className="rounded border px-2 py-1 me-3">
+                                                        <span className="rounded bg-slate-grey text-white px-2 py-1 me-3">
                                                             {title}
                                                         </span>
                                                     </div>
-                                                    <span className="text-primary break">
+                                                    <span className="text-dark break">
                                                         {value}
                                                     </span>
                                                 </div>

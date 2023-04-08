@@ -1,4 +1,4 @@
-import {FaTimesCircle} from "react-icons/fa";
+import {FaTimes} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AccordionsRoutes, ListRoute } from "./routes";
 import { motion } from "framer-motion";
@@ -51,7 +51,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                    />
                 </span>
                 <span className="hide-toggler">
-                    <FaTimesCircle
+                    <FaTimes
                         size="2rem"
                         color="white"
                         onClick={hideNav}

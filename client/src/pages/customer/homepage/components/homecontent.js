@@ -12,19 +12,29 @@ export const HomeView =()=>{
     )
     return(
         <div className="pb-3">
-            <p 
-                className="fs-2"
-            >
-                Hello, {auth.userdata?.user?.name}!
-            </p>
-            <h5 className="fs-6">Welcome back to your account dashboard.</h5>
-            <h5 className="fs-6">Check out your email campaigns' performance statistics and personalized tips from our insight reports.</h5>
-            <SubscriberStat/>
-            <CreditWrapper/>
-            <RecentlySent/>
-            <Subscribers/>
-            <Rate/>
-            <ActivitiesLog/>
+            <div className="bg-lightBlue pt-2 pb-3 pdx-4">
+                <h6
+                >
+                    Hello, {auth.userdata?.user?.name}!
+                </h6>
+                <h5 className="fs-6">Welcome back to your account dashboard.</h5>
+                <h5 className="fs-6">Check out your email campaigns' performance statistics and personalized tips from our insight reports.</h5>
+                <SubscriberStat/>
+            </div>
+            <div className="pdx-4">
+                <CreditWrapper/>
+                <RecentlySent/>
+            </div>
+            
+            <div className="pdx-4 bg-lightBlue py-2">
+                <Subscribers/>
+            </div>
+            <div className="pdx-4">
+                <Rate/>
+            </div>
+            <div className="pdx-4 bg-lightBlue py-2">
+                <ActivitiesLog/>
+            </div>
         </div>
     )
 }

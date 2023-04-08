@@ -15,7 +15,7 @@ export const ActivitiesLog =()=>{
                 <CamapaignMetrics/>
             </div>
             <div className="col-md-6">
-            <div className="d-flex align-items-center mt-3 mb-3">
+            <div className="d-flex align-items-center mt-3 mb-0">
                 <span className="me-3">
                    <FaRegClone
                         size="1.5rem"
@@ -33,7 +33,7 @@ export const ActivitiesLog =()=>{
                     activities.activities?.length ===0?(
                         <p className="fs-5 text-center c-grey">Your activities log is empty</p>
                     ) :(
-                        <div className="mb-2 h5-overflow mt-3 py-1">
+                        <div className="mb-2 h5-overflow mt-2 py-1 bg-lightBlue">
                         {
                             activities.activities?.map((active,index)=>{
                                 const{
@@ -45,7 +45,7 @@ export const ActivitiesLog =()=>{
                                         key={index} 
                                         className="row align-items-center">
                                         <div className="col-md-12">
-                                            <div className="d-flex flex-column align-items-start py-2 px-3 my-1 bg bg-white wrap">
+                                            <div className="d-flex flex-column align-items-start pt-2 px-3 my-1 bg bg-white wrap">
                                                 <FaUserCircle  
                                                     size="1.5rem"
                                                     color="gainsboro"

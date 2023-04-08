@@ -17,8 +17,8 @@ export const AllCampaignComponent =()=>{
         dispatch(GetCampaigns());
     },[dispatch])
     return(
-        <div className="py-3">
-            <div className="d-flex align-items-center mb-5">
+        <div className="pb-3">
+            <div className="d-flex align-items-center pb-3 pt-2 mb-3 bg-lightBlue pdx-4">
                 <span className="me-3">
                     <FaPaperPlane
                         size="1.5rem"
@@ -32,7 +32,7 @@ export const AllCampaignComponent =()=>{
             {
                 campaign.GetCampaignsStatus ==='pending'?
                 <Spinner/>:(
-                    <div className="w-overflow">
+                    <div className="w-overflow pdx-4">
                         <AllcampaignView/>
                     </div>
                 )

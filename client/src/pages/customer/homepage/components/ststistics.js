@@ -22,7 +22,7 @@ export const CamapaignMetrics=()=>{
     });
     return(
         <>
-            <div className="d-flex align-items-center mt-3 mb-3">
+            <div className="d-flex align-items-center mt-3 mb-1">
                 <span className="me-3">
                    <FaRegChartBar
                         size="1.5rem"
@@ -36,7 +36,7 @@ export const CamapaignMetrics=()=>{
                 </h2>
             </div>
             <div className="chat-flex align-items-end wrap">
-                <div className="my-3 rounded border p-3 bar-container me-3 w-100">
+                <div className="my-3 rounded bg-white p-3 bar-container me-3 w-100">
                     <LineChart data={userData}/> 
                 </div>
             </div>

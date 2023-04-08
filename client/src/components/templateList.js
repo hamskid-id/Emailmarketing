@@ -56,6 +56,7 @@ export const MyTemplateList =({
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col"></th>
+                            <th scope="col">Thumbnail</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Created At</th>
@@ -82,6 +83,13 @@ export const MyTemplateList =({
                                                 className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
                                                 type="checkbox"
                                                 onChange={(e)=>handleChange(e,{id})}
+                                            />
+                                        </td>
+                                        <td>
+                                            <img 
+                                                src="https://res.cloudinary.com/hamskid/image/upload/v1675956824/thumb_ymavb0.svg"
+                                                alt="object not found"
+                                                className="w-50"
                                             />
                                         </td>
                                         <td>{template_name}</td>

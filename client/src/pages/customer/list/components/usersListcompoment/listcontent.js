@@ -1,40 +1,37 @@
 import { useRef} from "react"
-import { FaSlidersH } from "react-icons/fa"
 import { useSelector } from "react-redux"
-import { Modal } from "../../../../../components/modal/modal"
 import { SubscriberModalContent } from "../subscribercomponent/subscriberForm"
 import { SubscriberTable } from "../subscriberTable"
+import { Tablelayout } from "../tableContentLayout"
+import { FaUserFriends } from "react-icons/fa"
 
 export const ListContent =()=>{
-    const subsriber = useSelector(
+    const subscriber = useSelector(
         state => state.subscriber
     )
     const hidemodal = useRef(null);
     return(
         <>
-            <div className="d-flex align-items-center mb-5">
-                <span className="me-3">
-                    <FaSlidersH
+            <Tablelayout
+                hidemodal={hidemodal}
+                title="my Lists"
+                titleIcon={
+                    <FaUserFriends
                         size="1.5rem"
+                        color="grey"
                     />
-                </span>
-                <div className="fs-1">
-                    My lists
-                </div>
-            </div>
-            <SubscriberTable
-                content={subsriber}
-            />
-            <Modal
-                title="Edit your mail list"
-                body={
+                }
+                subNumber={subscriber.subscribers.length}
+                tableContainer={<SubscriberTable
+                        content={subscriber}
+                    />}
+                modalBody={                  
                     <SubscriberModalContent
                         hidemodal={hidemodal}
                     />
                 }
-                hidemodal={hidemodal}
+                modalTitle="Add Subscriber"
             />
-            
         </>
     )
 }

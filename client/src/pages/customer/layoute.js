@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import LetteredAvatar from 'react-lettered-avatar';
 import { useDispatch, useSelector } from "react-redux";
 import { Brand } from "../../components/navbarbrand";
-import {FaExclamationTriangle, FaTimesCircle} from "react-icons/fa";
+import {FaExclamationTriangle, FaSistrix, FaTimesCircle} from "react-icons/fa";
 import { AlertModal } from "../../components/modal/alertModal";
 import { LogOutUser } from "../../store/authSlice";
 
@@ -44,6 +44,7 @@ export const Layout=({routeChildren})=>{
                 </div>
                 <div className="col-md-10 dashboardvh bg bg-white">
                         <div>
+                            {/* navHeader */}
                             <div className="d-flex justify-content-between pdx-4 navHeader align-items-center">
                                 <span className="navbrand">
                                     <Brand
@@ -52,33 +53,42 @@ export const Layout=({routeChildren})=>{
                                     />
                                 </span>
                                 <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
-                                <span className="d-flex align-items-center justify-content-end">
-                                    <div className="d-flex align-items-center my-3">
-                                        <span className="me-2 dropdown">
-                                            <span 
-                                                className="dropdown-toggle d-flex align-items-center" 
-                                                data-bs-toggle="dropdown" 
-                                                aria-expanded="false">
-                                                <LetteredAvatar
-                                                    backgroundColor="brown"
-                                                    color="white"
-                                                    size={38}
-                                                    name={auth.userdata?.user?.name}
-                                                />
+                                <div className="d-flex align-items-center leftIcon">
+                                    <span className="me-2 p-2 rounded-circle bg bg-white">
+                                        <FaSistrix
+                                            size="1.4rem"
+                                            color="grey"
+                                        />
+                                    </span>
+                                    <span className="d-flex align-items-center justify-content-end">
+                                        <div className="d-flex align-items-center my-3">
+                                            <span className="me-2 dropdown">
+                                                <span 
+                                                    className="dropdown-toggle d-flex align-items-center" 
+                                                    data-bs-toggle="dropdown" 
+                                                    aria-expanded="false">
+                                                    <LetteredAvatar
+                                                        backgroundColor="brown"
+                                                        color="white"
+                                                        size={38}
+                                                        name={auth.userdata?.user?.name}
+                                                    />
+                                                </span>
+                                                <ul className="dropdown-menu">
+                                                    <li>
+                                                        <a 
+                                                            className="dropdown-item" 
+                                                            href="/account/profile">
+                                                            Profile
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </span>
-                                            <ul className="dropdown-menu">
-                                                <li>
-                                                    <a 
-                                                        className="dropdown-item" 
-                                                        href="/account/profile">
-                                                        Profile
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </span>
-                                     </div>                                   
-                                </span>
+                                        </div>                                   
+                                    </span>
+                                </div>
                             </div>
+                             {/* Route Children */}
                             <div className="children">
                             {
                                 routeChildren

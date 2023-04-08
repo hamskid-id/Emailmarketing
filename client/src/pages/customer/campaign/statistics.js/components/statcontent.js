@@ -20,6 +20,7 @@ export const CampaignStatisticsContent =()=>{
         })
     return(
         <>
+            <div className="pdx-4 bg-lightBlue">
             <p className="fs-1">Special offer!</p>
             {
                 <div className="d-flex align-items-start w-overflow mt-4 mb-3">
@@ -168,7 +169,8 @@ export const CampaignStatisticsContent =()=>{
                     }
                 </div>
             }
-            <div>
+            </div>
+            <div className="pdx-4">
                 {
                     ListSection.components?ListSection.components:<Overview 
                         ListSection={ListSection}

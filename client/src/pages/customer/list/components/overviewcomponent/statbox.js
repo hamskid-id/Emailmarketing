@@ -52,9 +52,9 @@ export const SubscriberStat =()=>{
                     return(
                         <div 
                             key={index}
-                            className="bg-azur rounded">
+                            className="bg-azur rounded stat">
                             <div 
-                                className="m-2 rounded p-2 border w-15 bg-white">
+                                className="m-2 rounded p-2 w-15 bg-white">
                                 <p className="fw-bold">
                                     {name}
                                 </p>
@@ -62,16 +62,16 @@ export const SubscriberStat =()=>{
                                     {amount}
                                 </p>
                                 <div className="d-flex align-items-center justify-content-between wrap">
-                                    <span 
-                                        className="text-success fw-bold"
+                                    <h6
+                                        className="text-dark"
                                         onClick={
                                             ()=>navigate(route)
                                         }>
                                         see all {name}
-                                    </span>
-                                    <span className="p-1 rounded bg-lightblue">
+                                    </h6>
+                                    <span className="p-1 rounded bg-lightBlue">
                                        <FaCodiepie
-                                            color="goldenrod"
+                                            color="grey"
                                         />
                                     </span>
                                 </div>

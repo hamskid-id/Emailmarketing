@@ -24,7 +24,7 @@
   height:86vh;
 }
 .bg-progress-success{
-  background-color: #198754;
+  background-color: #252727;
   background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
   background-size: 1rem 1rem;
 }
@@ -55,7 +55,7 @@ input[id="upload"]{
 }
 
 .border-bottom-slate-grey{
-  border-bottom:4px solid #122D36;
+  border-bottom:4px solid #252727;
 }
 .dotted{
   border:1px dotted grey;
@@ -71,11 +71,11 @@ input[id="upload"]{
   overflow-y: auto;
 }
 .accordion-item{
-  background-color: #122D36;
+  background-color: #252727;
 }
 .accordion-item:first-of-type .accordion-button{
-  background-color:#122D36;
-  border:#122D36;
+  background-color:#252727;
+  border:#252727;
   color:white;
 }
 .campains-select{
@@ -135,7 +135,7 @@ input[id="upload"]{
   padding: 2rem;
 }
 .text-slategrey{
-  color:#122D36;
+  color:#252727;
 }
 .w-89{
   width:89%;
@@ -143,10 +143,11 @@ input[id="upload"]{
 .overflow-x{
   overflow-x:auto;
 }
-.children{
-  margin-top: 1rem;
-  margin-bottom: 3rem;
+.spaceAround{
   padding:0 1.5rem 0 1.5rem;
+}
+.children{
+  margin-bottom: 3rem;
 }
 .bar-container{
   position:relative;
@@ -186,7 +187,7 @@ input[id="upload"]{
 }
 .bg-fade{
   background: #F8FDFF;
-  box-shadow: 0.75px 1.5px 8px 0.5px #122D36;
+  box-shadow: 0.75px 1.5px 8px 0.5px #252727;
   border-radius: 8px;
 }
 .row {
@@ -207,7 +208,7 @@ input[id="upload"]{
   background-color: grey;
 }
 .border-drakslate-grey{
-  border: 1px solid #122D36;
+  border: 1px solid #252727;
 }
 .b-gainsboro{
   background-color: gainsboro;
@@ -264,7 +265,7 @@ i.mdi.mdi-account {
   display: flex;
 }
 .bg-slate-grey{
-  background-color: #122D36;
+  background-color: #252727;
 }
 .w-overflow{
   width:100%;
@@ -290,6 +291,7 @@ i.mdi.mdi-account {
   z-index: 1;
   width: 100%;
   top: 0;
+  background:#F4F6F7;
 }
 .fl-r{
   float: right;
@@ -324,7 +326,7 @@ i.mdi.mdi-account {
 }
 
 .App-header {
-  background-color: #122D36;
+  background-color: #252727;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -355,11 +357,14 @@ i.mdi.mdi-account {
 .wt-75{
   width:75%;
 }
+.bg-lightBlue{
+  background:#F4F6F7;
+}
 .bg-blue{
-  color:darkslategray;
+  color:#252727;
 }
 .cl-blue{
-  color:darkslategray;
+  color:#252727;
 }
 .mt-7{
   margin-top: 7rem;
@@ -394,26 +399,23 @@ i.mdi.mdi-account {
     width:100%;
   }
   .brand{
-    color:#122D36;
+    color:#252727;
   }
   .navbrand{
-    display:block;
+    display:none;
   }
 
   .pde-2{
     padding-right:0;
   }
   .bg-slate-grey {
-    background-color: #122D36;
+    background-color: #252727;
   }
-  .navHeader{
-    position:fixed;
-    background-color: white;
-    border-bottom:1px solid #dee2e6;
-
+  .leftIcon{
+    margin-left:auto;
   }
-  .children {
-    margin-top: 7rem;
+  .stat{
+    margin-right:0.5rem;
   }
   .pdx-5{
     padding-right: 1rem;

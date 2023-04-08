@@ -11,7 +11,7 @@ export const CreateNav =({
                 <div className="d-flex align-items-center">
                     <FaMailBulk
                         size="2.5rem"
-                        color="white"
+                        color="#FF7A50"
                         onClick={
                             ()=>navigate("/")
                         }
