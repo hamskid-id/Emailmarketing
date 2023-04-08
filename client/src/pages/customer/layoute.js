@@ -11,7 +11,7 @@ import {FaExclamationTriangle, FaSistrix, FaTimesCircle} from "react-icons/fa";
 import { AlertModal } from "../../components/modal/alertModal";
 import { LogOutUser } from "../../store/authSlice";
 
-export const Layout=({routeChildren})=>{
+export const Layout=({routeChildren,main})=>{
     const dispatch = useDispatch();
     const navToggler = useRef(null);
     const navigate = useNavigate();
@@ -52,7 +52,7 @@ export const Layout=({routeChildren})=>{
                                         iconColor="#122D36"
                                     />
                                 </span>
-                                <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
+                                { main && <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>}
                                 <div className="d-flex align-items-center leftIcon">
                                     <span className="me-2 p-2 rounded-circle bg bg-white">
                                         <FaSistrix
