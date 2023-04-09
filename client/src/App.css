@@ -402,6 +402,11 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .bar-container{
+    position:relative;
+    height: 21rem;
+    margin-right: 0rem;
+  }
   .w-89{
     width:100%;
   }
