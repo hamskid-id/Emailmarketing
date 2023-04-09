@@ -14,6 +14,7 @@ export const HomeView =()=>{
         <div className="pb-3">
             <div className="bg-lightBlue pt-2 pb-3 pdx-4">
                 <h6
+                    className="fw-bold"
                 >
                     Hello, {auth.userdata?.user?.name}!
                 </h6>

@@ -104,7 +104,7 @@ export const CreateCampaignContent =()=>{
                         Untitled
                     </span>
                 </div>
-                <div className="d-flex align-items-center w-overflow mt-4 mb-0 pdx-4">
+                <div className="d-flex align-items-center w-overflow pt-4 mb-0 pdx-4 bg-lightBlue">
                     {
                         sections?.map((section,index)=>{
                             const{

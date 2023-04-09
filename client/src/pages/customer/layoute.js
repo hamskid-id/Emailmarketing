@@ -33,7 +33,7 @@ export const Layout=({routeChildren,main})=>{
         <div className="container-fluid">
             <div className="row no-wrap">
                 <div 
-                    className="col-md-2 px-3 sideNav bg-slate-grey w-230" 
+                    className="col-md-2 px-3 sideNav bg-slate-grey" 
                     ref={navToggler}
                 >
                    <SideNav 

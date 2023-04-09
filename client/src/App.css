@@ -5,9 +5,9 @@
   display:none;
 }
 
-.leftIcon{
-  margin-left:auto;
-}
+  .leftIcon{
+    margin-left:auto;
+  }
 .imgBg{
   background-image: url(https://demo.acellemail.com/core/ux/image/login-bg.png?v=122);
   background-repeat: no-repeat;
@@ -36,17 +36,20 @@
   padding-right: 1rem;
 }
 .h5-overflow{
-  height:22rem;
+  height:21.3rem;
   overflow-y: auto;
 }
 .w-63{
   width:63%;
 }
+.stat{
+  margin-right:0.5rem;
+}
 .mobile-logo{
   display:none;
 }
 .w-32{
-  width:32%;
+  width:35%;
 }
 .c-grey{
   color:grey;
@@ -156,7 +159,7 @@ input[id="upload"]{
 .bar-container{
   position:relative;
   height: 21rem;
-  padding: 2rem;
+  margin-right: 1rem;
 }
 .campaign-select{
   width:40%;
@@ -171,7 +174,7 @@ input[id="upload"]{
   height:9.5rem
 }
 .w-15{
-  width:16.5rem;
+  width:14.9rem;
 }
 .h-100{
   height: 100%;
@@ -414,9 +417,6 @@ i.mdi.mdi-account {
   }
   .bg-slate-grey {
     background-color: #252727;
-  }
-  .stat{
-    margin-right:0.5rem;
   }
   .pdx-5{
     padding-right: 1rem;

@@ -65,11 +65,11 @@ export const Subscribers=()=>{
                     List growth
                 </h2>
             </div>
-            <div className="chat-flex align-items-end wrap">
-                <div className="my-3 rounded bg bg-white bar-container me-3 w-63">
+            <div className="chat-flex align-items-end wrap justify-content-between">
+                <div className="my-3 rounded bg bg-white bar-container w-63">
                     <BarChart data={userData}/>
                 </div>                  
-                <div className="my-3 rounded bg bg-white chat-container me-3 w-32">
+                <div className="my-3 rounded bg bg-white chat-container w-32">
                     <PieChart data={subData}/>
                 </div>                  
             </div>

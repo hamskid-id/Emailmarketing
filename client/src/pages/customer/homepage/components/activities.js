@@ -28,12 +28,12 @@ export const ActivitiesLog =()=>{
                     Activity log
                 </h2>
             </div>
-            <div>
+            <div className="py-3">
                 {
                     activities.activities?.length ===0?(
                         <p className="fs-5 text-center c-grey">Your activities log is empty</p>
                     ) :(
-                        <div className="mb-2 h5-overflow mt-2 py-1 bg-lightBlue">
+                        <div className="mb-2 h5-overflow pb-1 bg-lightBlue">
                         {
                             activities.activities?.map((active,index)=>{
                                 const{
