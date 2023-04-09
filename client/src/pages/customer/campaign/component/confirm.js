@@ -69,7 +69,7 @@ export const Confirm =({
     return(
         <div className="d-flex flex-column justify-content-center m-auto wt-75">
             <p className="fs-2 text-center fw-bold">You're all set to send!</p>
-            <p className="fs-6 text-center">Review the feedback below before sending your campaignParams.</p>
+            <p className="fs-6 text-center">Review the feedback below before sending your Campaign.</p>
             <AllFieldSection
                  setCampaignSection={setCampaignSection}
                  setCampaignparams={setCampaignparams}
