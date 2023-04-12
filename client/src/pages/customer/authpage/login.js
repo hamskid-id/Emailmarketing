@@ -21,7 +21,8 @@ export const LoginView =()=>{
             LogInUser({
                 email,
                 password,
-                remember
+                remember,
+                name
             })
             
         )
