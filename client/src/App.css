@@ -42,6 +42,9 @@
 .w-63{
   width:63%;
 }
+.btn{
+  font-size:0.8rem;
+}
 .stat{
   margin-right:0.5rem;
 }
@@ -94,6 +97,11 @@ input[id="upload"]{
 .w-fit-content{
   width:fit-content;
 }
+.rdw-editor-wrapper {
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  padding: 1rem;
+}
 .accordion-button:not(.collapsed) {
   box-shadow:none;
   }
@@ -105,6 +113,10 @@ input[id="upload"]{
 }
 .w-97{
   width:97%;
+}
+.clickable:hover{
+  cursor: pointer;
+  filter:brightness(0.8)
 }
 .grid{
   display: grid;
@@ -319,6 +331,7 @@ i.mdi.mdi-account {
 .pd-1,.pdw-1{
   padding: 1rem;
 }
+
 .pdx-5{
   padding-right: 3rem;
   padding-left:3rem;
@@ -358,9 +371,7 @@ i.mdi.mdi-account {
 .border-ghostwhite{
   border: 1px solid ghostwhite;
 }
-.w-230{
-  width: 230px;
-}
+
 .wt-75{
   width:75%;
 }
@@ -387,6 +398,11 @@ i.mdi.mdi-account {
 }
 .wrap-m{
   flex-wrap:nowrap;
+}
+@media only screen and (min-width:728px) and (max-width:1024px){
+  .w-230{
+    width: 230px;
+  }
 }
 @media only screen and (min-width: 767px) and (max-width: 1020px) {
   .sideiconflex,.createflex{

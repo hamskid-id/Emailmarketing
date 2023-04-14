@@ -6,7 +6,7 @@ export const Brand =({handleClick,iconColor})=>{
             <span className="me-2">
                 <FaMailBulk
                     size="2.5rem"
-                    color="#FF7A50"
+                    color="#3498db"
                     onClick={handleClick }
                 />
             </span>

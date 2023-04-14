@@ -107,7 +107,7 @@ export const CreateCampaigns  = createAsyncThunk(
         content_type,
         schedule_date,
         status
-    },{rejectWithValue,dispatch}) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/createcampaigns`,{
@@ -132,7 +132,7 @@ export const CreateCampaigns  = createAsyncThunk(
         
         return response?.data
     } catch(err){
-        return rejectWithValue(
+        toast.error(
             err.response?.data?.message
         )
         }
@@ -247,6 +247,7 @@ const campaign_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
+                    window.location.replace("/campaigns")
                     return{
                         ...state,
                         CreateCampaignsStatus:"success"

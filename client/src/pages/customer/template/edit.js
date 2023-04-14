@@ -16,6 +16,7 @@ export const EditView =()=>{
         EditedInfo, 
         setEditedInfo
     ] = useState({})
+    const hidemodal=useRef(null)
 
     const FetchTemplate = async () =>{
         try{
@@ -105,7 +106,9 @@ export const EditView =()=>{
                 title="Edit Template Information"
                 body={<TemplateForm
                     EditedInfo={EditedInfo}
+                    hidemodal={hidemodal}
                 />}
+                hidemodal={hidemodal}
             />
         </>
     )

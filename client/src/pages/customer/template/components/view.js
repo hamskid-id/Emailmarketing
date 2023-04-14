@@ -23,7 +23,7 @@ export const TemplateView =()=>{
             </div>
             <div className="d-flex wrap justify-content-end pb-3 pdx-4 mb-3 bg-lightBlue">
                 <div 
-                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 bg bg-white mrx-5 mbm-2"
+                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 bg bg-white mrx-5 mbm-2 clickable"
                     onClick={
                         ()=>SetActiveView("myList")
                     }
@@ -38,7 +38,7 @@ export const TemplateView =()=>{
                     </span>
                 </div>
                 <div 
-                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 b-gainsboro"
+                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 b-gainsboro clickable"
                     onClick={
                         ()=>SetActiveView("general")
                     }

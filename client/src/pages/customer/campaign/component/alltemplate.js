@@ -28,7 +28,7 @@ export const GeneralTemplateList =({
                 </div>
                 <div className="d-flex wrap justify-content-end mb-5">
                     <div 
-                        className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 border-drakslate-grey mrx-5 mbm-2"
+                        className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 border-drakslate-grey mrx-5 mbm- clickable"
                         onClick={
                             ()=>SetActiveView("myList")
                         }
@@ -43,7 +43,7 @@ export const GeneralTemplateList =({
                         </span>
                     </div>
                     <div 
-                        className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 b-gainsboro"
+                        className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 b-gainsboro clickable"
                         onClick={
                             ()=>SetActiveView("general")
                         }

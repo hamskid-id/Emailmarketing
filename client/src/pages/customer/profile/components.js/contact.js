@@ -127,7 +127,7 @@ export const ContactInformation =()=>{
                     register={register}
                     errors={errors.country}
                 />
-                <CustomFormField
+                {/* <CustomFormField
                     label ="Website"
                     name ="web"
                     placeholder="Home page"
@@ -135,7 +135,7 @@ export const ContactInformation =()=>{
                     space={true}
                     register={register}
                     errors={errors.web}
-                />
+                /> */}
             </div>
             <CustomFormField
                 value="submit"

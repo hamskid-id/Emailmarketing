@@ -19,7 +19,7 @@ export const Actions =({
                             <select 
                                 name="sort" 
                                 id="sort"
-                                className="fs-6 p-2 rounded b-gainsboro me-2 mb-1"
+                                className="btn rounded b-gainsboro me-2 mb-1"
                                 >
                                 {
                                     [
@@ -48,7 +48,7 @@ export const Actions =({
                             deleteArray &&( 
                                 <button
                                     onClick={handleClick}
-                                    className="btn btn-md  b-grey fs-6 me-2 mb-1">
+                                    className="btn btn-md  b-grey me-2 mb-1">
                                     delete
                                 </button>
                             )
@@ -56,22 +56,26 @@ export const Actions =({
                         <input  
                             type="text"
                             placeholder="Type to search"
-                            className="action-inpt rounded mb-1"
+                            className="border btn mb-1"
                         />
                     </div>
                 </div>
             </div>
             <div className="col-md-6">
-                <div>
-                     <button
-                        className="btn b-grey btn-md my-2 fl-r"
-                        type="button"                            
-                        data-bs-toggle="modal" 
-                        data-bs-target="#staticBackdrop"
-                    >
-                        {actionName}
-                    </button>
-                </div>
+                {
+                    actionName &&(
+                        <div>
+                            <button
+                                className="btn b-grey btn-md my-2 fl-r"
+                                type="button"                            
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
+                            >
+                                {actionName}
+                            </button>
+                        </div>
+                    )
+                }
             </div>
         </div>
     )

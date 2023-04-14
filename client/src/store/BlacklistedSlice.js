@@ -41,7 +41,7 @@ export const CreateBlacklist  = createAsyncThunk(
         }
         return response?.data
     } catch(err){
-        return rejectWithValue(
+        toast.error(
             err.response?.data?.message
         )
         }

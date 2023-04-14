@@ -26,7 +26,7 @@ export const Actions =({
                             <select 
                                 name="sort" 
                                 id="sort"
-                                className="fs-6 p-2 rounded b-gainsboro me-2 mb-1"
+                                className="btn rounded b-gainsboro me-2 mb-1"
                                 >
                                 {
                                     [
@@ -52,10 +52,10 @@ export const Actions =({
                             </select>
                         </div>
                         {
-                            deleteArray &&( 
+                            (deleteArray && deleteArray.length>0) &&( 
                                 <button
                                     onClick={handleClick}
-                                    className="btn btn-md  b-grey fs-6 me-2 mb-1">
+                                    className="btn btn-md  b-grey me-2 mb-1">
                                     delete
                                 </button>
                             )
@@ -63,7 +63,7 @@ export const Actions =({
                         <input  
                             type="text"
                             placeholder="Type to search"
-                            className="action-inpt rounded mb-1"
+                            className="btn border rounded mb-1"
                         />
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export const Actions =({
                         <div>
                             <button 
                                 type="button" 
-                                className="btn b-grey btn-md my-2 fl-r"
+                                className="btn b-grey btn-md my-2 fl-r mb-2"
                                 onClick={()=>{
                                     setCampaignSection({
                                         name:"Template", 
@@ -93,7 +93,7 @@ export const Actions =({
                         <div>
                             <button 
                                 type="button" 
-                                className="btn b-grey btn-md my-2 fl-r"
+                                className="btn b-grey btn-md my-2 fl-r mb-2"
                                 onClick={
                                     ()=>navigate("/create/template")
                                 }

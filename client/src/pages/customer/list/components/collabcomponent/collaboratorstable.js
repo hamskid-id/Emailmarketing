@@ -20,9 +20,7 @@ export const CollabContainer =()=>{
 
     return(
         <>
-        <Actions 
-            actionName="Invite Collaborators"
-        />
+        <Actions/>
         <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                 <thead>
@@ -44,7 +42,7 @@ export const CollabContainer =()=>{
                         
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index}</th>
+                                    <th scope="row">{index+1}</th>
                                     <td>{name}</td>
                                     <td>{createdAt}</td>
                                     <td>
@@ -96,7 +94,7 @@ export const CollabContainer =()=>{
                         size="7rem"
                     />
                     <p className="fw-bold">
-                        Your Collaborations List is presently empty
+                        No one has invited you
                     </p>
                 </div>
             )

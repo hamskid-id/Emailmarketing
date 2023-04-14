@@ -13,6 +13,8 @@ export const CreateView =()=>{
         design:null
     })
 
+    const hidemodal=useRef(null)
+
     const exportHtml = () => {
         emailEditorRef
             .current.editor
@@ -61,7 +63,9 @@ export const CreateView =()=>{
                 title="Template Information"
                 body={<TemplateForm
                     EditedInfo={EditedInfo}
+                    hidemodal={hidemodal}
                 />}
+                hidemodal={hidemodal}
             />
         </>
     )
