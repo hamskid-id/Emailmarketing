@@ -100,7 +100,7 @@ export const CreateCampaignContent =()=>{
                             size="1.5rem"
                         />
                     </span>
-                    <span className="fs-1">
+                    <span className="fs-4">
                         Untitled
                     </span>
                 </div>

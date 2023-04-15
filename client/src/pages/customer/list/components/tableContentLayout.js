@@ -18,7 +18,7 @@ export const Tablelayout=({
                     <span className="me-3">
                         {titleIcon}
                     </span>
-                    <div className="fs-4">
+                    <div className="fs-5">
                     {title}
                     </div>
                 </div>
