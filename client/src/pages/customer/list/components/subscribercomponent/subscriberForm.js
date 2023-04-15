@@ -113,7 +113,7 @@ export const SubscriberModalContent =({hidemodal})=>{
                 <select 
                     name="tag" 
                     id="tag"
-                    className="bg-alice p-2 border border-white rounded w-100"
+                    className=" p-2 border rounded w-100"
                     {...register(
                         "tag", 
                         {

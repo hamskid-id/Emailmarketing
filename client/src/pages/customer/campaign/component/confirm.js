@@ -1,6 +1,4 @@
-import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { CreateCampaigns } from "../../../../store/campaignSlice"
 import { AllFieldSection } from "./allfilledsection"
@@ -11,7 +9,7 @@ export const Confirm =({
     setCampaignparams,
     campaignParams
 })=>{
-    const navigate = useNavigate()
+
     const campaign = useSelector(
         state => state.campaign
     )
@@ -58,13 +56,6 @@ export const Confirm =({
             )
         }
     }
-
-    //redirects if camapign was successfully created
-    useEffect(()=>{
-        if(campaign.CreateCampaignsStatus ==="success"){
-            navigate("/campaigns")
-        }
-    },[campaign.CreateCampaignsStatus])
 
     return(
         <div className="d-flex flex-column justify-content-center m-auto wt-75">

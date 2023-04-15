@@ -15,7 +15,7 @@ export const MyProfile =()=>{
             <div className="row">
                 <div className="col-md-3">
                     <div className="d-flex flex-column align-items-center justify-content-center mt-5">
-                        <p className="fs-2 text-center">
+                        <p className="fs-4 text-center">
                             Profile Photo
                         </p>
                         <div>

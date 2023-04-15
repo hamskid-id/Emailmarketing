@@ -21,7 +21,7 @@ export const CustomFormField =({
                 {
                     loadingStatus === "pending"?(
                         <button
-                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white fs-5`}
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white`}
                             type="button" 
                             disabled
                         >
@@ -33,7 +33,7 @@ export const CustomFormField =({
                         </button>
                     ):(
                         <button 
-                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white fs-5`}>
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white fs-6`}>
                             {value}
                         </button>
                     )
@@ -55,7 +55,7 @@ export const CustomFormField =({
                 }
                 />
                  <label
-                    className={`fw-bold ${color && color}`}
+                    className={`fw-bold ${color && color} fs-6`}
                     htmlFor={name}>
                     {label}
                 </label>
@@ -66,12 +66,12 @@ export const CustomFormField =({
         return(
             <div className="w-100 mb-2">
                 <label
-                    className={`fw-bold ${color && color}`}
+                    className={`fw-bold ${color && color} fs-6`}
                     htmlFor={name}>
                     {label}
                 </label>
                 <textarea 
-                    className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
+                    className={`${space?`w-97`:`w-100`} border p-2 rounded`}
                     id={name}
                     defaultValue={defaultValue?defaultValue:null}
                     readOnly={defaultValue?true:false}
@@ -93,12 +93,12 @@ export const CustomFormField =({
     if(type==="password"){
         <div className="w-100 mb-2">
         <label
-            className={`fw-bold ${color && color}`}
+            className={`fw-bold ${color && color} fs-6`}
             htmlFor={name}>
             {label}
         </label>
         <input 
-            className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
+            className={`${space?`w-97`:`w-100`} p-2 border  rounded`}
             type={type}
             name={name}
             value={editableValue?editableValue:""}
@@ -122,12 +122,12 @@ export const CustomFormField =({
     return(
         <div className="w-100 mb-2">
             <label
-                className={`fw-bold ${color && color}`}
+                className={`fw-bold ${color && color} fs-6`}
                 htmlFor={name}>
                 {label}
             </label>
             <input 
-                className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
+                className={`${space?`w-97`:`w-100`} p-2 border rounded`}
                 type={type}
                 name={name}
                 defaultValue={defaultValue?defaultValue:null}

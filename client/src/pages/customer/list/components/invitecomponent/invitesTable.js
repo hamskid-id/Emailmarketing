@@ -43,7 +43,7 @@ export const InvitesContainer =()=>{
                         
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index}</th>
+                                    <th scope="row">{index +1}</th>
                                     <td>{name}</td>
                                     <td>{email}</td>
                                     <td>
@@ -85,9 +85,6 @@ export const InvitesContainer =()=>{
                     <p className="fw-bold">
                     You have not invited any account to Collaborate with you!!
                     </p>
-                    <div>
-                        Dont worry click on Invite Collaborators to get started. 
-                    </div>
                 </div>
             )
         }

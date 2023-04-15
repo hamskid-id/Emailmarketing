@@ -18,14 +18,14 @@ export const Tablelayout=({
                     <span className="me-3">
                         {titleIcon}
                     </span>
-                    <div className="fs-2">
+                    <div className="fs-4">
                     {title}
                     </div>
                 </div>
                 {
                     subNumber &&(
-                        <p className="fs-5 fw-bold">
-                            {subNumber} {title}
+                        <p className="badge bg bg-slate-grey">
+                            {subNumber}
                         </p>
                     )
                 }

@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
 import { CreateTemplate } from "../../../../store/templateSlice";
+import { useEffect } from "react";
 
-export const TemplateForm =({EditedInfo})=>{
+export const TemplateForm =({EditedInfo,hidemodal})=>{
     const template = useSelector(
         state => state.template
     )
@@ -28,6 +29,13 @@ export const TemplateForm =({EditedInfo})=>{
             })
         )
     }
+
+    useEffect(()=>{
+        if(template.CreateTemplateStatus ==="success"){
+            hidemodal.current.click()
+        }
+    },[template])
+
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>

@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CustomFormField } from "../../../../../components/customFomField";
 import {UpdateTags } from "../../../../../store/tagSlice";
+import { useEffect } from "react";
 
 export const UpdateTagForm =()=>{
+    const navigate = useNavigate()
     const {id} = useParams()
     const tag = useSelector(
         state => state.tag
@@ -25,8 +27,13 @@ export const UpdateTagForm =()=>{
                 id
             })
         )
-        
     }
+    useEffect(()=>{
+        if(tag.UpdateTagsStatus==="success"){
+            navigate("/Lists/Tags");
+        }
+    },[tag])
+
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>

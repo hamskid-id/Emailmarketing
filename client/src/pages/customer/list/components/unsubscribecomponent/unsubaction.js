@@ -16,7 +16,7 @@ export const Actions =({
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
+                            className="btn me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -50,7 +50,7 @@ export const Actions =({
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
+                            className="btn me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -90,7 +90,7 @@ export const Actions =({
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
+                            className="btn me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -131,7 +131,7 @@ export const Actions =({
                     <input  
                         type="text"
                         placeholder="Type to search"
-                        className="action-inpt rounded"
+                        className="border btn mb-2"
                     />
                 </div>
             </div>

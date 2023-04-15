@@ -60,7 +60,7 @@ export const SendPasswordResetLink = createAsyncThunk(
     'auth/SendPasswordResetLink', 
     async ({
         email,
-    },{rejectWithValue}) =>{
+    }) =>{
         try{
             const response = await axios.post(
                 `${apiBaseUrl}/forgetpas`,{
@@ -69,7 +69,7 @@ export const SendPasswordResetLink = createAsyncThunk(
             );
             return response?.data
         }catch(err){
-            return rejectWithValue(
+            toast.error(
                 err.response?.data?.message
             )
         }
@@ -82,7 +82,7 @@ export const ResetPassword = createAsyncThunk(
         old_password,
         password,
         confirm_pass
-    },{rejectWithValue}) =>{
+    }) =>{
         try{
             const response = await axios.post(
                 `${apiBaseUrl}/changepassword`,{
@@ -93,7 +93,7 @@ export const ResetPassword = createAsyncThunk(
             );
             return response?.data
         }catch(err){
-            return rejectWithValue(
+            toast.error(
                 err.response?.data?.message
             )
         }
@@ -144,20 +144,22 @@ const auth_Slice = createSlice({
         builder.addCase(ResetPassword.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 
                 if(status === true){
-                    toast("Please Check your mail for the reset Link")
+                    toast(message)
                     return{
                         ...state,
                         ResetPasswordStatus:"success"
                     }
-                }
-                toast(action.payload.message)
-                return{
-                    ...state,
-                    ResetPasswordStatus:"success"
+                }else{
+                    toast(message)
+                    return{
+                        ...state,
+                        ResetPasswordStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -165,6 +167,7 @@ const auth_Slice = createSlice({
             }
         })
         builder.addCase(ResetPassword.rejected,(state, action)=>{
+            toast(action?.payload?.message)
             return{
                 ...state,
                 ResetPasswordStatus:'rejected',

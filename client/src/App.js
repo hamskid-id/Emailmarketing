@@ -35,6 +35,7 @@ import { UnSubsrcibedPage } from './pages/customer/list/unsubscribe';
 import { SpamReportPage } from './pages/customer/list/spamreport';
 import { EditView } from './pages/customer/template/edit';
 import { UpdateTagPage } from './pages/customer/list/updateTag';
+import { Plaintext } from './pages/customer/campaign/plaintext/plaintextcampaign';
 // import './interceptors/axios';
 
 
@@ -77,6 +78,7 @@ const App =()=> {
              <Route exact path='/campaigns/Create'  element={ <CreateCampaignPage/>} />
              <Route exact path="/user/tag/update/:id"  element={ <UpdateTagPage/>} />
             <Route exact path='/campaign/select-type'  element={ <SelectTypeView/>} />
+            <Route exact path='/campaign/create/plaintext'  element={ <Plaintext/>} />
             <Route exact path='/templates'  element={ <TemplateList/>} />
             <Route exact path='/edit/template/:category/:id'  element={ <EditView/>} />
             <Route exact path='/automations'  element={ <AutoPage/>} />
