@@ -23,7 +23,7 @@ export const TemplateView =()=>{
             </div>
             <div className="d-flex wrap justify-content-end pb-3 pdx-4 mb-3 bg-lightBlue">
                 <div 
-                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 bg bg-white mrx-5 mbm-2 clickable"
+                    className="d-flex align-items-center rounded btn fw-bold bg bg-white mrx-5 mbm-2 clickable"
                     onClick={
                         ()=>SetActiveView("myList")
                     }
@@ -33,12 +33,12 @@ export const TemplateView =()=>{
                             color="grey"
                         />
                     </span>
-                    <span className="fs-6">
+                    <span>
                         My Templates
                     </span>
                 </div>
                 <div 
-                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 b-gainsboro clickable"
+                    className="d-flex align-items-center rounded btn fw-bold b-gainsboro clickable"
                     onClick={
                         ()=>SetActiveView("general")
                     }
@@ -48,7 +48,7 @@ export const TemplateView =()=>{
                             color="grey"
                         />
                     </span>
-                    <span className="fs-6">
+                    <span>
                         Base Template Gallary
                     </span>
                 </div>

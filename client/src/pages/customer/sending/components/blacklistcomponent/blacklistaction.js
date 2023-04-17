@@ -14,7 +14,7 @@ export const Actions =()=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-5 p-2 rounded b-gainsboro"
+                            className="btn rounded b-gainsboro"
                             >
                             {
                                 [
@@ -42,7 +42,7 @@ export const Actions =()=>{
                     <input  
                         type="text"
                         placeholder="Type to search"
-                        className="action-inpt rounded"
+                        className="btn action-inpt rounded"
                     />
                 </div>
             </div>
