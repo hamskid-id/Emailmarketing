@@ -61,7 +61,7 @@ export const Layout=({routeChildren,main})=>{
                                             size="1.4rem"
                                             color="grey"
                                             data-bs-toggle="modal" 
-                                            data-bs-target="#staticBackdrop"
+                                            data-bs-target="#searchstaticBackdrop"
                                         />
                                     </span>
                                     <span className="d-flex align-items-center justify-content-end">
@@ -93,6 +93,7 @@ export const Layout=({routeChildren,main})=>{
                                     <Modal
                                         title="Enter your search"
                                         body={<SearchView/>}
+                                        id="searchstaticBackdrop"
                                     />
                                 </div>
                             </div>
