@@ -1,8 +1,8 @@
-export const Modal =({title,body,large,hidemodal})=>{
+export const Modal =({title,body,large,hidemodal,id})=>{
     return(
         <div
             className="modal fade" 
-            id="staticBackdrop" 
+            id={id?id:"staticBackdrop"}
             data-bs-backdrop="static" 
             data-bs-keyboard="false" 
             tabIndex="-1" 
