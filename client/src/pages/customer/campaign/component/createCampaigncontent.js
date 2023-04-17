@@ -116,7 +116,7 @@ export const CreateCampaignContent =()=>{
                                     key={index}
                                 >
                                     <h6
-                                        className={`fs-6 pe-5 pb-1 
+                                        className={`fs-6 pe-1 pb-1 
                                         ${
                                             index!==0 && "ps-5"
                                         }

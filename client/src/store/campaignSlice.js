@@ -270,67 +270,6 @@ const campaign_Slice = createSlice({
                 CreateCampaignsStatus:'rejected'
             }
         })
-
-        // builder.addCase(GetList.pending,(state, action)=>{
-        //     return {
-        //         ...state,
-        //         GetListStatus:'pending'
-        //     }
-
-        // });
-        // builder.addCase(GetList.fulfilled,(state, action)=>{
-        //     if(action.payload){
-        //         const {
-        //             status
-        //         }= action.payload
-        //         if(status === true){
-        //             return{
-        //                 ...state,
-        //                 list:action.payload.message,
-        //                 GetListStatus:"success"
-        //             }
-        //         }
-        //         return{
-        //             ...state,
-        //             GetListStatus:"success"
-        //         }
-        //     }else return{
-        //         ...state,
-        //         GetListStatus:"failed"
-        //     }
-        // })
-        // builder.addCase(GetList.rejected,(state, action)=>{
-        //     return{
-        //         ...state,
-        //         GetListStatus:'rejected'
-        //     }
-        // })
-
-        // builder.addCase(CreateList.pending,(state, action)=>{
-        //     return {
-        //         ...state,
-        //         CreateListStatus:'pending'
-        //     }
-
-        // });
-        // builder.addCase(CreateList.fulfilled,(state, action)=>{
-        //     if(action.payload){
-        //         toast("Campaign successfully created");
-        //         return{
-        //             ...state,
-        //             CreateListStatus:"success"
-        //         }
-        //     }else return{
-        //         ...state,
-        //         CreateListStatus:"failed"
-        //     }
-        // })
-        // builder.addCase(CreateList.rejected,(state, action)=>{
-        //     return{
-        //         ...state,
-        //         CreateListStatus:'rejected'
-        //     }
-        // })
     }
 })
 

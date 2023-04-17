@@ -10,6 +10,8 @@ import { Brand } from "../../components/navbarbrand";
 import {FaExclamationTriangle, FaSistrix, FaTimesCircle} from "react-icons/fa";
 import { AlertModal } from "../../components/modal/alertModal";
 import { LogOutUser } from "../../store/authSlice";
+import { Modal } from "../../components/modal/modal";
+import { SearchView } from "./searchView";
 
 export const Layout=({routeChildren,main})=>{
     const dispatch = useDispatch();
@@ -58,6 +60,8 @@ export const Layout=({routeChildren,main})=>{
                                         <FaSistrix
                                             size="1.4rem"
                                             color="grey"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#staticBackdrop"
                                         />
                                     </span>
                                     <span className="d-flex align-items-center justify-content-end">
@@ -86,6 +90,10 @@ export const Layout=({routeChildren,main})=>{
                                             </span>
                                         </div>                                   
                                     </span>
+                                    <Modal
+                                        title="Enter your search"
+                                        body={<SearchView/>}
+                                    />
                                 </div>
                             </div>
                              {/* Route Children */}

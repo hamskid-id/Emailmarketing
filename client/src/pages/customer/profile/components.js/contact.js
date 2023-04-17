@@ -43,7 +43,7 @@ export const ContactInformation =()=>{
     return(
         <form onSubmit={handleSubmit(SubmitHandler)}>
 
-            <p className="fs-2 text-center">Contact information</p>
+            <p className="fs-2 text-center py-4">Contact information</p>
             <div  className="grid">      
                 <CustomFormField
                     label ="Company / Organization *"

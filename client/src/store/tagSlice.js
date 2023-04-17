@@ -48,27 +48,6 @@ export const CreateTags  = createAsyncThunk(
     }
 )
 
-// export const EditTags  = createAsyncThunk(
-//     'tag/EditTags ', 
-//     async ({
-//         name
-//     },) =>{
-//     try{
-//         const response = await axios.post(
-//             `${apiBaseUrl}/createtags`,{
-//                 name
-//             },
-//             setHeaders()
-//         )
-//         return response?.data
-//     } catch(err){
-//         toast.error(
-//             err.response?.data?.message
-//         )
-//         }
-//     }
-// )
-
 
 export const UpdateTags  = createAsyncThunk(
     'tag/UpdateTags ', 
@@ -189,6 +168,7 @@ const Tag_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
+                    window.location.replace("/Lists/Tags")
                     return{
                         ...state,
                         UpdateTagsStatus:"success"

@@ -33,7 +33,7 @@ export const RecentlySent=()=>{
                         <select 
                             name="campains" 
                             id="campains"
-                            className="fs-6 p-2 rounded text-white b-grey campains-select"
+                            className="btn rounded text-white b-grey campains-select"
                             >
                             {
                                 Tags?.Tags?.map((drop,index)=>{
