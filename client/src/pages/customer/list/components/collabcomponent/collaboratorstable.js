@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetInviteForCollaborations } from "../../../../../store/collaborationSlice";
+import { GetInviteForCollaborations, collab_SliceActions } from "../../../../../store/collaborationSlice";
+import { Actions } from "../invitecomponent/collabAction";
 
 export const CollabContainer =()=>{
     const collab = useSelector(
@@ -14,13 +14,22 @@ export const CollabContainer =()=>{
         dispatch(GetInviteForCollaborations(null));
     },[dispatch])
 
+    const handleInputChange=(e)=>{
+        dispatch(collab_SliceActions.searchdata({
+            type:"collab",
+            data:e.target.value
+        }))
+    }
+
     if(collab.GetInviteForCollaborationsStatus ==='pending'){
         return <Spinner/>
     }
 
     return(
         <>
-        <Actions/>
+        <Actions
+            handleInputChange={handleInputChange}
+        />
         <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                 <thead>

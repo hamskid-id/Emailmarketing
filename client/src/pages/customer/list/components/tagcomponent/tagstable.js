@@ -1,13 +1,15 @@
 
 import { useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
+import { Tag_SliceActions } from "../../../../../store/tagSlice";
 
 export const TagContainer =()=>{
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const tag = useSelector(
         state => state.tag
     )
@@ -33,11 +35,26 @@ export const TagContainer =()=>{
         })
         
     }
+
+    const handleSelectChange=(e)=>{
+        if(e.target.value ==="Name"){
+            dispatch(Tag_SliceActions.sortDataByName())
+        }else{
+            dispatch(Tag_SliceActions.sortDataByCreatedAt())
+        }
+    }
+
+    const handleInputChange=(e)=>{
+        dispatch(Tag_SliceActions.searchdata(e.target.value))
+    }
+
     return(
         <>
         <Actions
             actionName="Add Tag"
             deleteArray={itemToDelete}
+            handleChange={handleSelectChange}
+            handleInputChange={handleInputChange}
         />
         <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetInviteSent } from "../../../../../store/collaborationSlice";
+import { GetInviteSent, collab_SliceActions } from "../../../../../store/collaborationSlice";
+import { Actions } from "./collabAction";
 
 export const InvitesContainer =()=>{
     const collab = useSelector(
@@ -14,12 +14,21 @@ export const InvitesContainer =()=>{
         dispatch(GetInviteSent(null));
     },[dispatch])
 
+    const handleInputChange=(e)=>{
+        dispatch(collab_SliceActions.searchdata({
+            type:"invite",
+            data:e.target.value
+        }))
+    }
+
     if(collab.GetInviteSentStatus ==='pending'){
         return <Spinner/>
     }
+
     return(
         <>
-        <Actions 
+        <Actions
+            handleInputChange={handleInputChange}
             actionName="Invite Collaborators"
         />
         <div className="w-overflow">

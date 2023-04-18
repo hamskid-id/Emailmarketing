@@ -45,7 +45,7 @@ export const GetRecentCampaigns = createAsyncThunk(
 //     async ({
 //         title,
 //         reply_to,
-//         from_email,
+//         from_title,
 //         from_name,
 //         subject,
 //         content,
@@ -59,7 +59,7 @@ export const GetRecentCampaigns = createAsyncThunk(
 //             `${apiBaseUrl}/createcampaigns`,{
 //                 title,
 //                 reply_to,
-//                 from_email,
+//                 from_title,
 //                 from_name,
 //                 subject,
 //                 content,
@@ -99,7 +99,7 @@ export const CreateCampaigns  = createAsyncThunk(
     async ({
         title,
         reply_to,
-        from_email,
+        from_title,
         subject,
         content,
         tag_id,
@@ -113,7 +113,7 @@ export const CreateCampaigns  = createAsyncThunk(
             `${apiBaseUrl}/createcampaigns`,{
                 title,
                 reply_to,
-                from_email,
+                from_title,
                 from_name,
                 subject,
                 content,
@@ -146,6 +146,7 @@ const campaign_Slice = createSlice({
         recentCampaigns:[],
         // list:[],
         Campaigns:[],
+        campaignToFilter:[],
         CreateListStatus:'',
         CreateListError:'',
         CreateCampaignsStatus:'',
@@ -157,7 +158,32 @@ const campaign_Slice = createSlice({
         GetRecentCampaignsStatus:'',
         GetRecentCampaignsError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByTitle(state,action){
+            const newArray=[...state.campaignToFilter]
+            const sortByTitle =  newArray.sort((a, b)=> (a.title < b.title ) ? -1 : (a.title > b.title) ? 1 : 0);
+            return{
+                ...state,
+                Campaigns:sortByTitle
+            }    
+        },
+        sortDataByEmail(state,action){
+            const newArray=[...state.campaignToFilter]
+            const sortByName =  newArray.sort((a, b)=> (a.from_email < b.from_email) ? -1 : (a.from_email > b.from_email) ? 1 : 0);
+            return{
+                ...state,
+                Campaigns:sortByName
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.campaignToFilter.filter((item)=>item.title.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                Campaigns:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -213,6 +239,7 @@ const campaign_Slice = createSlice({
                     return{
                         ...state,
                         Campaigns:action.payload.message,
+                        campaignToFilter:action.payload.message,
                         GetCampaignsStatus:"success"
                     }
                 }
@@ -273,5 +300,5 @@ const campaign_Slice = createSlice({
     }
 })
 
-
+export const campaign_SliceActions = campaign_Slice.actions;
 export default campaign_Slice;

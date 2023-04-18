@@ -1,8 +1,19 @@
+import { useDispatch } from "react-redux"
+import { unsubscriber_SliceActions } from "../../../../../store/UnsubscribeSlice";
 
 export const Actions =({
     HandleDownloadPdf,
     printRef
 })=>{
+    const dispatch = useDispatch();
+    const handleChange=(e)=>{
+        if(e.target.value ==="Name"){
+            dispatch(unsubscriber_SliceActions.sortDataByName())
+        }else{
+            dispatch(unsubscriber_SliceActions.sortDataByEmail())
+        }
+    }
+
     return(
         <div className="row">
             <div className="col-md-9 mb-2">
@@ -17,100 +28,15 @@ export const Actions =({
                             name="sort" 
                             id="sort"
                             className="btn me-3 rounded b-gainsboro mb-1"
+                            onChange={handleChange}
                             >
                             {
                                 [
-                                    {
-                                        name:"Created At"
-                                    },
                                     {
                                         name:"Email"
                                     },
                                     {
                                         name:"Name"
-                                    },
-                                    {
-                                        name:"Updated At"
-                                    }
-                                ]?.map((drop,index)=>{
-                                    const {
-                                        name
-                                    }=drop
-                                    return(
-                                        <option
-                                            className="fs-6" 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <select 
-                            name="sort" 
-                            id="sort"
-                            className="btn me-3 rounded b-gainsboro mb-1"
-                            >
-                            {
-                                [
-                                    {
-                                        name:"All subscribers"
-                                    },
-                                    {
-                                        name:"Subscribed"
-                                    },
-                                    {
-                                        name:"Unsubscribed"
-                                    },{
-
-                                        name:"Unconfirmed"
-                                    },
-                                    {
-                                        name:"Spam reported"
-                                    },
-                                    {
-                                        name:"Blacklisted"
-                                    }
-                                ]?.map((drop,index)=>{
-                                    const {
-                                        name
-                                    }=drop
-                                    return(
-                                        <option
-                                            className="fs-6" 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <select 
-                            name="sort" 
-                            id="sort"
-                            className="btn me-3 rounded b-gainsboro mb-1"
-                            >
-                            {
-                                [
-                                    {
-                                        name:"All verifcation"
-                                    },
-                                    {
-                                        name:"Deliverable"
-                                    },
-                                    {
-                                        name:"Undeliverable"
-                                    },{
-
-                                        name:"Unknown"
-                                    },
-                                    {
-                                        name:"Risky"
-                                    },
-                                    {
-                                        name:"Unverified"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
@@ -132,6 +58,7 @@ export const Actions =({
                         type="text"
                         placeholder="Type to search"
                         className="border btn mb-2"
+                        onChange={(e)=>dispatch(unsubscriber_SliceActions.searchdata(e.target.value))}
                     />
                 </div>
             </div>

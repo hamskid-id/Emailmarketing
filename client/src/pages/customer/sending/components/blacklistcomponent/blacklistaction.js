@@ -1,6 +1,16 @@
+import { useDispatch } from "react-redux"
 import {useNavigate} from "react-router-dom"
+import { blacklist_SliceActions } from "../../../../../store/BlacklistedSlice"
 export const Actions =()=>{
-    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const handleChange=(e)=>{
+        if(e.target.value ==="Email"){
+            dispatch(blacklist_SliceActions.sortDataByEmail())
+        }else{
+            dispatch(blacklist_SliceActions.sortDataByCreatedAt())
+        }
+    }
+
     return(
         <div className="row">
             <div className="col-md-6 mb-2">
@@ -15,6 +25,7 @@ export const Actions =()=>{
                             name="sort" 
                             id="sort"
                             className="btn rounded b-gainsboro"
+                            onChange={handleChange}
                             >
                             {
                                 [
@@ -41,8 +52,9 @@ export const Actions =()=>{
                     </div>
                     <input  
                         type="text"
-                        placeholder="Type to search"
+                        placeholder="Search..."
                         className="btn action-inpt rounded"
+                        onChange={(e)=>dispatch(blacklist_SliceActions.searchdata(e.target.value))}
                     />
                 </div>
             </div>
@@ -52,9 +64,7 @@ export const Actions =()=>{
                         className="btn b-grey btn-md my-2 fl-r"
                         type="button"
                         data-bs-toggle="modal" 
-                        data-bs-target="#staticBackdrop"     
-                        // onClick={
-                        //     ()=>navigate("/Sending/Blacklist/import")}                       
+                        data-bs-target="#staticBackdrop"               
                     >
                         Import
                     </button>

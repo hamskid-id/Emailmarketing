@@ -57,8 +57,7 @@ export const SubscriberTable=({
                     </thead>
                     <tbody>
                         {
-                            content
-                                .subscribers?.map((sub,index)=>{
+                             content?.subscribers?.map((sub,index)=>{
                                     const{
                                         email,
                                         fname,

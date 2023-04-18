@@ -138,6 +138,9 @@ input[id="upload"]{
   padding-right: 1rem!important;
   padding-left: 1rem!important;
 }
+.loading{
+opacity:0.6;
+}
 .mar-5{
   margin-right: 2.2rem;
 }

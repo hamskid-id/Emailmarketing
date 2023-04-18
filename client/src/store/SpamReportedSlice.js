@@ -51,12 +51,38 @@ const SpamReported_Slice = createSlice({
     name:"SpamReported",
     initialState: {
         SpamReported:[],
+        spamToFilter:[],
         CreateSpamReportedStatus:'',
         CreateSpamReportedError:'',
         GetSpamReportedStatus:'',
         GetSpamReportedError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByEmail(state,action){
+            const newArray=[...state.spamToFilter]
+            const sortByEmail =  newArray.sort((a, b)=> (a.email < b.email ) ? -1 : (a.email > b.email) ? 1 : 0);
+            return{
+                ...state,
+                SpamReported:sortByEmail
+            }    
+        },
+        sortDataByCreatedAt(state,action){
+            const newArray=[...state.SpamReported]
+            const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
+            return{
+                ...state,
+                SpamReported:sortByCreatedAt
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.spamToFilter.filter((item)=>item.email.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                SpamReported:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -76,6 +102,7 @@ const SpamReported_Slice = createSlice({
                     return{
                         ...state,
                         SpamReported:action.payload.message,
+                        spamToFilter:action.payload.message,
                         GetSpamReportedStatus:"success"
                     }
                 }
@@ -136,4 +163,5 @@ const SpamReported_Slice = createSlice({
 })
 
 
+export const SpamReported_SliceActions = SpamReported_Slice.actions;
 export default SpamReported_Slice;
