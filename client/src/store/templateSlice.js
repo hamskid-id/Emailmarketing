@@ -69,6 +69,7 @@ const template_Slice = createSlice({
         template:[],
         templateToFilter:[],
         generalTemp:[],
+        generalToFilter:[],
         CreateTemplateStatus:'',
         CreateTemplateError:'',
         GetUserTemplateStatus:'',
@@ -86,7 +87,7 @@ const template_Slice = createSlice({
             }    
         },
         sortDataByCreatedAt(state,action){
-            const newArray=[...state.template]
+            const newArray=[...state.templateToFilter]
             const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
             return{
                 ...state,
@@ -99,6 +100,29 @@ const template_Slice = createSlice({
             return{
                 ...state,
                 template:filteredData
+            }
+        },sortBaseDataByName(state,action){
+            const newArray = [...state.generalToFilter]
+            const sortByName =  newArray.sort((a, b)=> (a.template_name < b.template_name ) ? -1 : (a.template_name > b.template_name) ? 1 : 0);
+            return{
+                ...state,
+                generalTemp:sortByName
+            }    
+        },
+        sortBaseDataByCreatedAt(state,action){
+            const newArray = [...state.generalToFilter]
+            const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
+            return{
+                ...state,
+                generalTemp:sortByCreatedAt
+            }        
+        },
+        searchBasedata(state,action){
+            const data = action.payload;
+            const filteredData = state.generalToFilter.filter((item)=>item.template_name.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                generalTemp:filteredData
             }
         }
     },
@@ -121,6 +145,7 @@ const template_Slice = createSlice({
                     return{
                         ...state,
                         generalTemp:action.payload.message,
+                        generalToFilter:action.payload.message,
                         GetGeneralTemplateStatus:"success"
                     }
                 }

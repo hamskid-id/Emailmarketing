@@ -8,7 +8,8 @@ export const Actions =({
     setCampaignSection,
     setCampaignparams,
     campaignParams,
-    deleteArray
+    deleteArray,
+    view
 })=>{
     const navigate = useNavigate();
     const handleClick=()=>{
@@ -17,10 +18,19 @@ export const Actions =({
     
     const dispatch = useDispatch();
     const handleChange =(e)=>{
-        if(e.target.value === "Created At"){
-            dispatch(template_SliceActions.sortDataByCreatedAt())
+        if(view ==="myTemplate"){
+            if(e.target.value === "Created At"){
+                dispatch(template_SliceActions.sortDataByCreatedAt())
+            }else{
+                dispatch(template_SliceActions.sortDataByName())
+            }
+
         }else{
-            dispatch(template_SliceActions.sortDataByName())
+            if(e.target.value === "Created At"){
+                dispatch(template_SliceActions.sortBaseDataByCreatedAt())
+            }else{
+                dispatch(template_SliceActions.sortBaseDataByName())
+            }
         }
     }
     return(
@@ -76,7 +86,13 @@ export const Actions =({
                             type="text"
                             placeholder="Type to search"
                             className="btn border rounded mb-1"
-                            onChange={(e)=>dispatch(template_SliceActions.searchdata(e.target.value))}
+                            onChange={(e)=>{
+                                if(view === "myTemplate"){
+                                    dispatch(template_SliceActions.searchdata(e.target.value))
+                                }else{
+                                    dispatch(template_SliceActions.searchBasedata(e.target.value))
+                                }
+                            }}
                         />
                     </div>
                 </div>

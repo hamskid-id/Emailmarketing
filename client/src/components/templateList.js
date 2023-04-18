@@ -49,6 +49,7 @@ export const MyTemplateList =({
                 setCampaignparams={setCampaignparams}
                 campaignParams={campaignParams}
                 deleteArray={itemToDelete}
+                view="myTemplate"
             />
             <div className="w-overflow">
                 <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
