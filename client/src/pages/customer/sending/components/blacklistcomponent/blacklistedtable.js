@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { FaCartArrowDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { GetBlacklist } from "../../../../../store/BlacklistedSlice";
 import { Actions } from "./blacklistaction";
+import { NoData } from "../../../../../components/nodata";
 
 export const BlacklistTable =()=>{
     const blacklist = useSelector(
@@ -77,17 +77,7 @@ export const BlacklistTable =()=>{
         </div>
        
         {
-           blacklist.blacklist.length === 0 &&(
-                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                    <FaCartArrowDown
-                        size="7rem"
-                        color="grey"
-                    />
-                    <p className="fw-bold">
-                        Blacklist is empty!
-                    </p>
-                </div>
-            )
+           blacklist.blacklist.length === 0 && <NoData/>
         }
         </>
     )

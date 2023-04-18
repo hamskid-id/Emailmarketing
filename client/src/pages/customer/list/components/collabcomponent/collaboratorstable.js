@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
+import {FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { GetInviteForCollaborations, collab_SliceActions } from "../../../../../store/collaborationSlice";
 import { Actions } from "../invitecomponent/collabAction";
+import { NoData } from "../../../../../components/nodata";
 
 export const CollabContainer =()=>{
     const collab = useSelector(
@@ -96,17 +97,7 @@ export const CollabContainer =()=>{
         </div>
         {
             collab
-            .inviteForCollaborations?.length === 0 &&(
-                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                    <FaCartArrowDown
-                        color="grey"
-                        size="7rem"
-                    />
-                    <p className="fw-bold">
-                        No one has invited you
-                    </p>
-                </div>
-            )
+            .inviteForCollaborations?.length === 0 && <NoData/>
         }
         </>
     )

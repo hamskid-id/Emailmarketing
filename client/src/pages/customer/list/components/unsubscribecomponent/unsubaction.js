@@ -56,7 +56,7 @@ export const Actions =({
                     </div>
                     <input  
                         type="text"
-                        placeholder="Type to search"
+                        placeholder="Search..."
                         className="border btn mb-2"
                         onChange={(e)=>dispatch(unsubscriber_SliceActions.searchdata(e.target.value))}
                     />

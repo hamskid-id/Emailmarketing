@@ -1,7 +1,7 @@
-import { FaCartArrowDown} from "react-icons/fa";
 import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { Actions } from "./spamaction";
+import { NoData } from "../../../../../components/nodata";
 
 export const SpamContainer = () => {
     const spam = useSelector(
@@ -78,17 +78,7 @@ export const SpamContainer = () => {
 
             {
                 spam
-                    .SpamReported.length === 0 && (
-                    <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                        <FaCartArrowDown
-                            size="7rem"
-                            color="grey"
-                        />
-                        <p className="fw-bold">
-                            Your Spam List is presently empty
-                        </p>
-                    </div>
-                )
+                    .SpamReported.length === 0 && <NoData/>
             }
         </>
     )

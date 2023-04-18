@@ -1,8 +1,8 @@
 import {useState } from "react";
-import { FaCartArrowDown} from "react-icons/fa";
 import {useSelector } from "react-redux";
 import Spinner from "../../../../components/spinner/spinner";
 import { Actions } from "./subAction";
+import { NoData } from "../../../../components/nodata";
 
 export const SubscriberTable=({
     content
@@ -52,7 +52,7 @@ export const SubscriberTable=({
                             <th scope="col">State</th>
                             <th scope="col">Phone</th>
                             <th scope="col">DOB</th>
-                            <th scope="col">Actions</th>
+                            {/* <th scope="col">Actions</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -85,46 +85,7 @@ export const SubscriberTable=({
                                             <td>{state}</td>
                                             <td>{phone}</td>
                                             <td>{dob}</td>
-                                            <td>
-                                                <div className="d-flex align-items-center">
-                                                    <div className="dropdown">
-                                                        <button 
-                                                            className="btn btn-secondary dropdown-toggle"
-                                                            type="button" 
-                                                            data-bs-toggle="dropdown" 
-                                                            aria-expanded="false" 
-                                                        >
-                                                        </button>
-                                                        <ul className="dropdown-menu">
-                                                            <li
-                                                                className="dropdown-item"
-                                                            >
-                                                                Subscribe
-                                                            </li>
-                                                            <li
-                                                                className="dropdown-item"
-                                                            >
-                                                                Unsubscribe
-                                                            </li>
-                                                            <li
-                                                                className="dropdown-item"
-                                                            >
-                                                                Send Confirmation Email
-                                                            </li>
-                                                            <li
-                                                                className="dropdown-item"
-                                                            >
-                                                               Edit
-                                                            </li>
-                                                            <li
-                                                                className="dropdown-item"
-                                                            >
-                                                                Delete
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                           
                                         </tr>
                                     )
                                 })
@@ -134,17 +95,7 @@ export const SubscriberTable=({
             </div>
             {
                 content
-                .subscribers?.length === 0 &&(
-                    <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                        <FaCartArrowDown
-                            color="grey"
-                            size="7rem"
-                        />
-                        <p className="fw-bold">
-                            Your List is presently empty
-                        </p>
-                    </div>
-                )
+                .subscribers?.length === 0 && <NoData/>
             }
         </>
     )

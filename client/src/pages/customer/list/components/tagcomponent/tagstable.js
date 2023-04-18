@@ -1,11 +1,11 @@
 
 import { useState } from "react";
-import { FaCartArrowDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
 import { Tag_SliceActions } from "../../../../../store/tagSlice";
+import { NoData } from "../../../../../components/nodata";
 
 export const TagContainer =()=>{
     const navigate = useNavigate()
@@ -136,20 +136,7 @@ export const TagContainer =()=>{
        
         {
             tag
-            .Tags.length === 0 &&(
-                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                    <FaCartArrowDown
-                        size="7rem"
-                        color="grey"
-                    />
-                    <p className="fw-bold">
-                        Your Tags List is presently empty
-                    </p>
-                    <div>
-                        Dont worry click on Add tags to get started. 
-                    </div>
-                </div>
-            )
+            .Tags.length === 0 && <NoData/>
         }
         </>
     )

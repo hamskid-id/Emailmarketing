@@ -67,6 +67,7 @@ const template_Slice = createSlice({
     name:"template",
     initialState: {
         template:[],
+        templateToFilter:[],
         generalTemp:[],
         CreateTemplateStatus:'',
         CreateTemplateError:'',
@@ -75,7 +76,32 @@ const template_Slice = createSlice({
         GetGeneralTemplateStatus:'',
         GetGeneralTemplateError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByName(state,action){
+            const newArray=[...state.templateToFilter]
+            const sortByName =  newArray.sort((a, b)=> (a.template_name < b.template_name ) ? -1 : (a.template_name > b.template_name) ? 1 : 0);
+            return{
+                ...state,
+                template:sortByName
+            }    
+        },
+        sortDataByCreatedAt(state,action){
+            const newArray=[...state.template]
+            const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
+            return{
+                ...state,
+                template:sortByCreatedAt
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.templateToFilter.filter((item)=>item.template_name.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                template:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -130,6 +156,7 @@ const template_Slice = createSlice({
                     return{
                         ...state,
                         template:action.payload.message,
+                        templateToFilter:action.payload.message,
                         GetUserTemplateStatus:"success"
                     }
                 }
@@ -189,5 +216,5 @@ const template_Slice = createSlice({
     }
 })
 
-
+export const template_SliceActions = template_Slice.actions;
 export default template_Slice;
