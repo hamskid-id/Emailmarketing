@@ -84,6 +84,7 @@ const subscriber_Slice = createSlice({
     name:"subscriber",
     initialState: {
         subscribers:[],
+        subscribersToFilter:[],
         totalsub:0,
         GetTotalSubscribersStatus:'',
         GetTotalSubscribersError:'',
@@ -92,7 +93,32 @@ const subscriber_Slice = createSlice({
         GetSubscribersStatus:'',
         GetSubscribersError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByEmail(state,action){
+            const newArray=[...state.subscribersToFilter]
+            const sortByEmail =  newArray.sort((a, b)=> (a.email < b.email ) ? -1 : (a.email > b.email) ? 1 : 0);
+            return{
+                ...state,
+                subscribers:sortByEmail
+            }    
+        },
+        sortDataByName(state,action){
+            const newArray=[...state.subscribers]
+            const sortByName =  newArray.sort((a, b)=> (a.fname < b.fname) ? -1 : (a.fname > b.fname) ? 1 : 0);
+            return{
+                ...state,
+                subscribers:sortByName
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.subscribersToFilter.filter((item)=>item.fname.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                subscribers:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -134,6 +160,7 @@ const subscriber_Slice = createSlice({
                 return{
                     ...state,
                     subscribers:action.payload.message,
+                    subscribersToFilter:action.payload.message,
                     GetSubscribersStatus:"success"
                 }
             }else return{
@@ -190,5 +217,5 @@ const subscriber_Slice = createSlice({
     }
 })
 
-
+export const subscriber_SliceActions = subscriber_Slice.actions;
 export default subscriber_Slice;

@@ -53,12 +53,38 @@ const blacklist_Slice = createSlice({
     name:"blacklist",
     initialState: {
         blacklist:[],
+        blacklistToFilter:[],
         CreateBlacklistStatus:'',
         CreateBlacklistError:'',
         GetBlacklistStatus:'',
         GetBlacklistError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByCreatedAt(state,action){
+            const newArray=[...state.blacklistToFilter]
+            const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at ) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
+            return{
+                ...state,
+                blacklist:sortByCreatedAt
+            }    
+        },
+        sortDataByEmail(state,action){
+            const newArray=[...state.blacklistToFilter]
+            const sortByEmail =  newArray.sort((a, b)=> (a.email < b.email) ? -1 : (a.email > b.email) ? 1 : 0);
+            return{
+                ...state,
+                blacklist:sortByEmail
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.blacklistToFilter.filter((item)=>item.email.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                blacklist:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -78,6 +104,7 @@ const blacklist_Slice = createSlice({
                     return{
                         ...state,
                         blacklist:action.payload.message,
+                        blacklistToFilter:action.payload.message,
                         GetBlacklistStatus:"success"
                     }
                 }
@@ -137,5 +164,5 @@ const blacklist_Slice = createSlice({
     }
 })
 
-
+export const blacklist_SliceActions = blacklist_Slice.actions;
 export default blacklist_Slice;

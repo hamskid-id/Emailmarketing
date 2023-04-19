@@ -21,15 +21,16 @@ export const CustomFormField =({
                 {
                     loadingStatus === "pending"?(
                         <button
-                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white`}
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm loading ${btnBg ? btnBg : `bg-slate-grey`} text-white`}
                             type="button" 
                             disabled
                         >
                             <span 
-                                className="spinner-border spinner-border-sm" 
+                                className="spinner-border spinner-border-sm me-1" 
                                 role="status" 
                                 aria-hidden="true">
                             </span>
+                            {value}
                         </button>
                     ):(
                         <button 

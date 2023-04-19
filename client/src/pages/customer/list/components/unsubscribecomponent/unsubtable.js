@@ -1,9 +1,10 @@
 import {useRef } from "react";
-import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { HandleDownloadPdf } from "../../../campaign/statistics.js/components/download";
 import { Actions } from "./unsubaction";
+import { NoData } from "../../../../../components/nodata";
 
 export const UnSubContainer =()=>{
     
@@ -102,15 +103,7 @@ export const UnSubContainer =()=>{
                  {
                     unsub
                     .unsubscribers?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                            <FaCartArrowDown
-                                color="grey"
-                                size="7rem"
-                            />
-                            <p className="fw-bold">
-                                Your unsubscribed List is presently empty
-                            </p>
-                        </div>
+                        <NoData/>
                     )
                 }
             </>

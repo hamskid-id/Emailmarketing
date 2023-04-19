@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
+import { campaign_SliceActions } from "../../../../store/campaignSlice";
 
 export const Actions =({
     deleteArray
@@ -6,6 +8,14 @@ export const Actions =({
     const navigate = useNavigate();
     const handleClick=()=>{
         console.log(deleteArray)
+    }
+    const dispatch = useDispatch();
+    const handleChange=(e)=>{
+        if(e.target.value ==="Title"){
+            dispatch(campaign_SliceActions.sortDataByTitle())
+        }else{
+            dispatch(campaign_SliceActions.sortDataByEmail())
+        }
     }
     return(
         <div className="row">
@@ -22,14 +32,15 @@ export const Actions =({
                                 name="sort" 
                                 id="sort"
                                 className="btn b-gainsboro me-2 mb-1"
+                                onChange={handleChange}
                                 >
                                 {
                                     [
                                         {
-                                            name:"Created At"
+                                            name:"Title"
                                         },
                                         {
-                                            name:"Name"
+                                            name:"Recipient"
                                         }
                                     ]?.map((drop,index)=>{
                                         const {
@@ -57,8 +68,9 @@ export const Actions =({
                         }
                         <input  
                             type="text"
-                            placeholder="Type to search"
+                            placeholder="Search..."
                             className="btn border rounded mb-1"
+                            onChange={(e)=>dispatch(campaign_SliceActions.searchdata(e.target.value))}
                         />
                     </div>
                 </div>

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { EditTemplateView } from "../pages/customer/campaign/component/editCampaignTemplate";
+import { useDispatch } from "react-redux";
+import { template_SliceActions } from "../store/templateSlice";
 
 export const Actions =({
     campaign,
@@ -11,6 +13,15 @@ export const Actions =({
     const navigate = useNavigate();
     const handleClick=()=>{
         console.log(deleteArray)
+    }
+    
+    const dispatch = useDispatch();
+    const handleChange =(e)=>{
+        if(e.target.value === "Created At"){
+            dispatch(template_SliceActions.sortDataByCreatedAt())
+        }else{
+            dispatch(template_SliceActions.sortDataByName())
+        }
     }
     return(
         <div className="row">
@@ -27,6 +38,7 @@ export const Actions =({
                                 name="sort" 
                                 id="sort"
                                 className="btn rounded b-gainsboro me-2 mb-1"
+                                onChange={handleChange}
                                 >
                                 {
                                     [
@@ -64,6 +76,7 @@ export const Actions =({
                             type="text"
                             placeholder="Type to search"
                             className="btn border rounded mb-1"
+                            onChange={(e)=>dispatch(template_SliceActions.searchdata(e.target.value))}
                         />
                     </div>
                 </div>

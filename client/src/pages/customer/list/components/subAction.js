@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
+import { subscriber_SliceActions } from "../../../../store/subscriberSlice"
 
 export const Actions =({deleteArray})=>{
     const tag = useSelector(
@@ -7,6 +8,14 @@ export const Actions =({deleteArray})=>{
     )
     const handleClick=()=>{
         console.log(deleteArray)
+    }
+    const dispatch = useDispatch();
+    const handleChange=(e)=>{
+        if(e.target.value ==="Name"){
+            dispatch(subscriber_SliceActions.sortDataByName())
+        }else{
+            dispatch(subscriber_SliceActions.sortDataByEmail())
+        }
     }
     return(
         <div className="row">
@@ -22,20 +31,15 @@ export const Actions =({deleteArray})=>{
                             name="sort" 
                             id="sort"
                             className="btn me-3 rounded b-gainsboro mb-1"
+                            onChange={handleChange}
                             >
                             {
                                 [
                                     {
-                                        name:"Created At"
+                                        name:"Name",
                                     },
                                     {
-                                        name:"Email"
-                                    },
-                                    {
-                                        name:"Name"
-                                    },
-                                    {
-                                        name:"Updated At"
+                                        name:"Email",
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
@@ -134,7 +138,7 @@ export const Actions =({deleteArray})=>{
                         </select>
                     </div>
                     {
-                        deleteArray &&( 
+                        deleteArray?.length>0 &&( 
                             <button
                                 onClick={handleClick}
                                 className="btn btn-md  b-grey me-2 mb-2">
@@ -144,8 +148,9 @@ export const Actions =({deleteArray})=>{
                     }
                     <input  
                         type="text"
-                        placeholder="Type to search"
+                        placeholder="Search..."
                         className="border btn mb-2"
+                        onChange={(e)=>dispatch(subscriber_SliceActions.searchdata(e.target.value))}
                     />
                 </div>
             </div>

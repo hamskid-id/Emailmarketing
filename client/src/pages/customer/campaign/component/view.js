@@ -1,8 +1,8 @@
 import {useSelector} from "react-redux";
 import { FaCartArrowDown} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { Actions } from "./actions";
 import { useState } from "react";
+import { Actions } from "./actions";
 
 export const AllcampaignView =()=>{
     const navigate = useNavigate();
@@ -67,8 +67,8 @@ export const AllcampaignView =()=>{
                                         />
                                     </td>
                                     <td>{title}</td>
-                                    <td>{reply_to}</td>
                                     <td>{from_email}</td>
+                                    <td>{reply_to}</td>
                                     <td>{subject}</td>
                                     <td>
                                         <div className="d-flex align-items-center">

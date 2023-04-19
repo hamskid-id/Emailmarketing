@@ -4,7 +4,9 @@
 .navbrand{
   display:none;
 }
-
+.bg-ddd{
+  background-color: #ddd;
+}
   .leftIcon{
     margin-left:auto;
   }
@@ -27,9 +29,12 @@
 #editor_container{
   height:86vh;
 }
+.text-bbb{
+  color:#bbb;
+}
 .bg-progress-success{
-  background-color: #252727;
-  background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+  background-color: #0d6efc;
+  background-image: linear-gradient(45deg,#0d6efd 25%,transparent 25%,transparent 50%,#0d6efd 50%,#0d6efd 75%,transparent 75%,transparent);
   background-size: 1rem 1rem;
 }
 .pde-2{
@@ -65,7 +70,7 @@ input[id="upload"]{
 }
 
 .border-bottom-slate-grey{
-  border-bottom:4px solid #252727;
+  border-bottom:4px solid rgba(0, 25, 39, 0.85);
 }
 .dotted{
   border:1px dotted grey;
@@ -81,11 +86,11 @@ input[id="upload"]{
   overflow-y: auto;
 }
 .accordion-item{
-  background-color: #252727;
+  background-color: rgba(0, 25, 39, 0);
 }
 .accordion-item:first-of-type .accordion-button{
-  background-color:#252727;
-  border:#252727;
+  background-color:rgba(0, 25, 39, 0);
+  border:rgba(0, 25, 39, 0.85);
   color:white;
 }
 .campains-select{
@@ -138,6 +143,9 @@ input[id="upload"]{
   padding-right: 1rem!important;
   padding-left: 1rem!important;
 }
+.loading{
+opacity:0.6;
+}
 .mar-5{
   margin-right: 2.2rem;
 }
@@ -154,7 +162,7 @@ input[id="upload"]{
   padding: 2rem;
 }
 .text-slategrey{
-  color:#252727;
+  color:rgba(0, 25, 39, 0.85);
 }
 .w-89{
   width:89%;
@@ -175,6 +183,9 @@ input[id="upload"]{
 }
 .campaign-select{
   width:40%;
+}
+.sideNav{
+  background-color: rgba(0, 25, 39, 0.85);
 }
 *{
   font-family: 'Nunito', sans-serif;
@@ -206,7 +217,7 @@ input[id="upload"]{
 }
 .bg-fade{
   background: #F8FDFF;
-  box-shadow: 0.75px 1.5px 8px 0.5px #252727;
+  box-shadow: 0.75px 1.5px 8px 0.5px rgba(0, 25, 39, 0.85);
   border-radius: 8px;
 }
 .row {
@@ -227,7 +238,7 @@ input[id="upload"]{
   background-color: grey;
 }
 .border-drakslate-grey{
-  border: 1px solid #252727;
+  border: 1px solid rgba(0, 25, 39, 0.85);
 }
 .b-gainsboro{
   background-color: gainsboro;
@@ -284,7 +295,7 @@ i.mdi.mdi-account {
   display: flex;
 }
 .bg-slate-grey{
-  background-color: #252727;
+  background-color: rgba(0, 25, 39, 0.85);
 }
 .w-overflow{
   width:100%;
@@ -346,7 +357,7 @@ i.mdi.mdi-account {
 }
 
 .App-header {
-  background-color: #252727;
+  background-color: rgba(0, 25, 39, 0.85);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -379,10 +390,10 @@ i.mdi.mdi-account {
   background:#F4F6F7;
 }
 .bg-blue{
-  color:#252727;
+  color:rgba(0, 25, 39, 0.85);
 }
 .cl-blue{
-  color:#252727;
+  color:rgba(0, 25, 39, 0.85);
 }
 .mt-7{
   margin-top: 7rem;
@@ -418,6 +429,9 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
+  .sideNav{
+    background-color: rgba(0, 25, 39, 1);
+  }
   .bar-container{
     position:relative;
     height: 21rem;
@@ -427,7 +441,7 @@ i.mdi.mdi-account {
     width:100%;
   }
   .brand{
-    color:#252727;
+    color:rgba(0, 25, 39, 0.85);
   }
   .navbrand{
     display:none;
@@ -437,7 +451,7 @@ i.mdi.mdi-account {
     padding-right:0;
   }
   .bg-slate-grey {
-    background-color: #252727;
+    background-color: rgba(0, 25, 39, 0.85);
   }
   .pdx-5{
     padding-right: 1rem;

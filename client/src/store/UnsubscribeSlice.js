@@ -67,12 +67,38 @@ const unsubscriber_Slice = createSlice({
     name:"unsubscriber",
     initialState: {
         unsubscribers:[],
+        unsubscribersToFilter:[],
         CreateUnsubscriberStatus:'',
         CreateUnsubscriberError:'',
         GetUnSubscribersStatus:'',
         GetUnSubscribersError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByEmail(state,action){
+            const newArray=[...state.unsubscribers]
+            const sortByEmail =  newArray.sort((a, b)=> (a.email < b.email ) ? -1 : (a.email > b.email) ? 1 : 0);
+            return{
+                ...state,
+                unsubscribers:sortByEmail
+            }    
+        },
+        sortDataByName(state,action){
+            const newArray=[...state.unsubscribers]
+            const sortByName =  newArray.sort((a, b)=> (a.fname < b.fname) ? -1 : (a.fname > b.fname) ? 1 : 0);
+            return{
+                ...state,
+                unsubscribers:sortByName
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.unsubscribersToFilter.filter((item)=>item.fname.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                unsubscribers:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -142,5 +168,5 @@ const unsubscriber_Slice = createSlice({
     }
 })
 
-
+export const unsubscriber_SliceActions = unsubscriber_Slice.actions;
 export default unsubscriber_Slice;

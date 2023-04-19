@@ -1,4 +1,17 @@
+import { useDispatch } from "react-redux";
+import { SpamReported_SliceActions } from "../../../../../store/SpamReportedSlice";
+
 export const Actions =()=>{
+
+    const dispatch = useDispatch();
+    const handleChange=(e)=>{
+        if(e.target.value === "Created At"){
+            dispatch(SpamReported_SliceActions.sortDataByCreatedAt())
+        }else{
+            dispatch(SpamReported_SliceActions.sortDataByEmail())
+        }
+    }
+
     return(
         <div className="row">
             <div className="col-md-6 mb-2">
@@ -13,6 +26,7 @@ export const Actions =()=>{
                             name="sort" 
                             id="sort"
                             className="btn rounded b-gainsboro"
+                            onChange={handleChange}
                             >
                             {
                                 [
@@ -41,6 +55,7 @@ export const Actions =()=>{
                         type="text"
                         placeholder="Type to search"
                         className=" rounded btn mb-2 border"
+                        onChange={(e)=>dispatch(SpamReported_SliceActions.searchdata(e.target.value))}
                     />
                 </div>
             </div>

@@ -72,12 +72,32 @@ const collab_Slice = createSlice({
     name:"collab",
     initialState: {
         inviteForCollaborations:[],
+        collabToFilter:[],
         inviteSent:[],
+        inviteToFilter:[],
         InviteUsersStatus:'',
         GetInviteForCollaborationsStatus:'',
         GetInviteSentStatus:'',
     },
-    reducers:{},
+    reducers:{
+        searchdata(state,action){
+            const type = action.payload.type;
+            const data=action.payload.data;
+            const filteredData = state.collabToFilter.filter((item)=>item.email.toLowerCase().includes(data.toLowerCase()));
+            const filteredInviteData = state.inviteToFilter.filter((item)=>item.email.toLowerCase().includes(data.toLowerCase()));
+            if(type ==="collab"){
+                return{
+                    ...state,
+                    inviteForCollaborations:filteredData
+                }
+            }else{
+                return{
+                    ...state,
+                    inviteSent:filteredInviteData
+                }
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -135,6 +155,7 @@ const collab_Slice = createSlice({
                     return{
                         ...state,
                         inviteForCollaborations:action.payload.message,
+                        collabToFilter:action.payload.message,
                         GetInviteForCollaborationsStatus:"success"
                     }
                 }
@@ -166,6 +187,7 @@ const collab_Slice = createSlice({
                 return{
                     ...state,
                     inviteSent:action.payload.message,
+                    inviteToFilter:action.payload.message,
                     GetInviteSentStatus:"success"
                 }
             }else return{
@@ -182,5 +204,5 @@ const collab_Slice = createSlice({
     }
 })
 
-
+export const collab_SliceActions = collab_Slice.actions;
 export default collab_Slice;

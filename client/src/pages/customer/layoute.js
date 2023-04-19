@@ -1,13 +1,11 @@
 import { useRef, useState } from "react";
-// import "../homepage/home.css";
 import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
 import { useNavigate } from "react-router-dom";
-// import { FaMonero, FaSearch } from "react-icons/fa";
 import LetteredAvatar from 'react-lettered-avatar';
 import { useDispatch, useSelector } from "react-redux";
 import { Brand } from "../../components/navbarbrand";
-import {FaExclamationTriangle, FaSistrix, FaTimesCircle} from "react-icons/fa";
+import {FaExclamationTriangle, FaSistrix} from "react-icons/fa";
 import { AlertModal } from "../../components/modal/alertModal";
 import { LogOutUser } from "../../store/authSlice";
 import { Modal } from "../../components/modal/modal";
@@ -35,7 +33,7 @@ export const Layout=({routeChildren,main})=>{
         <div className="container-fluid">
             <div className="row no-wrap">
                 <div 
-                    className="col-md-2 px-3 sideNav bg-slate-grey w-230" 
+                    className="col-md-2 px-3 sideNav w-230" 
                     ref={navToggler}
                 >
                    <SideNav 
@@ -91,7 +89,6 @@ export const Layout=({routeChildren,main})=>{
                                         </div>                                   
                                     </span>
                                     <Modal
-                                        title="Enter your search"
                                         body={<SearchView/>}
                                         id="searchstaticBackdrop"
                                     />

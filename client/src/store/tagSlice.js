@@ -77,6 +77,7 @@ const Tag_Slice = createSlice({
     name:"tag",
     initialState: {
         Tags:[],
+        tagsToFilter:[],
         CreateTagsStatus:'',
         CreateTagsError:'',
         UpdateTagsStatus:'',
@@ -84,7 +85,32 @@ const Tag_Slice = createSlice({
         GetTagsStatus:'',
         GetTagsError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByName(state,action){
+            const newArray = [...state.tagsToFilter]
+            const sortByName =  newArray.sort((a, b)=> (a.name < b.name ) ? -1 : (a.name > b.name) ? 1 : 0);
+            return{
+                ...state,
+                Tags:sortByName
+            }    
+        },
+        sortDataByCreatedAt(state,action){
+            const newArray=[...state.tagsToFilter]
+            const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
+            return{
+                ...state,
+                Tags:sortByCreatedAt
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.tagsToFilter.filter((item)=>item.name.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                Tags:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -100,6 +126,7 @@ const Tag_Slice = createSlice({
                 return{
                     ...state,
                     Tags:action.payload.message,
+                    tagsToFilter:action.payload.message,
                     GetTagsStatus:"success"
                 }
             }else return{
@@ -194,5 +221,5 @@ const Tag_Slice = createSlice({
     }
 })
 
-
+export const Tag_SliceActions = Tag_Slice.actions;
 export default Tag_Slice;
