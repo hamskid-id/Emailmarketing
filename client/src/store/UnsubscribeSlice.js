@@ -4,6 +4,26 @@ import { toast } from 'react-toastify';
 import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
+export const DeleteUnSubscribers = createAsyncThunk(
+    'unsubscriber/DeleteUnSubscribers', 
+    async ({id},{dispatch}) =>{
+    try{
+        const response = await axios.delete(
+            `${apiBaseUrl}/api/deleteunsubscribe/${id}`,
+                setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetUnSubscribers())
+        }
+        return response?.data
+    } catch(err){
+        console.log(
+            err.response?.data?.message
+        )
+        }
+    }
+)
+
 export const GetUnSubscribers = createAsyncThunk(
     'unsubscriber/GetUnSubscribers', 
     async () =>{
@@ -35,7 +55,7 @@ export const CreateUnsubscriber = createAsyncThunk(
     },{dispatch}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/addunsubscrib`,{
+            `${apiBaseUrl}/addunsubscribe`,{
                 email,
                 fname,
                 lname,
@@ -67,6 +87,7 @@ const unsubscriber_Slice = createSlice({
     name:"unsubscriber",
     initialState: {
         unsubscribers:[],
+        deleteStatus:'',
         unsubscribersToFilter:[],
         CreateUnsubscriberStatus:'',
         CreateUnsubscriberError:'',
@@ -101,6 +122,32 @@ const unsubscriber_Slice = createSlice({
     },
 
     extraReducers:(builder)=>{
+
+        builder.addCase(DeleteUnSubscribers.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteUnSubscribers.fulfilled,(state, action)=>{
+            if(action.payload.status){
+                toast(action.payload.message)
+                return{
+                    ...state,
+                    deleteStatus:"success"
+                }
+            }else return{
+                ...state,
+                deleteStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteUnSubscribers.rejected,(state, action)=>{
+            return{
+                ...state,
+                deleteStatus:'rejected'
+            }
+        })
 
         builder.addCase(GetUnSubscribers.pending,(state, action)=>{
             return {

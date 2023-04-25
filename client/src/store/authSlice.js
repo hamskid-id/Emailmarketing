@@ -6,17 +6,31 @@ import { apiBaseUrl, setHeaders } from './api';
 export const UpdateContactInfo = createAsyncThunk(
     'auth/UpdateContactInfo', 
     async ({
-        name,
+        id,
         email,
-        password
+        company,
+        phone,
+        zip_code,
+        state,
+        city,
+        address1,
+        address2,
+        country
     }) =>{
     try{
+        console.log(id)
         const response = await axios.post(
-            `${apiBaseUrl}/updatecontact`,{
-                name,
+            `${apiBaseUrl}/updateuserinfo/${id}`,{
                 email,
-                password
-            }
+                company,
+                phone,
+                zip_code,
+                state,
+                city,
+                address1,
+                address2,
+                country
+            },setHeaders()
         );
         return response?.data
     } catch(err){
@@ -31,17 +45,14 @@ export const UpdateContactInfo = createAsyncThunk(
 export const UploadProfilePicture = createAsyncThunk(
     'auth/UploadProfilePicture', 
     async ({
-        name,
-        email,
-        password
+        id,
+        pics,
     }) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/updateprofilepic`,{
-                name,
-                email,
-                password
-            }
+            `${apiBaseUrl}/updateprofile/${id}`,{
+                pics
+            },setHeaders()
         );
         return response?.data
     } catch(err){
@@ -255,7 +266,6 @@ const auth_Slice = createSlice({
             }
         })
         builder.addCase(UpdateContactInfo.rejected,(state, action)=>{
-            toast(action?.payload?.message)
             return{
                 ...state,
                 updateContactStatus:'rejected',

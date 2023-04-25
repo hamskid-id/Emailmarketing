@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux"
-import {useNavigate} from "react-router-dom"
 import { blacklist_SliceActions } from "../../../../../store/BlacklistedSlice"
 export const Actions =()=>{
     const dispatch = useDispatch()
@@ -53,7 +52,7 @@ export const Actions =()=>{
                     <input  
                         type="text"
                         placeholder="Search..."
-                        className="btn action-inpt rounded"
+                        className="btn border mb-2"
                         onChange={(e)=>dispatch(blacklist_SliceActions.searchdata(e.target.value))}
                     />
                 </div>

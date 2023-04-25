@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
+import { UpdateContactInfo } from "../../../../store/authSlice";
 // import { Createsubscriber } from "../../../../store/subscriberSlice";
 
 export const ContactInformation =()=>{
@@ -18,27 +19,30 @@ export const ContactInformation =()=>{
     } = useForm();
 
     const SubmitHandler=({
-        email,
-        fname,
-        lname,
+        corg,
+        tel,
+        cemail,
+        postal,
+        city,
+        addy1,
+        addy2,
         country,
-        state,
-        phone,
-        dob,
-        tag
+        state
     })=>{
-        // dispatch(
-        //     Createsubscriber({
-        //         email,
-        //         fname,
-        //         lname,
-        //         country,
-        //         state,
-        //         phone,
-        //         dob,
-        //         tag
-        //     })
-        // )
+        dispatch(
+           UpdateContactInfo({
+                id:auth.userdata?.user?.id,
+                company:corg,
+                phone:tel,
+                email:cemail,
+                zip_code:postal,
+                city:city,
+                address1:addy1,
+                address2:addy2,
+                country:country,
+                state:state
+            })
+        )
     }
     return(
         <form onSubmit={handleSubmit(SubmitHandler)}>
@@ -127,20 +131,11 @@ export const ContactInformation =()=>{
                     register={register}
                     errors={errors.country}
                 />
-                {/* <CustomFormField
-                    label ="Website"
-                    name ="web"
-                    placeholder="Home page"
-                    type="text"
-                    space={true}
-                    register={register}
-                    errors={errors.web}
-                /> */}
             </div>
             <CustomFormField
                 value="submit"
                 type="btn"
-                loadingStatus="success"
+                loadingStatus={auth.updateContactStatus}
             />
         </form>
     )

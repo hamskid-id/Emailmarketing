@@ -2,13 +2,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import { subscriber_SliceActions } from "../../../../store/subscriberSlice"
 
-export const Actions =({deleteArray})=>{
+export const Actions =()=>{
     const tag = useSelector(
         state => state.tag
     )
-    const handleClick=()=>{
-        console.log(deleteArray)
-    }
     const dispatch = useDispatch();
     const handleChange=(e)=>{
         if(e.target.value ==="Name"){
@@ -137,15 +134,6 @@ export const Actions =({deleteArray})=>{
                             }
                         </select> */}
                     </div>
-                    {
-                        deleteArray?.length>0 &&( 
-                            <button
-                                onClick={handleClick}
-                                className="btn btn-md  b-grey me-2 mb-2">
-                                delete
-                            </button>
-                        )
-                    }
                     <input  
                         type="text"
                         placeholder="Search..."

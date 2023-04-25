@@ -6,10 +6,10 @@ import { apiBaseUrl, setHeaders } from './api';
 
 export const DeleteSpamReport = createAsyncThunk(
     'SpamReported/DeleteSpamReport  ', 
-    async ({dispatch}) =>{
+    async ({id},{dispatch}) =>{
     try{
-        const response = await axios.get(
-            `${apiBaseUrl}/delete_spamreport`,
+        const response = await axios.delete(
+            `${apiBaseUrl}/deletespam/${id}`,
                 setHeaders()
         )
 
@@ -117,9 +117,11 @@ const SpamReported_Slice = createSlice({
         builder.addCase(DeleteSpamReport.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
+                    toast(message)
                     return{
                         ...state,
                         deleteSpamStatus:"success"

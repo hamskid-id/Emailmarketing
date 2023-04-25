@@ -22,13 +22,11 @@ export const GetBlacklist = createAsyncThunk(
 export const DeleteBlacklist  = createAsyncThunk(
     'blacklist/DeleteBlacklist', 
     async ({
-        email
+        id
     },{dispatch}) =>{
     try{
-        const response = await axios.post(
-            `${apiBaseUrl}/deleteblasklisted`,{
-                email
-            },
+        const response = await axios.delete(
+            `${apiBaseUrl}/deleteblacklist/${id}`,
             setHeaders()
         )
         if(response?.data?.status){
@@ -123,9 +121,11 @@ const blacklist_Slice = createSlice({
         builder.addCase(DeleteBlacklist.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
+                    toast(message)
                     return{
                         ...state,
                         deleteStatus:"success"

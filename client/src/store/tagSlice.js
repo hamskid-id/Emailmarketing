@@ -8,13 +8,11 @@ import { apiBaseUrl, setHeaders } from './api';
 export const DeleteTags  = createAsyncThunk(
     'tag/DeleteTags ', 
     async ({
-        name
+        id
     },{dispatch}) =>{
     try{
-        const response = await axios.post(
-            `${apiBaseUrl}/DeleteTags`,{
-                name
-            },
+        const response = await axios.delete(
+            `${apiBaseUrl}/deletetags/${id}`,
             setHeaders()
         )
         if(response?.data?.status){
@@ -151,7 +149,8 @@ const Tag_Slice = createSlice({
 
         
         builder.addCase(DeleteTags.fulfilled,(state, action)=>{
-            if(action.payload.message){
+            if(action.payload.status){
+                toast(action.payload.message)
                 return{
                     ...state,
                     deleteStatus:"success"

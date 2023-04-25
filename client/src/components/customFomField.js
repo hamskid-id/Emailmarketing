@@ -42,6 +42,7 @@ export const CustomFormField =({
             </div>
         )
     }
+
     if(type === "checkbox"){
         return(
             <div className="d-flex align-items-center mb-2">
@@ -63,6 +64,7 @@ export const CustomFormField =({
             </div>
         )
     }
+
     if(type === "textArea"){
         return(
             <div className="w-100 mb-2">
@@ -85,7 +87,6 @@ export const CustomFormField =({
                         )
                     }
                 >
-                   
                 </textarea>
                 {errors && (<p className="text-danger ">{errors.message}</p>)}
             </div>

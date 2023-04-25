@@ -1,15 +1,25 @@
+import { UploadProfilePicture } from "../../../../store/authSlice";
 import { BasicInfo } from "./basicinfo"
 import { ChangePassword } from "./resetPassword"
 import LetteredAvatar from 'react-lettered-avatar';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const MyProfile =()=>{
-    const handleChange =(e)=>{
-        console.log(e.target.files[0]);
-    }
+    
     const auth = useSelector(
         state => state.auth
     )
+    const dispatch = useDispatch()
+
+    const handleChange =(e)=>{
+        dispatch(UploadProfilePicture({
+            pics:e.target.files[0],
+            id:auth.userdata?.user?.id
+        }))
+    }
+
+    console.log(localStorage.getItem('marketingUserToken'));
+
     return(
         <>
             <div className="row">
@@ -38,13 +48,22 @@ export const MyProfile =()=>{
                                 <label
                                     htmlFor="upload"
                                     className="btn btn-md btn-primary"
-                                    >                                   
+                                    >         
+                                        { 
+                                            auth.uploadProfilePicsStatus === "pending" && (       
+                                            <span 
+                                                className="spinner-border spinner-border-sm me-1" 
+                                                role="status" 
+                                                aria-hidden="true">
+                                            </span> 
+                                            )
+                                        }              
                                         Upload photo                                    
                                 </label>
                                 <input 
                                     type="file" 
                                     id="upload" 
-                                    accept=".txt" 
+                                    accept=".png, .jpg, .jpeg, .svg, .gif"
                                     onChange={handleChange}
                                 />
                             </div>

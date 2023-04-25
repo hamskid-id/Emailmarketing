@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetBlacklist } from "../../../../../store/BlacklistedSlice";
+import { DeleteBlacklist, GetBlacklist } from "../../../../../store/BlacklistedSlice";
 import { Actions } from "./blacklistaction";
 import { NoData } from "../../../../../components/nodata";
 
@@ -14,7 +14,7 @@ export const BlacklistTable =()=>{
         dispatch(GetBlacklist(null));
     },[dispatch])
 
-    if(blacklist.GetBlacklistStatus ==='pending'){
+    if(blacklist.GetBlacklistStatus ==='pending' || blacklist.deleteStatus === "pending"){
         return <Spinner/>
     }
     return(
@@ -35,6 +35,7 @@ export const BlacklistTable =()=>{
                         blacklist.blacklist?.map((list,index)=>{
                                 const{
                                     email,
+                                    id,
                                     created_at
                                 } = list
                                 return(
@@ -59,8 +60,9 @@ export const BlacklistTable =()=>{
                                                     <ul className="dropdown-menu">
                                                         <li
                                                             className="dropdown-item"
+                                                            onClick={()=>dispatch(DeleteBlacklist({id}))}
                                                         >
-                                                            Remove
+                                                            Delete
                                                         </li>
                                                     </ul>
                                                 </div>
