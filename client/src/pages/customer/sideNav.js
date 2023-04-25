@@ -152,7 +152,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                 }
             </div>
             <div 
-                className="d-flex flex-column justify-content-center align-items-center my-3 btn"
+                className="d-flex flex-column justify-content-center align-items-center  btn"
                 data-bs-toggle="modal" 
                 data-bs-target="#alertStaticBackdrop"
                 onClick={()=>navToggler.current.classList.remove("active")}
