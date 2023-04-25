@@ -469,9 +469,6 @@ i.mdi.mdi-account {
   }
 }
 @media only screen and (max-width: 766px) {
-  .sideNav{
-    background-color: rgba(0, 25, 39, 1);
-  }
   .bar-container{
     position:relative;
     height: 21rem;
@@ -557,7 +554,7 @@ i.mdi.mdi-account {
     width:100%;
   }
   .w-230{
-    width:100%;
+    width:60%;
   }
   .sideNav.active{
     display: block;
