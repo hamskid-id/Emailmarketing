@@ -4,6 +4,32 @@ import { toast } from 'react-toastify';
 import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
+
+export const DeleteTags  = createAsyncThunk(
+    'tag/DeleteTags ', 
+    async ({
+        name
+    },{dispatch}) =>{
+    try{
+        const response = await axios.post(
+            `${apiBaseUrl}/DeleteTags`,{
+                name
+            },
+            setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetTags())
+        }
+        return response?.data
+    } catch(err){
+        toast.error(
+            err.response?.data?.message
+        )
+        }
+    }
+)
+
+
 export const GetTags = createAsyncThunk(
     'tag/GetTags ', 
     async () =>{
@@ -78,6 +104,7 @@ const Tag_Slice = createSlice({
     initialState: {
         Tags:[],
         tagsToFilter:[],
+        deleteStatus:'',
         CreateTagsStatus:'',
         CreateTagsError:'',
         UpdateTagsStatus:'',
@@ -114,13 +141,34 @@ const Tag_Slice = createSlice({
 
     extraReducers:(builder)=>{
 
-        builder.addCase(GetTags.pending,(state, action)=>{
+        builder.addCase(DeleteTags.pending,(state, action)=>{
             return {
                 ...state,
-                GetTagsStatus:'pending'
+                deleteStatus:'pending'
             }
 
         });
+
+        
+        builder.addCase(DeleteTags.fulfilled,(state, action)=>{
+            if(action.payload.message){
+                return{
+                    ...state,
+                    deleteStatus:"success"
+                }
+            }else return{
+                ...state,
+                GetTagsStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteTags.rejected,(state, action)=>{
+            return{
+                ...state,
+                GetTagsStatus:'rejected'
+            }
+        })
+
+
         builder.addCase(GetTags.fulfilled,(state, action)=>{
             if(action.payload.message){
                 return{

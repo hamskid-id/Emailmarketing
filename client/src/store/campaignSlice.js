@@ -20,64 +20,24 @@ export const GetRecentCampaigns = createAsyncThunk(
     }
 )
 
-// export const GetList = createAsyncThunk(
-//     'campaign/GetList ', 
-//     async () =>{
-//     try{
-//         const response = await axios.get(
-//             `${apiBaseUrl}/viewcamps`,
-//                 setHeaders()
-//         )
-//         console.log(
-//            response?.data
-//         )
-//         return response?.data
-//     } catch(err){
-//             console.log(
-//                 err.response?.data
-//             )
-//         }
-//     }
-// )
 
-// export const CreateList  = createAsyncThunk(
-//     'campaign/CreateList', 
-//     async ({
-//         title,
-//         reply_to,
-//         from_title,
-//         from_name,
-//         subject,
-//         content,
-//         tag_id,
-//         content_type,
-//         schedule_date,
-//         status
-//     },{rejectWithValue}) =>{
-//     try{
-//         const response = await axios.post(
-//             `${apiBaseUrl}/createcampaigns`,{
-//                 title,
-//                 reply_to,
-//                 from_title,
-//                 from_name,
-//                 subject,
-//                 content,
-//                 tag_id,
-//                 content_type,
-//                 schedule_date,
-//                 status
-//             },
-//             setHeaders()
-//         )
-//         return response?.data
-//     } catch(err){
-//         return rejectWithValue(
-//             err.response?.data?.message
-//         )
-//         }
-//     }
-// )
+export const DeleteCampaigns = createAsyncThunk(
+    'campaign/DeleteCampaigns', 
+    async ({dispatch}) =>{
+    try{
+        const response = await axios.get(
+            `${apiBaseUrl}/deltecamp`,
+                setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetCampaigns());
+        }
+        return response?.data
+    } catch(err){
+         console.log(err.response?.data?.message);
+        }
+    }
+)
 
 export const GetCampaigns = createAsyncThunk(
     'campaign/GetCampaigns ', 
@@ -104,6 +64,7 @@ export const CreateCampaigns  = createAsyncThunk(
         content,
         tag_id,
         from_name,
+        from_email,
         content_type,
         schedule_date,
         status
@@ -115,6 +76,7 @@ export const CreateCampaigns  = createAsyncThunk(
                 reply_to,
                 from_title,
                 from_name,
+                from_email,
                 subject,
                 content,
                 tag_id,
@@ -148,6 +110,7 @@ const campaign_Slice = createSlice({
         Campaigns:[],
         campaignToFilter:[],
         CreateListStatus:'',
+        deleteStatus:"",
         CreateListError:'',
         CreateCampaignsStatus:'',
         CreateCampaignsError:'',
@@ -207,15 +170,16 @@ const campaign_Slice = createSlice({
                         GetRecentCampaignsStatus:"success"
                     }
                 }
-                return{
+                else return{
                     ...state,
-                    GetRecentCampaignsStatus:"success"
+                    GetRecentCampaignsStatus:"failed"
                 }
             }else return{
                 ...state,
                 GetRecentCampaignsStatus:"failed"
             }
         })
+
         builder.addCase(GetRecentCampaigns.rejected,(state, action)=>{
             return{
                 ...state,
@@ -243,9 +207,9 @@ const campaign_Slice = createSlice({
                         GetCampaignsStatus:"success"
                     }
                 }
-                return{
+                else return{
                     ...state,
-                    GetCampaignsStatus:"success"
+                    GetCampaignsStatus:"failed"
                 }
             }else return{
                 ...state,
@@ -256,6 +220,40 @@ const campaign_Slice = createSlice({
             return{
                 ...state,
                 GetCampaignsStatus:'rejected'
+            }
+        })
+
+        builder.addCase(DeleteCampaigns.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteCampaigns.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status
+                }= action.payload
+                if(status === true){
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                    }
+                }
+                else return{
+                    ...state,
+                    deleteStatus:"failed"
+                }
+            }else return{
+                ...state,
+                deleteStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteCampaigns.rejected,(state, action)=>{
+            return{
+                ...state,
+                deleteStatus:'rejected'
             }
         })
 

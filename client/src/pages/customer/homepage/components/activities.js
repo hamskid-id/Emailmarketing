@@ -31,9 +31,9 @@ export const ActivitiesLog =()=>{
             <div className="py-3">
                 {
                     activities.activities?.length ===0?(
-                        <p className="fs-5 text-center c-grey">Your activities log is empty</p>
+                        <p className="fs-6 text-center c-grey">Your activities log is empty</p>
                     ) :(
-                        <div className="mb-2 h5-overflow pb-1 bg-lightBlue">
+                        <div className="mb-2 h5-overflow pb-1">
                         {
                             activities.activities?.map((active,index)=>{
                                 const{
@@ -51,10 +51,10 @@ export const ActivitiesLog =()=>{
                                                     color="gainsboro"
                                                     className="mb-3"
                                                 />
-                                                <h3 className="fs-6 break">
+                                                <h3 className="c-dark-volin break p-3 rounded fw-bold bg-lightBlue activityaction">
                                                     {action}
                                                 </h3>
-                                                <p className="fs-6">
+                                                <p className="fw-bold c-dark-volin log">
                                                     {
                                                         new Date(created_at)
                                                             .toLocaleString()

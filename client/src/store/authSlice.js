@@ -3,6 +3,55 @@ import  axios  from 'axios';
 import { toast } from 'react-toastify';
 import { apiBaseUrl, setHeaders } from './api';
 
+export const UpdateContactInfo = createAsyncThunk(
+    'auth/UpdateContactInfo', 
+    async ({
+        name,
+        email,
+        password
+    }) =>{
+    try{
+        const response = await axios.post(
+            `${apiBaseUrl}/updatecontact`,{
+                name,
+                email,
+                password
+            }
+        );
+        return response?.data
+    } catch(err){
+        toast.error(
+            err.response?.data?.message
+        )
+    }
+    }
+)
+
+
+export const UploadProfilePicture = createAsyncThunk(
+    'auth/UploadProfilePicture', 
+    async ({
+        name,
+        email,
+        password
+    }) =>{
+    try{
+        const response = await axios.post(
+            `${apiBaseUrl}/updateprofilepic`,{
+                name,
+                email,
+                password
+            }
+        );
+        return response?.data
+    } catch(err){
+        toast.error(
+            err.response?.data?.message
+        )
+    }
+    }
+)
+
 export const registerUser = createAsyncThunk(
     'auth/registerUser', 
     async ({
@@ -107,6 +156,8 @@ const auth_Slice = createSlice({
         registerStatus:'',
         registerError:'',
        LoginStatus:'',
+       updateContactStatus:'',
+       uploadProfilePicsStatus:'',
        SendPasswordResetLinkStatus:'',
        SendPasswordResetLinkError:'',
        ResendVerifyStatus:'',
@@ -133,6 +184,84 @@ const auth_Slice = createSlice({
     },
 
     extraReducers:(builder)=>{
+
+        builder.addCase(UploadProfilePicture.pending,(state, action)=>{
+            return {
+                ...state,
+                uploadProfilePicsStatus:'pending'
+            }
+
+        });
+        builder.addCase(UploadProfilePicture.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                
+                if(status === true){
+                    toast(message)
+                    return{
+                        ...state,
+                        uploadProfilePicsStatus:"success"
+                    }
+                }else{
+                    return{
+                        ...state,
+                        uploadProfilePicsStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                uploadProfilePicsStatus:"failed"
+            }
+        })
+        builder.addCase(UploadProfilePicture.rejected,(state, action)=>{
+            return{
+                ...state,
+                uploadProfilePicsStatus:'rejected',
+            }
+        })
+
+        builder.addCase(UpdateContactInfo.pending,(state, action)=>{
+            return {
+                ...state,
+                updateContactStatus:'pending'
+            }
+
+        });
+        builder.addCase(UpdateContactInfo.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                
+                if(status === true){
+                    toast(message)
+                    return{
+                        ...state,
+                        updateContactStatus:"success"
+                    }
+                }else{
+                    return{
+                        ...state,
+                        updateContactStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                updateContactStatus:"failed"
+            }
+        })
+        builder.addCase(UpdateContactInfo.rejected,(state, action)=>{
+            toast(action?.payload?.message)
+            return{
+                ...state,
+                updateContactStatus:'rejected',
+            }
+        })
+
 
         builder.addCase(ResetPassword.pending,(state, action)=>{
             return {

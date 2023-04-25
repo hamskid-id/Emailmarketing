@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { FaTags } from "react-icons/fa"
+import { AiOutlineTags } from "react-icons/ai";
 import { CreateTag } from "./tagsmodalcontent"
 import { TagContainer } from "./tagstable"
 import { Tablelayout } from "../tableContentLayout"
@@ -12,7 +12,7 @@ export const TagsContent =()=>{
                 hidemodal={hidemodal}
                 title="Tags"
                 titleIcon={
-                    <FaTags
+                    <AiOutlineTags
                         size="1.5rem"
                         color='grey'
                     />

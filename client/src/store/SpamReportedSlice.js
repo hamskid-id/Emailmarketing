@@ -4,6 +4,26 @@ import { toast } from 'react-toastify';
 import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
+export const DeleteSpamReport = createAsyncThunk(
+    'SpamReported/DeleteSpamReport  ', 
+    async ({dispatch}) =>{
+    try{
+        const response = await axios.get(
+            `${apiBaseUrl}/delete_spamreport`,
+                setHeaders()
+        )
+
+        if(response?.data?.status){
+            dispatch(GetSpamReported());
+        }
+
+        return response?.data
+    } catch(err){ 
+            return err.response?.data
+        }
+    }
+)
+
 export const GetSpamReported = createAsyncThunk(
     'SpamReported/GetSpamReported ', 
     async () =>{
@@ -51,6 +71,7 @@ const SpamReported_Slice = createSlice({
     name:"SpamReported",
     initialState: {
         SpamReported:[],
+        deleteSpamStatus:'',
         spamToFilter:[],
         CreateSpamReportedStatus:'',
         CreateSpamReportedError:'',
@@ -86,6 +107,40 @@ const SpamReported_Slice = createSlice({
 
     extraReducers:(builder)=>{
 
+        builder.addCase(DeleteSpamReport.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteSpamStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteSpamReport.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status
+                }= action.payload
+                if(status === true){
+                    return{
+                        ...state,
+                        deleteSpamStatus:"success"
+                    }
+                }
+                else return{
+                    ...state,
+                    deleteSpamStatus:"failed"
+                }
+            }else return{
+                ...state,
+                deleteSpamStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteSpamReport.rejected,(state, action)=>{
+            return{
+                ...state,
+                deleteSpamStatus:'rejected'
+            }
+        })
+
         builder.addCase(GetSpamReported.pending,(state, action)=>{
             return {
                 ...state,
@@ -106,9 +161,9 @@ const SpamReported_Slice = createSlice({
                         GetSpamReportedStatus:"success"
                     }
                 }
-                return{
+                else return{
                     ...state,
-                    GetSpamReportedStatus:"success"
+                    GetSpamReportedStatus:"failed"
                 }
             }else return{
                 ...state,

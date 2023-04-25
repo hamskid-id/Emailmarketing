@@ -1,6 +1,6 @@
 import {FaImages, FaTable, FaUserAlt } from "react-icons/fa";
-import { MyTemplateList } from "../../../../components/templateList";
-import { GeneralList } from "../../../../components/generalTemplate";
+import { MyTemplateList } from "../../../../components/usersTemplateList";
+import { GeneralList } from "../../../../components/generalTemplateList";
 import { useState } from "react";
 
 export const GeneralTemplateList =({

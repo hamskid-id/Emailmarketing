@@ -33,7 +33,7 @@ export const HomeView =()=>{
             <div className="pdx-4">
                 <Rate/>
             </div>
-            <div className="pdx-4 bg-lightBlue py-2">
+            <div className="pdx-4 py-2">
                 <ActivitiesLog/>
             </div>
         </div>

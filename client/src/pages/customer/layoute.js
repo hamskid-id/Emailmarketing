@@ -60,6 +60,7 @@ export const Layout=({routeChildren,main})=>{
                                             color="grey"
                                             data-bs-toggle="modal" 
                                             data-bs-target="#searchstaticBackdrop"
+                                            className="pointer"
                                         />
                                     </span>
                                     <span className="d-flex align-items-center justify-content-end">

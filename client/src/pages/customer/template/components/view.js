@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { FaImages, FaTable, FaUserAlt } from "react-icons/fa"
-import { GeneralList } from "../../../../components/generalTemplate";
-import { MyTemplateList } from "../../../../components/templateList"
+import {AiOutlineLayout} from "react-icons/ai";
+import { FaImages, FaUserAlt } from "react-icons/fa"
+import { GeneralList } from "../../../../components/generalTemplateList";
+import { MyTemplateList } from "../../../../components/usersTemplateList"
 
 export const TemplateView =()=>{
     const [
@@ -12,7 +13,7 @@ export const TemplateView =()=>{
         <div className="pb-3">
             <div className="d-flex align-items-center pb-3 pdx-4 bg-lightBlue pt-3">
                 <span className="me-3">
-                    <FaTable
+                    <AiOutlineLayout
                         size="1.5rem"
                         color="grey"
                     />

@@ -63,7 +63,7 @@ export const SubscriberStat =()=>{
                                 </p>
                                 <div className="d-flex align-items-center justify-content-between wrap">
                                     <h6
-                                        className="text-dark"
+                                        className="text-dark pointer"
                                         onClick={
                                             ()=>navigate(route)
                                         }>

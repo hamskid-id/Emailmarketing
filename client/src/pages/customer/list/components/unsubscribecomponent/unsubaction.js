@@ -1,11 +1,25 @@
 import { useDispatch } from "react-redux"
 import { unsubscriber_SliceActions } from "../../../../../store/UnsubscribeSlice";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export const Actions =({
     HandleDownloadPdf,
-    printRef
+    printRef,
+    itemLength
 })=>{
     const dispatch = useDispatch();
+    const [width, setWidth] = useState(window.innerWidth)
+    const handleWindowSizeChange=()=>{
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
     const handleChange=(e)=>{
         if(e.target.value ==="Name"){
             dispatch(unsubscriber_SliceActions.sortDataByName())
@@ -13,7 +27,16 @@ export const Actions =({
             dispatch(unsubscriber_SliceActions.sortDataByEmail())
         }
     }
-
+    const handleDownload =()=>{
+        const isMobile = width <= 768;
+        if(isMobile){
+            toast.warning("download is not supported on mobile please switch to desktop");
+        }else if(itemLength === 0 && !isMobile){
+            toast.warning("Data is empty");
+        }else{
+            HandleDownloadPdf(printRef)
+        }
+    }
     return(
         <div className="row">
             <div className="col-md-9 mb-2">
@@ -66,7 +89,7 @@ export const Actions =({
                 <div>
                     <button 
                         className="btn b-grey btn-md my-2 fl-r"
-                        onClick={()=>HandleDownloadPdf(printRef)}  
+                        onClick={handleDownload}  
                     >
                         download
                     </button>
