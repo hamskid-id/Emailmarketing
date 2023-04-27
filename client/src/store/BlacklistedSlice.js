@@ -19,6 +19,30 @@ export const GetBlacklist = createAsyncThunk(
     }
 )
 
+export const DeleteBlacklist  = createAsyncThunk(
+    'blacklist/DeleteBlacklist', 
+    async ({
+        email
+    },{dispatch}) =>{
+    try{
+        const response = await axios.post(
+            `${apiBaseUrl}/deleteblasklisted`,{
+                email
+            },
+            setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetBlacklist())
+        }
+        return response?.data
+    } catch(err){
+        toast.error(
+            err.response?.data?.message
+        )
+        }
+    }
+)
+
 export const CreateBlacklist  = createAsyncThunk(
     'blacklist/CreateBlacklist ', 
     async ({
@@ -54,6 +78,7 @@ const blacklist_Slice = createSlice({
     initialState: {
         blacklist:[],
         blacklistToFilter:[],
+        deleteStatus:'',
         CreateBlacklistStatus:'',
         CreateBlacklistError:'',
         GetBlacklistStatus:'',
@@ -88,6 +113,40 @@ const blacklist_Slice = createSlice({
 
     extraReducers:(builder)=>{
 
+        builder.addCase(DeleteBlacklist.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteBlacklist.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status
+                }= action.payload
+                if(status === true){
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                    }
+                }
+                else return{
+                    ...state,
+                    deleteStatus:"failed"
+                }
+            }else return{
+                ...state,
+                deleteStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteBlacklist.rejected,(state, action)=>{
+            return{
+                ...state,
+                deleteStatus:'rejected'
+            }
+        })
+
         builder.addCase(GetBlacklist.pending,(state, action)=>{
             return {
                 ...state,
@@ -108,9 +167,9 @@ const blacklist_Slice = createSlice({
                         GetBlacklistStatus:"success"
                     }
                 }
-                return{
+                else return{
                     ...state,
-                    GetBlacklistStatus:"success"
+                    GetBlacklistStatus:"failed"
                 }
             }else return{
                 ...state,

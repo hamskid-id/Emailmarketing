@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FaCircleNotch } from "react-icons/fa";
+import { AiOutlineAreaChart} from "react-icons/ai";
 import { LineChart } from "../../../../../components/linechart";
 
 export const Audygrowth =()=>{
@@ -52,7 +52,7 @@ export const Audygrowth =()=>{
         <>
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <AiOutlineAreaChart
                         size="1.5rem"
                         color="grey"
                     />

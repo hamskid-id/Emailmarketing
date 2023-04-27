@@ -56,7 +56,7 @@ export const Actions =({deleteArray})=>{
                                 })
                             }
                         </select>
-                        <select 
+                        {/* <select 
                             name="sort" 
                             id="sort"
                             className="btn me-3 rounded b-gainsboro mb-1"
@@ -135,7 +135,7 @@ export const Actions =({deleteArray})=>{
                                     )
                                 })
                             }
-                        </select>
+                        </select> */}
                     </div>
                     {
                         deleteArray?.length>0 &&( 

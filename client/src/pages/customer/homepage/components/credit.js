@@ -1,4 +1,4 @@
-import { FaCircleNotch } from "react-icons/fa"
+import { AiOutlineRise } from "react-icons/ai";
 
 export const CreditWrapper=()=>{
     const cred =[
@@ -21,13 +21,13 @@ export const CreditWrapper=()=>{
         <>
             <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <AiOutlineRise
                         size="1.5rem"
                         color="grey"
                     />
                 </span>
                 <h2 
-                    className="fs-4 w-100 mb-0"
+                    className="fs-4 w-100 mb-0 "
                 >
                     Credits used
                 </h2>
@@ -35,7 +35,7 @@ export const CreditWrapper=()=>{
             <p className="fs-6">
                 Below is the summary of how you spend your credits
             </p>
-            <div className="row">
+            <div className="row mb-2">
                 {
                     cred?.map((credit,index)=>{
                         const{

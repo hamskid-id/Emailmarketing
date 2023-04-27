@@ -46,7 +46,7 @@ export const CustomFormField =({
         return(
             <div className="d-flex align-items-center mb-2">
                 <input 
-                    className="bg-alice p-2 border border-white rounded form-check-input me-1"
+                    className="bg-alice p-2 border border-white rounded form-check-input me-1 btn"
                     type={type}
                     name={name}
                     placeholder={placeholder}
@@ -128,7 +128,7 @@ export const CustomFormField =({
                 {label}
             </label>
             <input 
-                className={`${space?`w-97`:`w-100`} p-2 border rounded`}
+                className={`${space?`w-97`:`w-100`} p-2 border rounded btn text-start bg bg-white`}
                 type={type}
                 name={name}
                 defaultValue={defaultValue?defaultValue:null}

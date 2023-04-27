@@ -1,5 +1,5 @@
-import {FaPaperPlane } from "react-icons/fa"
 import { useSelector } from "react-redux"
+import { AiOutlineSend} from "react-icons/ai";
 
 export const RecentlySent=()=>{
     const recentCampaigns = useSelector(
@@ -13,7 +13,7 @@ export const RecentlySent=()=>{
         <>
             <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
-                   <FaPaperPlane
+                   <AiOutlineSend
                         size="1.5rem"
                         color="grey"
                     />
@@ -29,11 +29,11 @@ export const RecentlySent=()=>{
 
             {
                 Tags?.Tags.length !==0 &&(
-                    <div className="w-100">
+                    <div>
                         <select 
                             name="campains" 
                             id="campains"
-                            className="btn rounded text-dark bg-ddd campains-select"
+                            className="btn rounded text-dark bg-ddd"
                             >
                             {
                                 Tags?.Tags?.map((drop,index)=>{
@@ -98,7 +98,7 @@ export const RecentlySent=()=>{
                                                     key={index}
                                                     >
                                                     <div>
-                                                        <span className="rounded bg-slate-grey text-white px-2 py-1 me-3">
+                                                        <span className="rounded text-dark bg-ddd px-2 py-1 me-3 btn">
                                                             {title}
                                                         </span>
                                                     </div>
@@ -116,7 +116,7 @@ export const RecentlySent=()=>{
             </div>
             <div>
                 {
-                    recentCampaigns.recentCampaigns?.length ===0 && <p className="fs-5 text-center c-grey">No campaign has being sent </p>
+                    recentCampaigns.recentCampaigns?.length ===0 && <p className="fs-6 text-center c-grey">No campaign has being sent </p>
                 }
             </div>
         </>

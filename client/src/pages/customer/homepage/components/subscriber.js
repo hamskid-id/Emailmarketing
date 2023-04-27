@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FaCircleNotch } from "react-icons/fa";
+import { AiOutlineAreaChart} from "react-icons/ai";
 import { PieChart } from "../../../../components/piechat";
 import {BarChart} from "../../../../components/barchat";
 import { subcriberdata  } from "../../campaign/component/userdata";
@@ -54,13 +54,13 @@ export const Subscribers=()=>{
         <>
             <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <AiOutlineAreaChart
                         size="1.5rem"
                         color="grey"
                     />
                 </span>
                 <h2 
-                    className="fs-4 w-100 mb-0"
+                    className="fs-4 w-100 mb-0 "
                 >
                     List growth
                 </h2>
