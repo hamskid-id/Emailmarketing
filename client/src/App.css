@@ -545,6 +545,9 @@ i.mdi.mdi-account {
   .mb-pd{
     margin-left: 2rem;
   }
+  .profilePhoto{
+    width:10rem;
+  }
   .mrx-5{
     margin-left: 1rem;
     margin-right: 1rem;

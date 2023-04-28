@@ -1,4 +1,4 @@
-import { UploadProfilePicture } from "../../../../store/authSlice";
+import { UploadProfilePicture} from "../../../../store/authSlice";
 import { BasicInfo } from "./basicinfo"
 import { ChangePassword } from "./resetPassword"
 import LetteredAvatar from 'react-lettered-avatar';
@@ -9,16 +9,26 @@ export const MyProfile =()=>{
     const auth = useSelector(
         state => state.auth
     )
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleChange =(e)=>{
-        dispatch(UploadProfilePicture({
-            pics:e.target.files[0],
-            id:auth.userdata?.user?.id
-        }))
+        const file = e.target.files[0]
+        TransformFile(file)
     }
 
-    console.log(localStorage.getItem('marketingUserToken'));
+    const TransformFile = (file)=>{
+        const reader = new FileReader()
+        if(file){
+            reader.readAsDataURL(file)
+            reader.onloadend = ()=>{
+                dispatch(UploadProfilePicture({
+                    pics:reader.result,
+                    id:auth.userdata?.user?.id
+                }))
+            }
+        }
+    }
+
 
     return(
         <>
@@ -29,13 +39,23 @@ export const MyProfile =()=>{
                             Profile Photo
                         </p>
                         <div>
-                            <LetteredAvatar
-                                backgroundColor="brown"
-                                color="white"
-                                size={100}
-                                radius={50}
-                                name={auth.userdata?.user?.name}
-                            />
+                            {
+                                auth.profilePicture?(
+                                    <img 
+                                        src={auth.profilePicture}
+                                        alt="object not found"
+                                        className="profilePhoto"
+                                    />
+                                ):(
+                                    <LetteredAvatar
+                                        backgroundColor="brown"
+                                        color="white"
+                                        size={100}
+                                        radius={50}
+                                        name={auth.userdata?.user?.name}
+                                />
+                                )
+                            }
                         </div>
                         <div className="mb-pd">
                             <p className="fs-4 text-center">Update your photo</p>

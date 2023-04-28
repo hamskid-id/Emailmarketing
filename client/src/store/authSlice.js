@@ -16,9 +16,8 @@ export const UpdateContactInfo = createAsyncThunk(
         address1,
         address2,
         country
-    }) =>{
+    },{dispatch}) =>{
     try{
-        console.log(id)
         const response = await axios.post(
             `${apiBaseUrl}/updateuserinfo/${id}`,{
                 email,
@@ -32,6 +31,9 @@ export const UpdateContactInfo = createAsyncThunk(
                 country
             },setHeaders()
         );
+        if(response?.data?.status){
+            dispatch(GetContactInfo(id))
+        }
         return response?.data
     } catch(err){
         toast.error(
@@ -51,7 +53,7 @@ export const UploadProfilePicture = createAsyncThunk(
     try{
         const response = await axios.post(
             `${apiBaseUrl}/updateprofile/${id}`,{
-                pics
+                profile:pics
             },setHeaders()
         );
         return response?.data
@@ -116,6 +118,40 @@ export const LogInUser = createAsyncThunk(
     }
 )
 
+export const GetProfilePics = createAsyncThunk(
+    'auth/GetProfilePics', 
+    async ({id}) =>{
+        try{
+            const response = await axios.get(
+                `${apiBaseUrl}/viewprofile/${id}`,setHeaders()
+            );
+            return response?.data
+        }catch(err){
+            toast.error(
+                err.response?.data?.message
+            )
+        }
+    }
+)
+
+export const GetContactInfo = createAsyncThunk(
+    'auth/GetContactInfo', 
+    async ({
+        id
+    })=>{
+        try{
+            const response = await axios.get(
+                `${apiBaseUrl}/viewuserinfo/${id}`,setHeaders()
+            );
+            return response?.data
+        }catch(err){
+            toast.error(
+                err.response?.data?.message
+            )
+        }
+    }
+)
+
 export const SendPasswordResetLink = createAsyncThunk(
     'auth/SendPasswordResetLink', 
     async ({
@@ -170,6 +206,10 @@ const auth_Slice = createSlice({
        updateContactStatus:'',
        uploadProfilePicsStatus:'',
        SendPasswordResetLinkStatus:'',
+       profilePicture:'',
+       profilePictureStatus:'',
+       contactInfoStatus:'',
+       contactInfo:'',
        SendPasswordResetLinkError:'',
        ResendVerifyStatus:'',
        ResendVerifyError:'',
@@ -196,14 +236,14 @@ const auth_Slice = createSlice({
 
     extraReducers:(builder)=>{
 
-        builder.addCase(UploadProfilePicture.pending,(state, action)=>{
+        builder.addCase(GetProfilePics.pending,(state, action)=>{
             return {
                 ...state,
-                uploadProfilePicsStatus:'pending'
+                profilePictureStatus:'pending'
             }
 
         });
-        builder.addCase(UploadProfilePicture.fulfilled,(state, action)=>{
+        builder.addCase(GetProfilePics.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
                     status,
@@ -211,26 +251,65 @@ const auth_Slice = createSlice({
                 }= action.payload
                 
                 if(status === true){
-                    toast(message)
                     return{
                         ...state,
-                        uploadProfilePicsStatus:"success"
+                        profilePictureStatus:"success",
+                        profilePicture:message
                     }
                 }else{
                     return{
                         ...state,
-                        uploadProfilePicsStatus:"failed"
+                        profilePictureStatus:"failed"
                     }
                 }
             }else return{
                 ...state,
-                uploadProfilePicsStatus:"failed"
+                profilePictureStatus:"failed"
             }
         })
-        builder.addCase(UploadProfilePicture.rejected,(state, action)=>{
+        builder.addCase(GetProfilePics.rejected,(state, action)=>{
             return{
                 ...state,
-                uploadProfilePicsStatus:'rejected',
+                profilePictureStatus:'rejected',
+            }
+        })
+
+
+        builder.addCase(GetContactInfo.pending,(state, action)=>{
+            return {
+                ...state,
+                contactInfoStatus:'pending'
+            }
+
+        });
+        builder.addCase(GetContactInfo.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                
+                if(status === true){
+                    return{
+                        ...state,
+                        contactInfo:message,
+                        contactInfoStatus:"success"
+                    }
+                }else{
+                    return{
+                        ...state,
+                        contactInfoStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                contactInfoStatus:"failed"
+            }
+        })
+        builder.addCase(GetContactInfo.rejected,(state, action)=>{
+            return{
+                ...state,
+                contactInfoStatus:'rejected',
             }
         })
 
@@ -269,6 +348,44 @@ const auth_Slice = createSlice({
             return{
                 ...state,
                 updateContactStatus:'rejected',
+            }
+        })
+
+        builder.addCase(UploadProfilePicture.pending,(state, action)=>{
+            return {
+                ...state,
+                uploadProfilePicsStatus:'pending'
+            }
+
+        });
+        builder.addCase(UploadProfilePicture.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                
+                if(status === true){
+                    toast(message)
+                    return{
+                        ...state,
+                        uploadProfilePicsStatus:"success"
+                    }
+                }else{
+                    return{
+                        ...state,
+                        uploadProfilePicsStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                uploadProfilePicsStatus:"failed"
+            }
+        })
+        builder.addCase(UploadProfilePicture.rejected,(state, action)=>{
+            return{
+                ...state,
+                uploadProfilePicsStatus:'rejected',
             }
         })
 

@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MyProfile } from "./myprofile";
 import { ContactInformation } from "./contact";
-import { ApiToken } from "./apiToken";
-import { useSelector } from "react-redux";
+// import { ApiToken } from "./apiToken";
+import { useDispatch, useSelector } from "react-redux";
+import { GetContactInfo, GetProfilePics } from "../../../../store/authSlice";
 
 export const ProfileView =()=>{
     const auth = useSelector(
         state => state.auth
-    )
+    );
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(GetProfilePics({id:auth.userdata?.user?.id}));
+        dispatch(GetContactInfo({id:auth.userdata?.user?.id}));
+    },[dispatch,auth.userdata?.user?.id])
+
     const[
         ListSection,
         setListSection
