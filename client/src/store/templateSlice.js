@@ -3,6 +3,25 @@ import  axios  from 'axios';
 import { toast } from 'react-toastify';
 import { apiBaseUrl, setHeaders } from './api';
 
+
+export const DeleteTemplate = createAsyncThunk(
+    'template/DeleteTemplate', 
+    async ({id},{dispatch})=>{
+    try{
+        const response = await axios.delete(
+            `${apiBaseUrl}/deletetempl/${id}`,
+                setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetUserTemplate())
+        }
+        return response?.data
+    } catch(err){
+           toast.error(err.response?.data?.message);
+        }
+    }
+)
+
 export const GetUserTemplate = createAsyncThunk(
     'template/GetUserTemplate ', 
     async () =>{
@@ -68,6 +87,7 @@ const template_Slice = createSlice({
     initialState: {
         template:[],
         templateToFilter:[],
+        deleteStatus:'',
         generalTemp:[],
         generalToFilter:[],
         CreateTemplateStatus:'',
@@ -128,6 +148,42 @@ const template_Slice = createSlice({
     },
 
     extraReducers:(builder)=>{
+
+        builder.addCase(DeleteTemplate.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteTemplate.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message)
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                    }
+                }
+                return{
+                    ...state,
+                    deleteStatus:"success"
+                }
+            }else return{
+                ...state,
+                deleteStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteTemplate.rejected,(state, action)=>{
+            return{
+                ...state,
+                deleteStatus:'rejected'
+            }
+        })
 
         builder.addCase(GetGeneralTemplate.pending,(state, action)=>{
             return {

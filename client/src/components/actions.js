@@ -1,15 +1,8 @@
-import { useNavigate } from "react-router-dom"
-
 export const Actions =({
     actionName,
-    deleteArray,
     handleChange,
     handleInputChange
 })=>{
-    const navigate = useNavigate();
-    const handleClick=()=>{
-        console.log(deleteArray)
-    }
     return(
         <div className="row">
             <div className="col-md-6 mb-2">
@@ -50,15 +43,6 @@ export const Actions =({
                                 }
                             </select>
                         </div>
-                        {
-                            deleteArray?.length > 0 &&( 
-                                <button
-                                    onClick={handleClick}
-                                    className="btn btn-md  b-grey me-2 mb-1">
-                                    delete
-                                </button>
-                            )
-                        }
                         <input  
                             type="text"
                             placeholder="Search..."

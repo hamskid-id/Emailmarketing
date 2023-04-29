@@ -6,18 +6,34 @@ import { apiBaseUrl, setHeaders } from './api';
 export const UpdateContactInfo = createAsyncThunk(
     'auth/UpdateContactInfo', 
     async ({
-        name,
+        id,
         email,
-        password
-    }) =>{
+        company,
+        phone,
+        zip_code,
+        state,
+        city,
+        address1,
+        address2,
+        country
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/updatecontact`,{
-                name,
+            `${apiBaseUrl}/updateuserinfo/${id}`,{
                 email,
-                password
-            }
+                company,
+                phone,
+                zip_code,
+                state,
+                city,
+                address1,
+                address2,
+                country
+            },setHeaders()
         );
+        if(response?.data?.status){
+            dispatch(GetContactInfo(id))
+        }
         return response?.data
     } catch(err){
         toast.error(
@@ -31,18 +47,18 @@ export const UpdateContactInfo = createAsyncThunk(
 export const UploadProfilePicture = createAsyncThunk(
     'auth/UploadProfilePicture', 
     async ({
-        name,
-        email,
-        password
-    }) =>{
+        id,
+        pics,
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/updateprofilepic`,{
-                name,
-                email,
-                password
-            }
+            `${apiBaseUrl}/updateprofile/${id}`,{
+                profile:pics
+            },setHeaders()
         );
+        if(response?.data?.status){
+            dispatch(GetProfilePics(id))
+        }
         return response?.data
     } catch(err){
         toast.error(
@@ -105,6 +121,40 @@ export const LogInUser = createAsyncThunk(
     }
 )
 
+export const GetProfilePics = createAsyncThunk(
+    'auth/GetProfilePics', 
+    async ({id}) =>{
+        try{
+            const response = await axios.get(
+                `${apiBaseUrl}/viewprofile/${id}`,setHeaders()
+            );
+            return response?.data
+        }catch(err){
+            toast.error(
+                err.response?.data?.message
+            )
+        }
+    }
+)
+
+export const GetContactInfo = createAsyncThunk(
+    'auth/GetContactInfo', 
+    async ({
+        id
+    })=>{
+        try{
+            const response = await axios.get(
+                `${apiBaseUrl}/viewuserinfo/${id}`,setHeaders()
+            );
+            return response?.data
+        }catch(err){
+            toast.error(
+                err.response?.data?.message
+            )
+        }
+    }
+)
+
 export const SendPasswordResetLink = createAsyncThunk(
     'auth/SendPasswordResetLink', 
     async ({
@@ -159,6 +209,10 @@ const auth_Slice = createSlice({
        updateContactStatus:'',
        uploadProfilePicsStatus:'',
        SendPasswordResetLinkStatus:'',
+       profilePicture:'',
+       profilePictureStatus:'',
+       contactInfoStatus:'',
+       contactInfo:'',
        SendPasswordResetLinkError:'',
        ResendVerifyStatus:'',
        ResendVerifyError:'',
@@ -184,6 +238,121 @@ const auth_Slice = createSlice({
     },
 
     extraReducers:(builder)=>{
+
+        builder.addCase(GetProfilePics.pending,(state, action)=>{
+            return {
+                ...state,
+                profilePictureStatus:'pending'
+            }
+
+        });
+        builder.addCase(GetProfilePics.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                
+                if(status === true){
+                    return{
+                        ...state,
+                        profilePictureStatus:"success",
+                        profilePicture:message
+                    }
+                }else{
+                    return{
+                        ...state,
+                        profilePictureStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                profilePictureStatus:"failed"
+            }
+        })
+        builder.addCase(GetProfilePics.rejected,(state, action)=>{
+            return{
+                ...state,
+                profilePictureStatus:'rejected',
+            }
+        })
+
+
+        builder.addCase(GetContactInfo.pending,(state, action)=>{
+            return {
+                ...state,
+                contactInfoStatus:'pending'
+            }
+
+        });
+        builder.addCase(GetContactInfo.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                
+                if(status === true){
+                    return{
+                        ...state,
+                        contactInfo:message,
+                        contactInfoStatus:"success"
+                    }
+                }else{
+                    return{
+                        ...state,
+                        contactInfoStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                contactInfoStatus:"failed"
+            }
+        })
+        builder.addCase(GetContactInfo.rejected,(state, action)=>{
+            return{
+                ...state,
+                contactInfoStatus:'rejected',
+            }
+        })
+
+        builder.addCase(UpdateContactInfo.pending,(state, action)=>{
+            return {
+                ...state,
+                updateContactStatus:'pending'
+            }
+
+        });
+        builder.addCase(UpdateContactInfo.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                
+                if(status === true){
+                    toast(message)
+                    return{
+                        ...state,
+                        updateContactStatus:"success"
+                    }
+                }else{
+                    return{
+                        ...state,
+                        updateContactStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                updateContactStatus:"failed"
+            }
+        })
+        builder.addCase(UpdateContactInfo.rejected,(state, action)=>{
+            return{
+                ...state,
+                updateContactStatus:'rejected',
+            }
+        })
 
         builder.addCase(UploadProfilePicture.pending,(state, action)=>{
             return {
@@ -220,45 +389,6 @@ const auth_Slice = createSlice({
             return{
                 ...state,
                 uploadProfilePicsStatus:'rejected',
-            }
-        })
-
-        builder.addCase(UpdateContactInfo.pending,(state, action)=>{
-            return {
-                ...state,
-                updateContactStatus:'pending'
-            }
-
-        });
-        builder.addCase(UpdateContactInfo.fulfilled,(state, action)=>{
-            if(action.payload){
-                const {
-                    status,
-                    message
-                }= action.payload
-                
-                if(status === true){
-                    toast(message)
-                    return{
-                        ...state,
-                        updateContactStatus:"success"
-                    }
-                }else{
-                    return{
-                        ...state,
-                        updateContactStatus:"failed"
-                    }
-                }
-            }else return{
-                ...state,
-                updateContactStatus:"failed"
-            }
-        })
-        builder.addCase(UpdateContactInfo.rejected,(state, action)=>{
-            toast(action?.payload?.message)
-            return{
-                ...state,
-                updateContactStatus:'rejected',
             }
         })
 

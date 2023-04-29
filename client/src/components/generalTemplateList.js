@@ -111,8 +111,6 @@ export const GeneralList =({
                                 </div>
                             </div>
                             </div>
-                            
-
                         )
                     })
                 }

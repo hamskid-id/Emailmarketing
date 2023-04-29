@@ -23,10 +23,10 @@ export const GetRecentCampaigns = createAsyncThunk(
 
 export const DeleteCampaigns = createAsyncThunk(
     'campaign/DeleteCampaigns', 
-    async ({dispatch}) =>{
+    async ({id},{dispatch}) =>{
     try{
-        const response = await axios.get(
-            `${apiBaseUrl}/deltecamp`,
+        const response = await axios.delete(
+            `${apiBaseUrl}/deletecamp/${id}`,
                 setHeaders()
         )
         if(response?.data?.status){
@@ -233,9 +233,11 @@ const campaign_Slice = createSlice({
         builder.addCase(DeleteCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
+                    toast(message)
                     return{
                         ...state,
                         deleteStatus:"success"

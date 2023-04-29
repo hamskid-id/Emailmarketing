@@ -1,10 +1,8 @@
-
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
-import { Tag_SliceActions } from "../../../../../store/tagSlice";
+import { DeleteTags, Tag_SliceActions } from "../../../../../store/tagSlice";
 import { NoData } from "../../../../../components/nodata";
 
 export const TagContainer =()=>{
@@ -13,27 +11,9 @@ export const TagContainer =()=>{
     const tag = useSelector(
         state => state.tag
     )
-    const[
-        itemToDelete,
-        setItemToDelete
-    ]=useState([])
 
-    if(tag.GetTagsStatus ==='pending'){
+    if(tag.GetTagsStatus ==='pending' || tag.deleteStatus === "pending"){
         return <Spinner/>
-    }
-    const handleChange=(e,{id})=>{
-        const newArray = itemToDelete.filter(item=>item!==id)
-        setItemToDelete((prevState)=>{
-            if(e.target.checked){
-                return[
-                ...prevState,
-                    id
-                ]
-            }else{
-                return newArray
-            }
-        })
-        
     }
 
     const handleSelectChange=(e)=>{
@@ -52,7 +32,6 @@ export const TagContainer =()=>{
         <>
         <Actions
             actionName="Add Tag"
-            deleteArray={itemToDelete}
             handleChange={handleSelectChange}
             handleInputChange={handleInputChange}
         />
@@ -61,7 +40,6 @@ export const TagContainer =()=>{
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"></th>
                         <th scope="col">Name</th>
                         <th scope="col">Created At</th>
                         <th scope="col">Updated At</th>
@@ -81,13 +59,6 @@ export const TagContainer =()=>{
                                 return(
                                     <tr key={index}>
                                         <th scope="row">{index+1}</th>
-                                        <td>
-                                            <input 
-                                                className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
-                                                type="checkbox"
-                                                onChange={(e)=>handleChange(e,{id})}
-                                            />
-                                        </td>
                                         <td>{name}</td>
                                         <td>{
                                                 new Date(created_at)
@@ -106,7 +77,7 @@ export const TagContainer =()=>{
                                                         type="button" 
                                                         data-bs-toggle="dropdown" 
                                                         aria-expanded="false" 
-                                                    >
+                                                    >  
                                                     </button>
                                                     <ul className="dropdown-menu">
                                                         <li
@@ -117,6 +88,7 @@ export const TagContainer =()=>{
                                                         </li>
                                                         <li
                                                             className="dropdown-item"
+                                                            onClick={()=>dispatch(DeleteTags({id}))}
                                                         >
                                                             Delete
                                                         </li>

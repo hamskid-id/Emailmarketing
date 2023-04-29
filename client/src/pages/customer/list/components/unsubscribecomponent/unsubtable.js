@@ -1,10 +1,10 @@
 import {useRef } from "react";
-import { FaPencilAlt } from "react-icons/fa";
-import {useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { HandleDownloadPdf } from "../../../campaign/statistics.js/components/download";
 import { Actions } from "./unsubaction";
 import { NoData } from "../../../../../components/nodata";
+import { DeleteUnSubscribers } from "../../../../../store/UnsubscribeSlice";
 
 export const UnSubContainer =()=>{
     
@@ -12,6 +12,7 @@ export const UnSubContainer =()=>{
     const unsub = useSelector(
         state => state.unsubscriber
     )
+    const dispatch = useDispatch();
     if(unsub.GetUnSubscribersStatus ==='pending'){
         return <Spinner/>
     }
@@ -46,6 +47,7 @@ export const UnSubContainer =()=>{
                                 .unsubscribers?.map((sub,index)=>{
                                     const{
                                         email,
+                                        id,
                                         fname,
                                         lname,
                                         country,
@@ -66,31 +68,31 @@ export const UnSubContainer =()=>{
                                             <td>{dob}</td>
                                             <td>{tag}</td>
                                             <td>
-                                                <div className="d-flex align-items-center">
-                                                    <div className="d-flex align-items-center me-2 text-white bg bg-success rounded p-2">
-                                                        <span className="me-1">
-                                                            <FaPencilAlt/>
-                                                        </span>
-                                                        <span>
-                                                            Edit
-                                                        </span>
-                                                    </div>
-                                                    <div className="dropdown">
-                                                        <button 
-                                                            className="btn btn-secondary dropdown-toggle"
-                                                            type="button" 
-                                                            data-bs-toggle="dropdown" 
-                                                            aria-expanded="false" 
+                                                <div className="dropdown">
+                                                    <button 
+                                                        className="btn btn-secondary dropdown-toggle"
+                                                        type="button" 
+                                                        data-bs-toggle="dropdown" 
+                                                        aria-expanded="false" 
+                                                    >
+                                                        { 
+                                                            unsub.deleteStatus === "pending" && (       
+                                                            <span 
+                                                                className="spinner-border spinner-border-sm me-1" 
+                                                                role="status" 
+                                                                aria-hidden="true">
+                                                            </span> 
+                                                            )
+                                                        } 
+                                                    </button>
+                                                    <ul className="dropdown-menu">
+                                                        <li
+                                                            className="dropdown-item"
+                                                            onClick={()=>dispatch(DeleteUnSubscribers({id}))}
                                                         >
-                                                        </button>
-                                                        <ul className="dropdown-menu">
-                                                            <li
-                                                                className="dropdown-item"
-                                                            >
-                                                                Delete
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                            Delete
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </td>
                                         </tr>

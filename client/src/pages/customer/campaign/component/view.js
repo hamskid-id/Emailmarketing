@@ -1,35 +1,24 @@
-import {useSelector} from "react-redux";
-import { FaCartArrowDown} from "react-icons/fa";
+import {useSelector,useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Actions } from "./actions";
+import Spinner from "../../../../components/spinner/spinner";
+import { NoData } from "../../../../components/nodata";
+import { DeleteCampaigns } from "../../../../store/campaignSlice";
 
 export const AllcampaignView =()=>{
     const navigate = useNavigate();
     const campaign = useSelector(
         state => state.campaign
     )
-    const[
-        itemToDelete,
-        setItemToDelete
-    ]=useState([])
-    const handleChange=(e,{id})=>{
-        if(e.target.checked){
-            setItemToDelete((prevState)=>{
-                return[
-                ...prevState,
-                    id
-                ]
-            })
-        }else{
-            const newArray = itemToDelete.filter(item=>item!==id)
-            setItemToDelete(newArray)
-        }
+    const dispatch = useDispatch()
+
+    if(campaign.deleteStatus ==='pending'){
+        return <Spinner/>
     }
+
     return(
         <>
         <Actions
-            deleteArray={itemToDelete}
             actionName="Create Campaign"
         />
         <div>
@@ -37,7 +26,6 @@ export const AllcampaignView =()=>{
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"></th>
                         <th scope="col">Title</th>
                         <th scope="col">From</th>
                         <th scope="col">Recipient</th>
@@ -59,13 +47,6 @@ export const AllcampaignView =()=>{
                             return(
                                 <tr key={index}>
                                     <th scope="row">{index+1}</th>
-                                    <td>
-                                        <input 
-                                            className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
-                                            type="checkbox"
-                                            onChange={(e)=>handleChange(e,{id})}
-                                        />
-                                    </td>
                                     <td>{title}</td>
                                     <td>{from_email}</td>
                                     <td>{reply_to}</td>
@@ -87,13 +68,14 @@ export const AllcampaignView =()=>{
                                                     >
                                                         Statistics
                                                     </li>
-                                                    <li 
+                                                    {/* <li 
                                                         className="dropdown-item"
                                                     >
                                                         Email verification
-                                                    </li>
+                                                    </li> */}
                                                     <li
                                                         className="dropdown-item"
+                                                        onClick={()=>dispatch(DeleteCampaigns({id}))}
                                                     >
                                                         Delete
                                                     </li>
@@ -108,21 +90,7 @@ export const AllcampaignView =()=>{
                     </tbody>
                 </table>
                 {
-                   campaign
-                   .Campaigns?.length === 0 &&(
-                        <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                            <FaCartArrowDown
-                                color="grey"
-                                size="7rem"
-                            />
-                            <p className="fw-bold">
-                                Your Campaign List is presently empty
-                            </p>
-                            <div>
-                                Dont worry click on Create  Campaign to get started. 
-                            </div>
-                        </div>
-                    )
+                   campaign.Campaigns?.length === 0 && <NoData/>
                 }
             </div>
         </>

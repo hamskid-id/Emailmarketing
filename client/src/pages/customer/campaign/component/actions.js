@@ -2,13 +2,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { campaign_SliceActions } from "../../../../store/campaignSlice";
 
-export const Actions =({
-    deleteArray
-})=>{
+export const Actions =()=>{
     const navigate = useNavigate();
-    const handleClick=()=>{
-        console.log(deleteArray)
-    }
     const dispatch = useDispatch();
     const handleChange=(e)=>{
         if(e.target.value ==="Title"){
@@ -57,15 +52,6 @@ export const Actions =({
                                 }
                             </select>
                         </div>
-                        {
-                            deleteArray &&( 
-                                <button
-                                    onClick={handleClick}
-                                    className="btn btn-md  b-grey me-2 mb-1">
-                                    delete
-                                </button>
-                            )
-                        }
                         <input  
                             type="text"
                             placeholder="Search..."

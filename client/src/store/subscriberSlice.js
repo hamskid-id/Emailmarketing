@@ -8,27 +8,11 @@ import { apiBaseUrl, setHeaders } from './api';
 export const DeleteSubscriber = createAsyncThunk(
     'subscriber/DeleteSubscriber', 
     async ({
-        email,
-        fname,
-        lname,
-        country,
-        state,
-        phone,
-        dob,
-        tag_id
+        id
     },{dispatch}) =>{
     try{
-        const response = await axios.post(
-            `${apiBaseUrl}/DeleteSubscriber`,{
-                email,
-                fname,
-                lname,
-                country,
-                state,
-                phone,
-                dob,
-                tag_id
-            },
+        const response = await axios.delete(
+            `${apiBaseUrl}/deletesubscribe/${id}`,
             setHeaders()
         )
         if(response?.data?.status){
@@ -170,7 +154,8 @@ const subscriber_Slice = createSlice({
 
         });
         builder.addCase(DeleteSubscriber.fulfilled,(state, action)=>{
-            if(action.payload.message){
+            if(action.payload.status){
+                toast(action.payload.message)
                 return{
                     ...state,
                     deleteSubStatus:"success"
