@@ -48,13 +48,13 @@ export const ActivitiesLog =()=>{
                                             <div className="d-flex flex-column align-items-start pt-2 px-3 my-1 bg bg-white wrap">
                                                 <FaUserCircle  
                                                     size="1.5rem"
-                                                    color="gainsboro"
+                                                    color="#3B3C36"
                                                     className="mb-3"
                                                 />
-                                                <h3 className="c-dark-volin break p-3 rounded fw-bold bg-lightBlue activityaction">
+                                                <h3 className="c-dark-volin break p-3 rounded fw-bold bg-lightBlue activityaction text-dark">
                                                     {action}
                                                 </h3>
-                                                <p className="fw-bold c-dark-volin log">
+                                                <p className="fw-bold c-dark-volin log text-dark">
                                                     {
                                                         new Date(created_at)
                                                             .toLocaleString()
