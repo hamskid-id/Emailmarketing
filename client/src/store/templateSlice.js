@@ -159,9 +159,11 @@ const template_Slice = createSlice({
         builder.addCase(DeleteTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
+                    toast(message)
                     return{
                         ...state,
                         deleteStatus:"success"

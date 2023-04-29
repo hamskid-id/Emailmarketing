@@ -49,13 +49,16 @@ export const UploadProfilePicture = createAsyncThunk(
     async ({
         id,
         pics,
-    }) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/updateprofile/${id}`,{
                 profile:pics
             },setHeaders()
         );
+        if(response?.data?.status){
+            dispatch(GetProfilePics(id))
+        }
         return response?.data
     } catch(err){
         toast.error(

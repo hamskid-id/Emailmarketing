@@ -233,9 +233,11 @@ const campaign_Slice = createSlice({
         builder.addCase(DeleteCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
+                    toast(message)
                     return{
                         ...state,
                         deleteStatus:"success"
