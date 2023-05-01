@@ -37,9 +37,7 @@ export const GetSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data?.message
-        )
+        return err.response?.data
         }
     }
 )
@@ -54,9 +52,7 @@ export const GetTotalSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data?.message
-        )
+        return err.response?.data
         }
     }
 )
@@ -154,13 +150,16 @@ const subscriber_Slice = createSlice({
 
         });
         builder.addCase(DeleteSubscriber.fulfilled,(state, action)=>{
-            if(action.payload.status){
-                toast(action.payload.message)
+            if(action.payload){
+                const{
+                    message
+                }=action.payload;
+                toast(message);
                 return{
                     ...state,
                     deleteSubStatus:"success"
                 }
-            }else return{
+            }return{
                 ...state,
                 deleteSubStatus:"failed"
             }
@@ -180,11 +179,20 @@ const subscriber_Slice = createSlice({
 
         });
         builder.addCase(GetTotalSubscribers.fulfilled,(state, action)=>{
-            if(action.payload.message){
-                return{
+            if(action.payload){
+                const{
+                    status,
+                    message
+                }=action.payload;
+                if(status){
+                    return{
+                        ...state,
+                        totalsub: message,
+                        GetTotalSubscribersStatus:"success"
+                    }
+                }return{
                     ...state,
-                    totalsub:action.payload.message,
-                   GetTotalSubscribersStatus:"success"
+                    GetTotalSubscribersStatus:"success"
                 }
             }else return{
                 ...state,
@@ -206,11 +214,21 @@ const subscriber_Slice = createSlice({
 
         });
         builder.addCase(GetSubscribers.fulfilled,(state, action)=>{
-            if(action.payload.message){
+            if(action.payload){
+                const{
+                    status,
+                    message
+                }=action.payload
+                if(status){
+                    return{
+                        ...state,
+                        subscribers: message,
+                        subscribersToFilter: message,
+                        GetSubscribersStatus:"success"
+                    }
+                }
                 return{
                     ...state,
-                    subscribers:action.payload.message,
-                    subscribersToFilter:action.payload.message,
                     GetSubscribersStatus:"success"
                 }
             }else return{
@@ -235,21 +253,12 @@ const subscriber_Slice = createSlice({
         builder.addCase(Createsubscriber.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                if(status === true){
-                    toast(message);
-                    return{
-                        ...state,
-                        CreatesubscriberStatus:"success"
-                    }
-                }else{
-                    toast.error(message);
-                    return{
-                        ...state,
-                        CreatesubscriberStatus:"failed"
-                    }
+                toast(message);
+                return{
+                    ...state,
+                    CreatesubscriberStatus:"success"
                 }
             }else{
                 return{

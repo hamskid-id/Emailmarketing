@@ -53,7 +53,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                 </span>
                 <span className="hide-toggler">
                     <AiOutlineClose
-                        size="2rem"
+                        size="1rem"
                         color="white"
                         onClick={hideNav}
                     />

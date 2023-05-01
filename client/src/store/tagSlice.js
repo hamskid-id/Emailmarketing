@@ -38,9 +38,7 @@ export const GetTags = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data?.message
-        )
+        return err.response?.data
         }
     }
 )
@@ -149,8 +147,11 @@ const Tag_Slice = createSlice({
 
         
         builder.addCase(DeleteTags.fulfilled,(state, action)=>{
-            if(action.payload.status){
-                toast(action.payload.message)
+            if(action.payload){
+                const{
+                    message
+                }=action.payload;
+                toast(message)
                 return{
                     ...state,
                     deleteStatus:"success"
@@ -169,20 +170,27 @@ const Tag_Slice = createSlice({
 
 
         builder.addCase(GetTags.fulfilled,(state, action)=>{
-            if(action.payload.message){
-                return{
-                    ...state,
-                    Tags:action.payload.message,
-                    tagsToFilter:action.payload.message,
-                    GetTagsStatus:"success"
-                }
+            if(action.payload){
+                const{
+                    status,
+                    message
+                }=action.payload
+                    if(status){
+                        return{
+                            ...state,
+                            Tags: message,
+                            tagsToFilter: message,
+                            GetTagsStatus:"success"
+                        }
+                    }return{
+                        GetTagsStatus:"success"
+                    }
             }else return{
                 ...state,
                 GetTagsStatus:"failed"
             }
         })
         builder.addCase(GetTags.rejected,(state, action)=>{
-            toast(action.payload?.message)
             return{
                 ...state,
                 GetTagsStatus:'rejected'
@@ -199,21 +207,12 @@ const Tag_Slice = createSlice({
         builder.addCase(CreateTags.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                if(status === true){
-                    toast(message);
-                    return{
-                        ...state,
-                        CreateTagsStatus:"success"
-                    }
-                }else{
-                    toast.error(message);
-                    return{
-                        ...state,
-                        CreateTagsStatus:"failed"
-                    }
+                toast(message);
+                return{
+                    ...state,
+                    CreateTagsStatus:"success"
                 }
             }else return{
                 ...state,
@@ -237,22 +236,16 @@ const Tag_Slice = createSlice({
         builder.addCase(UpdateTags.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
-                    message
+                    message,
+                    status
                 }= action.payload
-                if(status === true){
-                    toast(message);
+                toast(message);
+                if(status){
                     window.location.replace("/Lists/Tags")
-                    return{
-                        ...state,
-                        UpdateTagsStatus:"success"
-                    }
-                }else {
-                    toast.error(message)
-                    return{
-                        ...state,
-                        UpdateTagsStatus:"failed"
-                    }
+                }
+                return{
+                    ...state,
+                    UpdateTagsStatus:"success"
                 }
             }else return{
                 ...state,

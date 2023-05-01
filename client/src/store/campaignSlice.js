@@ -15,7 +15,7 @@ export const GetRecentCampaigns = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-         console.log(err.response?.data?.message);
+        return err.response?.data
         }
     }
 )
@@ -49,7 +49,7 @@ export const GetCampaigns = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(err.response?.data?.message);
+        return err.response?.data
         }
     }
 )
@@ -161,18 +161,18 @@ const campaign_Slice = createSlice({
         builder.addCase(GetRecentCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        recentCampaigns:action.payload.message,
+                        recentCampaigns: message,
                         GetRecentCampaignsStatus:"success"
                     }
-                }
-                else return{
+                }return{
                     ...state,
-                    GetRecentCampaignsStatus:"failed"
+                    GetRecentCampaignsStatus:"success"
                 }
             }else return{
                 ...state,
@@ -197,19 +197,19 @@ const campaign_Slice = createSlice({
         builder.addCase(GetCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        Campaigns:action.payload.message,
-                        campaignToFilter:action.payload.message,
+                        Campaigns: message,
+                        campaignToFilter: message,
                         GetCampaignsStatus:"success"
                     }
-                }
-                else return{
+                }return{
                     ...state,
-                    GetCampaignsStatus:"failed"
+                    GetCampaignsStatus:"success"
                 }
             }else return{
                 ...state,
@@ -238,14 +238,9 @@ const campaign_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message)
-                    return{
-                        ...state,
-                        deleteStatus:"success"
-                    }
-                }
-                else return{
+                }return{
                     ...state,
-                    deleteStatus:"failed"
+                    deleteStatus:"success"
                 }
             }else return{
                 ...state,
@@ -275,16 +270,9 @@ const campaign_Slice = createSlice({
                 if(status === true){
                     toast(message);
                     window.location.replace("/campaigns")
-                    return{
-                        ...state,
-                        CreateCampaignsStatus:"success"
-                    }
-                }else{
-                    toast.error(message);
-                    return{
-                        ...state,
-                        CreateCampaignsStatus:"failed"
-                    }
+                }return{
+                    ...state,
+                    CreateCampaignsStatus:"success"
                 }
             }else return{
                 ...state,

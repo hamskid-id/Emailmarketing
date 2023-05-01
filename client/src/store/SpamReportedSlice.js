@@ -122,14 +122,9 @@ const SpamReported_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message)
-                    return{
-                        ...state,
-                        deleteSpamStatus:"success"
-                    }
-                }
-                else return{
+                }return{
                     ...state,
-                    deleteSpamStatus:"failed"
+                    deleteSpamStatus:"success"
                 }
             }else return{
                 ...state,
@@ -162,10 +157,9 @@ const SpamReported_Slice = createSlice({
                         spamToFilter:action.payload.message,
                         GetSpamReportedStatus:"success"
                     }
-                }
-                else return{
+                }return{
                     ...state,
-                    GetSpamReportedStatus:"failed"
+                    GetSpamReportedStatus:"success"
                 }
             }else return{
                 ...state,
@@ -194,16 +188,10 @@ const SpamReported_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
-                    return{
-                        ...state,
-                        CreateSpamReportedStatus:"success"
-                    }
-                }else{
-                    toast.error(message);
-                    return{
-                        ...state,
-                        CreateSpamReportedStatus:"failed"
-                    }
+                }
+                return{
+                    ...state,
+                    CreateSpamReportedStatus:"success"
                 }
             }else return{
                 ...state,

@@ -159,16 +159,9 @@ const template_Slice = createSlice({
         builder.addCase(DeleteTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                if(status === true){
-                    toast(message)
-                    return{
-                        ...state,
-                        deleteStatus:"success"
-                    }
-                }
+                toast(message)
                 return{
                     ...state,
                     deleteStatus:"success"
@@ -195,13 +188,14 @@ const template_Slice = createSlice({
         builder.addCase(GetGeneralTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
-                if(status === true){
+                if(status){
                     return{
                         ...state,
-                        generalTemp:action.payload.message,
-                        generalToFilter:action.payload.message,
+                        generalTemp: message,
+                        generalToFilter: message,
                         GetGeneralTemplateStatus:"success"
                     }
                 }
@@ -231,13 +225,14 @@ const template_Slice = createSlice({
         builder.addCase(GetUserTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
-                if(status === true){
+                if(status){
                     return{
                         ...state,
-                        template:action.payload.message,
-                        templateToFilter:action.payload.message,
+                        template: message,
+                        templateToFilter: message,
                         GetUserTemplateStatus:"success"
                     }
                 }
@@ -267,21 +262,12 @@ const template_Slice = createSlice({
         builder.addCase(CreateTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                if(status === true){
-                    toast(message);
-                    return{
-                        ...state,
-                        CreateTemplateStatus:"success"
-                    }
-                }else{
-                    toast.error(message);
-                    return{
-                        ...state,
-                        CreateTemplateStatus:"failed"
-                    }
+                toast(message);
+                return{
+                    ...state,
+                    CreateTemplateStatus:"success"
                 }
             }else return{
                 ...state,
