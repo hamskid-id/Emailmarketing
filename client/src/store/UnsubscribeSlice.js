@@ -17,7 +17,7 @@ export const DeleteUnSubscribers = createAsyncThunk(
         }
         return response?.data
     } catch(err){
-        console.log(
+        toast.error(
             err.response?.data?.message
         )
         }
@@ -34,9 +34,7 @@ export const GetUnSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data?.message
-        )
+        return err.response?.data
         }
     }
 )
@@ -131,8 +129,11 @@ const unsubscriber_Slice = createSlice({
 
         });
         builder.addCase(DeleteUnSubscribers.fulfilled,(state, action)=>{
-            if(action.payload.status){
-                toast(action.payload.message)
+            if(action.payload){
+                const{
+                    message
+                }=action.payload
+                toast(message)
                 return{
                     ...state,
                     deleteStatus:"success"
@@ -157,10 +158,19 @@ const unsubscriber_Slice = createSlice({
 
         });
         builder.addCase(GetUnSubscribers.fulfilled,(state, action)=>{
-            if(action.payload.message){
-                return{
+            if(action.payload){
+                const{
+                    status,
+                    message
+                }=action.payload
+                if(status){
+                    return{
+                        ...state,
+                        unsubscribers: message,
+                        GetUnSubscribersStatus:"success"
+                    }
+                }return{
                     ...state,
-                    unsubscribers:action.payload.message,
                     GetUnSubscribersStatus:"success"
                 }
             }else return{
@@ -185,21 +195,12 @@ const unsubscriber_Slice = createSlice({
         builder.addCase(CreateUnsubscriber.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                if(status === true){
-                    toast(message);
-                    return{
-                        ...state,
-                        CreateUnsubscriberStatus:"success"
-                    }
-                }else{
-                    toast.error(message);
-                     return{
-                        ...state,
-                        CreateUnsubscriberStatus:"failed"
-                    }
+                toast(message);
+                return{
+                    ...state,
+                    CreateUnsubscriberStatus:"success"
                 }
             }else return{
                 ...state,

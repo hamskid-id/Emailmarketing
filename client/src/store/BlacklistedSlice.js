@@ -14,7 +14,7 @@ export const GetBlacklist = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-            return err.response?.data
+        return err.response?.data
         }
     }
 )
@@ -126,14 +126,9 @@ const blacklist_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message)
-                    return{
-                        ...state,
-                        deleteStatus:"success"
-                    }
-                }
-                else return{
+                }return{
                     ...state,
-                    deleteStatus:"failed"
+                    deleteStatus:"success"
                 }
             }else return{
                 ...state,
@@ -157,19 +152,19 @@ const blacklist_Slice = createSlice({
         builder.addCase(GetBlacklist.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        blacklist:action.payload.message,
-                        blacklistToFilter:action.payload.message,
+                        blacklist:message,
+                        blacklistToFilter:message,
                         GetBlacklistStatus:"success"
                     }
-                }
-                else return{
+                }return{
                     ...state,
-                    GetBlacklistStatus:"failed"
+                    GetBlacklistStatus:"success"
                 }
             }else return{
                 ...state,
@@ -198,20 +193,10 @@ const blacklist_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
-                        return{
-                            ...state,
-                            GetBlacklistStatus:"success"
-                        }
-                }else{
-                    toast.error(message);
-                    return{
-                        ...state,
-                        CreateBlacklistStatus:"failed"
-                    }
+                }return{
+                    ...state,
+                    GetBlacklistStatus:"success"
                 }
-            }else return{
-                ...state,
-                CreateBlacklistStatus:"failed"
             }
         })
         builder.addCase(CreateBlacklist.rejected,(state, action)=>{

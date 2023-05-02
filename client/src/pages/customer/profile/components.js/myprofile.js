@@ -1,3 +1,4 @@
+// import { useState } from "react";
 import { UploadProfilePicture} from "../../../../store/authSlice";
 import { BasicInfo } from "./basicinfo"
 import { ChangePassword } from "./resetPassword"
@@ -10,24 +11,47 @@ export const MyProfile =()=>{
         state => state.auth
     )
     const dispatch = useDispatch();
+    // const[
+    //     selectedFile,
+    //     setSelectedFile
+    // ]=useState();
 
     const handleChange =(e)=>{
         const file = e.target.files[0]
-        TransformFile(file)
-    }
-
-    const TransformFile = (file)=>{
-        const reader = new FileReader()
+        // setSelectedFile(file)
+        const formData = new FormData()
         if(file){
-            reader.readAsDataURL(file)
-            reader.onloadend = ()=>{
-                dispatch(UploadProfilePicture({
-                    pics:reader.result,
-                    id:auth.userdata?.user?.id
-                }))
-            }
+            formData.append('profile',file)
+            dispatch(UploadProfilePicture({
+                pics:formData,
+                id:auth.userdata?.user?.id
+            }))
         }
+        
+        
     }
+    //    let reader = new FileReader()
+    //    reader.readAsDataURL(file)
+    //    reader.onload = (event)=>{
+    //     // setSelectedFile(event.target.result)
+    //         dispatch(UploadProfilePicture({
+    //             pics:event.target.result,
+    //             id:auth.userdata?.user?.id
+    //         }))
+    //     }
+
+    // const TransformFile = (file)=>{
+    //     const reader = new FileReader()
+    //     if(file){
+    //         reader.readAsDataURL(file)
+    //         reader.onloadend = ()=>{
+    //             dispatch(UploadProfilePicture({
+    //                 pics:reader.result,
+    //                 id:auth.userdata?.user?.id
+    //             }))
+    //         }
+    //     }
+    // }
 
 
     return(

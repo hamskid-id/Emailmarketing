@@ -13,7 +13,7 @@ export const GetActivities = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-            return err.response?.data
+        return err.response?.data
             
         }
     }
@@ -33,9 +33,7 @@ export const UpdateActivities  = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        return rejectWithValue(
-            err.response?.data?.message
-        )
+        toast.error(err.response?.data?.message)
         }
     }
 )
@@ -64,12 +62,13 @@ const activities_Slice = createSlice({
         builder.addCase(GetActivities.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        activities:action.payload.message,
+                        activities:message,
                         GetActivitiesStatus:"success"
                     }
                 }
@@ -98,21 +97,9 @@ const activities_Slice = createSlice({
         });
         builder.addCase(UpdateActivities.fulfilled,(state, action)=>{
             if(action.payload){
-                const {
-                    status,
-                    message
-                }= action.payload
-                if(status === true){
-                    return{
-                        ...state,
-                        UpdateActivitiesStatus:"success"
-                    }
-                }else{
-                    toast.error(message)
-                    return{
-                        ...state,
-                        UpdateActivitiesStatus:"failed"
-                    }
+                return{
+                    ...state,
+                    UpdateActivitiesStatus:"success"
                 }
             }else return{
                 ...state,

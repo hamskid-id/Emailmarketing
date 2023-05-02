@@ -111,26 +111,17 @@ const collab_Slice = createSlice({
         builder.addCase(InviteUsers.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                if(status === true){
-                    toast(message);
-                    return{
-                        ...state,
-                        InviteUsersStatus:"success"
-                    }
-                }else{
-                     toast.error(message);
-                     return {
-                        ...state,
-                        InviteUsersStatus:"failed"
-                    }
+                toast(message)
+                return {
+                    ...state,
+                    InviteUsersStatus:"success"
                 }
             }else return {
-                ...state,
-                InviteUsersStatus:"failed"
-            }
+                    ...state,
+                    InviteUsersStatus:"failed"
+                }
         })
         builder.addCase(InviteUsers.rejected,(state, action)=>{
             return{
@@ -149,17 +140,17 @@ const collab_Slice = createSlice({
         builder.addCase(GetInviteForCollaborations.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        inviteForCollaborations:action.payload.message,
-                        collabToFilter:action.payload.message,
+                        inviteForCollaborations: message,
+                        collabToFilter: message,
                         GetInviteForCollaborationsStatus:"success"
                     }
-                }
-                return{
+                }return{
                     ...state,
                     GetInviteForCollaborationsStatus:"success"
                 }
@@ -184,15 +175,21 @@ const collab_Slice = createSlice({
         });
         builder.addCase(GetInviteSent.fulfilled,(state, action)=>{
             if(action.payload.message){
-                return{
-                    ...state,
-                    inviteSent:action.payload.message,
-                    inviteToFilter:action.payload.message,
-                    GetInviteSentStatus:"success"
+                const{
+                    status,
+                    message
+                }=action.payload
+                if(status){
+                    return{
+                        ...state,
+                        inviteSent: message,
+                        inviteToFilter: message,
+                        GetInviteSentStatus:"success"
+                    }
                 }
-            }else return{
+            }return{
                 ...state,
-                GetInviteSentStatus:"failed"
+                GetInviteSentStatus:"success"
             }
         })
         builder.addCase(GetInviteSent.rejected,(state, action)=>{

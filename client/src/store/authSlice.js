@@ -51,13 +51,12 @@ export const UploadProfilePicture = createAsyncThunk(
         pics,
     },{dispatch}) =>{
     try{
+        // console.log("this is upload",pics)
         const response = await axios.post(
-            `${apiBaseUrl}/updateprofile/${id}`,{
-                profile:pics
-            },setHeaders()
+            `${apiBaseUrl}/updateprofile/${id}`,pics,setHeaders()
         );
         if(response?.data?.status){
-            dispatch(GetProfilePics(id))
+            dispatch(GetProfilePics({id:id}))
         }
         return response?.data
     } catch(err){
@@ -128,6 +127,7 @@ export const GetProfilePics = createAsyncThunk(
             const response = await axios.get(
                 `${apiBaseUrl}/viewprofile/${id}`,setHeaders()
             );
+            console.log("this is pics",response?.data)
             return response?.data
         }catch(err){
             toast.error(
@@ -253,17 +253,15 @@ const auth_Slice = createSlice({
                     message
                 }= action.payload
                 
-                if(status === true){
+                if(status){
                     return{
                         ...state,
+                        profilePicture:message,
                         profilePictureStatus:"success",
-                        profilePicture:message
                     }
-                }else{
-                    return{
-                        ...state,
-                        profilePictureStatus:"failed"
-                    }
+                }return{
+                    ...state,
+                    profilePictureStatus:"success",
                 }
             }else return{
                 ...state,
@@ -292,17 +290,15 @@ const auth_Slice = createSlice({
                     message
                 }= action.payload
                 
-                if(status === true){
+                if(status){
                     return{
                         ...state,
                         contactInfo:message,
                         contactInfoStatus:"success"
                     }
-                }else{
-                    return{
+                }return{
                         ...state,
-                        contactInfoStatus:"failed"
-                    }
+                        contactInfoStatus:"success"
                 }
             }else return{
                 ...state,
@@ -326,21 +322,12 @@ const auth_Slice = createSlice({
         builder.addCase(UpdateContactInfo.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                
-                if(status === true){
-                    toast(message)
-                    return{
-                        ...state,
-                        updateContactStatus:"success"
-                    }
-                }else{
-                    return{
-                        ...state,
-                        updateContactStatus:"failed"
-                    }
+                toast(message)
+                return{
+                    ...state,
+                    updateContactStatus:"success"
                 }
             }else return{
                 ...state,
@@ -364,21 +351,12 @@ const auth_Slice = createSlice({
         builder.addCase(UploadProfilePicture.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                
-                if(status === true){
-                    toast(message)
-                    return{
-                        ...state,
-                        uploadProfilePicsStatus:"success"
-                    }
-                }else{
-                    return{
-                        ...state,
-                        uploadProfilePicsStatus:"failed"
-                    }
+                toast(message)
+                return{
+                    ...state,
+                    uploadProfilePicsStatus:"success"
                 }
             }else return{
                 ...state,
@@ -403,22 +381,12 @@ const auth_Slice = createSlice({
         builder.addCase(ResetPassword.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
                     message
                 }= action.payload
-                
-                if(status === true){
-                    toast(message)
-                    return{
-                        ...state,
-                        ResetPasswordStatus:"success"
-                    }
-                }else{
-                    toast(message)
-                    return{
-                        ...state,
-                        ResetPasswordStatus:"failed"
-                    }
+                toast(message)
+                return{
+                    ...state,
+                    ResetPasswordStatus:"success"
                 }
             }else return{
                 ...state,
@@ -444,17 +412,9 @@ const auth_Slice = createSlice({
         builder.addCase(SendPasswordResetLink.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    message
                 }= action.payload
-                
-                if(status === true){
-                    toast(action.payload.message)
-                    return{
-                        ...state,
-                        SendPasswordResetLinkStatus:"success"
-                    }
-                }
-                toast(action.payload.message)
+                toast(message)
                 return{
                     ...state,
                     SendPasswordResetLinkStatus:"success"
@@ -488,9 +448,9 @@ const auth_Slice = createSlice({
                     ...state,
                     registerStatus:'success'
                 }
-            }else return{
+            }return{
                 ...state,
-                registerStatus:'failed'
+                registerStatus:'success'
             }
         })
         builder.addCase(registerUser.rejected,(state, action)=>{
@@ -523,9 +483,9 @@ const auth_Slice = createSlice({
                     userdata:action.payload,
                     LoginStatus:'success'
                 }
-            }else return{
+            }return{
                 ...state,
-                LoginStatus:'failed'
+                LoginStatus:'success'
             }
 
         })
