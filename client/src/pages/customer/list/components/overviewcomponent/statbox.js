@@ -69,7 +69,7 @@ export const SubscriberStat =()=>{
                                         }>
                                         see all {name}
                                     </h6>
-                                    <span className="p-1 rounded bg-lightBlue">
+                                    <span className="p-1 rounded bg-Bc">
                                        <FaCodiepie
                                             color="grey"
                                         />

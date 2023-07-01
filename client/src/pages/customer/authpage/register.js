@@ -103,7 +103,7 @@ export const RegisterView =()=>{
                         />
                         {
                             auth.registerStatus === "rejected" &&(
-                                <p className="text-danger">{auth.registerError}</p>
+                                <p className="text-danger text-break">{auth.registerError}</p>
                             )
                         }
                         <CustomFormField
