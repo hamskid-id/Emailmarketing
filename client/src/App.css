@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 .navbrand{
   display:none;
@@ -218,14 +219,18 @@ opacity:0.6;
   height: 21rem;
   margin-right: 1rem;
 }
+.fw-light{
+  font-weight: 400;
+}
 .campaign-select{
   width:40%;
 }
-.sideNav{
+.sideNav,.bg-Bc{
   background-color: #3B3C36;
 }
+
 *{
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .fixedHeightcover{
   height:100vh
@@ -373,7 +378,7 @@ i.mdi.mdi-account {
 .wt-50{
   width:50%;
 }
-.break{
+.text-break{
   word-break: break-all;
 }
 .mbm-2{
@@ -478,7 +483,8 @@ i.mdi.mdi-account {
     width:100%;
   }
   .brand{
-    color:#3B3C36;
+    word-break: break-all;
+    font-size: 0.8rem;
   }
   .navbrand{
     display:none;

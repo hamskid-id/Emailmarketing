@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-import { AiOutlineSend} from "react-icons/ai";
 
 export const RecentlySent=()=>{
     const recentCampaigns = useSelector(
@@ -11,13 +10,7 @@ export const RecentlySent=()=>{
 
     return(
         <>
-            <div className="d-flex align-items-center mt-3 mb-3">
-                <span className="me-3">
-                   <AiOutlineSend
-                        size="1.5rem"
-                        color="grey"
-                    />
-                </span>
+            <div className="mt-3 mb-3">
                 <h2 
                     className="fs-4 w-100 mb-0"
                 >

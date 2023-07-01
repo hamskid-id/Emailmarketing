@@ -1,4 +1,3 @@
-import { AiOutlineRise } from "react-icons/ai";
 
 export const CreditWrapper=()=>{
     const cred =[
@@ -19,13 +18,7 @@ export const CreditWrapper=()=>{
     ]
     return(
         <>
-            <div className="d-flex align-items-center mt-3 mb-3">
-                <span className="me-3">
-                   <AiOutlineRise
-                        size="1.5rem"
-                        color="grey"
-                    />
-                </span>
+            <div className=" mt-3 mb-3">
                 <h2 
                     className="fs-4 w-100 mb-0 "
                 >

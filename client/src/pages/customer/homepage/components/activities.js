@@ -6,9 +6,6 @@ export const ActivitiesLog =()=>{
     const  activities = useSelector(
         state => state.activities
     )
-    const auth = useSelector(
-        state => state.auth
-    )
     return(
         <div className="row">
             <div className="col-md-6">

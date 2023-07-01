@@ -66,7 +66,7 @@ export const MyProfile =()=>{
                             {
                                 auth.profilePicture?(
                                     <img 
-                                        src={auth.profilePicture}
+                                        src={`https://emailmarketing.staging.5starcompany.com.ng/Uploads/profile/account/${auth.profilePicture}`}
                                         alt="object not found"
                                         className="profilePhoto"
                                     />

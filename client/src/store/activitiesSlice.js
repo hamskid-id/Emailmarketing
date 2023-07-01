@@ -23,7 +23,7 @@ export const UpdateActivities  = createAsyncThunk(
     'activities/UpdateActivities ', 
     async ({
         action
-    },{rejectWithValue}) =>{
+    }) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/addactivitylog`,{

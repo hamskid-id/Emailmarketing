@@ -10,7 +10,7 @@ export const Brand =({handleClick})=>{
                 />
             </span>
             <span className="brand">
-                5STAR MAIL
+                cheapmailing
             </span>
         </div>
     )
