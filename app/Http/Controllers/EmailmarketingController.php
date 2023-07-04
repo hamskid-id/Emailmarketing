@@ -431,6 +431,13 @@ class EmailmarketingController extends Controller
 
     public function createcampaigns(Request $request)
     {
+        // $camp = Campaign::findOrFail(37);
+        // $data['campaign'] = $camp;
+        // $data['subscribers'] = Subscriber::where('tag_id', $camp->tag_id )->get();
+        // CommunicationJob::dispatch($data);
+
+        // dd($camp);
+
         if (Auth::check()) {
             $request->validate([
                 'tag_id' => 'required',
