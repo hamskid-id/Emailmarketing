@@ -52,9 +52,9 @@ export const InvitesContainer =()=>{
                         
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index +1}</th>
-                                    <td>{name}</td>
-                                    <td>{email}</td>
+                                    <th scope="row" className="fs-6">{index +1}</th>
+                                    <td className="fs-6">{name}</td>
+                                    <td className="fs-6">{email}</td>
                                     <td>
                                         <div className="d-flex align-items-center">
                                             <div className="dropdown">
@@ -67,7 +67,7 @@ export const InvitesContainer =()=>{
                                                 </button>
                                                 <ul className="dropdown-menu">
                                                     <li
-                                                        className="dropdown-item"
+                                                        className="dropdown-item fs-6"
                                                     >
                                                         Delete
                                                     </li>

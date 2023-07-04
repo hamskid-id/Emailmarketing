@@ -38,18 +38,18 @@ export const SpamContainer = () => {
                                     } = spam
                                     return (
                                         <tr key={index}>
-                                            <th scope="row">{index}</th>
-                                            <td>{email}</td>
-                                            <td>{
+                                            <th scope="row" className="fs-6">{index}</th>
+                                            <td className="fs-6">{email}</td>
+                                            <td className="fs-6">{
                                                 new Date(created_at)
                                                     .toLocaleString()
                                             }
                                             </td>
-                                            <td>{
+                                            <td className="fs-6">{
                                                 new Date(updated_at)
                                                     .toLocaleString()
                                             }</td>
-                                            <td>
+                                            <td className="fs-6">
                                                 <div className="d-flex align-items-center">
                                                     <div className="dropdown">
                                                         <button
@@ -61,7 +61,7 @@ export const SpamContainer = () => {
                                                         </button>
                                                         <ul className="dropdown-menu">
                                                             <li
-                                                                className="dropdown-item"
+                                                                className="dropdown-item fs-6"
                                                                 onClick={()=>dispatch(DeleteSpamReport({id}))}
                                                             >
                                                                 Delete

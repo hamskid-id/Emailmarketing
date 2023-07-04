@@ -25,7 +25,7 @@ export const AllCampaignComponent =()=>{
                         color="grey"
                     />
                 </span>
-                <div className="fs-2">
+                <div className="fs-4">
                     Campaigns
                 </div>
             </div>

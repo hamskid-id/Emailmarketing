@@ -56,12 +56,12 @@ export const GeneralList =({
                                     />
                                     <div className="d-flex flex-column align-items-center justify-content-center pd-1">
                                         <p 
-                                            className="fw-bold break"
+                                            className="fw-bold break fs-6"
                                         >
                                             {template_name}
                                         </p>
                                         <p 
-                                            className="break"
+                                            className="break fs-6"
                                         >
                                             {template_describ}
                                         </p>
@@ -78,7 +78,7 @@ export const GeneralList =({
                                             {
                                                 campaign?(
                                                     <li 
-                                                        className="dropdown-item"
+                                                        className="dropdown-item fs-6"
                                                         onClick={
                                                             ()=>{
                                                                 setCampaignSection({
@@ -97,7 +97,7 @@ export const GeneralList =({
                                                     </li>
                                                 ):(
                                                     <li 
-                                                        className="dropdown-item"
+                                                        className="dropdown-item fs-6"
                                                         onClick={
                                                             ()=>navigate(`/edit/template/${category}/${id}`)
                                                         }

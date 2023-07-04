@@ -58,15 +58,15 @@ export const UnSubContainer =()=>{
                                     }=sub
                                     return(
                                         <tr key={index}>
-                                            <th scope="row">{index}</th>
-                                            <td>{email}</td>
-                                            <td>{fname}</td>
-                                            <td>{lname}</td>
-                                            <td>{country}</td>
-                                            <td>{state}</td>
-                                            <td>{phone}</td>
-                                            <td>{dob}</td>
-                                            <td>{tag}</td>
+                                            <th scope="row">{index+1}</th>
+                                            <td className="fs-6">{email}</td>
+                                            <td className="fs-6">{fname}</td>
+                                            <td className="fs-6">{lname}</td>
+                                            <td className="fs-6">{country}</td>
+                                            <td className="fs-6">{state}</td>
+                                            <td className="fs-6">{phone}</td>
+                                            <td className="fs-6">{dob}</td>
+                                            <td className="fs-6">{tag}</td>
                                             <td>
                                                 <div className="dropdown">
                                                     <button 
@@ -87,7 +87,7 @@ export const UnSubContainer =()=>{
                                                     </button>
                                                     <ul className="dropdown-menu">
                                                         <li
-                                                            className="dropdown-item"
+                                                            className="dropdown-item fs-6"
                                                             onClick={()=>dispatch(DeleteUnSubscribers({id}))}
                                                         >
                                                             Delete

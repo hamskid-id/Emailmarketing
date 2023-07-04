@@ -42,10 +42,10 @@ export const CreditWrapper=()=>{
                             >
                                 <div className="pde-2">
                                     <div className="d-flex justify-content-between align-items-center mb-1">
-                                        <span className="fw-bold">
+                                        <span className="fw-bold fs-6">
                                             {name}
                                         </span>
-                                        <span>
+                                        <span className="fs-6">
                                             {amount}
                                         </span>
                                     </div>
