@@ -32,10 +32,10 @@ class UserController extends Controller
         $user = new User();
         $user->business_id = $id;
         $user->name = $request->name;
-        $user->email = $request->email;          
+        $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
-        
+
         return response()->json([
             'status' => true,
             'message' => "User Registered Successfully!"], 200);
@@ -108,6 +108,7 @@ class UserController extends Controller
                 ]);
             } else {
 
+
                 return response()->json([
                     'status' => false,
                     'message' => 'User not Found!',
@@ -122,6 +123,7 @@ class UserController extends Controller
         }
 
     }
+    
 
     public function resetpass(Request $request)
     {

@@ -91,6 +91,7 @@ class EmailmarketingController extends Controller
         return view('emailmarketing.viewsubscriber', compact('subscrib'));
     }
 
+    
     //for campaign
 
     public function createcampaign(Request $request)
@@ -467,11 +468,11 @@ class EmailmarketingController extends Controller
                 //Do not remove
                 $data['campaign'] = $camp;
                 $data['subscribers'] = Subscriber::where('tag_id', $camp->tag_id )->get();
-                
+
                 CommunicationJob::dispatch($data);
 
                 //do not remove ends
-                
+
                 return response()->json([
                     'status' => true,
                     'message' => 'Campgn created Successully!',
@@ -858,7 +859,7 @@ class EmailmarketingController extends Controller
                         'message' => $sub->email,
                     ]);
                 }
-                
+
             } else {
                 return response()->json([
                     'status' => true,
