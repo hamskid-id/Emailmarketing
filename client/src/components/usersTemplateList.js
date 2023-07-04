@@ -59,7 +59,7 @@ export const MyTemplateList =({
                                 const category="personal"
                                 return(
                                     <tr key={index}>
-                                        <th scope="row">{index+1}</th>
+                                        <th scope="row" className="fs-6">{index+1}</th>
                                         <td>
                                             <img 
                                                 src="https://res.cloudinary.com/hamskid/image/upload/v1675956824/thumb_ymavb0.svg"
@@ -67,15 +67,15 @@ export const MyTemplateList =({
                                                 className="w-50"
                                             />
                                         </td>
-                                        <td>{template_name}</td>
-                                        <td>{template_describ}</td>
-                                        <td>
+                                        <td className="fs-6">{template_name}</td>
+                                        <td className="fs-6">{template_describ}</td>
+                                        <td className="fs-6">
                                             {
                                                 new Date(created_at)
                                                     .toLocaleString()
                                             }
                                             </td>
-                                            <td>{
+                                            <td className="fs-6">{
                                                 new Date(updated_at)
                                                     .toLocaleString()
                                             }</td>
@@ -93,7 +93,7 @@ export const MyTemplateList =({
                                                         {
                                                             campaign?(
                                                                 <li
-                                                                    className="dropdown-item"
+                                                                    className="dropdown-item fs-6"
                                                                     onClick={
                                                                         ()=>{
                                                                             setCampaignSection({
@@ -112,7 +112,7 @@ export const MyTemplateList =({
                                                                 </li>
                                                             ):(
                                                                 <li 
-                                                                    className="dropdown-item"
+                                                                    className="dropdown-item fs-6"
                                                                     onClick={
                                                                         ()=>navigate(`/edit/template/${category}/${id}`)
                                                                     }

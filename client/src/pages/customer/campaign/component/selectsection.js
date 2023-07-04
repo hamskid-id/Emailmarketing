@@ -11,7 +11,7 @@ export const SelectTypeSection=()=>{
                         size="1.5rem"
                     />
                 </span>
-                <span className="fs-1">
+                <span className="fs-4">
                     Select campaign type
                 </span>
             </div>
@@ -49,9 +49,9 @@ export const SelectTypeSection=()=>{
                                             <span className="me-3">
                                                 {icon}
                                             </span>
-                                            <span className="fs-1">
-                                                <h6 className="fs-3 text-primary">{type}</h6>
-                                                <h6 className="fs-5">{text}</h6>
+                                            <span>
+                                                <h6 className="fs-4 text-primary">{type}</h6>
+                                                <h6 className="fs-4">{text}</h6>
                                             </span>
                                         </div>
                                     </div>

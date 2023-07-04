@@ -1,5 +1,5 @@
-import { ClickLog } from "./clicklog"
-import { OpenLog } from "./openlog"
+// import { ClickLog } from "./clicklog"
+// import { OpenLog } from "./openlog"
 
 export const Rate =()=>{
     return(
@@ -53,8 +53,8 @@ export const Rate =()=>{
                                     key={index} 
                                     className="d-flex justify-content-between py-2 dotted-buttom"
                                     >
-                                    <span>{name}</span>
-                                    <span>{amount}</span>
+                                    <span className="fs-6">{name}</span>
+                                    <span className="fs-6">{amount}</span>
                                 </div>
                             )
                         })
@@ -104,8 +104,8 @@ export const Rate =()=>{
                                     key={index} 
                                     className="d-flex justify-content-between py-2 dotted-buttom"
                                     >
-                                    <span>{name}</span>
-                                    <span>{amount}</span>
+                                    <span className="fs-6">{name}</span>
+                                    <span className="fs-6">{amount}</span>
                                 </div>
                             )
                         })

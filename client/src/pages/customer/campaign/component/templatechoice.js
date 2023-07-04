@@ -14,8 +14,8 @@ export const TemplateChoice =({
     // }
     return(
         <>
-            <p className="fs-1 mb-3">Content Management</p>
-            <h6 className="fs-3 mb-1">Email Content</h6>
+            <p className="fs-3 mb-3">Content Management</p>
+            <h6 className="fs-4 mb-1">Email Content</h6>
             <h6 className="fs-6  wt-50 mb-5">Create your email from scratch or start from our pre-built templates / themes. 
                 Customize the content the way you desire with our powerful but easy-to-use HTML email builder.
             </h6>
@@ -39,8 +39,8 @@ export const TemplateChoice =({
                         />
                     </span>
                     <span className="fs-1">
-                        <h6 className="fs-5 text-primary wt-50">Create From An Existing template</h6>
-                        <h6 className="fs-5 wt-50">Craft your beutiful email based off a prebuild template we made for you</h6>
+                        <h6 className="fs-4 text-primary wt-50">Create From An Existing template</h6>
+                        <h6 className="fs-6 wt-50">Craft your beutiful email based off a prebuild template we made for you</h6>
                     </span>
                 </div>
                 {/* <div>

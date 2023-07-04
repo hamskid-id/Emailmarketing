@@ -18,7 +18,7 @@ export const TemplateView =()=>{
                         color="grey"
                     />
                 </span>
-                <div className="fs-2">
+                <div className="fs-4">
                     Templates
                 </div>
             </div>

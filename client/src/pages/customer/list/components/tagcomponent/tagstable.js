@@ -58,18 +58,18 @@ export const TagContainer =()=>{
                                 } = tag
                                 return(
                                     <tr key={index}>
-                                        <th scope="row">{index+1}</th>
-                                        <td>{name}</td>
-                                        <td>{
+                                        <th scope="row" className="fs-6">{index+1}</th>
+                                        <td className="fs-6">{name}</td>
+                                        <td className="fs-6">{
                                                 new Date(created_at)
                                                 .toLocaleString()
                                             }
                                         </td>
-                                        <td>{
+                                        <td className="fs-6">{
                                                 new Date(updated_at)
                                                 .toLocaleString()
                                             }</td>
-                                        <td>
+                                        <td className="fs-6">
                                             <div className="d-flex align-items-center">
                                                 <div className="dropdown">
                                                     <button 
@@ -81,13 +81,13 @@ export const TagContainer =()=>{
                                                     </button>
                                                     <ul className="dropdown-menu">
                                                         <li
-                                                            className="dropdown-item"
+                                                            className="dropdown-item fs-6"
                                                             onClick={()=>navigate(`/user/tag/update/${id}`)}
                                                         >
                                                            Update
                                                         </li>
                                                         <li
-                                                            className="dropdown-item"
+                                                            className="dropdown-item fs-6"
                                                             onClick={()=>dispatch(DeleteTags({id}))}
                                                         >
                                                             Delete

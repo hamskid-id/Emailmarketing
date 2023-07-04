@@ -111,7 +111,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                                                 className="accordion-header w-100" 
                                                 id="headingOne"
                                             >
-                                            <button className="accordion-button"
+                                            <button className="accordion-button fs-6"
                                                 type="button" 
                                                 data-bs-toggle="collapse" 
                                                 data-bs-target={`#${id}`}
@@ -134,7 +134,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                                                             <Link
                                                                 key={index} 
                                                                 to={`/${name}/${link}`}
-                                                                className="decoration-none"
+                                                                className="decoration-none fs-6"
                                                             >
                                                                 {link}
                                                             </Link>

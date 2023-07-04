@@ -55,15 +55,15 @@ export const SubscriberStat =()=>{
                             className="bg-azur rounded stat">
                             <div 
                                 className="m-2 rounded p-2 w-15 bg-white">
-                                <p className="fw-bold">
+                                <p className="fw-bold fs-6 mb-0">
                                     {name}
                                 </p>
-                                <p className="fw-bold display-6">
+                                <p className="fw-bold display-6 mb-0">
                                     {amount}
                                 </p>
                                 <div className="d-flex align-items-center justify-content-between wrap">
                                     <h6
-                                        className="text-dark pointer"
+                                        className="text-dark pointer fs-6 mb-0"
                                         onClick={
                                             ()=>navigate(route)
                                         }>

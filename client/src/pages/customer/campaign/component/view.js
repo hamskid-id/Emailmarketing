@@ -46,11 +46,11 @@ export const AllcampaignView =()=>{
                             }=camp
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index+1}</th>
-                                    <td>{title}</td>
-                                    <td>{from_email}</td>
-                                    <td>{reply_to}</td>
-                                    <td>{subject}</td>
+                                    <th scope="row" className="fs-6">{index+1}</th>
+                                    <td className="fs-6">{title}</td>
+                                    <td className="fs-6">{from_email}</td>
+                                    <td className="fs-6">{reply_to}</td>
+                                    <td className="fs-6">{subject}</td>
                                     <td>
                                         <div className="d-flex align-items-center">
                                             <div className="dropdown">
@@ -63,7 +63,7 @@ export const AllcampaignView =()=>{
                                                 </button>
                                                 <ul className="dropdown-menu">
                                                     <li 
-                                                        className="dropdown-item"
+                                                        className="dropdown-item fs-6"
                                                         onClick={()=>navigate(`/campaigns/stat/${id}`)}
                                                     >
                                                         Statistics
@@ -74,7 +74,7 @@ export const AllcampaignView =()=>{
                                                         Email verification
                                                     </li> */}
                                                     <li
-                                                        className="dropdown-item"
+                                                        className="dropdown-item fs-6"
                                                         onClick={()=>dispatch(DeleteCampaigns({id}))}
                                                     >
                                                         Delete
