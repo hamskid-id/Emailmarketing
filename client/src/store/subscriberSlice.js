@@ -152,12 +152,21 @@ const subscriber_Slice = createSlice({
         builder.addCase(DeleteSubscriber.fulfilled,(state, action)=>{
             if(action.payload){
                 const{
-                    message
+                    message,
+                    status
                 }=action.payload;
-                toast(message);
-                return{
-                    ...state,
-                    deleteSubStatus:"success"
+                if(status){
+                    toast(message);
+                    return{
+                        ...state,
+                        deleteSubStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        deleteSubStatus:"failed"
+                    }
                 }
             }return{
                 ...state,
@@ -165,6 +174,7 @@ const subscriber_Slice = createSlice({
             }
         })
         builder.addCase(DeleteSubscriber.rejected,(state, action)=>{
+            toast.error(action?.payload?.message);
             return{
                 ...state,
                 GetTotalSubscribersStatus:'rejected'
@@ -253,12 +263,21 @@ const subscriber_Slice = createSlice({
         builder.addCase(Createsubscriber.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
+                    message,
+                    status
                 }= action.payload
-                toast(message);
-                return{
-                    ...state,
-                    CreatesubscriberStatus:"success"
+                if(status){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreatesubscriberStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreatesubscriberStatus:"failed"
+                    }
                 }
             }else{
                 return{
@@ -268,6 +287,7 @@ const subscriber_Slice = createSlice({
             }
         })
         builder.addCase(Createsubscriber.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 CreatesubscriberStatus:'rejected'

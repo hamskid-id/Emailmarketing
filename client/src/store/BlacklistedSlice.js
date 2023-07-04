@@ -126,9 +126,16 @@ const blacklist_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message)
-                }return{
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                        }
+                }else {
+                    toast.error(message)
+                    return{
                     ...state,
-                    deleteStatus:"success"
+                    deleteStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -136,6 +143,7 @@ const blacklist_Slice = createSlice({
             }
         })
         builder.addCase(DeleteBlacklist.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 deleteStatus:'rejected'
@@ -193,13 +201,21 @@ const blacklist_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
-                }return{
+                    return{
+                        ...state,
+                        GetBlacklistStatus:"success"
+                    }
+                }else {
+                    toast.error(message);
+                    return{
                     ...state,
-                    GetBlacklistStatus:"success"
+                    GetBlacklistStatus:"failed"
+                    }
                 }
             }
         })
         builder.addCase(CreateBlacklist.rejected,(state, action)=>{
+            toast.error(action?.payload?.message);
             return{
                 ...state,
                 CreateBlacklistStatus:'rejected'

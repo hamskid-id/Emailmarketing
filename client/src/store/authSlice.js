@@ -261,7 +261,7 @@ const auth_Slice = createSlice({
                     }
                 }return{
                     ...state,
-                    profilePictureStatus:"success",
+                    profilePictureStatus:"failed",
                 }
             }else return{
                 ...state,
@@ -298,7 +298,7 @@ const auth_Slice = createSlice({
                     }
                 }return{
                         ...state,
-                        contactInfoStatus:"success"
+                        contactInfoStatus:"failed"
                 }
             }else return{
                 ...state,
@@ -322,19 +322,30 @@ const auth_Slice = createSlice({
         builder.addCase(UpdateContactInfo.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
+                    status,
                     message
                 }= action.payload
-                toast(message)
-                return{
-                    ...state,
-                    updateContactStatus:"success"
+                
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        updateContactStatus:"success"
+                    }
+                }else {
+                    toast.error(message)
+                    return{
+                        ...state,
+                        updateContactStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
-                updateContactStatus:"failed"
+                profilePictureStatus:"failed"
             }
         })
         builder.addCase(UpdateContactInfo.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 updateContactStatus:'rejected',
@@ -351,12 +362,21 @@ const auth_Slice = createSlice({
         builder.addCase(UploadProfilePicture.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
-                }= action.payload
-                toast(message)
-                return{
-                    ...state,
-                    uploadProfilePicsStatus:"success"
+                    message,
+                    status
+                }= action.payload;
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        uploadProfilePicsStatus:"success"
+                    }
+                }else {
+                    toast.error(message)
+                    return{
+                        ...state,
+                        uploadProfilePicsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -364,6 +384,7 @@ const auth_Slice = createSlice({
             }
         })
         builder.addCase(UploadProfilePicture.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 uploadProfilePicsStatus:'rejected',
@@ -381,20 +402,31 @@ const auth_Slice = createSlice({
         builder.addCase(ResetPassword.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
+                    message,
+                    status
                 }= action.payload
-                toast(message)
-                return{
-                    ...state,
-                    ResetPasswordStatus:"success"
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        ResetPasswordStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return{
+                        ...state,
+                        ResetPasswordStatus:"failed",
+                        ResetPasswordError:action?.payload?.message
+                    }
                 }
             }else return{
                 ...state,
-                ResetPasswordStatus:"failed"
+                ResetPasswordStatus:"failed",
+                ResetPasswordError:action?.payload?.message
             }
         })
         builder.addCase(ResetPassword.rejected,(state, action)=>{
-            toast(action?.payload?.message)
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 ResetPasswordStatus:'rejected',
@@ -412,12 +444,21 @@ const auth_Slice = createSlice({
         builder.addCase(SendPasswordResetLink.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
+                    message,
+                    status
                 }= action.payload
-                toast(message)
-                return{
-                    ...state,
-                    SendPasswordResetLinkStatus:"success"
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        SendPasswordResetLinkStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return{
+                        ...state,
+                        SendPasswordResetLinkStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -425,7 +466,7 @@ const auth_Slice = createSlice({
             }
         })
         builder.addCase(SendPasswordResetLink.rejected,(state, action)=>{
-            toast(action.payload)
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 SendPasswordResetLinkStatus:'rejected',
@@ -442,20 +483,28 @@ const auth_Slice = createSlice({
         });
         builder.addCase(registerUser.fulfilled,(state, action)=>{
             if(action.payload){
-                toast(action.payload);
-                window.location.replace("/auth/login")
-                return{
+                const{
+                    status,
+                    message
+                }=action.payload;
+                if(status){
+                    toast(message);
+                    window.location.replace("/auth/login")
+                    return{
+                        ...state,
+                        registerStatus:'success'
+                    }
+                }return{
                     ...state,
-                    registerStatus:'success'
+                    registerStatus:'failed'
                 }
-            }return{
+            }else return{
                 ...state,
-                registerStatus:'success'
+                registerStatus:'failed'
             }
         })
         builder.addCase(registerUser.rejected,(state, action)=>{
             toast.error("Registration Failed")
-            console.log(action.payload)
             return{
                 ...state,
                 registerStatus:'rejected',
@@ -472,20 +521,27 @@ const auth_Slice = createSlice({
 
         builder.addCase(LogInUser.fulfilled,(state, action)=>{
            if(action.payload){
-            const{
-                data
-            }=action.payload;
-                localStorage.setItem("tokenExpiry",data?.expires_at);
-                toast("LogIn successfull");
-                window.location.replace("/");
-                return{
+                const{
+                    data,
+                    status
+                }=action.payload;
+                if(status){
+                    toast("LogIn successfull");
+                    localStorage.setItem("tokenExpiry",data?.expires_at);
+                    window.location.replace("/");
+                    return{
+                        ...state,
+                        userdata:action.payload,
+                        LoginStatus:'success'
+                    }
+                }return{
                     ...state,
-                    userdata:action.payload,
-                    LoginStatus:'success'
+                    LoginStatus:'failed'
                 }
-            }return{
+                
+            }else return{
                 ...state,
-                LoginStatus:'success'
+                LoginStatus:'failed'
             }
 
         })

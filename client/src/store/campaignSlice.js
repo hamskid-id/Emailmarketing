@@ -170,9 +170,11 @@ const campaign_Slice = createSlice({
                         recentCampaigns: message,
                         GetRecentCampaignsStatus:"success"
                     }
-                }return{
+                }else{
+                    return{
                     ...state,
-                    GetRecentCampaignsStatus:"success"
+                    GetRecentCampaignsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -238,9 +240,16 @@ const campaign_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message)
-                }return{
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                        }
+                }else{
+                    toast.error(message)
+                    return{
                     ...state,
-                    deleteStatus:"success"
+                    deleteStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -248,6 +257,7 @@ const campaign_Slice = createSlice({
             }
         })
         builder.addCase(DeleteCampaigns.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 deleteStatus:'rejected'
@@ -270,9 +280,16 @@ const campaign_Slice = createSlice({
                 if(status === true){
                     toast(message);
                     window.location.replace("/campaigns")
-                }return{
+                    return{
+                        ...state,
+                        CreateCampaignsStatus:"success"
+                    }
+                }else {
+                    toast.error(message)
+                    return{
                     ...state,
-                    CreateCampaignsStatus:"success"
+                    CreateCampaignsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -280,6 +297,7 @@ const campaign_Slice = createSlice({
             }
         })
         builder.addCase(CreateCampaigns.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 CreateCampaignsStatus:'rejected'
