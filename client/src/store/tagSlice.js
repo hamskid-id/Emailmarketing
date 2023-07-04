@@ -149,12 +149,21 @@ const Tag_Slice = createSlice({
         builder.addCase(DeleteTags.fulfilled,(state, action)=>{
             if(action.payload){
                 const{
-                    message
+                    message,
+                    status
                 }=action.payload;
-                toast(message)
-                return{
-                    ...state,
-                    deleteStatus:"success"
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return{
+                        ...state,
+                        deleteStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -162,6 +171,7 @@ const Tag_Slice = createSlice({
             }
         })
         builder.addCase(DeleteTags.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 GetTagsStatus:'rejected'
@@ -207,12 +217,21 @@ const Tag_Slice = createSlice({
         builder.addCase(CreateTags.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
+                    message,
+                    status
                 }= action.payload
-                toast(message);
-                return{
-                    ...state,
-                    CreateTagsStatus:"success"
+                if(status){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreateTagsStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreateTagsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -220,6 +239,7 @@ const Tag_Slice = createSlice({
             }
         })
         builder.addCase(CreateTags.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 CreateTagsStatus:'rejected'
@@ -239,13 +259,19 @@ const Tag_Slice = createSlice({
                     message,
                     status
                 }= action.payload
-                toast(message);
                 if(status){
+                    toast(message);
                     window.location.replace("/Lists/Tags")
-                }
-                return{
-                    ...state,
-                    UpdateTagsStatus:"success"
+                    return{
+                        ...state,
+                        UpdateTagsStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return{
+                        ...state,
+                        UpdateTagsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -253,6 +279,7 @@ const Tag_Slice = createSlice({
             }
         })
         builder.addCase(UpdateTags.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 UpdateTagsStatus:'rejected'

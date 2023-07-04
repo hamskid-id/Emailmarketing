@@ -122,9 +122,16 @@ const SpamReported_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message)
-                }return{
+                    return{
+                        ...state,
+                        deleteSpamStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return{
                     ...state,
-                    deleteSpamStatus:"success"
+                    deleteSpamStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -132,6 +139,7 @@ const SpamReported_Slice = createSlice({
             }
         })
         builder.addCase(DeleteSpamReport.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 deleteSpamStatus:'rejected'
@@ -188,10 +196,16 @@ const SpamReported_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
-                }
-                return{
-                    ...state,
-                    CreateSpamReportedStatus:"success"
+                    return{
+                        ...state,
+                        CreateSpamReportedStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return{
+                        ...state,
+                        CreateSpamReportedStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -199,6 +213,7 @@ const SpamReported_Slice = createSlice({
             }
         })
         builder.addCase(CreateSpamReported.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 CreateSpamReportedStatus:'rejected'

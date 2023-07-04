@@ -159,12 +159,22 @@ const template_Slice = createSlice({
         builder.addCase(DeleteTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
+                    message,
+                    status
                 }= action.payload
-                toast(message)
-                return{
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                    }
+                }
+                else {
+                    toast.error(message)
+                    return{
                     ...state,
-                    deleteStatus:"success"
+                    deleteStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
@@ -172,6 +182,7 @@ const template_Slice = createSlice({
             }
         })
         builder.addCase(DeleteTemplate.rejected,(state, action)=>{
+            toast.error(action?.payload?.message);
             return{
                 ...state,
                 deleteStatus:'rejected'
@@ -262,12 +273,21 @@ const template_Slice = createSlice({
         builder.addCase(CreateTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
+                    message,
+                    status
                 }= action.payload
-                toast(message);
-                return{
-                    ...state,
-                    CreateTemplateStatus:"success"
+                if(status){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreateTemplateStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreateTemplateStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,

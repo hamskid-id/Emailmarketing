@@ -111,12 +111,21 @@ const collab_Slice = createSlice({
         builder.addCase(InviteUsers.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    message
+                    message,
+                    status
                 }= action.payload
-                toast(message)
-                return {
-                    ...state,
-                    InviteUsersStatus:"success"
+                if(status){
+                    toast(message)
+                    return {
+                        ...state,
+                        InviteUsersStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return {
+                        ...state,
+                        InviteUsersStatus:"failed"
+                    }
                 }
             }else return {
                     ...state,
@@ -124,6 +133,7 @@ const collab_Slice = createSlice({
                 }
         })
         builder.addCase(InviteUsers.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 InviteUsersStatus:'rejected'
