@@ -34,14 +34,14 @@ export const Recipient =({
             <form onSubmit={handleSubmit(SubmitHandler)}>
                 <div className="w-100 mb-2">
                     <label
-                        className="fw-bold" 
+                        className="fw-bold me-2" 
                         htmlFor="tag">
                         Tags
                     </label>
                     <select 
                     name="tag" 
                     id="tag"
-                    className="bg-alice p-2 border border-white rounded w-100"
+                    className="p-2 border rounded wt-50"
                     {...register(
                         "tag", 
                         {

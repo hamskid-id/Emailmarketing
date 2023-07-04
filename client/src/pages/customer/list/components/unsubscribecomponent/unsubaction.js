@@ -1,8 +1,42 @@
+import { useDispatch } from "react-redux"
+import { unsubscriber_SliceActions } from "../../../../../store/UnsubscribeSlice";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export const Actions =({
     HandleDownloadPdf,
-    printRef
+    printRef,
+    itemLength
 })=>{
+    const dispatch = useDispatch();
+    const [width, setWidth] = useState(window.innerWidth)
+    const handleWindowSizeChange=()=>{
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
+    const handleChange=(e)=>{
+        if(e.target.value ==="Name"){
+            dispatch(unsubscriber_SliceActions.sortDataByName())
+        }else{
+            dispatch(unsubscriber_SliceActions.sortDataByEmail())
+        }
+    }
+    const handleDownload =()=>{
+        const isMobile = width <= 768;
+        if(isMobile){
+            toast.warning("download is not supported on mobile please switch to desktop");
+        }else if(itemLength === 0 && !isMobile){
+            toast.warning("Data is empty");
+        }else{
+            HandleDownloadPdf(printRef)
+        }
+    }
     return(
         <div className="row">
             <div className="col-md-9 mb-2">
@@ -16,101 +50,16 @@ export const Actions =({
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
+                            className="btn me-3 rounded b-gainsboro mb-1"
+                            onChange={handleChange}
                             >
                             {
                                 [
-                                    {
-                                        name:"Created At"
-                                    },
                                     {
                                         name:"Email"
                                     },
                                     {
                                         name:"Name"
-                                    },
-                                    {
-                                        name:"Updated At"
-                                    }
-                                ]?.map((drop,index)=>{
-                                    const {
-                                        name
-                                    }=drop
-                                    return(
-                                        <option
-                                            className="fs-6" 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <select 
-                            name="sort" 
-                            id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
-                            >
-                            {
-                                [
-                                    {
-                                        name:"All subscribers"
-                                    },
-                                    {
-                                        name:"Subscribed"
-                                    },
-                                    {
-                                        name:"Unsubscribed"
-                                    },{
-
-                                        name:"Unconfirmed"
-                                    },
-                                    {
-                                        name:"Spam reported"
-                                    },
-                                    {
-                                        name:"Blacklisted"
-                                    }
-                                ]?.map((drop,index)=>{
-                                    const {
-                                        name
-                                    }=drop
-                                    return(
-                                        <option
-                                            className="fs-6" 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <select 
-                            name="sort" 
-                            id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
-                            >
-                            {
-                                [
-                                    {
-                                        name:"All verifcation"
-                                    },
-                                    {
-                                        name:"Deliverable"
-                                    },
-                                    {
-                                        name:"Undeliverable"
-                                    },{
-
-                                        name:"Unknown"
-                                    },
-                                    {
-                                        name:"Risky"
-                                    },
-                                    {
-                                        name:"Unverified"
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
@@ -130,8 +79,9 @@ export const Actions =({
                     </div>
                     <input  
                         type="text"
-                        placeholder="Type to search"
-                        className="action-inpt rounded"
+                        placeholder="Search..."
+                        className="border btn mb-2"
+                        onChange={(e)=>dispatch(unsubscriber_SliceActions.searchdata(e.target.value))}
                     />
                 </div>
             </div>
@@ -139,7 +89,7 @@ export const Actions =({
                 <div>
                     <button 
                         className="btn b-grey btn-md my-2 fl-r"
-                        onClick={()=>HandleDownloadPdf(printRef)}  
+                        onClick={handleDownload}  
                     >
                         download
                     </button>

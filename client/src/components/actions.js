@@ -1,10 +1,8 @@
 export const Actions =({
     actionName,
-    deleteArray
+    handleChange,
+    handleInputChange
 })=>{
-    const handleClick=()=>{
-        console.log(deleteArray)
-    }
     return(
         <div className="row">
             <div className="col-md-6 mb-2">
@@ -19,7 +17,8 @@ export const Actions =({
                             <select 
                                 name="sort" 
                                 id="sort"
-                                className="fs-6 p-2 rounded b-gainsboro me-2 mb-1"
+                                className="btn rounded b-gainsboro me-2 mb-1"
+                                onChange={handleChange}
                                 >
                                 {
                                     [
@@ -27,7 +26,7 @@ export const Actions =({
                                             name:"Created At"
                                         },
                                         {
-                                            name:"Name"
+                                            name:actionName ==="Add Tag"?"Name":"Email"
                                         }
                                     ]?.map((drop,index)=>{
                                         const {
@@ -44,34 +43,31 @@ export const Actions =({
                                 }
                             </select>
                         </div>
-                        {
-                            deleteArray &&( 
-                                <button
-                                    onClick={handleClick}
-                                    className="btn btn-md  b-grey fs-6 me-2 mb-1">
-                                    delete
-                                </button>
-                            )
-                        }
                         <input  
                             type="text"
-                            placeholder="Type to search"
-                            className="action-inpt rounded mb-1"
+                            placeholder="Search..."
+                            className="border btn mb-1"
+                            onChange={handleInputChange}
                         />
                     </div>
                 </div>
             </div>
             <div className="col-md-6">
-                <div>
-                     <button
-                        className="btn b-grey btn-md my-2 fl-r"
-                        type="button"                            
-                        data-bs-toggle="modal" 
-                        data-bs-target="#staticBackdrop"
-                    >
-                        {actionName}
-                    </button>
-                </div>
+                {
+                    
+                    actionName && (
+                        <div>
+                            <button
+                                className="btn b-grey btn-md my-2 fl-r"
+                                type="button"                            
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
+                            >
+                                {actionName}
+                            </button>
+                        </div>
+                    )
+                }
             </div>
         </div>
     )

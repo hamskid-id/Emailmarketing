@@ -14,7 +14,6 @@ import { ListsPage } from './pages/customer/list/list';
 import { SubscribersPage } from './pages/customer/list/subscribers';
 import { TagsPage } from './pages/customer/list/tags';
 import { CollabsPage } from './pages/customer/list/collaborators';
-import { Inbox } from './pages/customer/notification/inbox';
 import { AutoPage } from './pages/customer/automation/automation';
 import { AutomationDesign } from './pages/customer/automation/automationdesign';
 import { CreateView } from './pages/customer/template/create';
@@ -36,6 +35,7 @@ import { UnSubsrcibedPage } from './pages/customer/list/unsubscribe';
 import { SpamReportPage } from './pages/customer/list/spamreport';
 import { EditView } from './pages/customer/template/edit';
 import { UpdateTagPage } from './pages/customer/list/updateTag';
+import { Plaintext } from './pages/customer/campaign/plaintext/plaintextcampaign';
 // import './interceptors/axios';
 
 
@@ -78,11 +78,11 @@ const App =()=> {
              <Route exact path='/campaigns/Create'  element={ <CreateCampaignPage/>} />
              <Route exact path="/user/tag/update/:id"  element={ <UpdateTagPage/>} />
             <Route exact path='/campaign/select-type'  element={ <SelectTypeView/>} />
+            <Route exact path='/campaign/create/plaintext'  element={ <Plaintext/>} />
             <Route exact path='/templates'  element={ <TemplateList/>} />
             <Route exact path='/edit/template/:category/:id'  element={ <EditView/>} />
             <Route exact path='/automations'  element={ <AutoPage/>} />
             <Route exact path='/automations/design'  element={ <AutomationDesign/>} />
-            <Route exact path='/inbox' element={ <Inbox/>}/>
             <Route exact path="/create/template" element={<CreateView/>}/>
             <Route exact path="/preview/template/:id" element={<CreateView/>}/>
             <Route exact path="/account/profile" element={<ProfilePage/>}/>

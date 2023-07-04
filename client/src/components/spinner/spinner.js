@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import BarLoader from "react-spinners/BarLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 import classes from "./spinner.module.css";
 const Spinner = () => {
     let [color] = useState("darkslategray");
 
     return (
         <div className={classes.spinner_container}>
-            <BarLoader
+            <FadeLoader
                 color={color}
                 size={25}
                 aria-label="Loading Spinner"

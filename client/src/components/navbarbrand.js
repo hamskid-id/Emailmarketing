@@ -1,18 +1,17 @@
-import { FaMailBulk} from "react-icons/fa"
-
+import { AiTwotoneMail } from "react-icons/ai";
 export const Brand =({handleClick})=>{
     return(
-        <>
-            <span className="me-2">
-                <FaMailBulk
-                    size="3rem"
-                    color="white"
+        <div className="d-flex align-items-center">
+            <span className="me-2 p-2 rounded-circle brandBg btn">
+                <AiTwotoneMail
+                    size="1.5rem"
+                    color="#3B3C36"
                     onClick={handleClick }
                 />
             </span>
-            <span className="fs-6 fw-bold text-white">
-                5STAR MAIL
+            <span className="brand">
+                cheapmailing
             </span>
-        </>
+        </div>
     )
 }

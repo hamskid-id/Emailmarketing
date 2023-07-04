@@ -94,17 +94,17 @@ export const CreateCampaignContent =()=>{
 
     return(
             <div>
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center pdx-4 bg-lightBlue">
                     <span className="me-3">
                         <FaRegEnvelope
                             size="1.5rem"
                         />
                     </span>
-                    <span className="fs-1">
+                    <span className="fs-4">
                         Untitled
                     </span>
                 </div>
-                <div className="d-flex align-items-center w-overflow mt-4 mb-0">
+                <div className="d-flex align-items-center w-overflow pt-4 mb-0 pdx-4 bg-lightBlue">
                     {
                         sections?.map((section,index)=>{
                             const{
@@ -116,7 +116,10 @@ export const CreateCampaignContent =()=>{
                                     key={index}
                                 >
                                     <h6
-                                        className={`fs-6 pe-5 pb-1
+                                        className={`fs-6 pe-1 pb-1 
+                                        ${
+                                            index!==0 && "ps-5"
+                                        }
                                         ${
                                             campaignParams?.sectionCompleted >= index ?
                                             `border-bottom-slate-grey`:
@@ -143,7 +146,7 @@ export const CreateCampaignContent =()=>{
                     }
                 </div>
                 <hr className="b-grey mt-0"/>
-                <div>
+                <div className="pdx-4">
                     {
                         campaignSection.components                           
                     }

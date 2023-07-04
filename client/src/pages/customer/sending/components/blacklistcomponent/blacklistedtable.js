@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { FaCartArrowDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetBlacklist } from "../../../../../store/BlacklistedSlice";
+import { DeleteBlacklist, GetBlacklist } from "../../../../../store/BlacklistedSlice";
 import { Actions } from "./blacklistaction";
+import { NoData } from "../../../../../components/nodata";
 
 export const BlacklistTable =()=>{
     const blacklist = useSelector(
@@ -14,7 +14,7 @@ export const BlacklistTable =()=>{
         dispatch(GetBlacklist(null));
     },[dispatch])
 
-    if(blacklist.GetBlacklistStatus ==='pending'){
+    if(blacklist.GetBlacklistStatus ==='pending' || blacklist.deleteStatus === "pending"){
         return <Spinner/>
     }
     return(
@@ -35,6 +35,7 @@ export const BlacklistTable =()=>{
                         blacklist.blacklist?.map((list,index)=>{
                                 const{
                                     email,
+                                    id,
                                     created_at
                                 } = list
                                 return(
@@ -59,8 +60,9 @@ export const BlacklistTable =()=>{
                                                     <ul className="dropdown-menu">
                                                         <li
                                                             className="dropdown-item"
+                                                            onClick={()=>dispatch(DeleteBlacklist({id}))}
                                                         >
-                                                            Remove
+                                                            Delete
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -77,17 +79,7 @@ export const BlacklistTable =()=>{
         </div>
        
         {
-           blacklist.blacklist.length === 0 &&(
-                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                    <FaCartArrowDown
-                        size="7rem"
-                        color="grey"
-                    />
-                    <p className="fw-bold">
-                        Blacklist is empty!
-                    </p>
-                </div>
-            )
+           blacklist.blacklist.length === 0 && <NoData/>
         }
         </>
     )

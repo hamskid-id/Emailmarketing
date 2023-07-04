@@ -1,9 +1,9 @@
-import {FaHome,FaPaperPlane,FaThList,FaSync,FaTable } from "react-icons/fa";
+import { AiOutlineSend,AiOutlineBars,AiOutlineHome,AiOutlineLayout,AiOutlineRadiusSetting } from "react-icons/ai";
 export const AccordionsRoutes =[
     {
         id:"collapseOne",
-        icon:<FaThList
-                size="1.3rem"
+        icon:<AiOutlineBars
+                size="1.1rem"
                 color="white"
             />,
         name:"Lists",
@@ -20,8 +20,8 @@ export const AccordionsRoutes =[
     },
     {
         id:"collapseTwo",
-        icon:<FaSync
-                size="1.3rem"
+        icon:<AiOutlineRadiusSetting
+                size="1.1rem"
                 color="white"
             />,
         name:"Sending",
@@ -34,32 +34,24 @@ export const AccordionsRoutes =[
 ]
 export const ListRoute=[
     {
-        icon:<FaHome
-                size="1.3rem"
+        icon:<AiOutlineHome
+                size="1.1rem"
                 color="white"
             />,
         name:"DashBoard",
         route:"/"
     },
     {
-        icon:<FaPaperPlane
-        size="1.3rem"
+        icon:<AiOutlineSend
+        size="1.1rem"
         color="white"
     />,
         name:"Campaigns" ,
         route:"/campaigns"   
     },
-    // {
-    //     icon:<FaRegClock
-    //     size="1.3rem"
-    //     color="white"
-    // />,
-    //     name:"Automations",
-    //     route:"/automations"    
-    // },
     {
-        icon:<FaTable
-        size="1.3rem"
+        icon:<AiOutlineLayout
+        size="1.1rem"
         color="white"
     />,
         name:"Templates",

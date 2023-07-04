@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
-import { useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import { CustomFormField } from "../../../../../components/customFomField";
 import {UpdateTags } from "../../../../../store/tagSlice";
 
@@ -25,8 +25,8 @@ export const UpdateTagForm =()=>{
                 id
             })
         )
-        
     }
+
     return(
        
         <form onSubmit={handleSubmit(SubmitHandler)}>

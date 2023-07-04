@@ -1,35 +1,24 @@
 import { FaCheckCircle, FaMailBulk} from "react-icons/fa";
 export const AuthSideNav =({children})=>{
     return(
-        <div className="container-fluid">
+        <div className="container-fluid imgBg">
             <div className="row fixedHeightcover">
-                <div className="col-md-5 m-auto mt-5">
-                    <div className="pt-7 px-4 d-flex flex-column">
-                        <span className="mobile-logo p-1 flex-column">
-                            <span className="me-2">
-                                <FaMailBulk
-                                    size="8rem"
-                                    color="darkslategrey"
-                                />
-                            </span>
-                            <span className="fs-6 fw-bold text-slategrey">
-                                5STAR MAIL
-                            </span>
-                        </span>
-                        {children}
-                    </div>
-                </div>
-                <div className="col-md-7 bg-slate-grey auth-side">
+            <div className="col-md-7 auth-side">
                     <div className="d-flex flex-column justify-content-center align-items-center p-4">
-                        <div>
-                            <FaMailBulk
+                        <div className="d-flex justify-content-center my-4">
+                            {/* <FaMailBulk
                                 size="13rem"
                                 color="white"
                                 className="authside-icon"
+                            /> */}
+                            <img 
+                                src="https://demo.acellemail.com/images/automation-illustration.png"
+                                alt="object not found"
+                                className="w-50"
                             />
                         </div>
-                        <p className="text-white fs-4 text-center">
-                            Unlock the full potential of your business with our powerful email marketing platform
+                        <p className="text-dark fs-4 text-center">
+                            Track every single email sent out for your campaign
                         </p>
                         <div>
                             {
@@ -45,10 +34,10 @@ export const AuthSideNav =({children})=>{
                                             className="d-flex align-items-center">
                                             <span className="me-3">
                                                 <FaCheckCircle
-                                                color="white"
+                                                    color="grey"
                                                 />
                                             </span>
-                                            <span className="text-white fs-6">
+                                            <span className="text-dark fs-6">
                                                 {text}
                                             </span>
                                         </div>
@@ -56,6 +45,23 @@ export const AuthSideNav =({children})=>{
                                 })
                             }
                         </div>
+                    </div>
+                </div>
+                <div className="col-md-5 bg-slate-grey">
+                    <div className="pt-7 px-4 d-flex flex-column wt-75 m-auto">
+                        <span className="mobile-logo p-1 flex-column justify-content-center">
+                            <span className="me-2 w-50">
+                                <img 
+                                    src="https://demo.acellemail.com/images/automation-illustration.png"
+                                    alt="object not found"
+                                    className="w-100 mt-4"
+                                />
+                            </span>
+                            <span className="fs-6 text-white text-center">
+                                Track every single email sent out for your campaign
+                            </span>
+                        </span>
+                        {children}
                     </div>
                 </div>
             </div>

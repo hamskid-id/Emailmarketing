@@ -31,6 +31,7 @@ export const GeneralList =({
                 setCampaignSection={setCampaignSection}
                 setCampaignparams={setCampaignparams}
                 campaignParams={campaignParams}
+                view="baseGeneralTemplate"
             />
             <div className="row justify-content-between wrap">
                 {
@@ -110,8 +111,6 @@ export const GeneralList =({
                                 </div>
                             </div>
                             </div>
-                            
-
                         )
                     })
                 }

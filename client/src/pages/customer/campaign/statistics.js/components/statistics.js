@@ -16,6 +16,8 @@ export const Statistics =({setListSection})=>{
         ),
         datasets:[{
             label:"key email marketing metrics",
+            borderColor: 'lemonchiffon',
+            backgroundColor: 'lemonchiffon',
             data:userdata?.map(
                 (data)=>data.number
             )
@@ -29,7 +31,7 @@ export const Statistics =({setListSection})=>{
                 You can look at those metrics to assess the overall success of your email marketing campaigns.
             </h6>
             <div className="chat-flex align-items-end wrap">
-                <div className="my-3 rounded border p-1 bar-container me-3 wt-50">
+                <div className="my-3 rounded border bar-container me-3 wt-50 p-3">
                     <BarChart data={userData}/>
                 </div>                  
                 <div 

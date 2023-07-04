@@ -18,7 +18,7 @@ export const InviteUsers = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`An invite was sent to "${email}" `
             }));
@@ -72,12 +72,32 @@ const collab_Slice = createSlice({
     name:"collab",
     initialState: {
         inviteForCollaborations:[],
+        collabToFilter:[],
         inviteSent:[],
+        inviteToFilter:[],
         InviteUsersStatus:'',
         GetInviteForCollaborationsStatus:'',
         GetInviteSentStatus:'',
     },
-    reducers:{},
+    reducers:{
+        searchdata(state,action){
+            const type = action.payload.type;
+            const data=action.payload.data;
+            const filteredData = state.collabToFilter.filter((item)=>item.email.toLowerCase().includes(data.toLowerCase()));
+            const filteredInviteData = state.inviteToFilter.filter((item)=>item.email.toLowerCase().includes(data.toLowerCase()));
+            if(type ==="collab"){
+                return{
+                    ...state,
+                    inviteForCollaborations:filteredData
+                }
+            }else{
+                return{
+                    ...state,
+                    inviteSent:filteredInviteData
+                }
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -91,28 +111,29 @@ const collab_Slice = createSlice({
         builder.addCase(InviteUsers.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
-                    message
+                    message,
+                    status
                 }= action.payload
-                if(status === true){
-                    toast(message);
-                    return{
+                if(status){
+                    toast(message)
+                    return {
                         ...state,
                         InviteUsersStatus:"success"
                     }
                 }else{
-                     toast.error(message);
-                     return {
+                    toast.error(message)
+                    return {
                         ...state,
                         InviteUsersStatus:"failed"
                     }
                 }
             }else return {
-                ...state,
-                InviteUsersStatus:"failed"
-            }
+                    ...state,
+                    InviteUsersStatus:"failed"
+                }
         })
         builder.addCase(InviteUsers.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 InviteUsersStatus:'rejected'
@@ -129,16 +150,17 @@ const collab_Slice = createSlice({
         builder.addCase(GetInviteForCollaborations.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        inviteForCollaborations:action.payload.message,
+                        inviteForCollaborations: message,
+                        collabToFilter: message,
                         GetInviteForCollaborationsStatus:"success"
                     }
-                }
-                return{
+                }return{
                     ...state,
                     GetInviteForCollaborationsStatus:"success"
                 }
@@ -163,14 +185,21 @@ const collab_Slice = createSlice({
         });
         builder.addCase(GetInviteSent.fulfilled,(state, action)=>{
             if(action.payload.message){
-                return{
-                    ...state,
-                    inviteSent:action.payload.message,
-                    GetInviteSentStatus:"success"
+                const{
+                    status,
+                    message
+                }=action.payload
+                if(status){
+                    return{
+                        ...state,
+                        inviteSent: message,
+                        inviteToFilter: message,
+                        GetInviteSentStatus:"success"
+                    }
                 }
-            }else return{
+            }return{
                 ...state,
-                GetInviteSentStatus:"failed"
+                GetInviteSentStatus:"success"
             }
         })
         builder.addCase(GetInviteSent.rejected,(state, action)=>{
@@ -182,5 +211,5 @@ const collab_Slice = createSlice({
     }
 })
 
-
+export const collab_SliceActions = collab_Slice.actions;
 export default collab_Slice;

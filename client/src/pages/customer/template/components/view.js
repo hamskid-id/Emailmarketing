@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { FaImages, FaTable, FaUserAlt } from "react-icons/fa"
-import { GeneralList } from "../../../../components/generalTemplate";
-import { MyTemplateList } from "../../../../components/templateList"
+import {AiOutlineLayout} from "react-icons/ai";
+import { FaImages, FaUserAlt } from "react-icons/fa"
+import { GeneralList } from "../../../../components/generalTemplateList";
+import { MyTemplateList } from "../../../../components/usersTemplateList"
 
 export const TemplateView =()=>{
     const [
@@ -9,10 +10,10 @@ export const TemplateView =()=>{
         SetActiveView
     ]=useState("myList");
     return(
-        <div className="py-3">
-            <div className="d-flex align-items-center mb-3">
+        <div className="pb-3">
+            <div className="d-flex align-items-center pb-3 pdx-4 bg-lightBlue pt-3">
                 <span className="me-3">
-                    <FaTable
+                    <AiOutlineLayout
                         size="1.5rem"
                         color="grey"
                     />
@@ -21,9 +22,9 @@ export const TemplateView =()=>{
                     Templates
                 </div>
             </div>
-            <div className="d-flex wrap justify-content-end mb-5">
+            <div className="d-flex wrap justify-content-end pb-3 pdx-4 mb-3 bg-lightBlue">
                 <div 
-                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 border-drakslate-grey mrx-5 mbm-2"
+                    className="d-flex align-items-center rounded btn fw-bold bg bg-white mrx-5 mbm-2 clickable"
                     onClick={
                         ()=>SetActiveView("myList")
                     }
@@ -33,12 +34,12 @@ export const TemplateView =()=>{
                             color="grey"
                         />
                     </span>
-                    <span className="fs-6">
+                    <span>
                         My Templates
                     </span>
                 </div>
                 <div 
-                    className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 b-gainsboro"
+                    className="d-flex align-items-center rounded btn fw-bold b-gainsboro clickable"
                     onClick={
                         ()=>SetActiveView("general")
                     }
@@ -48,12 +49,12 @@ export const TemplateView =()=>{
                             color="grey"
                         />
                     </span>
-                    <span className="fs-6">
+                    <span>
                         Base Template Gallary
                     </span>
                 </div>
             </div>
-            <div>
+            <div className="pdx-4">
                 {
                     activeView === 'myList'?
                     <MyTemplateList/>:

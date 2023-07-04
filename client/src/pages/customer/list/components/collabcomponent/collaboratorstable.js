@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
+import {FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetInviteForCollaborations } from "../../../../../store/collaborationSlice";
+import { GetInviteForCollaborations, collab_SliceActions } from "../../../../../store/collaborationSlice";
+import { Actions } from "../invitecomponent/collabAction";
+import { NoData } from "../../../../../components/nodata";
 
 export const CollabContainer =()=>{
     const collab = useSelector(
@@ -14,14 +15,21 @@ export const CollabContainer =()=>{
         dispatch(GetInviteForCollaborations(null));
     },[dispatch])
 
+    const handleInputChange=(e)=>{
+        dispatch(collab_SliceActions.searchdata({
+            type:"collab",
+            data:e.target.value
+        }))
+    }
+
     if(collab.GetInviteForCollaborationsStatus ==='pending'){
         return <Spinner/>
     }
 
     return(
         <>
-        <Actions 
-            actionName="Invite Collaborators"
+        <Actions
+            handleInputChange={handleInputChange}
         />
         <div className="w-overflow">
             <table className=" table table-striped table-hover table-bordered table-responsive caption-top mb-3">
@@ -44,7 +52,7 @@ export const CollabContainer =()=>{
                         
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index}</th>
+                                    <th scope="row">{index+1}</th>
                                     <td>{name}</td>
                                     <td>{createdAt}</td>
                                     <td>
@@ -89,17 +97,7 @@ export const CollabContainer =()=>{
         </div>
         {
             collab
-            .inviteForCollaborations?.length === 0 &&(
-                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                    <FaCartArrowDown
-                        color="grey"
-                        size="7rem"
-                    />
-                    <p className="fw-bold">
-                        Your Collaborations List is presently empty
-                    </p>
-                </div>
-            )
+            .inviteForCollaborations?.length === 0 && <NoData/>
         }
         </>
     )

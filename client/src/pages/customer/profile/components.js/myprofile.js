@@ -1,31 +1,85 @@
+// import { useState } from "react";
+import { UploadProfilePicture} from "../../../../store/authSlice";
 import { BasicInfo } from "./basicinfo"
 import { ChangePassword } from "./resetPassword"
 import LetteredAvatar from 'react-lettered-avatar';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const MyProfile =()=>{
-    const handleChange =(e)=>{
-        console.log(e.target.files[0]);
-    }
+    
     const auth = useSelector(
         state => state.auth
     )
+    const dispatch = useDispatch();
+    // const[
+    //     selectedFile,
+    //     setSelectedFile
+    // ]=useState();
+
+    const handleChange =(e)=>{
+        const file = e.target.files[0]
+        // setSelectedFile(file)
+        const formData = new FormData()
+        if(file){
+            formData.append('profile',file)
+            dispatch(UploadProfilePicture({
+                pics:formData,
+                id:auth.userdata?.user?.id
+            }))
+        }
+        
+        
+    }
+    //    let reader = new FileReader()
+    //    reader.readAsDataURL(file)
+    //    reader.onload = (event)=>{
+    //     // setSelectedFile(event.target.result)
+    //         dispatch(UploadProfilePicture({
+    //             pics:event.target.result,
+    //             id:auth.userdata?.user?.id
+    //         }))
+    //     }
+
+    // const TransformFile = (file)=>{
+    //     const reader = new FileReader()
+    //     if(file){
+    //         reader.readAsDataURL(file)
+    //         reader.onloadend = ()=>{
+    //             dispatch(UploadProfilePicture({
+    //                 pics:reader.result,
+    //                 id:auth.userdata?.user?.id
+    //             }))
+    //         }
+    //     }
+    // }
+
+
     return(
         <>
             <div className="row">
                 <div className="col-md-3">
                     <div className="d-flex flex-column align-items-center justify-content-center mt-5">
-                        <p className="fs-2 text-center">
+                        <p className="fs-4 text-center">
                             Profile Photo
                         </p>
                         <div>
-                            <LetteredAvatar
-                                backgroundColor="brown"
-                                color="white"
-                                size={100}
-                                radius={50}
-                                name={auth.userdata?.user?.name}
-                            />
+                            {
+                                auth.profilePicture?(
+                                    <img 
+                                        src={`https://emailmarketing.staging.5starcompany.com.ng/Uploads/profile/account/${auth.profilePicture}`}
+                                        alt="object not found"
+                                        className="profilePhoto"
+                                    />
+                                ):(
+                                    <LetteredAvatar
+                                        backgroundColor="brown"
+                                        color="white"
+                                        size={100}
+                                        radius={50}
+                                        name={auth.userdata?.user?.name}
+                                />
+                                )
+                            }
                         </div>
                         <div className="mb-pd">
                             <p className="fs-4 text-center">Update your photo</p>
@@ -38,13 +92,22 @@ export const MyProfile =()=>{
                                 <label
                                     htmlFor="upload"
                                     className="btn btn-md btn-primary"
-                                    >                                   
+                                    >         
+                                        { 
+                                            auth.uploadProfilePicsStatus === "pending" && (       
+                                            <span 
+                                                className="spinner-border spinner-border-sm me-1" 
+                                                role="status" 
+                                                aria-hidden="true">
+                                            </span> 
+                                            )
+                                        }              
                                         Upload photo                                    
                                 </label>
                                 <input 
                                     type="file" 
                                     id="upload" 
-                                    accept=".txt" 
+                                    accept=".png, .jpg, .jpeg, .svg, .gif"
                                     onChange={handleChange}
                                 />
                             </div>

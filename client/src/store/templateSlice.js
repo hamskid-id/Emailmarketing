@@ -3,6 +3,25 @@ import  axios  from 'axios';
 import { toast } from 'react-toastify';
 import { apiBaseUrl, setHeaders } from './api';
 
+
+export const DeleteTemplate = createAsyncThunk(
+    'template/DeleteTemplate', 
+    async ({id},{dispatch})=>{
+    try{
+        const response = await axios.delete(
+            `${apiBaseUrl}/deletetempl/${id}`,
+                setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetUserTemplate())
+        }
+        return response?.data
+    } catch(err){
+           toast.error(err.response?.data?.message);
+        }
+    }
+)
+
 export const GetUserTemplate = createAsyncThunk(
     'template/GetUserTemplate ', 
     async () =>{
@@ -67,7 +86,10 @@ const template_Slice = createSlice({
     name:"template",
     initialState: {
         template:[],
+        templateToFilter:[],
+        deleteStatus:'',
         generalTemp:[],
+        generalToFilter:[],
         CreateTemplateStatus:'',
         CreateTemplateError:'',
         GetUserTemplateStatus:'',
@@ -75,9 +97,97 @@ const template_Slice = createSlice({
         GetGeneralTemplateStatus:'',
         GetGeneralTemplateError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByName(state,action){
+            const newArray=[...state.templateToFilter]
+            const sortByName =  newArray.sort((a, b)=> (a.template_name < b.template_name ) ? -1 : (a.template_name > b.template_name) ? 1 : 0);
+            return{
+                ...state,
+                template:sortByName
+            }    
+        },
+        sortDataByCreatedAt(state,action){
+            const newArray=[...state.templateToFilter]
+            const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
+            return{
+                ...state,
+                template:sortByCreatedAt
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.templateToFilter.filter((item)=>item.template_name.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                template:filteredData
+            }
+        },sortBaseDataByName(state,action){
+            const newArray = [...state.generalToFilter]
+            const sortByName =  newArray.sort((a, b)=> (a.template_name < b.template_name ) ? -1 : (a.template_name > b.template_name) ? 1 : 0);
+            return{
+                ...state,
+                generalTemp:sortByName
+            }    
+        },
+        sortBaseDataByCreatedAt(state,action){
+            const newArray = [...state.generalToFilter]
+            const sortByCreatedAt =  newArray.sort((a, b)=> (a.created_at < b.created_at) ? -1 : (a.created_at > b.created_at) ? 1 : 0);
+            return{
+                ...state,
+                generalTemp:sortByCreatedAt
+            }        
+        },
+        searchBasedata(state,action){
+            const data = action.payload;
+            const filteredData = state.generalToFilter.filter((item)=>item.template_name.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                generalTemp:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
+
+        builder.addCase(DeleteTemplate.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteTemplate.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    message,
+                    status
+                }= action.payload
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                    }
+                }
+                else {
+                    toast.error(message)
+                    return{
+                    ...state,
+                    deleteStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                deleteStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteTemplate.rejected,(state, action)=>{
+            toast.error(action?.payload?.message);
+            return{
+                ...state,
+                deleteStatus:'rejected'
+            }
+        })
 
         builder.addCase(GetGeneralTemplate.pending,(state, action)=>{
             return {
@@ -89,12 +199,14 @@ const template_Slice = createSlice({
         builder.addCase(GetGeneralTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
-                if(status === true){
+                if(status){
                     return{
                         ...state,
-                        generalTemp:action.payload.message,
+                        generalTemp: message,
+                        generalToFilter: message,
                         GetGeneralTemplateStatus:"success"
                     }
                 }
@@ -124,12 +236,14 @@ const template_Slice = createSlice({
         builder.addCase(GetUserTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
-                if(status === true){
+                if(status){
                     return{
                         ...state,
-                        template:action.payload.message,
+                        template: message,
+                        templateToFilter: message,
                         GetUserTemplateStatus:"success"
                     }
                 }
@@ -159,10 +273,10 @@ const template_Slice = createSlice({
         builder.addCase(CreateTemplate.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
-                    message
+                    message,
+                    status
                 }= action.payload
-                if(status === true){
+                if(status){
                     toast(message);
                     return{
                         ...state,
@@ -189,5 +303,5 @@ const template_Slice = createSlice({
     }
 })
 
-
+export const template_SliceActions = template_Slice.actions;
 export default template_Slice;

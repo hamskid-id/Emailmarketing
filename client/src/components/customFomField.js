@@ -6,12 +6,14 @@ export const CustomFormField =({
     placeholder,
     type,
     space,
+    color,
     errors,
     register,
     loadingStatus,
     defaultValue,
     editableValue,
-    btnFluid
+    btnFluid,
+    btnBg
 })=>{
     if(type === "btn"){
         return(
@@ -19,20 +21,20 @@ export const CustomFormField =({
                 {
                     loadingStatus === "pending"?(
                         <button
-                            className={`${btnFluid && `p-2 w-100`} btn btn-sm bg-slate-grey text-white fs-5`}
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm loading ${btnBg ? btnBg : `bg-slate-grey`} text-white`}
                             type="button" 
                             disabled
                         >
                             <span 
-                                className="spinner-border spinner-border-sm" 
+                                className="spinner-border spinner-border-sm me-1" 
                                 role="status" 
                                 aria-hidden="true">
                             </span>
-                                Submitting...Please wait
+                            {value}
                         </button>
                     ):(
                         <button 
-                            className={`${btnFluid && `p-2 w-100`} btn btn-sm bg-slate-grey text-white fs-5`}>
+                            className={`${btnFluid && `p-2 w-100`} btn btn-sm ${btnBg ? btnBg : `bg-slate-grey`} text-white fs-6`}>
                             {value}
                         </button>
                     )
@@ -40,11 +42,12 @@ export const CustomFormField =({
             </div>
         )
     }
+
     if(type === "checkbox"){
         return(
             <div className="d-flex align-items-center mb-2">
                 <input 
-                    className="bg-alice p-2 border border-white rounded form-check-input me-1"
+                    className="bg-alice p-2 border border-white rounded form-check-input me-1 btn"
                     type={type}
                     name={name}
                     placeholder={placeholder}
@@ -54,23 +57,24 @@ export const CustomFormField =({
                 }
                 />
                  <label
-                    className="fw-bold" 
+                    className={`fw-bold ${color && color} fs-6`}
                     htmlFor={name}>
                     {label}
                 </label>
             </div>
         )
     }
+
     if(type === "textArea"){
         return(
             <div className="w-100 mb-2">
                 <label
-                    className="fw-bold" 
+                    className={`fw-bold ${color && color} fs-6`}
                     htmlFor={name}>
                     {label}
                 </label>
                 <textarea 
-                    className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
+                    className={`${space?`w-97`:`w-100`} border p-2 rounded`}
                     id={name}
                     defaultValue={defaultValue?defaultValue:null}
                     readOnly={defaultValue?true:false}
@@ -83,7 +87,6 @@ export const CustomFormField =({
                         )
                     }
                 >
-                   
                 </textarea>
                 {errors && (<p className="text-danger ">{errors.message}</p>)}
             </div>
@@ -92,12 +95,12 @@ export const CustomFormField =({
     if(type==="password"){
         <div className="w-100 mb-2">
         <label
-            className="fw-bold" 
+            className={`fw-bold ${color && color} fs-6`}
             htmlFor={name}>
             {label}
         </label>
         <input 
-            className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
+            className={`${space?`w-97`:`w-100`} p-2 border  rounded`}
             type={type}
             name={name}
             value={editableValue?editableValue:""}
@@ -121,12 +124,12 @@ export const CustomFormField =({
     return(
         <div className="w-100 mb-2">
             <label
-                className="fw-bold" 
+                className={`fw-bold ${color && color} fs-6`}
                 htmlFor={name}>
                 {label}
             </label>
             <input 
-                className={`${space?`w-97`:`w-100`} bg-alice p-2 border border-white rounded`}
+                className={`${space?`w-97`:`w-100`} p-2 border rounded btn text-start bg bg-white`}
                 type={type}
                 name={name}
                 defaultValue={defaultValue?defaultValue:null}

@@ -35,3 +35,41 @@ export  const userdata =[
         number:390
     }
 ]
+
+export  const subcriberdata =[
+    {
+        id:1,
+        name:"11/2022",
+        number:30
+    },
+    {
+        id:2,
+        name:"12/2022",
+        number:50
+    },
+    {
+        id:3,
+        name:"13/2022",
+        number:130
+    },
+    {
+        id:4,
+        name:"14/2022",
+        number:200
+    },
+    {
+        id:5,
+        name:"15/2022",
+        number:310
+    },
+    {
+        id:6,
+        name:"16/2022",
+        number:320
+    },
+    {
+        id:7,
+        name:"17/2022",
+        number:390
+    }
+]

@@ -1,13 +1,15 @@
-import { FaCartArrowDown} from "react-icons/fa";
-import {useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { Actions } from "./spamaction";
+import { NoData } from "../../../../../components/nodata";
+import { DeleteSpamReport } from "../../../../../store/SpamReportedSlice";
 
 export const SpamContainer = () => {
     const spam = useSelector(
         state => state.SpamReported
     )
-    if (spam.GetSpamReportedStatus === 'pending') {
+    const dispatch = useDispatch()
+    if (spam.GetSpamReportedStatus === 'pending' || spam.deleteSpamStatus === "pending") {
         return <Spinner />
     }
     return (
@@ -31,7 +33,8 @@ export const SpamContainer = () => {
                                     const {
                                         email,
                                         updated_at,
-                                        created_at
+                                        created_at,
+                                        id
                                     } = spam
                                     return (
                                         <tr key={index}>
@@ -54,11 +57,12 @@ export const SpamContainer = () => {
                                                             type="button"
                                                             data-bs-toggle="dropdown"
                                                             aria-expanded="false"
-                                                        >
+                                                        > 
                                                         </button>
                                                         <ul className="dropdown-menu">
                                                             <li
                                                                 className="dropdown-item"
+                                                                onClick={()=>dispatch(DeleteSpamReport({id}))}
                                                             >
                                                                 Delete
                                                             </li>
@@ -78,17 +82,7 @@ export const SpamContainer = () => {
 
             {
                 spam
-                    .SpamReported.length === 0 && (
-                    <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                        <FaCartArrowDown
-                            size="7rem"
-                            color="grey"
-                        />
-                        <p className="fw-bold">
-                            Your Spam List is presently empty
-                        </p>
-                    </div>
-                )
+                    .SpamReported.length === 0 && <NoData/>
             }
         </>
     )

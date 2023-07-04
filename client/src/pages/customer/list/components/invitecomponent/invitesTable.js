@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { FaCartArrowDown, FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
-import { GetInviteSent } from "../../../../../store/collaborationSlice";
+import { GetInviteSent, collab_SliceActions } from "../../../../../store/collaborationSlice";
+import { Actions } from "./collabAction";
+import { NoData } from "../../../../../components/nodata";
 
 export const InvitesContainer =()=>{
     const collab = useSelector(
@@ -14,12 +14,21 @@ export const InvitesContainer =()=>{
         dispatch(GetInviteSent(null));
     },[dispatch])
 
+    const handleInputChange=(e)=>{
+        dispatch(collab_SliceActions.searchdata({
+            type:"invite",
+            data:e.target.value
+        }))
+    }
+
     if(collab.GetInviteSentStatus ==='pending'){
         return <Spinner/>
     }
+
     return(
         <>
-        <Actions 
+        <Actions
+            handleInputChange={handleInputChange}
             actionName="Invite Collaborators"
         />
         <div className="w-overflow">
@@ -43,7 +52,7 @@ export const InvitesContainer =()=>{
                         
                             return(
                                 <tr key={index}>
-                                    <th scope="row">{index}</th>
+                                    <th scope="row">{index +1}</th>
                                     <td>{name}</td>
                                     <td>{email}</td>
                                     <td>
@@ -76,20 +85,7 @@ export const InvitesContainer =()=>{
         
         {
             collab
-            .inviteSent?.length === 0 &&(
-                <div className="d-flex flex-column jutstify-content-center align-items-center border rounded my-3 py-5 px-2">
-                    <FaCartArrowDown
-                        color="grey"
-                        size="7rem"
-                    />
-                    <p className="fw-bold">
-                    You have not invited any account to Collaborate with you!!
-                    </p>
-                    <div>
-                        Dont worry click on Invite Collaborators to get started. 
-                    </div>
-                </div>
-            )
+            .inviteSent?.length === 0 && <NoData/>
         }
         </>
     )

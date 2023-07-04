@@ -15,69 +15,29 @@ export const GetRecentCampaigns = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-         console.log(err.response?.data?.message);
+        return err.response?.data
         }
     }
 )
 
-// export const GetList = createAsyncThunk(
-//     'campaign/GetList ', 
-//     async () =>{
-//     try{
-//         const response = await axios.get(
-//             `${apiBaseUrl}/viewcamps`,
-//                 setHeaders()
-//         )
-//         console.log(
-//            response?.data
-//         )
-//         return response?.data
-//     } catch(err){
-//             console.log(
-//                 err.response?.data
-//             )
-//         }
-//     }
-// )
 
-// export const CreateList  = createAsyncThunk(
-//     'campaign/CreateList', 
-//     async ({
-//         title,
-//         reply_to,
-//         from_email,
-//         from_name,
-//         subject,
-//         content,
-//         tag_id,
-//         content_type,
-//         schedule_date,
-//         status
-//     },{rejectWithValue}) =>{
-//     try{
-//         const response = await axios.post(
-//             `${apiBaseUrl}/createcampaigns`,{
-//                 title,
-//                 reply_to,
-//                 from_email,
-//                 from_name,
-//                 subject,
-//                 content,
-//                 tag_id,
-//                 content_type,
-//                 schedule_date,
-//                 status
-//             },
-//             setHeaders()
-//         )
-//         return response?.data
-//     } catch(err){
-//         return rejectWithValue(
-//             err.response?.data?.message
-//         )
-//         }
-//     }
-// )
+export const DeleteCampaigns = createAsyncThunk(
+    'campaign/DeleteCampaigns', 
+    async ({id},{dispatch}) =>{
+    try{
+        const response = await axios.delete(
+            `${apiBaseUrl}/deletecamp/${id}`,
+                setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetCampaigns());
+        }
+        return response?.data
+    } catch(err){
+         console.log(err.response?.data?.message);
+        }
+    }
+)
 
 export const GetCampaigns = createAsyncThunk(
     'campaign/GetCampaigns ', 
@@ -89,7 +49,7 @@ export const GetCampaigns = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        toast.error(err.response?.data?.message);
+        return err.response?.data
         }
     }
 )
@@ -99,22 +59,24 @@ export const CreateCampaigns  = createAsyncThunk(
     async ({
         title,
         reply_to,
-        from_email,
+        from_title,
         subject,
         content,
         tag_id,
         from_name,
+        from_email,
         content_type,
         schedule_date,
         status
-    },{rejectWithValue,dispatch}) =>{
+    },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/createcampaigns`,{
                 title,
                 reply_to,
-                from_email,
+                from_title,
                 from_name,
+                from_email,
                 subject,
                 content,
                 tag_id,
@@ -124,7 +86,7 @@ export const CreateCampaigns  = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`New Campaign "${title}" was created`
             }));
@@ -132,7 +94,7 @@ export const CreateCampaigns  = createAsyncThunk(
         
         return response?.data
     } catch(err){
-        return rejectWithValue(
+        toast.error(
             err.response?.data?.message
         )
         }
@@ -146,7 +108,9 @@ const campaign_Slice = createSlice({
         recentCampaigns:[],
         // list:[],
         Campaigns:[],
+        campaignToFilter:[],
         CreateListStatus:'',
+        deleteStatus:"",
         CreateListError:'',
         CreateCampaignsStatus:'',
         CreateCampaignsError:'',
@@ -157,7 +121,32 @@ const campaign_Slice = createSlice({
         GetRecentCampaignsStatus:'',
         GetRecentCampaignsError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByTitle(state,action){
+            const newArray=[...state.campaignToFilter]
+            const sortByTitle =  newArray.sort((a, b)=> (a.title < b.title ) ? -1 : (a.title > b.title) ? 1 : 0);
+            return{
+                ...state,
+                Campaigns:sortByTitle
+            }    
+        },
+        sortDataByEmail(state,action){
+            const newArray=[...state.campaignToFilter]
+            const sortByName =  newArray.sort((a, b)=> (a.from_email < b.from_email) ? -1 : (a.from_email > b.from_email) ? 1 : 0);
+            return{
+                ...state,
+                Campaigns:sortByName
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.campaignToFilter.filter((item)=>item.title.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                Campaigns:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
 
@@ -172,24 +161,27 @@ const campaign_Slice = createSlice({
         builder.addCase(GetRecentCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        recentCampaigns:action.payload.message,
+                        recentCampaigns: message,
                         GetRecentCampaignsStatus:"success"
                     }
-                }
-                return{
+                }else{
+                    return{
                     ...state,
-                    GetRecentCampaignsStatus:"success"
+                    GetRecentCampaignsStatus:"failed"
+                    }
                 }
             }else return{
                 ...state,
                 GetRecentCampaignsStatus:"failed"
             }
         })
+
         builder.addCase(GetRecentCampaigns.rejected,(state, action)=>{
             return{
                 ...state,
@@ -207,16 +199,17 @@ const campaign_Slice = createSlice({
         builder.addCase(GetCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status
+                    status,
+                    message
                 }= action.payload
                 if(status === true){
                     return{
                         ...state,
-                        Campaigns:action.payload.message,
+                        Campaigns: message,
+                        campaignToFilter: message,
                         GetCampaignsStatus:"success"
                     }
-                }
-                return{
+                }return{
                     ...state,
                     GetCampaignsStatus:"success"
                 }
@@ -229,6 +222,45 @@ const campaign_Slice = createSlice({
             return{
                 ...state,
                 GetCampaignsStatus:'rejected'
+            }
+        })
+
+        builder.addCase(DeleteCampaigns.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteCampaigns.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    status,
+                    message
+                }= action.payload
+                if(status === true){
+                    toast(message)
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                        }
+                }else{
+                    toast.error(message)
+                    return{
+                    ...state,
+                    deleteStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                deleteStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteCampaigns.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
+            return{
+                ...state,
+                deleteStatus:'rejected'
             }
         })
 
@@ -247,15 +279,16 @@ const campaign_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
+                    window.location.replace("/campaigns")
                     return{
                         ...state,
                         CreateCampaignsStatus:"success"
                     }
-                }else{
-                    toast.error(message);
+                }else {
+                    toast.error(message)
                     return{
-                        ...state,
-                        CreateCampaignsStatus:"failed"
+                    ...state,
+                    CreateCampaignsStatus:"failed"
                     }
                 }
             }else return{
@@ -264,74 +297,14 @@ const campaign_Slice = createSlice({
             }
         })
         builder.addCase(CreateCampaigns.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 CreateCampaignsStatus:'rejected'
             }
         })
-
-        // builder.addCase(GetList.pending,(state, action)=>{
-        //     return {
-        //         ...state,
-        //         GetListStatus:'pending'
-        //     }
-
-        // });
-        // builder.addCase(GetList.fulfilled,(state, action)=>{
-        //     if(action.payload){
-        //         const {
-        //             status
-        //         }= action.payload
-        //         if(status === true){
-        //             return{
-        //                 ...state,
-        //                 list:action.payload.message,
-        //                 GetListStatus:"success"
-        //             }
-        //         }
-        //         return{
-        //             ...state,
-        //             GetListStatus:"success"
-        //         }
-        //     }else return{
-        //         ...state,
-        //         GetListStatus:"failed"
-        //     }
-        // })
-        // builder.addCase(GetList.rejected,(state, action)=>{
-        //     return{
-        //         ...state,
-        //         GetListStatus:'rejected'
-        //     }
-        // })
-
-        // builder.addCase(CreateList.pending,(state, action)=>{
-        //     return {
-        //         ...state,
-        //         CreateListStatus:'pending'
-        //     }
-
-        // });
-        // builder.addCase(CreateList.fulfilled,(state, action)=>{
-        //     if(action.payload){
-        //         toast("Campaign successfully created");
-        //         return{
-        //             ...state,
-        //             CreateListStatus:"success"
-        //         }
-        //     }else return{
-        //         ...state,
-        //         CreateListStatus:"failed"
-        //     }
-        // })
-        // builder.addCase(CreateList.rejected,(state, action)=>{
-        //     return{
-        //         ...state,
-        //         CreateListStatus:'rejected'
-        //     }
-        // })
     }
 })
 
-
+export const campaign_SliceActions = campaign_Slice.actions;
 export default campaign_Slice;

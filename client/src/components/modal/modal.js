@@ -1,8 +1,8 @@
-export const Modal =({title,body,large,hidemodal})=>{
+export const Modal =({title,body,large,hidemodal,id})=>{
     return(
         <div
             className="modal fade" 
-            id="staticBackdrop" 
+            id={id?id:"staticBackdrop"}
             data-bs-backdrop="static" 
             data-bs-keyboard="false" 
             tabIndex="-1" 
@@ -11,9 +11,13 @@ export const Modal =({title,body,large,hidemodal})=>{
             <div className={`modal-dialog ${large && `modal-xl`} modal-dialog-centered modal-dialog-scrollable`}>
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title fw-bold">
-                            {title}
-                        </h5>
+                        {
+                            title &&(
+                                <h5 className="modal-title fw-bold">
+                                    {title}
+                                </h5>
+                            )
+                        }
                         <button 
                             type="button" 
                             className="btn-close" 

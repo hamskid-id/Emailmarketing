@@ -4,7 +4,6 @@ import auth_Slice from './authSlice';
 import blacklist_Slice, { GetBlacklist } from "./BlacklistedSlice";
 import campaign_Slice, { GetRecentCampaigns } from "./campaignSlice";
 import collab_Slice from "./collaborationSlice";
-import notification_Slice from "./notificationSlice";
 import SpamReported_Slice, { GetSpamReported } from "./SpamReportedSlice";
 import subscriber_Slice, { GetSubscribers } from "./subscriberSlice";
 import Tag_Slice, { GetTags } from "./tagSlice";
@@ -22,8 +21,7 @@ const store = configureStore({
         activities:activities_Slice.reducer,
         template:template_Slice.reducer,
         SpamReported:SpamReported_Slice.reducer,
-        tag:Tag_Slice.reducer,
-        notification:notification_Slice.reducer
+        tag:Tag_Slice.reducer
     }
 });
 

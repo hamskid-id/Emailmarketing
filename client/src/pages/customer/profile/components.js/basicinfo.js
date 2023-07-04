@@ -5,7 +5,7 @@ import { CustomFormField } from "../../../../components/customFomField";
 
 export const BasicInfo =()=>{
     const SubmitHandler =(e)=>{
-        toast("Password reset successful");
+        toast("Action not available");
     }
     const auth = useSelector(
         state => state.auth
@@ -20,7 +20,7 @@ export const BasicInfo =()=>{
             <div className="container-fluid">
             <div className="pdx-5 m-auto mt-5">
                 <div>
-                    <p className="fs-2 text-center">
+                    <p className="fs-4 text-center">
                         Basic Information
                     </p>
                     <div>

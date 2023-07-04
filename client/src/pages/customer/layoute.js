@@ -1,17 +1,17 @@
 import { useRef, useState } from "react";
-// import "../homepage/home.css";
 import { SideNav } from "./sideNav";
 import { NavToggler } from "../../components/navToggler";
 import { useNavigate } from "react-router-dom";
-// import { FaMonero, FaSearch } from "react-icons/fa";
 import LetteredAvatar from 'react-lettered-avatar';
 import { useDispatch, useSelector } from "react-redux";
 import { Brand } from "../../components/navbarbrand";
-import {FaExclamationTriangle, FaTimesCircle} from "react-icons/fa";
+import {FaExclamationTriangle, FaSistrix} from "react-icons/fa";
 import { AlertModal } from "../../components/modal/alertModal";
 import { LogOutUser } from "../../store/authSlice";
+import { Modal } from "../../components/modal/modal";
+import { SearchView } from "./searchView";
 
-export const Layout=({routeChildren})=>{
+export const Layout=({routeChildren,main})=>{
     const dispatch = useDispatch();
     const navToggler = useRef(null);
     const navigate = useNavigate();
@@ -30,10 +30,10 @@ export const Layout=({routeChildren})=>{
         },100)
     }
     return(
-        <div className="container-fluid whitesmoke">
+        <div className="container-fluid">
             <div className="row no-wrap">
                 <div 
-                    className="col-md-2 px-3 sideNav bg-slate-grey w-230" 
+                    className="col-md-2 px-3 sideNav w-230" 
                     ref={navToggler}
                 >
                    <SideNav 
@@ -42,46 +42,60 @@ export const Layout=({routeChildren})=>{
                         setShowNavToggler={setShowNavToggler}
                     />
                 </div>
-                <div className="col-md-10 dashboardvh bg-smoke">
+                <div className="col-md-10 dashboardvh bg bg-white">
                         <div>
-                            <div className="d-flex justify-content-between px-4 navHeader align-items-center">
+                            {/* navHeader */}
+                            <div className="d-flex justify-content-between pdx-4 navHeader align-items-center">
                                 <span className="navbrand">
                                     <Brand
                                         handleClick={()=>navigate("/")}
+                                        iconColor="#122D36"
                                     />
                                 </span>
-                                <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>
-                                <span className="d-flex align-items-center justify-content-end">
-                                    {/* <span className="me-3 rounded-circle border search-icon">
-                                        <FaSearch
-                                            color="goldenrod"
+                                { main && <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>}
+                                <div className="d-flex align-items-center leftIcon">
+                                    <span className="me-2 p-2 rounded-circle bg bg-white">
+                                        <FaSistrix
+                                            size="1.4rem"
+                                            color="grey"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#searchstaticBackdrop"
+                                            className="pointer"
                                         />
-                                    </span> */}
-                                    <div className="d-flex align-items-center my-3">
-                                        <span className="me-2 dropdown">
-                                            <span 
-                                                className="dropdown-toggle d-flex align-items-center" 
-                                                data-bs-toggle="dropdown" 
-                                                aria-expanded="false">
-                                                <LetteredAvatar
-                                                    backgroundColor="brown"
-                                                    color="white"
-                                                    name={auth.userdata?.user?.name}
-                                                />
+                                    </span>
+                                    <span className="d-flex align-items-center justify-content-end">
+                                        <div className="d-flex align-items-center my-3">
+                                            <span className="me-2 dropdown">
+                                                <span 
+                                                    className="dropdown-toggle d-flex align-items-center" 
+                                                    data-bs-toggle="dropdown" 
+                                                    aria-expanded="false">
+                                                    <LetteredAvatar
+                                                        backgroundColor="brown"
+                                                        color="white"
+                                                        size={38}
+                                                        name={auth.userdata?.user?.name}
+                                                    />
+                                                </span>
+                                                <ul className="dropdown-menu">
+                                                    <li>
+                                                        <a 
+                                                            className="dropdown-item" 
+                                                            href="/account/profile">
+                                                            Profile
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </span>
-                                            <ul className="dropdown-menu">
-                                                <li>
-                                                    <a 
-                                                        className="dropdown-item" 
-                                                        href="/account/profile">
-                                                        Profile
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </span>
-                                     </div>                                   
-                                </span>
+                                        </div>                                   
+                                    </span>
+                                    <Modal
+                                        body={<SearchView/>}
+                                        id="searchstaticBackdrop"
+                                    />
+                                </div>
                             </div>
+                             {/* Route Children */}
                             <div className="children">
                             {
                                 routeChildren
@@ -100,7 +114,7 @@ export const Layout=({routeChildren})=>{
                         <span className="me-2">
                             <FaExclamationTriangle
                                 size="1.5rem"
-                                color="red"
+                                color="#dc3545"
                             />
                         </span>
                         <span>Are you sure you want to log Out?</span>

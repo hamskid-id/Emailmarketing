@@ -1,16 +1,37 @@
 import { useNavigate } from "react-router-dom"
 import { EditTemplateView } from "../pages/customer/campaign/component/editCampaignTemplate";
+import { useDispatch } from "react-redux";
+import { template_SliceActions } from "../store/templateSlice";
 
 export const Actions =({
     campaign,
     setCampaignSection,
     setCampaignparams,
     campaignParams,
-    deleteArray
+    deleteArray,
+    view
 })=>{
     const navigate = useNavigate();
     const handleClick=()=>{
         console.log(deleteArray)
+    }
+    
+    const dispatch = useDispatch();
+    const handleChange =(e)=>{
+        if(view ==="myTemplate"){
+            if(e.target.value === "Created At"){
+                dispatch(template_SliceActions.sortDataByCreatedAt())
+            }else{
+                dispatch(template_SliceActions.sortDataByName())
+            }
+
+        }else{
+            if(e.target.value === "Created At"){
+                dispatch(template_SliceActions.sortBaseDataByCreatedAt())
+            }else{
+                dispatch(template_SliceActions.sortBaseDataByName())
+            }
+        }
     }
     return(
         <div className="row">
@@ -26,7 +47,8 @@ export const Actions =({
                             <select 
                                 name="sort" 
                                 id="sort"
-                                className="fs-6 p-2 rounded b-gainsboro me-2 mb-1"
+                                className="btn rounded b-gainsboro me-2 mb-1"
+                                onChange={handleChange}
                                 >
                                 {
                                     [
@@ -52,10 +74,10 @@ export const Actions =({
                             </select>
                         </div>
                         {
-                            deleteArray &&( 
+                            (deleteArray && deleteArray.length>0) &&( 
                                 <button
                                     onClick={handleClick}
-                                    className="btn btn-md  b-grey fs-6 me-2 mb-1">
+                                    className="btn btn-md  b-grey me-2 mb-1">
                                     delete
                                 </button>
                             )
@@ -63,7 +85,14 @@ export const Actions =({
                         <input  
                             type="text"
                             placeholder="Type to search"
-                            className="action-inpt rounded mb-1"
+                            className="btn border rounded mb-1"
+                            onChange={(e)=>{
+                                if(view === "myTemplate"){
+                                    dispatch(template_SliceActions.searchdata(e.target.value))
+                                }else{
+                                    dispatch(template_SliceActions.searchBasedata(e.target.value))
+                                }
+                            }}
                         />
                     </div>
                 </div>
@@ -74,7 +103,7 @@ export const Actions =({
                         <div>
                             <button 
                                 type="button" 
-                                className="btn b-grey btn-md my-2 fl-r"
+                                className="btn b-grey btn-md my-2 fl-r mb-2"
                                 onClick={()=>{
                                     setCampaignSection({
                                         name:"Template", 
@@ -93,7 +122,7 @@ export const Actions =({
                         <div>
                             <button 
                                 type="button" 
-                                className="btn b-grey btn-md my-2 fl-r"
+                                className="btn b-grey btn-md my-2 fl-r mb-2"
                                 onClick={
                                     ()=>navigate("/create/template")
                                 }

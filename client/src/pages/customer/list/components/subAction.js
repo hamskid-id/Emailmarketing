@@ -1,12 +1,18 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
+import { subscriber_SliceActions } from "../../../../store/subscriberSlice"
 
-export const Actions =({deleteArray})=>{
+export const Actions =()=>{
     const tag = useSelector(
         state => state.tag
     )
-    const handleClick=()=>{
-        console.log(deleteArray)
+    const dispatch = useDispatch();
+    const handleChange=(e)=>{
+        if(e.target.value ==="Name"){
+            dispatch(subscriber_SliceActions.sortDataByName())
+        }else{
+            dispatch(subscriber_SliceActions.sortDataByEmail())
+        }
     }
     return(
         <div className="row">
@@ -21,21 +27,16 @@ export const Actions =({deleteArray})=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
+                            className="btn me-3 rounded b-gainsboro mb-1"
+                            onChange={handleChange}
                             >
                             {
                                 [
                                     {
-                                        name:"Created At"
+                                        name:"Name",
                                     },
                                     {
-                                        name:"Email"
-                                    },
-                                    {
-                                        name:"Name"
-                                    },
-                                    {
-                                        name:"Updated At"
+                                        name:"Email",
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
@@ -52,10 +53,10 @@ export const Actions =({deleteArray})=>{
                                 })
                             }
                         </select>
-                        <select 
+                        {/* <select 
                             name="sort" 
                             id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
+                            className="btn me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -95,7 +96,7 @@ export const Actions =({deleteArray})=>{
                         <select 
                             name="sort" 
                             id="sort"
-                            className="fs-6 p-2 me-3 rounded b-gainsboro mb-1"
+                            className="btn me-3 rounded b-gainsboro mb-1"
                             >
                             {
                                 [
@@ -131,21 +132,13 @@ export const Actions =({deleteArray})=>{
                                     )
                                 })
                             }
-                        </select>
+                        </select> */}
                     </div>
-                    {
-                        deleteArray &&( 
-                            <button
-                                onClick={handleClick}
-                                className="btn btn-md  b-grey fs-6 me-2 mb-1">
-                                delete
-                            </button>
-                        )
-                    }
                     <input  
                         type="text"
-                        placeholder="Type to search"
-                        className="action-inpt rounded"
+                        placeholder="Search..."
+                        className="border btn mb-2"
+                        onChange={(e)=>dispatch(subscriber_SliceActions.searchdata(e.target.value))}
                     />
                 </div>
             </div>
@@ -154,7 +147,7 @@ export const Actions =({deleteArray})=>{
                     {
                         tag.Tags.length>0?(
                             <button 
-                                className="btn b-grey btn-md my-2 fl-r"
+                                className="btn b-grey btn-md my-2 fl-r mb-2"
                                 type="button"                            
                                 data-bs-toggle="modal" 
                                 data-bs-target="#staticBackdrop"
@@ -163,7 +156,7 @@ export const Actions =({deleteArray})=>{
                             </button>
                         ):(
                              <button 
-                                className="btn b-grey btn-md my-2 fl-r"
+                                className="btn b-grey btn-md my-2 fl-r mb-2"
                                 onClick={
                                     ()=>toast.error("You do not have permission for this action,Please Update you tag list to add Subscribers")
                                 }

@@ -1,6 +1,6 @@
 import {FaImages, FaTable, FaUserAlt } from "react-icons/fa";
-import { MyTemplateList } from "../../../../components/templateList";
-import { GeneralList } from "../../../../components/generalTemplate";
+import { MyTemplateList } from "../../../../components/usersTemplateList";
+import { GeneralList } from "../../../../components/generalTemplateList";
 import { useState } from "react";
 
 export const GeneralTemplateList =({
@@ -28,7 +28,7 @@ export const GeneralTemplateList =({
                 </div>
                 <div className="d-flex wrap justify-content-end mb-5">
                     <div 
-                        className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 border-drakslate-grey mrx-5 mbm-2"
+                        className="d-flex align-items-center rounded btn  fw-bold  border-drakslate-grey mrx-5 mb-1 clickable"
                         onClick={
                             ()=>SetActiveView("myList")
                         }
@@ -38,12 +38,12 @@ export const GeneralTemplateList =({
                                 color="grey"
                             />
                         </span>
-                        <span className="fs-6">
+                        <span>
                             My Templates
                         </span>
                     </div>
                     <div 
-                        className="d-flex align-items-center rounded py-2 px-4 fw-bold fs-5 b-gainsboro"
+                        className="d-flex align-items-center rounded btn fw-bold b-gainsboro clickable mb-1"
                         onClick={
                             ()=>SetActiveView("general")
                         }
@@ -53,7 +53,7 @@ export const GeneralTemplateList =({
                                 color="grey"
                             />
                         </span>
-                        <span className="fs-6">
+                        <span>
                             Base Template Gallary
                         </span>
                     </div>

@@ -1,11 +1,16 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
+import { campaign_SliceActions } from "../../../../store/campaignSlice";
 
-export const Actions =({
-    deleteArray
-})=>{
+export const Actions =()=>{
     const navigate = useNavigate();
-    const handleClick=()=>{
-        console.log(deleteArray)
+    const dispatch = useDispatch();
+    const handleChange=(e)=>{
+        if(e.target.value ==="Title"){
+            dispatch(campaign_SliceActions.sortDataByTitle())
+        }else{
+            dispatch(campaign_SliceActions.sortDataByEmail())
+        }
     }
     return(
         <div className="row">
@@ -21,15 +26,16 @@ export const Actions =({
                             <select 
                                 name="sort" 
                                 id="sort"
-                                className="fs-6 p-2 rounded b-gainsboro me-2 mb-1"
+                                className="btn b-gainsboro me-2 mb-1"
+                                onChange={handleChange}
                                 >
                                 {
                                     [
                                         {
-                                            name:"Created At"
+                                            name:"Title"
                                         },
                                         {
-                                            name:"Name"
+                                            name:"Recipient"
                                         }
                                     ]?.map((drop,index)=>{
                                         const {
@@ -46,19 +52,11 @@ export const Actions =({
                                 }
                             </select>
                         </div>
-                        {
-                            deleteArray &&( 
-                                <button
-                                    onClick={handleClick}
-                                    className="btn btn-md  b-grey fs-6 me-2 mb-1">
-                                    delete
-                                </button>
-                            )
-                        }
                         <input  
                             type="text"
-                            placeholder="Type to search"
-                            className="action-inpt rounded mb-1"
+                            placeholder="Search..."
+                            className="btn border rounded mb-1"
+                            onChange={(e)=>dispatch(campaign_SliceActions.searchdata(e.target.value))}
                         />
                     </div>
                 </div>
@@ -67,7 +65,7 @@ export const Actions =({
                 <div>
                      <button 
                         type="button" 
-                        className="btn b-grey btn-md my-2 fl-r" 
+                        className="btn b-grey btn-md my-2 fl-r mb-2" 
                         onClick={
                             ()=>navigate("/campaign/select-type")
                         }
@@ -75,17 +73,6 @@ export const Actions =({
                         Create Campaign
                     </button>
                 </div>
-                {/* <div>
-                     <button 
-                        type="button" 
-                        className="btn b-grey btn-md my-2 fl-r" 
-                        
-                        data-bs-toggle="modal" 
-                        data-bs-target="#staticBackdrop"
-                    >
-                       + Create Campaign
-                    </button>
-                </div> */}
             </div>
         </div>
     )

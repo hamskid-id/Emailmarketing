@@ -8,6 +8,7 @@ export const CustomerHomePage=()=>{
                 routeChildren={
                     <HomeView/>
                 }
+                main={true}
             />
         </>
     )

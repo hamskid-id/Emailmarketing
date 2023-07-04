@@ -1,35 +1,29 @@
-import { FaSlidersH } from "react-icons/fa"
-import { Modal } from "../../../../../components/modal/modal"
+import { FaUserFriends } from "react-icons/fa"
 import { CollaboratorForm } from "./collaboratorForm"
 import { CollabContainer } from "./collaboratorstable"
-import { CreateTag } from "../tagcomponent/tagsmodalcontent"
-import { TagContainer } from "../tagcomponent/tagstable"
 import { useRef } from "react"
+import { Tablelayout } from "../tableContentLayout"
 
 export const CollabContent =()=>{
     const hidemodal = useRef(null);
     return(
         <>
-            <div className="d-flex align-items-center mb-5">
-                <span className="me-3">
-                    <FaSlidersH
+            <Tablelayout
+                hidemodal={hidemodal}
+                title="Collaborations"
+                titleIcon={
+                    <FaUserFriends
                         size="1.5rem"
-                        color='grey'
-                    />
-                </span>
-                <div className="fs-2">
-                    Collaborations
-                </div>
-            </div>
-            <CollabContainer/>
-            <Modal
-                title="Invite Collaborators"
-                body={                  
-                    <CollaboratorForm
-                    hidemodal={hidemodal}
+                        color="grey"
                     />
                 }
-                hidemodal={hidemodal}
+                tableContainer={<CollabContainer/>}
+                modalBody={                  
+                    <CollaboratorForm
+                        hidemodal={hidemodal}
+                    />
+                }
+                modalTitle="Invite Collaborators"
             />
         </>
     )

@@ -1,31 +1,25 @@
-import {useRef } from "react";
 import {useDispatch, useSelector } from "react-redux";
-import Spinner from "../../../../../components/spinner/spinner";
-import { HandleDownloadPdf } from "../../../campaign/statistics.js/components/download";
-import { Actions } from "./unsubaction";
-import { NoData } from "../../../../../components/nodata";
-import { DeleteUnSubscribers } from "../../../../../store/UnsubscribeSlice";
+import Spinner from "../../../../components/spinner/spinner";
+import { Actions } from "./subAction";
+import { NoData } from "../../../../components/nodata";
+import { DeleteSubscriber } from "../../../../store/subscriberSlice";
 
-export const UnSubContainer =()=>{
-    
-    const printRef = useRef(null);
-    const unsub = useSelector(
-        state => state.unsubscriber
-    )
-    const dispatch = useDispatch();
-    if(unsub.GetUnSubscribersStatus ==='pending'){
-        return <Spinner/>
-    }
-        return(
-            <>
-            <Actions
-                HandleDownloadPdf={HandleDownloadPdf}
-                printRef={printRef}
-                itemLength = {unsub.unsubscribers?.length}
-            />
-            <div 
-                ref={printRef}
-                className="w-overflow px-1 py-3">
+export const SubscriberTable=({
+    content
+})=>{
+        const subsriber = useSelector(
+            state => state.subscriber
+        )
+        const dispatch = useDispatch();
+
+        if(subsriber.GetSubscribersStatus ==='pending' || content.deleteSubStatus ==='pending'){
+            return <Spinner/>
+        }
+
+    return(
+        <>
+            <Actions/>
+            <div className="w-overflow">
                 <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                     <thead>
                         <tr>
@@ -37,28 +31,25 @@ export const UnSubContainer =()=>{
                             <th scope="col">State</th>
                             <th scope="col">Phone</th>
                             <th scope="col">DOB</th>
-                            <th scope="col">Tag</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            unsub
-                                .unsubscribers?.map((sub,index)=>{
+                             content?.subscribers?.map((sub,index)=>{
                                     const{
                                         email,
-                                        id,
                                         fname,
                                         lname,
                                         country,
                                         state,
                                         phone,
                                         dob,
-                                        tag
+                                        id
                                     }=sub
                                     return(
                                         <tr key={index}>
-                                            <th scope="row">{index}</th>
+                                            <th scope="row">{index+1}</th>
                                             <td>{email}</td>
                                             <td>{fname}</td>
                                             <td>{lname}</td>
@@ -66,7 +57,6 @@ export const UnSubContainer =()=>{
                                             <td>{state}</td>
                                             <td>{phone}</td>
                                             <td>{dob}</td>
-                                            <td>{tag}</td>
                                             <td>
                                                 <div className="dropdown">
                                                     <button 
@@ -75,20 +65,11 @@ export const UnSubContainer =()=>{
                                                         data-bs-toggle="dropdown" 
                                                         aria-expanded="false" 
                                                     >
-                                                        { 
-                                                            unsub.deleteStatus === "pending" && (       
-                                                            <span 
-                                                                className="spinner-border spinner-border-sm me-1" 
-                                                                role="status" 
-                                                                aria-hidden="true">
-                                                            </span> 
-                                                            )
-                                                        } 
                                                     </button>
                                                     <ul className="dropdown-menu">
                                                         <li
                                                             className="dropdown-item"
-                                                            onClick={()=>dispatch(DeleteUnSubscribers({id}))}
+                                                            onClick={()=>dispatch(DeleteSubscriber({id}))}
                                                         >
                                                             Delete
                                                         </li>
@@ -102,14 +83,10 @@ export const UnSubContainer =()=>{
                     </tbody>
                 </table>
             </div>
-                 
-                 {
-                    unsub
-                    .unsubscribers?.length === 0 &&(
-                        <NoData/>
-                    )
-                }
-            </>
-           
-        )
+            {
+                content
+                .subscribers?.length === 0 && <NoData/>
+            }
+        </>
+    )
 }

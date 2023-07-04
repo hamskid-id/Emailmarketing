@@ -1,8 +1,9 @@
-import {FaTimesCircle} from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { AccordionsRoutes, ListRoute } from "./routes";
 import { motion } from "framer-motion";
 import { Brand } from "../../components/navbarbrand";
+import { AiOutlineLogout } from "react-icons/ai";
 
 export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
     const navigate = useNavigate();
@@ -47,11 +48,12 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                 <span className="d-flex align-items-center">
                    <Brand
                         handleClick={()=>navigate("/")}
+                        iconColor="white"
                    />
                 </span>
                 <span className="hide-toggler">
-                    <FaTimesCircle
-                        size="2rem"
+                    <AiOutlineClose
+                        size="1rem"
                         color="white"
                         onClick={hideNav}
                     />
@@ -67,13 +69,13 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                         }=uniqueroute;
                         return(                            
                             <div 
-                                className="d-flex align-items-center mb-4" 
+                                className="d-flex align-items-center mb-4 pointer" 
                                 key={index}
                                 onClick={
                                     ()=>navigate(route)
                                 }
                             >
-                                <span className="mar-5">
+                                <span className="me-3">
                                     {icon}
                                 </span>
                                 <h2 
@@ -102,7 +104,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                                 >
                                     <div className="accordion-item">
                                         <div className="d-flex align-items-center">
-                                            <span className="me-3">
+                                            <span >
                                                 {icon}
                                             </span>
                                             <h2 
@@ -149,14 +151,21 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                     })
                 }
             </div>
-            <div className="d-flex justify-content-center my-3">
-                <img 
-                    src="https://res.cloudinary.com/hamskid/image/upload/v1677151514/Frame_133_vi0rjh.svg" 
-                    alt="object not found"
-                    data-bs-toggle="modal" 
-                    data-bs-target="#alertStaticBackdrop"
-                    onClick={()=>navToggler.current.classList.remove("active")}
-                />
+            <div 
+                className="d-flex flex-column justify-content-center align-items-center  btn"
+                data-bs-toggle="modal" 
+                data-bs-target="#alertStaticBackdrop"
+                onClick={()=>navToggler.current.classList.remove("active")}
+            >
+                <span className="me-2 mb-2">
+                    <AiOutlineLogout
+                        color="white"
+                        size="1.3rem"
+                    />
+                </span>
+                <span>
+                    <h6 className="fs-6 text-white mb-0">Sign Out</h6>
+                </span>
             </div>
         </motion.div>
     )

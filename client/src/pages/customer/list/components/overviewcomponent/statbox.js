@@ -41,7 +41,7 @@ export const SubscriberStat =()=>{
         }
     ]
     return(
-        <div className="d-flex justify-content-between overflow-x mb-5 w-89">
+        <div className="d-flex justify-content-between overflow-x mb-3 w-100">
             {
                 statDetails?.map((stat,index)=>{
                     const{
@@ -52,9 +52,9 @@ export const SubscriberStat =()=>{
                     return(
                         <div 
                             key={index}
-                            className="bg-azur rounded">
+                            className="bg-azur rounded stat">
                             <div 
-                                className="m-2 rounded shadow p-2 border w-15 bg-white">
+                                className="m-2 rounded p-2 w-15 bg-white">
                                 <p className="fw-bold">
                                     {name}
                                 </p>
@@ -62,16 +62,16 @@ export const SubscriberStat =()=>{
                                     {amount}
                                 </p>
                                 <div className="d-flex align-items-center justify-content-between wrap">
-                                    <span 
-                                        className="text-success fw-bold"
+                                    <h6
+                                        className="text-dark pointer"
                                         onClick={
                                             ()=>navigate(route)
                                         }>
                                         see all {name}
-                                    </span>
-                                    <span className="p-1 rounded bg-lightblue">
+                                    </h6>
+                                    <span className="p-1 rounded bg-Bc">
                                        <FaCodiepie
-                                            color="goldenrod"
+                                            color="grey"
                                         />
                                     </span>
                                 </div>

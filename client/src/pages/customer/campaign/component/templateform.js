@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
@@ -71,7 +70,7 @@ export const TemplateForm =({
                                     sectionCompleted:3
                                 })
                             }}
-                            className="btn btn-sm bg-success text-white fs-5 fl-r"
+                            className="btn btn-sm bg-success text-white fl-r"
                             data-bs-dismiss="modal"
                             >
                             Proceed

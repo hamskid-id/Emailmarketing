@@ -1,13 +1,13 @@
-import { FaCircleNotch } from "react-icons/fa"
+import { AiOutlineRise } from "react-icons/ai";
 import { useNavigate } from "react-router-dom"
 
 export const QuickActions =()=>{
     const navigate = useNavigate()
     return(
         <>
-            <div className="d-flex align-items-center mt-5 mb-3">
+            <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
-                <FaCircleNotch
+                <AiOutlineRise
                         size="1.5rem"
                         color="grey"
                     />

@@ -1,9 +1,7 @@
 import { ClickLog } from "./clicklog"
 import { OpenLog } from "./openlog"
 
-export const Rate =({
-    setListSection
-})=>{
+export const Rate =()=>{
     return(
         <div className="py-4">
             <p className="fs-3">Performace Rate</p>
@@ -12,12 +10,12 @@ export const Rate =({
                 Click rate is a measure of how many people clicked on one of the links in your email campaign.
              </p>
              <div className="d-flex justify-content-between wrap">
-             <div className="wt-50 pe-3">
+             <div className="wt-50 pde-3 mbm-3">
                 <div className="flex justify-content-between">
                     <h6 className="fs-5">Open rate</h6>
                     <div className="progress">
                         <div 
-                            className="progress-bar bg-success" 
+                            className="progress-bar bg-slate-grey" 
                             role="progressbar" 
                             aria-label="Basic example" 
                             aria-valuenow="10%"
@@ -61,15 +59,6 @@ export const Rate =({
                             )
                         })
                     }
-                    <button
-                         className="btn btn-md btn-success mt-3"
-                         onClick={
-                            ()=>setListSection({
-                                    name:"Sending Logs",
-                                    components:<OpenLog/>
-                            })
-                        }
-                         >Open Log</button>
                 </div>
             </div>
             <div className="wt-50">
@@ -77,7 +66,7 @@ export const Rate =({
                     <h6 className="fs-5">Click rate</h6>
                     <div className="progress">
                         <div 
-                            className="progress-bar bg-success" 
+                            className="progress-bar bg-slate-grey" 
                             role="progressbar" 
                             aria-label="Basic example" 
                             aria-valuenow="10%"
@@ -121,15 +110,6 @@ export const Rate =({
                             )
                         })
                     }
-                    <button 
-                        className="btn btn-md btn-success mt-3"
-                        onClick={
-                            ()=>setListSection({
-                                    name:"Sending Logs",
-                                    components:<ClickLog/>
-                            })
-                        }
-                        >Click Log</button>
                 </div>
              </div>            
 

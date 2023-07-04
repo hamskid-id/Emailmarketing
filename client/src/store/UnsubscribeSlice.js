@@ -4,6 +4,26 @@ import { toast } from 'react-toastify';
 import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
 
+export const DeleteUnSubscribers = createAsyncThunk(
+    'unsubscriber/DeleteUnSubscribers', 
+    async ({id},{dispatch}) =>{
+    try{
+        const response = await axios.delete(
+            `${apiBaseUrl}/api/deleteunsubscribe/${id}`,
+                setHeaders()
+        )
+        if(response?.data?.status){
+            dispatch(GetUnSubscribers())
+        }
+        return response?.data
+    } catch(err){
+        toast.error(
+            err.response?.data?.message
+        )
+        }
+    }
+)
+
 export const GetUnSubscribers = createAsyncThunk(
     'unsubscriber/GetUnSubscribers', 
     async () =>{
@@ -14,9 +34,7 @@ export const GetUnSubscribers = createAsyncThunk(
         )
         return response?.data
     } catch(err){
-        console.log(
-            err.response?.data?.message
-        )
+        return err.response?.data
         }
     }
 )
@@ -35,7 +53,7 @@ export const CreateUnsubscriber = createAsyncThunk(
     },{dispatch}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/addunsubscrib`,{
+            `${apiBaseUrl}/addunsubscribe`,{
                 email,
                 fname,
                 lname,
@@ -47,7 +65,7 @@ export const CreateUnsubscriber = createAsyncThunk(
             },
             setHeaders()
         )
-        if(response?.data){
+        if(response?.data?.status){
             dispatch(UpdateActivities({
                 action:`You added "${email}" to your Unsubscribed list`
             }));
@@ -67,14 +85,80 @@ const unsubscriber_Slice = createSlice({
     name:"unsubscriber",
     initialState: {
         unsubscribers:[],
+        deleteStatus:'',
+        unsubscribersToFilter:[],
         CreateUnsubscriberStatus:'',
         CreateUnsubscriberError:'',
         GetUnSubscribersStatus:'',
         GetUnSubscribersError:''
     },
-    reducers:{},
+    reducers:{
+        sortDataByEmail(state,action){
+            const newArray=[...state.unsubscribers]
+            const sortByEmail =  newArray.sort((a, b)=> (a.email < b.email ) ? -1 : (a.email > b.email) ? 1 : 0);
+            return{
+                ...state,
+                unsubscribers:sortByEmail
+            }    
+        },
+        sortDataByName(state,action){
+            const newArray=[...state.unsubscribers]
+            const sortByName =  newArray.sort((a, b)=> (a.fname < b.fname) ? -1 : (a.fname > b.fname) ? 1 : 0);
+            return{
+                ...state,
+                unsubscribers:sortByName
+            }        
+        },
+        searchdata(state,action){
+            const data=action.payload;
+            const filteredData = state.unsubscribersToFilter.filter((item)=>item.fname.toLowerCase().includes(data.toLowerCase()));
+            return{
+                ...state,
+                unsubscribers:filteredData
+            }
+        }
+    },
 
     extraReducers:(builder)=>{
+
+        builder.addCase(DeleteUnSubscribers.pending,(state, action)=>{
+            return {
+                ...state,
+                deleteStatus:'pending'
+            }
+
+        });
+        builder.addCase(DeleteUnSubscribers.fulfilled,(state, action)=>{
+            if(action.payload){
+                const{
+                    message,
+                    status
+                }=action.payload
+                if(status){
+                    toast(message)
+                    return{
+                        ...state,
+                        deleteStatus:"success"
+                    }
+                }else{
+                    toast.error(message)
+                    return{
+                        ...state,
+                        deleteStatus:"failed"
+                    }
+                }
+            }else return{
+                ...state,
+                deleteStatus:"failed"
+            }
+        })
+        builder.addCase(DeleteUnSubscribers.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
+            return{
+                ...state,
+                deleteStatus:'rejected'
+            }
+        })
 
         builder.addCase(GetUnSubscribers.pending,(state, action)=>{
             return {
@@ -84,10 +168,19 @@ const unsubscriber_Slice = createSlice({
 
         });
         builder.addCase(GetUnSubscribers.fulfilled,(state, action)=>{
-            if(action.payload.message){
-                return{
+            if(action.payload){
+                const{
+                    status,
+                    message
+                }=action.payload
+                if(status){
+                    return{
+                        ...state,
+                        unsubscribers: message,
+                        GetUnSubscribersStatus:"success"
+                    }
+                }return{
                     ...state,
-                    unsubscribers:action.payload.message,
                     GetUnSubscribersStatus:"success"
                 }
             }else return{
@@ -112,20 +205,21 @@ const unsubscriber_Slice = createSlice({
         builder.addCase(CreateUnsubscriber.fulfilled,(state, action)=>{
             if(action.payload){
                 const {
-                    status,
-                    message
+                    message,
+                    status
                 }= action.payload
-                if(status === true){
+                if(status){
                     toast(message);
                     return{
                         ...state,
                         CreateUnsubscriberStatus:"success"
                     }
-                }else{
+                }
+                else{
                     toast.error(message);
-                     return{
-                        ...state,
-                        CreateUnsubscriberStatus:"failed"
+                    return{
+                    ...state,
+                    CreateUnsubscriberStatus:"failed"
                     }
                 }
             }else return{
@@ -134,6 +228,7 @@ const unsubscriber_Slice = createSlice({
             }
         })
         builder.addCase(CreateUnsubscriber.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
             return{
                 ...state,
                 CreateUnsubscriberStatus:'rejected'
@@ -142,5 +237,5 @@ const unsubscriber_Slice = createSlice({
     }
 })
 
-
+export const unsubscriber_SliceActions = unsubscriber_Slice.actions;
 export default unsubscriber_Slice;

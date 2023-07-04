@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import Spinner from "./spinner/spinner";
-import { GetUserTemplate } from "../store/templateSlice";
+import { DeleteTemplate, GetUserTemplate } from "../store/templateSlice";
 import { EditTemplateView } from "../pages/customer/campaign/component/editCampaignTemplate";
 import { Actions } from "./templateActions"
 
@@ -20,25 +20,8 @@ export const MyTemplateList =({
     useEffect(()=>{
         dispatch(GetUserTemplate(null));
     },[dispatch])
-    const[
-        itemToDelete,
-        setItemToDelete
-    ]=useState([])
-    const handleChange=(e,{id})=>{
-        if(e.target.checked){
-            setItemToDelete((prevState)=>{
-                return[
-                ...prevState,
-                    id
-                ]
-            })
-        }else{
-            const newArray = itemToDelete.filter(item=>item!==id)
-            setItemToDelete(newArray)
-        }
-    }
     
-    if(template.GetUserTemplateStatus ==='pending'){
+    if(template.GetUserTemplateStatus ==='pending' || template.deleteStatus === "pending" ){
         return <Spinner/>
     }
     return(
@@ -48,14 +31,14 @@ export const MyTemplateList =({
                 setCampaignSection={setCampaignSection}
                 setCampaignparams={setCampaignparams}
                 campaignParams={campaignParams}
-                deleteArray={itemToDelete}
+                view="myTemplate"
             />
             <div className="w-overflow">
                 <table className=" table table-striped table-hover table-bordered table-responsive mb-3">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col"></th>
+                            <th scope="col">Thumbnail</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Created At</th>
@@ -78,10 +61,10 @@ export const MyTemplateList =({
                                     <tr key={index}>
                                         <th scope="row">{index+1}</th>
                                         <td>
-                                            <input 
-                                                className="darkform-check-input p-2 border border-white rounded form-check-input me-1"
-                                                type="checkbox"
-                                                onChange={(e)=>handleChange(e,{id})}
+                                            <img 
+                                                src="https://res.cloudinary.com/hamskid/image/upload/v1675956824/thumb_ymavb0.svg"
+                                                alt="object not found"
+                                                className="w-50"
                                             />
                                         </td>
                                         <td>{template_name}</td>
@@ -140,6 +123,7 @@ export const MyTemplateList =({
                                                         }
                                                         <li
                                                             className="dropdown-item"
+                                                            onClick={()=>dispatch(DeleteTemplate({id}))}
                                                         >
                                                             Delete
                                                         </li>

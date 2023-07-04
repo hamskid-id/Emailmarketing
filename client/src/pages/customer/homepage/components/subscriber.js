@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { FaCircleNotch } from "react-icons/fa";
+import { AiOutlineAreaChart} from "react-icons/ai";
 import { PieChart } from "../../../../components/piechat";
 import {BarChart} from "../../../../components/barchat";
-import { userdata } from "../../campaign/component/userdata";
+import { subcriberdata  } from "../../campaign/component/userdata";
 
 export const Subscribers=()=>{
     const piedata=[
@@ -23,12 +23,14 @@ export const Subscribers=()=>{
     const [
         userData
     ] = useState({
-        labels:userdata?.map(
+        labels:subcriberdata?.map(
             (data)=>data.name
         ),
         datasets:[{
-            label:"key email marketing metrics",
-            data:userdata?.map(
+            label:"Subscrbers growth chart",
+            borderColor: 'lemonchiffon',
+            backgroundColor: 'lemonchiffon',
+            data:subcriberdata?.map(
                 (data)=>data.number
             )
         }]
@@ -41,6 +43,8 @@ export const Subscribers=()=>{
         ),
         datasets:[{
             label:"Subscribers",
+            borderColor: 'white',
+            backgroundColor: ['lemonchiffon','mintcream'],
             data:piedata?.map(
                 (data)=>data.number
             )
@@ -48,24 +52,24 @@ export const Subscribers=()=>{
     });
     return(
         <>
-            <div className="d-flex align-items-center mt-5 mb-3">
+            <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
-                   <FaCircleNotch
+                   <AiOutlineAreaChart
                         size="1.5rem"
                         color="grey"
                     />
                 </span>
                 <h2 
-                    className="fs-4 w-100 mb-0"
+                    className="fs-4 w-100 mb-0 "
                 >
                     List growth
                 </h2>
             </div>
-            <div className="chat-flex align-items-end wrap">
-                <div className="my-3 rounded border p-1 bar-container me-3 w-63">
+            <div className="chat-flex align-items-end wrap justify-content-between">
+                <div className="my-3 rounded bg bg-white bar-container w-63 p-3">
                     <BarChart data={userData}/>
                 </div>                  
-                <div className="my-3 rounded border p-1 chat-container me-3 w-32">
+                <div className="my-3 rounded bg bg-white chat-container w-32">
                     <PieChart data={subData}/>
                 </div>                  
             </div>

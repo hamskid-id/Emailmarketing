@@ -3,7 +3,12 @@ import 'chart.js/auto';
 export const PieChart =({
     data
 })=>{
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false
+      };
+      
     return(
-        <Pie data={data}/>
+        <Pie data={data} options={options}/>
     )
 }
