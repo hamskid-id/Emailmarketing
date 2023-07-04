@@ -467,6 +467,7 @@ class EmailmarketingController extends Controller
                 //Do not remove
                 $data['campaign'] = $camp;
                 $data['subscribers'] = Subscriber::where('tag_id', $camp->tag_id )->get();
+                
                 CommunicationJob::dispatch($data);
 
                 //do not remove ends
