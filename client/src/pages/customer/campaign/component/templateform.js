@@ -2,15 +2,22 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
 import { CreateTemplate } from "../../../../store/templateSlice";
+import { AiOutlineRight} from "react-icons/ai";
+import { useState } from "react";
 
 export const TemplateForm =({
     campaignParams,
     setCampaignparams,
-    EditedInfo
+    EditedInfo,
+    hidemodal
 })=>{
     const template = useSelector(
         state => state.template
     )
+    const[
+        templateSaved,
+        setTemplateSaved
+    ]=useState(false)
     const dispatch = useDispatch()
     const { 
         handleSubmit, 
@@ -31,6 +38,15 @@ export const TemplateForm =({
                 template_type:"private"
             })
         ) 
+        setTemplateSaved(true)
+    }
+    if(templateSaved && template.CreateTemplateStatus === 'success'){
+        hidemodal.current.click();
+        setCampaignparams({
+            ...campaignParams,
+            content:EditedInfo.design_html,
+            sectionCompleted:3
+        })
     }
 
     return(
@@ -60,23 +76,6 @@ export const TemplateForm =({
                     type="btn"
                     loadingStatus={template.CreateTemplateStatus}
                 />
-                {
-                    template.CreateTemplateStatus === 'success'&&(
-                        <div
-                            onClick={()=>{
-                                setCampaignparams({
-                                    ...campaignParams,
-                                    content:EditedInfo.design_html,
-                                    sectionCompleted:3
-                                })
-                            }}
-                            className="btn btn-sm bg-success text-white fl-r"
-                            data-bs-dismiss="modal"
-                            >
-                            Proceed
-                        </div>
-                    )
-                }
             </div>
         </form>
     )

@@ -13,7 +13,7 @@ export const Modal =({title,body,large,hidemodal,id})=>{
                     <div className="modal-header">
                         {
                             title &&(
-                                <h5 className="modal-title fw-bold">
+                                <h5 className="modal-title fw-bold fs-6">
                                     {title}
                                 </h5>
                             )
@@ -31,7 +31,7 @@ export const Modal =({title,body,large,hidemodal,id})=>{
                     <div className="modal-footer">
                         <button 
                             type="button" 
-                            className="btn btn-secondary" 
+                            className="btn btn-secondary btn-sm m-auto" 
                             data-bs-dismiss="modal"
                             ref={hidemodal}
                         >

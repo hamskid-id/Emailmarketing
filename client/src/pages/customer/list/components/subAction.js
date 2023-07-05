@@ -158,7 +158,7 @@ export const Actions =()=>{
                              <button 
                                 className="btn b-grey btn-md my-2 fl-r mb-2"
                                 onClick={
-                                    ()=>toast.error("You do not have permission for this action,Please Update you tag list to add Subscribers")
+                                    ()=>toast("Please Update you tag list to continue")
                                 }
                             >
                                 + New 

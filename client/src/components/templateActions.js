@@ -111,6 +111,7 @@ export const Actions =({
                                             campaignParams={campaignParams}
                                             setCampaignparams={setCampaignparams}
                                             setCampaignSection={setCampaignSection}
+                                            type="create"
                                         />
                                     })
                                 }}

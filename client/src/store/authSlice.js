@@ -125,7 +125,8 @@ export const GetProfilePics = createAsyncThunk(
     async ({id}) =>{
         try{
             const response = await axios.get(
-                `${apiBaseUrl}/viewprofile/${id}`,setHeaders()
+                `${apiBaseUrl}/viewprofile/${id}`,
+                setHeaders()
             );
             console.log("this is pics",response?.data)
             return response?.data
