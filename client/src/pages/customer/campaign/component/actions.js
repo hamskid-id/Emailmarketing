@@ -1,10 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { campaign_SliceActions } from "../../../../store/campaignSlice";
+import { toast } from "react-toastify";
 
 export const Actions =()=>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const tag = useSelector(
+        state => state.tag
+    )
     const handleChange=(e)=>{
         if(e.target.value ==="Title"){
             dispatch(campaign_SliceActions.sortDataByTitle())
@@ -63,15 +67,29 @@ export const Actions =()=>{
             </div>
             <div className="col-md-3">
                 <div>
-                     <button 
-                        type="button" 
-                        className="btn b-grey btn-md my-2 fl-r mb-2" 
-                        onClick={
-                            ()=>navigate("/campaign/select-type")
-                        }
-                    >
-                        Create Campaign
-                    </button>
+                     
+                    {
+                        tag.Tags.length>0?(
+                            <button 
+                                type="button" 
+                                className="btn b-grey btn-md my-2 fl-r mb-2" 
+                                onClick={
+                                    ()=>navigate("/campaign/select-type")
+                                }
+                            >
+                                Create Campaign
+                            </button>
+                        ):(
+                             <button 
+                                className="btn b-grey btn-md my-2 fl-r mb-2"
+                                onClick={
+                                    ()=>toast("Please Update your tag list to continue")
+                                }
+                            >
+                                + New 
+                            </button>
+                        )
+                    }
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@ export const TemplateChoice =({
                 Customize the content the way you desire with our powerful but easy-to-use HTML email builder.
             </h6>
             <div>
-                <div className="d-flex align-items-start mb-4 rounded wt-50 dotted pdw-1"
+                <div className="d-flex align-items-start mb-4 rounded wt-50 dotted pdw-1 p-2"
                     onClick={()=>{
                         setCampaignSection({
                             name:"Template",
