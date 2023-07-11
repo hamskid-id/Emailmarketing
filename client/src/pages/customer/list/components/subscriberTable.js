@@ -5,7 +5,9 @@ import { NoData } from "../../../../components/nodata";
 import { DeleteSubscriber } from "../../../../store/subscriberSlice";
 
 export const SubscriberTable=({
-    content
+    content,
+    setModalBody,
+    hidemodal
 })=>{
         const subsriber = useSelector(
             state => state.subscriber
@@ -18,7 +20,10 @@ export const SubscriberTable=({
 
     return(
         <>
-            <Actions/>
+            <Actions
+                setModalBody={setModalBody}
+                hidemodaly={hidemodal}
+            />
             <div className="w-overflow">
                 <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">
                     <thead>

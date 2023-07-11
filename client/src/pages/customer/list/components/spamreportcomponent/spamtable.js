@@ -82,7 +82,7 @@ export const SpamContainer = () => {
 
             {
                 spam
-                    .SpamReported.length === 0 && <NoData/>
+                    .SpamReported?.length === 0 && <NoData/>
             }
         </>
     )

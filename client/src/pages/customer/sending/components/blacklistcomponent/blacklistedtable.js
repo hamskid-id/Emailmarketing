@@ -79,7 +79,7 @@ export const BlacklistTable =()=>{
         </div>
        
         {
-           blacklist.blacklist.length === 0 && <NoData/>
+           blacklist.blacklist?.length === 0 && <NoData/>
         }
         </>
     )

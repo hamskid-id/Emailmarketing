@@ -69,7 +69,7 @@ export const Actions =()=>{
                 <div>
                      
                     {
-                        tag.Tags.length>0?(
+                        tag.Tags?.length>0?(
                             <button 
                                 type="button" 
                                 className="btn b-grey btn-md my-2 fl-r mb-2" 
@@ -82,9 +82,9 @@ export const Actions =()=>{
                         ):(
                              <button 
                                 className="btn b-grey btn-md my-2 fl-r mb-2"
-                                onClick={
-                                    ()=>toast("Please Update your tag list to continue")
-                                }
+                                type="button"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
                             >
                                 + New 
                             </button>

@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { FaUserFriends } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { SubscriberTable } from "../subscriberTable"
@@ -9,6 +9,15 @@ export const SubsrcibersContent =()=>{
     const hidemodal = useRef(null);
     const subscriber = useSelector(
         state => state.subscriber
+    )
+    const[
+        modalBodySetter, setModalBody
+    ]=useState({
+            body:<SubscriberModalContent
+                    hidemodal={hidemodal}
+                />,
+            title:'Add Subscriber'
+        }
     )
     return(
         <>
@@ -22,15 +31,14 @@ export const SubsrcibersContent =()=>{
                     />
                 }
                 subNumber={subscriber.subscribers.length}
-                tableContainer={<SubscriberTable
+                tableContainer={
+                    <SubscriberTable
                         content={subscriber}
-                    />}
-                modalBody={                  
-                    <SubscriberModalContent
+                        setModalBody ={setModalBody}
                         hidemodal={hidemodal}
-                    />
-                }
-                modalTitle="Add Subscriber"
+                    />}
+                modalBody={modalBodySetter.body}
+                modalTitle={modalBodySetter.title}
             />
         </>
     )

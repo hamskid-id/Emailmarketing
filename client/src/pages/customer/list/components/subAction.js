@@ -1,11 +1,33 @@
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import { subscriber_SliceActions } from "../../../../store/subscriberSlice"
+import { useEffect } from "react"
+import { CreateTag } from "./tagcomponent/tagsmodalcontent"
+import { SubscriberModalContent } from "./subscribercomponent/subscriberForm"
 
-export const Actions =()=>{
+export const Actions =({
+    setModalBody,
+    hidemodal
+})=>{
     const tag = useSelector(
         state => state.tag
     )
+    useEffect(()=>{
+        if(tag && tag.Tags?.length ==0){
+            setModalBody({
+                title:"kindly create a tag to procceed",
+                body: <CreateTag
+                        hidemodal={hidemodal}
+                        proceedWithNextOperationAfterSuccess={()=>setModalBody({
+                            body:<SubscriberModalContent
+                                    hidemodal={hidemodal}
+                                />,
+                            title:'Add Subscriber'
+                        })}
+                    />
+            })
+        }
+    },[])
     const dispatch = useDispatch();
     const handleChange=(e)=>{
         if(e.target.value ==="Name"){
@@ -53,86 +75,6 @@ export const Actions =()=>{
                                 })
                             }
                         </select>
-                        {/* <select 
-                            name="sort" 
-                            id="sort"
-                            className="btn me-3 rounded b-gainsboro mb-1"
-                            >
-                            {
-                                [
-                                    {
-                                        name:"All subscribers"
-                                    },
-                                    {
-                                        name:"Subscribed"
-                                    },
-                                    {
-                                        name:"Unsubscribed"
-                                    },{
-
-                                        name:"Unconfirmed"
-                                    },
-                                    {
-                                        name:"Spam reported"
-                                    },
-                                    {
-                                        name:"Blacklisted"
-                                    }
-                                ]?.map((drop,index)=>{
-                                    const {
-                                        name
-                                    }=drop
-                                    return(
-                                        <option
-                                            className="fs-6" 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <select 
-                            name="sort" 
-                            id="sort"
-                            className="btn me-3 rounded b-gainsboro mb-1"
-                            >
-                            {
-                                [
-                                    {
-                                        name:"All verifcation"
-                                    },
-                                    {
-                                        name:"Deliverable"
-                                    },
-                                    {
-                                        name:"Undeliverable"
-                                    },{
-
-                                        name:"Unknown"
-                                    },
-                                    {
-                                        name:"Risky"
-                                    },
-                                    {
-                                        name:"Unverified"
-                                    }
-                                ]?.map((drop,index)=>{
-                                    const {
-                                        name
-                                    }=drop
-                                    return(
-                                        <option
-                                            className="fs-6" 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select> */}
                     </div>
                     <input  
                         type="text"
@@ -144,27 +86,15 @@ export const Actions =()=>{
             </div>
             <div className="col-md-3">
                 <div>
-                    {
-                        tag.Tags.length>0?(
-                            <button 
-                                className="btn b-grey btn-md my-2 fl-r mb-2"
-                                type="button"                            
-                                data-bs-toggle="modal" 
-                                data-bs-target="#staticBackdrop"
-                            >
-                                + New
-                            </button>
-                        ):(
-                             <button 
-                                className="btn b-grey btn-md my-2 fl-r mb-2"
-                                onClick={
-                                    ()=>toast("Please Update you tag list to continue")
-                                }
-                            >
-                                + New 
-                            </button>
-                        )
-                    }
+                    <button 
+                        className="btn b-grey btn-md my-2 fl-r mb-2"
+                        type="button"                            
+                        data-bs-toggle="modal" 
+                        data-bs-target="#staticBackdrop"
+                    >
+                        + New
+                    </button>
+                        
                 </div>
             </div>
         </div>
