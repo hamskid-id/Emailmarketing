@@ -21,7 +21,7 @@ export const RecentlySent=()=>{
             {/*Tags Created*/}
 
             {
-                Tags?.Tags.length !==0 &&(
+                Tags?.Tags?.length !==0 &&(
                     <div>
                         <select 
                             name="campains" 

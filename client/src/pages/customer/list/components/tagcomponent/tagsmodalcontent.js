@@ -4,7 +4,7 @@ import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
 import { CreateTags } from "../../../../../store/tagSlice";
 
-export const CreateTag =({hidemodal})=>{
+export const CreateTag =({hidemodal,proceedWithNextOperationAfterSuccess})=>{
     const tag = useSelector(
         state => state.tag
     )
@@ -29,6 +29,9 @@ export const CreateTag =({hidemodal})=>{
     useEffect(()=>{
         if(tag.CreateTagsStatus ==="success"){
             hidemodal.current.click()
+            if(proceedWithNextOperationAfterSuccess){
+                proceedWithNextOperationAfterSuccess();
+            }
         }
     },[tag.CreateTagsStatus])
 

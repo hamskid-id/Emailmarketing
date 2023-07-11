@@ -4,9 +4,13 @@ import { Actions } from "./actions";
 import Spinner from "../../../../components/spinner/spinner";
 import { NoData } from "../../../../components/nodata";
 import { DeleteCampaigns } from "../../../../store/campaignSlice";
+import { Modal } from "../../../../components/modal/modal";
+import { useRef } from "react";
+import { CreateTag } from "../../list/components/tagcomponent/tagsmodalcontent";
 
 export const AllcampaignView =()=>{
     const navigate = useNavigate();
+    const hidemodal = useRef(null)
     const campaign = useSelector(
         state => state.campaign
     )
@@ -93,6 +97,16 @@ export const AllcampaignView =()=>{
                    campaign.Campaigns?.length === 0 && <NoData/>
                 }
             </div>
+            <Modal
+                title="Kindly create a tag to procceed"
+                body={
+                    <CreateTag
+                        hidemodal={hidemodal}
+                        proceedWithNextOperationAfterSuccess={()=>navigate("/campaign/select-type")}
+                    />
+                }
+                hidemodal={hidemodal}
+            />
         </>
          
     )

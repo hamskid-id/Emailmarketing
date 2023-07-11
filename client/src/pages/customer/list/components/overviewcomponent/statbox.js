@@ -31,12 +31,12 @@ export const SubscriberStat =()=>{
         },
         {
             name:"Spam Reported",
-            amount:spam.SpamReported.length,
+            amount:spam.SpamReported?.length,
             route:"/Lists/Spam Report"
         },
         {
             name:"Blacklisted",
-            amount:blacklist.blacklist.length,
+            amount:blacklist.blacklist?.length,
             route:"/Sending/Blacklist"
         }
     ]

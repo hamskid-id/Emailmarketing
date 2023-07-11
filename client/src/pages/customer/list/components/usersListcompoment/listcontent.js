@@ -4,12 +4,22 @@ import { SubscriberModalContent } from "../subscribercomponent/subscriberForm"
 import { SubscriberTable } from "../subscriberTable"
 import { Tablelayout } from "../tableContentLayout"
 import { FaUserFriends } from "react-icons/fa"
+import { useState } from "react"
 
 export const ListContent =()=>{
     const subscriber = useSelector(
         state => state.subscriber
     )
     const hidemodal = useRef(null);
+    const[
+        modalBodySetter, setModalBody
+    ]=useState({
+            body:<SubscriberModalContent
+                    hidemodal={hidemodal}
+                />,
+            title:'Add Subscriber'
+        }
+    )
     return(
         <>
             <Tablelayout
@@ -21,15 +31,14 @@ export const ListContent =()=>{
                         color="grey"
                     />
                 }
-                tableContainer={<SubscriberTable
+                tableContainer={
+                    <SubscriberTable
                         content={subscriber}
-                    />}
-                modalBody={                  
-                    <SubscriberModalContent
+                        setModalBody ={setModalBody}
                         hidemodal={hidemodal}
-                    />
-                }
-                modalTitle="Add Subscriber"
+                    />}
+                modalBody={modalBodySetter.body}
+                modalTitle={modalBodySetter.title}
             />
         </>
     )

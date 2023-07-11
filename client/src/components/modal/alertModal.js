@@ -21,7 +21,7 @@ export const AlertModal =({title,body,handleClick})=>{
                             aria-label="Close">
                         </button>
                     </div>
-                    <div className="modal-body">
+                    <div className="modal-body fs-6">
                         {body}
                         <div className="d-flex justify-content-end align-items-center mt-2">
                             <button 
