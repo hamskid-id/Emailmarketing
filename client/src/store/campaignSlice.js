@@ -34,7 +34,9 @@ export const DeleteCampaigns = createAsyncThunk(
         }
         return response?.data
     } catch(err){
-         console.log(err.response?.data?.message);
+        toast.error(
+            err.response?.data?.message
+        )
         }
     }
 )

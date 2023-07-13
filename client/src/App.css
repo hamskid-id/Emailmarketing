@@ -5,6 +5,9 @@
 .navbrand{
   display:none;
 }
+.bg-c2e7ff{
+  background:#c2e7ff;
+}
 .bg-ddd{
   background-color: #ddd;
 }
@@ -39,7 +42,7 @@
 .log{
   font-size:0.7rem;
 }.brandBg{
-  background-color: #FF7A50;
+  background-color: orange
 }
 .bg-progress-success{
   background-color: #3B3C36;
@@ -366,7 +369,7 @@ i.mdi.mdi-account {
   z-index: 1;
   width: 100%;
   top: 0;
-  background:#f8f9fa;
+  background:#f6f8fc;
 }
 .fl-r{
   float: right;
@@ -432,7 +435,7 @@ i.mdi.mdi-account {
   width:75%;
 }
 .bg-lightBlue{
-  background:#f8f9fa;
+  background:#f6f8fc;
 }
 .bg-blue{
   color:#3B3C36;

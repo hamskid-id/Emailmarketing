@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AiOutlineAreaChart} from "react-icons/ai";
+import {FcAreaChart } from "react-icons/fc";
 import { LineChart } from "../../../../components/linechart";
 import { userdata } from "../../campaign/component/userdata";
 
@@ -13,8 +13,8 @@ export const CamapaignMetrics=()=>{
         datasets:[{
             label:"Email marketing metrics of your campaign",
             fill: true,
-            borderColor: 'lemonchiffon',
-            backgroundColor: 'lemonchiffon',
+            borderColor: '#c2e7ff',
+            backgroundColor: '#c2e7ff',
             data:userdata?.map(
                 (data)=>data.number
             )
@@ -24,7 +24,7 @@ export const CamapaignMetrics=()=>{
         <>
             <div className="d-flex align-items-center mt-3 mb-1">
                 <span className="me-3">
-                   <AiOutlineAreaChart
+                   <FcAreaChart
                         size="1.5rem"
                         color="grey"
                     />

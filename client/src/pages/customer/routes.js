@@ -1,8 +1,9 @@
-import { AiOutlineSend,AiOutlineBars,AiOutlineHome,AiOutlineLayout,AiOutlineRadiusSetting } from "react-icons/ai";
+import { AiOutlineRadiusSetting } from "react-icons/ai";
+import {FcTemplate,FcList,FcMindMap,FcLibrary} from "react-icons/fc";
 export const AccordionsRoutes =[
     {
         id:"collapseOne",
-        icon:<AiOutlineBars
+        icon:<FcList
                 size="1.1rem"
                 color="white"
             />,
@@ -22,7 +23,7 @@ export const AccordionsRoutes =[
         id:"collapseTwo",
         icon:<AiOutlineRadiusSetting
                 size="1.1rem"
-                color="white"
+                color="orange"
             />,
         name:"Sending",
         subName:[
@@ -34,7 +35,7 @@ export const AccordionsRoutes =[
 ]
 export const ListRoute=[
     {
-        icon:<AiOutlineHome
+        icon:<FcLibrary
                 size="1.1rem"
                 color="white"
             />,
@@ -42,7 +43,7 @@ export const ListRoute=[
         route:"/"
     },
     {
-        icon:<AiOutlineSend
+        icon:<FcMindMap
         size="1.1rem"
         color="white"
     />,
@@ -50,7 +51,7 @@ export const ListRoute=[
         route:"/campaigns"   
     },
     {
-        icon:<AiOutlineLayout
+        icon:<FcTemplate
         size="1.1rem"
         color="white"
     />,
