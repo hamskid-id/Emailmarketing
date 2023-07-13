@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AiOutlineAreaChart} from "react-icons/ai";
+import {FcAreaChart } from "react-icons/fc";
 import { PieChart } from "../../../../components/piechat";
 import {BarChart} from "../../../../components/barchat";
 import { subcriberdata  } from "../../campaign/component/userdata";
@@ -28,8 +28,8 @@ export const Subscribers=()=>{
         ),
         datasets:[{
             label:"Subscrbers growth chart",
-            borderColor: 'lemonchiffon',
-            backgroundColor: 'lemonchiffon',
+            borderColor: '#c2e7ff',
+            backgroundColor: '#c2e7ff',
             data:subcriberdata?.map(
                 (data)=>data.number
             )
@@ -44,7 +44,7 @@ export const Subscribers=()=>{
         datasets:[{
             label:"Subscribers",
             borderColor: 'white',
-            backgroundColor: ['lemonchiffon','mintcream'],
+            backgroundColor: ['#c2e7ff','mintcream'],
             data:piedata?.map(
                 (data)=>data.number
             )
@@ -54,7 +54,7 @@ export const Subscribers=()=>{
         <>
             <div className="d-flex align-items-center mt-3 mb-3">
                 <span className="me-3">
-                   <AiOutlineAreaChart
+                   <FcAreaChart
                         size="1.5rem"
                         color="grey"
                     />

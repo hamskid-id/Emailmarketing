@@ -26,7 +26,7 @@ export const RecentlySent=()=>{
                         <select 
                             name="campains" 
                             id="campains"
-                            className="btn rounded text-dark bg-ddd"
+                            className="btn rounded text-dark border"
                             >
                             {
                                 Tags?.Tags?.map((drop,index)=>{
@@ -91,7 +91,7 @@ export const RecentlySent=()=>{
                                                     key={index}
                                                     >
                                                     <div>
-                                                        <span className="rounded text-dark bg-ddd px-2 py-1 me-3 btn">
+                                                        <span className="rounded text-dark border px-2 py-1 me-3 btn">
                                                             {title}
                                                         </span>
                                                     </div>

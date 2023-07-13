@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AiOutlineAreaChart} from "react-icons/ai";
+import {FcAreaChart } from "react-icons/fc";
 import { LineChart } from "../../../../../components/linechart";
 
 export const Audygrowth =()=>{
@@ -40,8 +40,8 @@ export const Audygrowth =()=>{
         datasets:[{
             label:"How your audience hs grown over time",
             fill: true,
-            borderColor: 'lemonchiffon',
-            backgroundColor: 'lemonchiffon',
+            borderColor: '#c2e7ff',
+            backgroundColor: '#c2e7ff',
             data:subscribers?.map(
                 (data)=>data.number
             )
@@ -52,7 +52,7 @@ export const Audygrowth =()=>{
         <>
             <div className="d-flex align-items-center mt-5 mb-3">
                 <span className="me-3">
-                   <AiOutlineAreaChart
+                   <FcAreaChart
                         size="1.5rem"
                         color="grey"
                     />

@@ -159,7 +159,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
             >
                 <span className="me-2 mb-2">
                     <AiOutlineLogout
-                        color="white"
+                        color="orange"
                         size="1.3rem"
                     />
                 </span>
