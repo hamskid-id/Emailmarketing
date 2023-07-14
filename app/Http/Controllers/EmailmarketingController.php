@@ -77,7 +77,7 @@ class EmailmarketingController extends Controller
         $subscrib->state = $request->state;
         $subscrib->phone = $request->phone;
         $subscrib->dob = $request->dob;
-        $subscrib->tag = $request->tag;
+        $subscrib->tag_id = $request->tag;
         $subscrib->save();
         if ($subscrib->save()) {
             return redirect()->back()->with('status', "Subscriber successfully addedd");
@@ -337,7 +337,7 @@ class EmailmarketingController extends Controller
         $subscrib->state = $request->state;
         $subscrib->phone = $request->phone;
         $subscrib->dob = $request->dob;
-        $subscrib->tag = $request->tag;
+        $subscrib->tag_id = $request->tag;
         if ($duplicate) {
             return response()->json([
                 'status' => false,
@@ -475,7 +475,7 @@ class EmailmarketingController extends Controller
 
                 return response()->json([
                     'status' => true,
-                    'message' => 'Campgn created Successully!',
+                    'message' => 'Campaign created Successfully!',
                 ]);
             } else {
                 return response()->json([
