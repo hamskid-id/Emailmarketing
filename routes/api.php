@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('dashboard/{id}', function () {
-//     return view('dashboard');
-// });
+Route::get('dashboard/', function () {
+    return view('dashboard');
+});
 
 // Route::get('addtag', function () {
 //     return view('emailmarketing.addtags');
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
     Route::get('subscribermail', [EmailmarketingController::class, 'subscribermail'])->name('subscribermail');
     //for recent campaigns
     Route::get('recentcamp', [EmailmarketingController::class, 'recentcamp'])->name('recentcamp');
-    
+
 
 
 

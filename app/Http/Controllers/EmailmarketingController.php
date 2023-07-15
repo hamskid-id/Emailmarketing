@@ -91,7 +91,7 @@ class EmailmarketingController extends Controller
         return view('emailmarketing.viewsubscriber', compact('subscrib'));
     }
 
-    
+
     //for campaign
 
     public function createcampaign(Request $request)
@@ -219,7 +219,7 @@ class EmailmarketingController extends Controller
         $tag = new tags();
         $tag->business_id = Auth::user()->business_id;
         $tag->name = $request->name;
-        $tag->created_by = Auth::user()->id;
+        $tag->user_id = Auth::user()->id;
         $tag->save();
         if ($tag->save()) {
             return response()->json([
@@ -535,7 +535,7 @@ class EmailmarketingController extends Controller
                     . 'login to your account using the following details',
                     'email' => $request->email,
                     'password' => $request->email,
-                    'dashboard-link' => 'http://localhost:8000/home/' . Auth::user()->id,
+                    'dashboard-link' => redirect('dashboard' . Auth::user()->business_id),
                 ];
 
                 Mail::to($request->email)->send(new sendemails($mailData));
