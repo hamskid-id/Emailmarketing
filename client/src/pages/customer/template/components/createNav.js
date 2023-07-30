@@ -17,7 +17,7 @@ export const CreateNav =({
                         }
                         className="p-2 rounded-circle brandBg btn"
                     />
-                    <h4 className="ms-4 text-white"
+                    <h4 className="text-white"
                     >
                     Untitled
                     </h4>

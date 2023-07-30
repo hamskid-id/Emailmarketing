@@ -74,6 +74,8 @@ export const Layout=({routeChildren,main})=>{
                                                         backgroundColor="brown"
                                                         color="white"
                                                         size={38}
+                                                        className="fs-6"
+                                                        fontSize="1rem"
                                                         name={auth.userdata?.user?.name}
                                                     />
                                                 </span>

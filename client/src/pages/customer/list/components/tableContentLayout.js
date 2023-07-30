@@ -15,7 +15,7 @@ export const Tablelayout=({
         <>
             <div className="mb-3 pb-2 bg-lightBlue pdx-4">
                 <div className="d-flex align-items-center">
-                    <span className="me-3">
+                    <span className="me-2">
                         {titleIcon}
                     </span>
                     <div className="fs-4">

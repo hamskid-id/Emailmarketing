@@ -144,7 +144,6 @@ export const SubscriberModalContent =({hidemodal})=>{
                 type="btn"
                 loadingStatus={subsriber.CreatesubscriberStatus}
             />
-
         </form>
     )
 }

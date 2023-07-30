@@ -1,6 +1,6 @@
-import {FaRegClone, FaUserCircle } from "react-icons/fa"
 import { useSelector } from "react-redux";
 import { CamapaignMetrics } from "./ststistics";
+import { AiOutlineHistory,AiOutlineFileDone } from "react-icons/ai";
 
 export const ActivitiesLog =()=>{
     const  activities = useSelector(
@@ -14,7 +14,7 @@ export const ActivitiesLog =()=>{
             <div className="col-md-6">
             <div className="d-flex align-items-center mt-3 mb-0">
                 <span className="me-3">
-                   <FaRegClone
+                   <AiOutlineHistory
                         size="1.5rem"
                         color="grey"
                     />
@@ -43,9 +43,9 @@ export const ActivitiesLog =()=>{
                                         className="row align-items-center">
                                         <div className="col-md-12">
                                             <div className="d-flex flex-column align-items-start pt-2 px-3 my-1 bg bg-white wrap">
-                                                <FaUserCircle  
+                                                <AiOutlineFileDone 
                                                     size="1.5rem"
-                                                    color="#3B3C36"
+                                                    color="grey"
                                                     className="mb-3"
                                                 />
                                                 <h3 className="c-dark-volin break p-3 rounded fw-bold bg-lightBlue activityaction text-dark">

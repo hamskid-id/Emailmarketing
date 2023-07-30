@@ -66,12 +66,12 @@ export const AllcampaignView =()=>{
                                                 >
                                                 </button>
                                                 <ul className="dropdown-menu">
-                                                    <li 
+                                                    {/* <li 
                                                         className="dropdown-item fs-6"
                                                         onClick={()=>navigate(`/campaigns/stat/${id}`)}
                                                     >
                                                         Statistics
-                                                    </li>
+                                                    </li> */}
                                                     {/* <li 
                                                         className="dropdown-item"
                                                     >
