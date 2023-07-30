@@ -1,15 +1,16 @@
 import { useRef, useState } from "react"
-import { FaUserFriends } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { SubscriberTable } from "../subscriberTable"
 import { SubscriberModalContent } from "./subscriberForm"
 import { Tablelayout } from "../tableContentLayout"
+import { AiOutlineTeam } from "react-icons/ai"
 
 export const SubsrcibersContent =()=>{
     const hidemodal = useRef(null);
     const subscriber = useSelector(
         state => state.subscriber
     )
+    const [createType,setCreateType] =useState('single');
     const[
         modalBodySetter, setModalBody
     ]=useState({
@@ -25,7 +26,7 @@ export const SubsrcibersContent =()=>{
                 hidemodal={hidemodal}
                 title="Subscribers"
                 titleIcon={
-                    <FaUserFriends
+                    <AiOutlineTeam
                         size="1.5rem"
                         color="grey"
                     />
@@ -36,6 +37,8 @@ export const SubsrcibersContent =()=>{
                         content={subscriber}
                         setModalBody ={setModalBody}
                         hidemodal={hidemodal}
+                        setCreateType={setCreateType}
+                        createType={createType}
                     />}
                 modalBody={modalBodySetter.body}
                 modalTitle={modalBodySetter.title}

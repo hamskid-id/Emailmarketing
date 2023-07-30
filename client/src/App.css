@@ -45,8 +45,8 @@
   background-color: orange
 }
 .bg-progress-success{
-  background-color: #3B3C36;
-  background-image: linear-gradient(45deg,#3B3C36 25%,transparent 25%,transparent 50%,#3B3C36 50%,#3B3C36 75%,transparent 75%,transparent);
+  background-color: #c2e7ff;
+  background-image: linear-gradient(45deg,#c2e7ff 25%,transparent 25%,transparent 50%,#c2e7ff 50%,#c2e7ff 75%,transparent 75%,transparent);
   background-size: 1rem 1rem;
 }
 .pde-2{
@@ -184,6 +184,9 @@ input[id="upload"]{
   padding-right: 1rem!important;
   padding-left: 1rem!important;
 }
+.lettered-avatar {
+    font-size: 1rem!important;
+}
 .loading{
 opacity:0.6;
 }
@@ -214,9 +217,7 @@ opacity:0.6;
 .spaceAround{
   padding:0 1.5rem 0 1.5rem;
 }
-.children{
-  margin-bottom: 3rem;
-}
+
 .bar-container{
   position:relative;
   height: 21rem;
@@ -588,7 +589,7 @@ i.mdi.mdi-account {
     z-index: 1;
     bottom: 3rem;
     left: 2rem;
-    background: saddlebrown;
+    background: #c2e7ff;
   }
 .pdx-6,.pd-6{
   padding-right: 1rem;

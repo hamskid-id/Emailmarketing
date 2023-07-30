@@ -122,7 +122,7 @@ export const MyTemplateList =({
                                                             )
                                                         }
                                                         <li
-                                                            className="dropdown-item"
+                                                            className="dropdown-item fs-6"
                                                             onClick={()=>dispatch(DeleteTemplate({id}))}
                                                         >
                                                             Delete

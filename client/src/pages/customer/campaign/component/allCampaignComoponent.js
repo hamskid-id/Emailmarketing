@@ -6,6 +6,7 @@ import { AllcampaignView } from "./view"
 import Spinner from "../../../../components/spinner/spinner";
 import { GetCampaigns } from "../../../../store/campaignSlice"
 import { useEffect } from "react"
+import { AiOutlineFundView } from "react-icons/ai"
 
 export const AllCampaignComponent =()=>{
     const dispatch = useDispatch();
@@ -19,8 +20,8 @@ export const AllCampaignComponent =()=>{
     return(
         <div className="pb-3">
             <div className="d-flex align-items-center pb-3 pt-2 mb-3 bg-lightBlue pdx-4">
-                <span className="me-3">
-                    <FaPaperPlane
+                <span className="me-2">
+                    <AiOutlineFundView
                         size="1.5rem"
                         color="grey"
                     />

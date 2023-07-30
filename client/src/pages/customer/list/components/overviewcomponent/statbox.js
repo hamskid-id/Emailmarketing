@@ -1,3 +1,4 @@
+import { AiOutlineEye } from "react-icons/ai";
 import {FaCodiepie} from "react-icons/fa"
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
@@ -61,16 +62,21 @@ export const SubscriberStat =()=>{
                                 <p className="fw-bold display-6 mb-0">
                                     {amount}
                                 </p>
-                                <div className="d-flex align-items-center justify-content-between wrap">
-                                    <h6
+                                <div className="d-flex align-items-center justify-content-end">
+                                    {/* <h6
                                         className="text-dark pointer fs-6 mb-0"
                                         onClick={
                                             ()=>navigate(route)
                                         }>
                                         see all {name}
-                                    </h6>
-                                    <span className="p-1 rounded bg-c2e7ff">
-                                       <FaCodiepie
+                                    </h6> */}
+                                    <span 
+                                        className="p-1 rounded dotted btn"
+                                        onClick={
+                                            ()=>navigate(route)
+                                        }
+                                    >
+                                       <AiOutlineEye
                                             color="grey"
                                         />
                                     </span>

@@ -7,6 +7,8 @@ import { DeleteSubscriber } from "../../../../store/subscriberSlice";
 export const SubscriberTable=({
     content,
     setModalBody,
+    setCreateType,
+    createType,
     hidemodal
 })=>{
         const subsriber = useSelector(
@@ -22,7 +24,9 @@ export const SubscriberTable=({
         <>
             <Actions
                 setModalBody={setModalBody}
-                hidemodaly={hidemodal}
+                setCreateType={setCreateType}
+                hidemodal={hidemodal}
+                createType={createType}
             />
             <div className="w-overflow">
                 <table className="table table-striped table-hover table-bordered table-responsive caption-top mb-3">

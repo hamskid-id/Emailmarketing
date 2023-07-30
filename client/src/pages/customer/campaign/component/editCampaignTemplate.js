@@ -74,14 +74,16 @@ export const EditTemplateView =({
             setTemplateSaved(true);
         });
     }
-
-    if(template.CreateTemplateStatus === 'success' && templateSaved){
-        setCampaignparams({
-            ...campaignParams,
-            content:EditedInfo.design_html,
-            sectionCompleted:3
-        })
-    }
+    useEffect(()=>{
+        if(template.CreateTemplateStatus === 'success' && templateSaved){
+            setCampaignparams({
+                ...campaignParams,
+                content:EditedInfo.design_html,
+                sectionCompleted:3
+            })
+        }
+    },[template.CreateTemplateStatus,templateSaved])
+    
 
     const exportHtml = () => {
         emailEditorRef
