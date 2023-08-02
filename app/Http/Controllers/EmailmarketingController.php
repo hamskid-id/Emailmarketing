@@ -871,62 +871,6 @@ class EmailmarketingController extends Controller
         }
     }
 
-    // public function bulksubscribe(Request $request)
-    // {
-    //     $request->validate([
-    //         'csvfile' => 'required',
-    //         'tag_id' => 'required'
-    //     ]);
-    //     if ($request->hasfile('csvfile')) {
-    //         $csv = file_get_contents($request->csvfile);
-    //         $array = array_map('str_getcsv', explode(PHP_EOL, $csv));
-
-    //         $validate = $this->validateArrayData($array);
-
-    //        dd($validate);
-    //         // dd($validate[0][1]);
-    //         // $json = json_encode($validate);
-
-    //         // $csvfile = json_decode($json, true);
-
-    //         foreach (array_slice($validate, 1) as $key => $values) {
-    //             $data = new subscriber();
-    //             //  dd($values);
-    //             $data->business_id = Auth::user()->business_id;
-    //             $data->tag_id = 7;
-    //             $data->email = $values[0];
-    //             $data->fname = $values[1];
-    //             $data->lname = $values[2];
-    //             $data->country = $values[3];
-    //             $data->state = $values[4];
-    //             $data->phone = $values[5];
-    //             $data->dob = $values[6];
-
-    //             $email = $values[0];
-
-
-    //             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    //                 return redirect()->back()->with('status', 'Invalid email address: ' . $email);
-    //             }
-
-    //             $data->email = $email;
-    //             $data->save();
-    //         }
-    //         return response()->json([
-    //             'statusCode' => 200,
-    //             'message' => 'Subscriber uploaded successfully!!',
-    //         ]);
-    //     } else {
-    //         return response()->json([
-    //             'statusCode' => 422,
-    //             'message' => 'Unable to upload Subscriber!!',
-    //         ]);
-    //     }
-
-    //     // dd($uploadcsv);
-
-    // }
-
     public function validateArrayData($data)
     {
         foreach ($data as $key => $values) {
