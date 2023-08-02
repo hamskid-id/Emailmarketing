@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('dashboard/', function () {
     return view('dashboard');
 });
+Route::post('bulksubscribe', [EmailmarketingController::class, 'bulksubscribe'])->name('bulksubscribe');
 
 // Route::get('addtag', function () {
 //     return view('emailmarketing.addtags');
@@ -74,7 +75,7 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
     //for recent campaigns
     Route::get('recentcamp', [EmailmarketingController::class, 'recentcamp'])->name('recentcamp');
 
-
+    Route::post('bulksubscribe', [EmailmarketingController::class, 'bulksubscribe'])->name('bulksubscribe');
 
 
 });

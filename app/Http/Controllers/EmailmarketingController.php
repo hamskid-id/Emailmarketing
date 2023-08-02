@@ -35,7 +35,6 @@ class EmailmarketingController extends Controller
         if ($tag->save()) {
             return redirect('viewtag')->with('success', 'Tags created successfully');
         }
-
     }
 
     //for viewing tags
@@ -82,7 +81,6 @@ class EmailmarketingController extends Controller
         if ($subscrib->save()) {
             return redirect()->back()->with('status', "Subscriber successfully addedd");
         }
-
     }
 
     public function viewsubscriber()
@@ -115,9 +113,7 @@ class EmailmarketingController extends Controller
         $camp->save();
         if ($camp->save()) {
             return redirect()->back()->with('status', "Campaign successfully created");
-
         }
-
     }
 
     public function viewcamp()
@@ -150,7 +146,7 @@ class EmailmarketingController extends Controller
 
             $mailData = [
                 'content' => 'You have been Invited to collaborate with a friend in our workspace by' . ' ' . Auth::user()->name . ' '
-                . 'login to your account using the following details',
+                    . 'login to your account using the following details',
                 'email' => $request->email,
                 'password' => $request->email,
                 'dashboard-link' => 'http://localhost:8000/home/' . Auth::user()->id,
@@ -160,7 +156,6 @@ class EmailmarketingController extends Controller
 
             return redirect()->back()->with('success', 'You have Successfully Invited' . ' ' . $request->email . ' ' . 'To your account and we have sent them an email notifying Them of your invitation!!');
         }
-
     }
 
     public function collaboration()
@@ -181,7 +176,6 @@ class EmailmarketingController extends Controller
             return view('emailmarketing.collaborators', compact('usersinvited'));
         } else {
             return redirect()->back()->with('success', 'You have not invited any Account to collaborate with you');
-
         }
     }
 
@@ -259,7 +253,6 @@ class EmailmarketingController extends Controller
 
             ]);
         }
-
     }
 
     public function updatetags(Request $request, $id)
@@ -287,7 +280,6 @@ class EmailmarketingController extends Controller
                     'message' => 'You are not authorizr to carry out this action',
                 ]);
             }
-
         } else {
             return response()->json([
                 'status' => false,
@@ -397,7 +389,6 @@ class EmailmarketingController extends Controller
                 'status' => true,
                 'message' => $totalsubscrib,
             ]);
-
         } else {
             return response()->json([
                 'status' => false,
@@ -421,7 +412,6 @@ class EmailmarketingController extends Controller
                     'message' => 'No body has unsubscribe from your website',
                 ]);
             }
-
         } else {
             return response()->json([
                 'status' => false,
@@ -467,7 +457,7 @@ class EmailmarketingController extends Controller
 
                 //Do not remove
                 $data['campaign'] = $camp;
-                $data['subscribers'] = Subscriber::where('tag_id', $camp->tag_id )->get();
+                $data['subscribers'] = Subscriber::where('tag_id', $camp->tag_id)->get();
 
                 CommunicationJob::dispatch($data);
 
@@ -532,7 +522,7 @@ class EmailmarketingController extends Controller
 
                 $mailData = [
                     'content' => 'You have been Invited to collaborate with a friend in our workspace by' . ' ' . Auth::user()->name . ' '
-                    . 'login to your account using the following details',
+                        . 'login to your account using the following details',
                     'email' => $request->email,
                     'password' => $request->email,
                     'dashboard-link' => redirect('dashboard' . Auth::user()->business_id),
@@ -550,7 +540,6 @@ class EmailmarketingController extends Controller
                 'message' => 'Unauthorized',
             ]);
         }
-
     }
     public function collaborations()
     {
@@ -574,7 +563,6 @@ class EmailmarketingController extends Controller
                 'message' => 'Unauthorized',
             ]);
         }
-
     }
 
     public function collaborator()
@@ -587,7 +575,6 @@ class EmailmarketingController extends Controller
                     'status' => true,
                     'message' => $usersinvited,
                 ]);
-
             } else {
                 return response()->json([
                     'status' => false,
@@ -648,7 +635,6 @@ class EmailmarketingController extends Controller
                     'message' => 'You have not reported the email for spam',
                 ]);
             }
-
         } else {
             return response()->json([
                 'status' => false,
@@ -704,7 +690,6 @@ class EmailmarketingController extends Controller
                     'message' => 'You have not blacklisted any email',
                 ]);
             }
-
         } else {
             return response()->json([
                 'status' => false,
@@ -760,7 +745,6 @@ class EmailmarketingController extends Controller
                     'message' => 'You dont have any activity log yet',
                 ]);
             }
-
         } else {
             return response()->json([
                 'status' => false,
@@ -784,7 +768,6 @@ class EmailmarketingController extends Controller
                     'message' => 'No template have been uploaded yet yet',
                 ]);
             }
-
         } else {
             return response()->json([
                 'status' => false,
@@ -839,7 +822,6 @@ class EmailmarketingController extends Controller
                     'message' => 'You dont have any template yet',
                 ]);
             }
-
         } else {
             return response()->json([
                 'status' => false,
@@ -853,13 +835,12 @@ class EmailmarketingController extends Controller
         if (Auth::check()) {
             $subscrib = subscriber::where('business_id', Auth::user()->business_id)->where('status', 1)->get();
             if ($subscrib) {
-                foreach($subscrib as $sub) {
+                foreach ($subscrib as $sub) {
                     return response()->json([
                         'status' => true,
                         'message' => $sub->email,
                     ]);
                 }
-
             } else {
                 return response()->json([
                     'status' => true,
@@ -872,7 +853,6 @@ class EmailmarketingController extends Controller
                 'message' => 'Unauthorized',
             ]);
         }
-
     }
 
     public function recentcamp()
@@ -891,4 +871,124 @@ class EmailmarketingController extends Controller
         }
     }
 
+    // public function bulksubscribe(Request $request)
+    // {
+    //     $request->validate([
+    //         'csvfile' => 'required',
+    //         'tag_id' => 'required'
+    //     ]);
+    //     if ($request->hasfile('csvfile')) {
+    //         $csv = file_get_contents($request->csvfile);
+    //         $array = array_map('str_getcsv', explode(PHP_EOL, $csv));
+
+    //         $validate = $this->validateArrayData($array);
+
+    //        dd($validate);
+    //         // dd($validate[0][1]);
+    //         // $json = json_encode($validate);
+
+    //         // $csvfile = json_decode($json, true);
+
+    //         foreach (array_slice($validate, 1) as $key => $values) {
+    //             $data = new subscriber();
+    //             //  dd($values);
+    //             $data->business_id = Auth::user()->business_id;
+    //             $data->tag_id = 7;
+    //             $data->email = $values[0];
+    //             $data->fname = $values[1];
+    //             $data->lname = $values[2];
+    //             $data->country = $values[3];
+    //             $data->state = $values[4];
+    //             $data->phone = $values[5];
+    //             $data->dob = $values[6];
+
+    //             $email = $values[0];
+
+
+    //             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //                 return redirect()->back()->with('status', 'Invalid email address: ' . $email);
+    //             }
+
+    //             $data->email = $email;
+    //             $data->save();
+    //         }
+    //         return response()->json([
+    //             'statusCode' => 200,
+    //             'message' => 'Subscriber uploaded successfully!!',
+    //         ]);
+    //     } else {
+    //         return response()->json([
+    //             'statusCode' => 422,
+    //             'message' => 'Unable to upload Subscriber!!',
+    //         ]);
+    //     }
+
+    //     // dd($uploadcsv);
+
+    // }
+
+    public function validateArrayData($data)
+    {
+        foreach ($data as $key => $values) {
+            foreach ($values as $value) {
+                if (is_null($value) || $value == '') {
+                    unset($data[$key]);
+                }
+            }
+        }
+        return $data;
+    }
+    public function bulksubscribe(Request $request)
+    {
+        $request->validate([
+            'csvfile' => 'required',
+            'tag_id' => 'required'
+        ]);
+
+        if ($request->hasfile('csvfile')) {
+            // return response()->json([
+            //     "message" => "Subscriber uploaded successfully"
+            // ]);
+            $csv = file_get_contents($request->csvfile);
+
+
+            $array = array_map('str_getcsv', explode(PHP_EOL, $csv));
+
+            $validate = $this->validateArrayData($array);
+
+            // Save the data to the database
+            foreach (array_slice($validate, 1) as $values) {
+                $data = new subscriber();
+                $data->business_id = Auth::user()->business_id;
+                $data->tag_id = $request->input('tag_id');
+                $data->email = $values[0];
+                $data->fname = $values[1];
+                $data->lname = $values[2];
+                $data->country = $values[3];
+                $data->state = $values[4];
+                $data->phone = $values[5];
+                $data->dob = $values[6];
+
+                // Validate email format
+                if (!filter_var($data->email, FILTER_VALIDATE_EMAIL)) {
+                    return response()->json([
+                        'statusCode' => 422,
+                        'message' => 'Invalid email address: ' . $data->email,
+                    ]);
+                }
+
+                $data->save();
+            }
+
+            return response()->json([
+                'statusCode' => 200,
+                'message' => 'Subscriber uploaded successfully!!',
+            ]);
+        } else {
+            return response()->json([
+                'statusCode' => 422,
+                'message' => 'No CSV file found',
+            ]);
+        }
+    }
 }
