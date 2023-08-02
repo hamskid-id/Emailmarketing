@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
 import * as XLSX from "xlsx";
-import { Createsubscriber } from "../../../../../store/subscriberSlice";
+import { CreatCsvSubscriber, Createsubscriber } from "../../../../../store/subscriberSlice";
 
 export const UploadSubcriberCSV =({hidemodal})=>{
     const subsriber = useSelector(
@@ -13,7 +13,7 @@ export const UploadSubcriberCSV =({hidemodal})=>{
     const Tags = useSelector(
         state => state.tag
     )
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
     const [tagToSubmit, setTagToSubmit] = useState('');
     const dispatch = useDispatch();
     const { 
@@ -29,42 +29,58 @@ export const UploadSubcriberCSV =({hidemodal})=>{
         uploadRef.current.click();
     }
 
-    const readExcel = (file) => {
-        const promise = new Promise((resolve, reject) => {
-          const fileReader = new FileReader();
-          fileReader.readAsArrayBuffer(file);
-    
-          fileReader.onload = (e) => {
-            const bufferArray = e.target.result;
+    const handleChange =(e)=>{
+        const file = e.target.files[0]
+        // setSelectedFile(file)
+        const formData = new FormData()
+        if(file){
+            formData.append('csvfile',file)
+            console.log(formData)
+            dispatch(CreatCsvSubscriber({
+                csvfile:formData,
+                tag_id:tagToSubmit
+            }))
+        }
+        
+        
+    }
 
-            const wb = XLSX.read(bufferArray, { type: "buffer" });
+    // const readExcel = (file) => {
+    //     const promise = new Promise((resolve, reject) => {
+    //       const fileReader = new FileReader();
+    //       fileReader.readAsArrayBuffer(file);
     
-            const wsname = wb.SheetNames[0];
-    
-            const ws = wb.Sheets[wsname];
-    
-            const data = XLSX.utils.sheet_to_json(ws);
-    
-            resolve(data);
-          };
-    
-          fileReader.onerror = (error) => {
-            reject(error);
-          };
-        });
-    
-        promise.then((d) => {
-          setItems(d);
-        });
-    };
+    //       fileReader.onload = (e) => {
+    //         const bufferArray = e.target.result;
 
-    console.log(tagToSubmit,items)
+    //         const wb = XLSX.read(bufferArray, { type: "buffer" });
+    
+    //         const wsname = wb.SheetNames[0];
+    
+    //         const ws = wb.Sheets[wsname];
+    
+    //         const data = XLSX.utils.sheet_to_json(ws);
+    
+    //         resolve(data);
+    //       };
+    
+    //       fileReader.onerror = (error) => {
+    //         reject(error);
+    //       };
+    //     });
+    
+    //     promise.then((d) => {
+    //       setItems(d);
+    //     });
+    // };
+
+    // console.log(tagToSubmit,items)
 
     useEffect(()=>{
-        if(subsriber.CreatesubscriberStatus ==="success"){
+        if(subsriber.CreatCsvSubscriber ==="success"){
             hidemodal.current.click()
         }
-    },[subsriber.CreatesubscriberStatus])
+    },[subsriber.CreatCsvSubscriber])
 
     return(
         <form onSubmit={handleSubmit(SubmitHandler)}>
@@ -132,17 +148,33 @@ export const UploadSubcriberCSV =({hidemodal})=>{
                 type="file"
                 id="upload"
                 className="btn b-grey btn-md my-2 fl-r mb-2 me-2"
-                onChange={(e) => {
-                const file = e.target.files[0];
-                readExcel(file);
-                }}
+                onChange={handleChange}
             />
-            <button
-                htmlFor="upload"
-                className="btn b-grey btn-md my-2 fl-r mb-2 me-2"
-                >         
-                    Proceed                                   
-            </button>
+            <div>
+            {
+                    subsriber.CreateCsvSubscriberStatus === "pending"?(
+                        <button
+                            htmlFor="upload"
+                            className="btn b-grey btn-md my-2 fl-r mb-2 me-2"
+                            disabled
+                        >
+                            <span 
+                                className="spinner-border spinner-border-sm me-1" 
+                                role="status" 
+                                aria-hidden="true">
+                            </span>
+                            Proceed
+                        </button>
+                    ):(
+                        <button
+                            htmlFor="upload"
+                            className="btn b-grey btn-md my-2 fl-r mb-2 me-2"
+                            >         
+                                Proceed                                   
+                        </button>
+                    )
+                }
+            </div>
         </form>
     )
 }

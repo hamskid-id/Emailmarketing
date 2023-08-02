@@ -11,17 +11,13 @@ export const MyProfile =()=>{
         state => state.auth
     )
     const dispatch = useDispatch();
-    // const[
-    //     selectedFile,
-    //     setSelectedFile
-    // ]=useState();
 
     const handleChange =(e)=>{
         const file = e.target.files[0]
-        // setSelectedFile(file)
         const formData = new FormData()
         if(file){
             formData.append('profile',file)
+            console.log(formData)
             dispatch(UploadProfilePicture({
                 pics:formData,
                 id:auth.userdata?.user?.id
@@ -30,29 +26,7 @@ export const MyProfile =()=>{
         
         
     }
-    //    let reader = new FileReader()
-    //    reader.readAsDataURL(file)
-    //    reader.onload = (event)=>{
-    //     // setSelectedFile(event.target.result)
-    //         dispatch(UploadProfilePicture({
-    //             pics:event.target.result,
-    //             id:auth.userdata?.user?.id
-    //         }))
-    //     }
-
-    // const TransformFile = (file)=>{
-    //     const reader = new FileReader()
-    //     if(file){
-    //         reader.readAsDataURL(file)
-    //         reader.onloadend = ()=>{
-    //             dispatch(UploadProfilePicture({
-    //                 pics:reader.result,
-    //                 id:auth.userdata?.user?.id
-    //             }))
-    //         }
-    //     }
-    // }
-
+    
 
     return(
         <>

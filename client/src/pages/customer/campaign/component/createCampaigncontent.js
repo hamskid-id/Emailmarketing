@@ -29,7 +29,7 @@ export const CreateCampaignContent =()=>{
         EmailSubject :"",
         FromName:auth.userdata?.user?.name,
         FromEmail:auth.userdata?.user?.email,
-        ReplyTo:[],
+        ReplyTo:"",
         DeliveryDate:"",
         // DeliveryTime:"",
         tag_id:{name:null,id:null},
