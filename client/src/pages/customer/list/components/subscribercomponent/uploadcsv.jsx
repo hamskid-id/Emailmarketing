@@ -13,7 +13,7 @@ export const UploadSubcriberCSV =({hidemodal})=>{
     const Tags = useSelector(
         state => state.tag
     )
-    // const [items, setItems] = useState([]);
+    const [items, setItems] = useState([]);
     const [tagToSubmit, setTagToSubmit] = useState('');
     const dispatch = useDispatch();
     const { 
@@ -30,14 +30,10 @@ export const UploadSubcriberCSV =({hidemodal})=>{
     }
 
     const handleChange =(e)=>{
-        const file = e.target.files[0]
-        // setSelectedFile(file)
-        const formData = new FormData()
+        let file = e.target.files[0]
         if(file){
-            formData.append('csvfile',file)
-            console.log(formData)
             dispatch(CreatCsvSubscriber({
-                csvfile:formData,
+                csv:file,
                 tag_id:tagToSubmit
             }))
         }
@@ -71,16 +67,20 @@ export const UploadSubcriberCSV =({hidemodal})=>{
     
     //     promise.then((d) => {
     //       setItems(d);
+    //       dispatch(CreatCsvSubscriber({
+    //         csv:d,
+    //         tag_id:tagToSubmit
+    //     }))
     //     });
     // };
 
     // console.log(tagToSubmit,items)
 
     useEffect(()=>{
-        if(subsriber.CreatCsvSubscriber ==="success"){
+        if(subsriber. CreateCsvSubscriberStatus ==="success"){
             hidemodal.current.click()
         }
-    },[subsriber.CreatCsvSubscriber])
+    },[subsriber.CreateCsvSubscriberStatus])
 
     return(
         <form onSubmit={handleSubmit(SubmitHandler)}>
@@ -147,8 +147,13 @@ export const UploadSubcriberCSV =({hidemodal})=>{
             <input
                 type="file"
                 id="upload"
-                className="btn b-grey btn-md my-2 fl-r mb-2 me-2"
+                accept=".csv"
+                className="b-grey my-2 fl-r mb-2 me-2"
                 onChange={handleChange}
+                // onChange={(e) => {
+                //     const file = e.target.files[0];
+                //     readExcel(file);
+                //     }}
             />
             <div>
             {

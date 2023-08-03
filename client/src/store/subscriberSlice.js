@@ -60,16 +60,22 @@ export const GetTotalSubscribers = createAsyncThunk(
 export const CreatCsvSubscriber = createAsyncThunk(
     'subscriber/CreateCsvSubscriber', 
     async ({
-        csvfile,
+        csv,
         tag_id
     },{dispatch}) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/bulksubscribe`,{
-                csvfile,
-                tag_id
+                "csvfile": csv,
+                "tag_id":tag_id
+            },{
+                headers:{
+                    "Authorization":`Bearer Bearer ${JSON.parse(localStorage.getItem('marketingUserToken'))?.access_token}`,
+                    "Content-Type": 'multipart/form-data',
+                    "Accept":'application/json'
+                }
             },
-            setHeaders()
+             
         )
         if(response?.data?.status){
             dispatch(UpdateActivities({
