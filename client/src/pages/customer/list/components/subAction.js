@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { subscriber_SliceActions } from "../../../../store/subscriberSlice"
+import { useState } from "react"
 import { CreateTag } from "./tagcomponent/tagsmodalcontent"
 import { SubscriberModalContent } from "./subscribercomponent/subscriberForm"
 import { UploadSubcriberCSV } from "./subscribercomponent/uploadcsv"
@@ -13,7 +14,7 @@ export const Actions =({
     const tag = useSelector(
         state => state.tag
     )
-    
+    const [items, setItems] = useState([]);
     const dispatch = useDispatch();
     const handleChange=(e)=>{
         if(e.target.value ==="Name"){
@@ -107,7 +108,7 @@ export const Actions =({
                         + New
                     </button>
                     <label
-                        className="btn dotted btn-md my-2 fl-r mb-2 me-2 text-dark"
+                        className="btn dotted btn-md my-2 fl-r mb-2 me-2"
                         data-bs-toggle="modal" 
                         data-bs-target="#staticBackdrop"
                         onClick={
