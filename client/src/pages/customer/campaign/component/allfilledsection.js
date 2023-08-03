@@ -103,18 +103,7 @@ export const AllFieldSection=({
                         >
                             <div>
                                 <h6 className="fs-4 break">{name}</h6>
-                                <div className={Array.isArray(content)? "replyto wt-50":""}>
-                                    {
-                                        Array.isArray(content)?(
-                                            content?.map((object,index)=>{
-                                                return(
-                                                    <h6 className="fs-6 break" key={index}>{object}</h6>
-                                                )
-                                                }
-                                            )
-                                        ):<h6 className="fs-6 break">{content?content:"Unavailable"}</h6>
-                                    }
-                                </div>
+                                <h6 className="fs-6 break">{content?content:"Unavailable"}</h6>
                             </div>
                             <div>
                                 <button 

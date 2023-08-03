@@ -15,7 +15,7 @@ export const Rate =()=>{
                     <h6 className="fs-5">Open rate</h6>
                     <div className="progress">
                         <div 
-                            className="progress-bar bg-slate-grey" 
+                            className="progress-bar bg-progress-success" 
                             role="progressbar" 
                             aria-label="Basic example" 
                             aria-valuenow="10%"
@@ -66,7 +66,7 @@ export const Rate =()=>{
                     <h6 className="fs-5">Click rate</h6>
                     <div className="progress">
                         <div 
-                            className="progress-bar bg-slate-grey" 
+                            className="progress-bar bg-progress-success" 
                             role="progressbar" 
                             aria-label="Basic example" 
                             aria-valuenow="10%"

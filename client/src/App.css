@@ -56,6 +56,9 @@
   height:21.3rem;
   overflow-y: auto;
 }
+.overflowY-auto{
+  overflow-y: auto;
+}
 .w-63{
   width:63%;
 }

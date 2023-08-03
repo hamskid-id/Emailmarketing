@@ -57,6 +57,41 @@ export const GetTotalSubscribers = createAsyncThunk(
     }
 )
 
+export const CreatCsvSubscriber = createAsyncThunk(
+    'subscriber/CreateCsvSubscriber', 
+    async ({
+        csv,
+        tag_id
+    },{dispatch}) =>{
+    try{
+        const response = await axios.post(
+            `${apiBaseUrl}/bulksubscribe`,{
+                "csvfile": csv,
+                "tag_id":tag_id
+            },{
+                headers:{
+                    "Authorization":`Bearer Bearer ${JSON.parse(localStorage.getItem('marketingUserToken'))?.access_token}`,
+                    "Content-Type": 'multipart/form-data',
+                    "Accept":'application/json'
+                }
+            },
+             
+        )
+        if(response?.data?.status){
+            dispatch(UpdateActivities({
+                action:`You updated your subscriber's list`
+            }));
+            dispatch(GetSubscribers())
+        }
+        return response?.data
+    } catch(err){
+            toast.error(
+                err.response?.data?.message
+            )
+        }
+    }
+)
+
 export const Createsubscriber = createAsyncThunk(
     'subscriber/Createsubscriber', 
     async ({
@@ -105,6 +140,7 @@ const subscriber_Slice = createSlice({
         subscribers:[],
         subscribersToFilter:[],
         deleteSubStatus:'',
+        CreateCsvSubscriberStatus:'',
         totalsub:0,
         GetTotalSubscribersStatus:'',
         GetTotalSubscribersError:'',
@@ -291,6 +327,47 @@ const subscriber_Slice = createSlice({
             return{
                 ...state,
                 CreatesubscriberStatus:'rejected'
+            }
+        })
+
+        builder.addCase(CreatCsvSubscriber.pending,(state, action)=>{
+            return {
+                ...state,
+                CreateCsvSubscriberStatus:'pending'
+            }
+
+        });
+        builder.addCase(CreatCsvSubscriber.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    message,
+                    statusCode
+                }= action.payload
+                if(statusCode){
+                    toast(message);
+                    return{
+                        ...state,
+                        CreateCsvSubscriberStatus:"success"
+                    }
+                }else{
+                    toast.error(message);
+                    return{
+                        ...state,
+                        CreateCsvSubscriberStatus:"failed"
+                    }
+                }
+            }else{
+                return{
+                    ...state,
+                    CreateCsvSubscriberStatus:"failed"
+                }
+            }
+        })
+        builder.addCase(CreatCsvSubscriber.rejected,(state, action)=>{
+            toast.error(action?.payload?.message)
+            return{
+                ...state,
+                CreateCsvSubscriberStatus:'rejected'
             }
         })
     }
