@@ -2,8 +2,7 @@ import { useEffect, useState,useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
 import { CustomFormField } from "../../../../../components/customFomField";
-import * as XLSX from "xlsx";
-import { CreatCsvSubscriber, Createsubscriber } from "../../../../../store/subscriberSlice";
+import { CreatCsvSubscriber} from "../../../../../store/subscriberSlice";
 
 export const UploadSubcriberCSV =({hidemodal})=>{
     const subsriber = useSelector(
@@ -13,7 +12,6 @@ export const UploadSubcriberCSV =({hidemodal})=>{
     const Tags = useSelector(
         state => state.tag
     )
-    const [items, setItems] = useState([]);
     const [tagToSubmit, setTagToSubmit] = useState('');
     const dispatch = useDispatch();
     const { 
@@ -40,42 +38,6 @@ export const UploadSubcriberCSV =({hidemodal})=>{
         
         
     }
-
-    // const readExcel = (file) => {
-    //     const promise = new Promise((resolve, reject) => {
-    //       const fileReader = new FileReader();
-    //       fileReader.readAsArrayBuffer(file);
-    
-    //       fileReader.onload = (e) => {
-    //         const bufferArray = e.target.result;
-
-    //         const wb = XLSX.read(bufferArray, { type: "buffer" });
-    
-    //         const wsname = wb.SheetNames[0];
-    
-    //         const ws = wb.Sheets[wsname];
-    
-    //         const data = XLSX.utils.sheet_to_json(ws);
-    
-    //         resolve(data);
-    //       };
-    
-    //       fileReader.onerror = (error) => {
-    //         reject(error);
-    //       };
-    //     });
-    
-    //     promise.then((d) => {
-    //       setItems(d);
-    //       dispatch(CreatCsvSubscriber({
-    //         csv:d,
-    //         tag_id:tagToSubmit
-    //     }))
-    //     });
-    // };
-
-    // console.log(tagToSubmit,items)
-
     useEffect(()=>{
         if(subsriber. CreateCsvSubscriberStatus ==="success"){
             hidemodal.current.click()
@@ -134,11 +96,6 @@ export const UploadSubcriberCSV =({hidemodal})=>{
                 )
                 }
             </div>
-            {/* <CustomFormField
-                value="submit"
-                type="btn"
-                loadingStatus={subsriber.CreatesubscriberStatus}
-            /> */}
             <label 
                 htmlFor="upload"
                 ref={uploadRef}
@@ -150,10 +107,6 @@ export const UploadSubcriberCSV =({hidemodal})=>{
                 accept=".csv"
                 className="b-grey my-2 fl-r mb-2 me-2"
                 onChange={handleChange}
-                // onChange={(e) => {
-                //     const file = e.target.files[0];
-                //     readExcel(file);
-                //     }}
             />
             <div>
             {

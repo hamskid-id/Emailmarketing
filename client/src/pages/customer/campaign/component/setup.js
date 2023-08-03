@@ -26,7 +26,6 @@ export const Setup=({
             ReplyTo:ReplyTo,
             sectionCompleted:2
         })
-        console.log(sub)
     }
 
     return(
