@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
-import { toast } from "react-toastify"
 import { subscriber_SliceActions } from "../../../../store/subscriberSlice"
-import { useEffect, useState } from "react"
 import { CreateTag } from "./tagcomponent/tagsmodalcontent"
 import { SubscriberModalContent } from "./subscribercomponent/subscriberForm"
-import * as XLSX from "xlsx";
 import { UploadSubcriberCSV } from "./subscribercomponent/uploadcsv"
 
 export const Actions =({
@@ -16,23 +13,7 @@ export const Actions =({
     const tag = useSelector(
         state => state.tag
     )
-    const [items, setItems] = useState([]);
-    // useEffect(()=>{
-    //     if(tag && tag.Tags?.length ==0){
-    //         setModalBody({
-    //             title:"kindly create a tag to procceed",
-    //             body:<CreateTag
-    //                     hidemodal={hidemodal}
-    //                     proceedWithNextOperationAfterSuccess={()=>setModalBody({
-    //                         body:<SubscriberModalContent
-    //                                 hidemodal={hidemodal}
-    //                             />,
-    //                         title:'Add Subscriber'
-    //                     })}
-    //                 />
-    //         })
-    //     }
-    // },[])
+    
     const dispatch = useDispatch();
     const handleChange=(e)=>{
         if(e.target.value ==="Name"){
@@ -41,36 +22,6 @@ export const Actions =({
             dispatch(subscriber_SliceActions.sortDataByEmail())
         }
     }
-
-    // const readExcel = (file) => {
-    //     const promise = new Promise((resolve, reject) => {
-    //       const fileReader = new FileReader();
-    //       fileReader.readAsArrayBuffer(file);
-    
-    //       fileReader.onload = (e) => {
-    //         const bufferArray = e.target.result;
-    
-    //         const wb = XLSX.read(bufferArray, { type: "buffer" });
-    
-    //         const wsname = wb.SheetNames[0];
-    
-    //         const ws = wb.Sheets[wsname];
-    
-    //         const data = XLSX.utils.sheet_to_json(ws);
-    
-    //         resolve(data);
-    //       };
-    
-    //       fileReader.onerror = (error) => {
-    //         reject(error);
-    //       };
-    //     });
-    
-    //     promise.then((d) => {
-    //       setItems(d);
-    //       console.log(items)
-    //     });
-    //   };
 
     return(
         <div className="row">
@@ -173,15 +124,6 @@ export const Actions =({
                         >         
                             Upload CSV File                                   
                     </label>
-                    {/* <input
-                        type="file"
-                        id="upload"
-                        className="btn b-grey btn-md my-2 fl-r mb-2 me-2"
-                        onChange={(e) => {
-                        const file = e.target.files[0];
-                        readExcel(file);
-                        }}
-                    /> */}
                 </div>
             </div>
         </div>
