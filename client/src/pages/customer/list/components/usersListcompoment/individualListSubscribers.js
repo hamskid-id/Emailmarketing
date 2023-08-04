@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import { Modal } from "../../../../../components/modal/modal"
 import { SubscriberModalContent } from "../subscribercomponent/subscriberForm"
 import { SubscriberTable } from "../subscriberTable"
-import { IndividualSubTable } from "./individualsubtable"
 
 export const IndividualListSuscribers =({
     setListSection

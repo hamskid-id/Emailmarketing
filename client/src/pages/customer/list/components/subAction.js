@@ -114,12 +114,35 @@ export const Actions =({
                         onClick={
                             ()=>{
                                 setCreateType('csv');
-                                setModalBody({
-                                    title:tag && tag.Tags?.length ===0? "kindly create a tag":"kindly select a tag ",
-                                    body:<UploadSubcriberCSV
-                                            hidemodal={hidemodal}
-                                        />
-                                })
+                                if(tag && tag.Tags?.length ==0){
+                                    setModalBody({
+                                        title:"kindly create a tag to procceed",
+                                        body:<CreateTag
+                                                hidemodal={hidemodal}
+                                                proceedWithNextOperationAfterSuccess={()=>setModalBody({
+                                                    body:<UploadSubcriberCSV
+                                                        hidemodal={hidemodal}
+                                                    />,
+                                                    title:'kindly select a tag'
+                                                })}
+                                            />
+                                    })
+                                }else{
+                                    setModalBody(
+                                        {
+                                            body:<UploadSubcriberCSV
+                                                hidemodal={hidemodal}
+                                            />,
+                                            title:'kindly select a tag'
+                                        }
+                                    )
+                                }
+                                // setModalBody({
+                                //     title:tag && tag.Tags?.length ===0? "kindly create a tag":"kindly select a tag ",
+                                //     body:<UploadSubcriberCSV
+                                //             hidemodal={hidemodal}
+                                //         />
+                                // })
                             }
                         }
                         >         

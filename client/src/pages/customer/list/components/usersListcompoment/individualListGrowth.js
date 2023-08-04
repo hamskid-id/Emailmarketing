@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { LineChart } from "../../../../../components/linechart"
 import { PieChart } from "../../../../../components/piechat";
-import { userdata } from "../../../campaign/component/userdata";
 
 export const IndividualListGrowth =()=>{
     const subscribers=[

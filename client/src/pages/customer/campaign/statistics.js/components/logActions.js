@@ -25,8 +25,7 @@ export const Actions =({
                                     }
                                 ]?.map((drop,index)=>{
                                     const {
-                                        name,
-                                        url
+                                        name
                                     }=drop
                                     return(
                                         <option 
