@@ -38,6 +38,10 @@ export const UnSubContainer =()=>{
                             <th scope="col">Phone</th>
                             <th scope="col">DOB</th>
                             <th scope="col">Tag</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">status</th>
+                            <th scope="col">subscribe</th>
+                            <th scope="col">Updated At</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -54,7 +58,11 @@ export const UnSubContainer =()=>{
                                         state,
                                         phone,
                                         dob,
-                                        tag
+                                        created_at,
+                                        status,
+                                        subscribe,
+                                        tag_id,
+                                        updated_at
                                     }=sub
                                     return(
                                         <tr key={index}>
@@ -66,7 +74,19 @@ export const UnSubContainer =()=>{
                                             <td className="fs-6">{state}</td>
                                             <td className="fs-6">{phone}</td>
                                             <td className="fs-6">{dob}</td>
-                                            <td className="fs-6">{tag}</td>
+                                            <td className="fs-6">{tag_id}</td>
+                                            <td className="fs-6"> {
+                                                new Date(created_at)
+                                                .toLocaleString()
+                                                }
+                                            </td>
+                                            <td className="fs-6">{status}</td>
+                                            <td className="fs-6">{subscribe}</td>
+                                            <td className="fs-6">{
+                                                new Date(updated_at)
+                                                .toLocaleString()
+                                                }
+                                            </td>
                                             <td>
                                                 <div className="dropdown">
                                                     <button 

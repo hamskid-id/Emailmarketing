@@ -58,8 +58,7 @@ export const EmailVerification =()=>{
                                 {
                                     []?.map((drop,index)=>{
                                         const {
-                                            name,
-                                            url
+                                            name
                                         }=drop
                                         return(
                                             <option 

@@ -92,6 +92,7 @@ export const CustomFormField =({
             </div>
         )
     }
+    
     if(type==="password"){
         <div className="w-100 mb-2">
         <label

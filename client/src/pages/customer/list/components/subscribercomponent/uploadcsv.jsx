@@ -1,7 +1,6 @@
 import { useEffect, useState,useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector} from "react-redux";
-import { CustomFormField } from "../../../../../components/customFomField";
 import { CreatCsvSubscriber} from "../../../../../store/subscriberSlice";
 
 export const UploadSubcriberCSV =({hidemodal})=>{
@@ -47,54 +46,42 @@ export const UploadSubcriberCSV =({hidemodal})=>{
     return(
         <form onSubmit={handleSubmit(SubmitHandler)}>
             <div className="w-100 mb-2">
-                {
-                    Tags && Tags.Tags?.length ==0?(
-                        <CustomFormField
-                            label ="Name"
-                            name ="tag"
-                            placeholder="name"
-                            type="text"
-                            register={register}
-                            errors={errors.tag}
-                        />
-                    ):(
-                        <div>
-                            <label
-                                className="fw-bold fs-6" 
-                                htmlFor="tag">
-                                Tags
-                            </label>
-                            <select 
-                                name="tag" 
-                                id=""
-                                className=" p-2 border rounded w-100 fs-6"
-                                {...register(
-                                    "tag", 
-                                    {
-                                        required:`tag field is invalid`,
-                                    }
+                <div>
+                    <label
+                        className="fw-bold fs-6" 
+                        htmlFor="tag">
+                        Tags
+                    </label>
+                    <select 
+                        name="tag" 
+                        id=""
+                        className=" p-2 border rounded w-100 fs-6"
+                        {...register(
+                            "tag", 
+                            {
+                                required:`tag field is invalid`,
+                            }
+                        )
+                        }
+                        >
+                        {
+                            Tags.Tags?.map((tag,index)=>{
+                                const{
+                                    name,
+                                    id
+                                }=tag
+                                return(
+                                    <option 
+                                        value={id}
+                                        key={index}
+                                    >{name}
+                                    </option>
                                 )
-                                }
-                                >
-                                {
-                                    Tags.Tags?.map((tag,index)=>{
-                                        const{
-                                            name,
-                                            id
-                                        }=tag
-                                        return(
-                                            <option 
-                                                value={id}
-                                                key={index}
-                                            >{name}
-                                            </option>
-                                        )
-                                    })
-                                }
-                            </select>
-                    </div>
-                )
-                }
+                            })
+                        }
+                    </select>
+                    <p className="text-danger ">{errors.tag}</p>
+            </div>
             </div>
             <label 
                 htmlFor="upload"

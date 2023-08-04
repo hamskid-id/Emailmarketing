@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { MyProfile } from "../../../profile/components.js/myprofile"
 import { BounceLog } from "./bouncelog"
 import { ClickLog } from "./clicklog"
 import { DeliveryLog } from "./delievrylog"

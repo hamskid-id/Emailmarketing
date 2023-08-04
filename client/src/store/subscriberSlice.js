@@ -77,7 +77,7 @@ export const CreatCsvSubscriber = createAsyncThunk(
             },
              
         )
-        if(response?.data?.status){
+        if(response?.data?.statusCode === 200){
             dispatch(UpdateActivities({
                 action:`You updated your subscriber's list`
             }));
@@ -343,7 +343,7 @@ const subscriber_Slice = createSlice({
                     message,
                     statusCode
                 }= action.payload
-                if(statusCode){
+                if(statusCode && statusCode === 200){
                     toast(message);
                     return{
                         ...state,
