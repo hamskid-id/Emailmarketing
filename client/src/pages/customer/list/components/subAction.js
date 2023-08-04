@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
 import { subscriber_SliceActions } from "../../../../store/subscriberSlice"
-import { useState } from "react"
 import { CreateTag } from "./tagcomponent/tagsmodalcontent"
 import { SubscriberModalContent } from "./subscribercomponent/subscriberForm"
 import { UploadSubcriberCSV } from "./subscribercomponent/uploadcsv"
@@ -8,13 +7,11 @@ import { UploadSubcriberCSV } from "./subscribercomponent/uploadcsv"
 export const Actions =({
     setModalBody,
     setCreateType,
-    createType,
     hidemodal
 })=>{
     const tag = useSelector(
         state => state.tag
     )
-    const [items, setItems] = useState([]);
     const dispatch = useDispatch();
     const handleChange=(e)=>{
         if(e.target.value ==="Name"){
