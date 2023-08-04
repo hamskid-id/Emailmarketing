@@ -38,7 +38,6 @@ export const SubsrcibersContent =()=>{
                         setModalBody ={setModalBody}
                         hidemodal={hidemodal}
                         setCreateType={setCreateType}
-                        createType={createType}
                     />}
                 modalBody={modalBodySetter.body}
                 modalTitle={modalBodySetter.title}
