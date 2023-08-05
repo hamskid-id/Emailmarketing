@@ -5,7 +5,7 @@ export const Brand =({handleClick})=>{
             <span className="me-2 p-2 rounded-circle brandBg btn">
                 <AiTwotoneMail
                     size="1.5rem"
-                    color="#3B3C36"
+                    color="white"
                     onClick={handleClick }
                 />
             </span>

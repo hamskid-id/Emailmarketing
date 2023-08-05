@@ -98,7 +98,7 @@ export const Layout=({routeChildren,main})=>{
                                 </div>
                             </div>
                              {/* Route Children */}
-                            <div className="children">
+                            <div className="children mb-2">
                             {
                                 routeChildren
                             }

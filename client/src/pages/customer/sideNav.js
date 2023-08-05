@@ -76,7 +76,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                                     ()=>navigate(route)
                                 }
                             >
-                                <span className="me-3">
+                                <span className="me-2">
                                     {icon}
                                 </span>
                                 <h2 
@@ -160,7 +160,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
             >
                 <span className="me-2 mb-2">
                     <AiOutlineLogout
-                        color="orange"
+                        color="lightblue"
                         size="1.3rem"
                     />
                 </span>
