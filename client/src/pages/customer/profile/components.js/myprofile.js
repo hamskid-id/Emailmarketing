@@ -14,12 +14,12 @@ export const MyProfile =()=>{
 
     const handleChange =(e)=>{
         const file = e.target.files[0]
-        const formData = new FormData()
+        // const formData = new FormData()
         if(file){
-            formData.append('profile',file)
-            console.log(formData)
+            // formData.append('profile',file)
+            // console.log(formData)
             dispatch(UploadProfilePicture({
-                pics:formData,
+                pics:file,
                 id:auth.userdata?.user?.id
             }))
         }
@@ -33,7 +33,7 @@ export const MyProfile =()=>{
             <div className="row">
                 <div className="col-md-3">
                     <div className="d-flex flex-column align-items-center justify-content-center mt-5">
-                        <p className="fs-4 text-center">
+                        <p className="fs-4 text-center fw-bold">
                             Profile Photo
                         </p>
                         <div>

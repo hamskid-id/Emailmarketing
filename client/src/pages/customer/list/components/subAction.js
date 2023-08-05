@@ -81,7 +81,6 @@ export const Actions =({
                                 setModalBody({
                                     title:"kindly create a tag to procceed",
                                     body:<CreateTag
-                                            hidemodal={hidemodal}
                                             proceedWithNextOperationAfterSuccess={()=>setModalBody({
                                                 body:<SubscriberModalContent
                                                         hidemodal={hidemodal}
@@ -115,7 +114,6 @@ export const Actions =({
                                     setModalBody({
                                         title:"kindly create a tag to procceed",
                                         body:<CreateTag
-                                                hidemodal={hidemodal}
                                                 proceedWithNextOperationAfterSuccess={()=>setModalBody({
                                                     body:<UploadSubcriberCSV
                                                         hidemodal={hidemodal}

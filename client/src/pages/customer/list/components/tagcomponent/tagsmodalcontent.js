@@ -28,7 +28,9 @@ export const CreateTag =({hidemodal,proceedWithNextOperationAfterSuccess})=>{
 
     useEffect(()=>{
         if(tag.CreateTagsStatus ==="success"){
-            hidemodal.current.click()
+            if(hidemodal){
+                hidemodal.current.click()
+            }
             if(proceedWithNextOperationAfterSuccess){
                 proceedWithNextOperationAfterSuccess();
             }

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { FaInbox } from "react-icons/fa"
 
 export const RecentlySent=()=>{
     const recentCampaigns = useSelector(
@@ -109,7 +110,15 @@ export const RecentlySent=()=>{
             </div>
             <div>
                 {
-                    recentCampaigns.recentCampaigns?.length ===0 && <p className="fs-6 text-center c-grey">No campaign has being sent </p>
+                    recentCampaigns.recentCampaigns?.length ===0 && (
+                        <div className="d-flex flex-column justify-content-center align-items-center">   
+                             <FaInbox
+                                color="#bbb"
+                                size="4rem"
+                            />
+                            <p className="fs-6 text-center c-grey">No campaign has being sent </p>
+                        </div>
+                    )
                 }
             </div>
         </>

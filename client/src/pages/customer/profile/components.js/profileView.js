@@ -76,7 +76,6 @@ export const ProfileView =()=>{
                     })
                 }
             </div>
-            <hr className="b-grey mt-0 pdx-4"/>
             <div className="bg bg-white pdx-4">
                 {
                     ListSection.components

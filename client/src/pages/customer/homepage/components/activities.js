@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { CamapaignMetrics } from "./ststistics";
 import { AiOutlineHistory,AiOutlineFileDone } from "react-icons/ai";
+import { FaInbox } from "react-icons/fa";
 
 export const ActivitiesLog =()=>{
     const  activities = useSelector(
@@ -28,7 +29,13 @@ export const ActivitiesLog =()=>{
             <div className="py-3">
                 {
                     activities.activities?.length ===0?(
-                        <p className="fs-6 text-center c-grey">Your activities log is empty</p>
+                        <div className="d-flex flex-column justify-content-center align-items-center">   
+                            <FaInbox
+                                color="#bbb"
+                                size="4rem"
+                            />
+                            <p className="fs-6 text-center c-grey">No campaign has being sent </p>
+                        </div>
                     ) :(
                         <div className="mb-2 h5-overflow pb-1">
                         {

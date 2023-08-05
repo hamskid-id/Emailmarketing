@@ -1,5 +1,5 @@
-import { AiOutlineRadiusSetting } from "react-icons/ai";
-import {FcTemplate,FcList,FcMindMap,FcLibrary} from "react-icons/fc";
+import { AiOutlineHome, AiOutlineRadiusSetting } from "react-icons/ai";
+import {FcTemplate,FcList,FcMindMap} from "react-icons/fc";
 export const AccordionsRoutes =[
     {
         id:"collapseOne",
@@ -23,7 +23,7 @@ export const AccordionsRoutes =[
         id:"collapseTwo",
         icon:<AiOutlineRadiusSetting
                 size="1.1rem"
-                color="orange"
+                color="lightblue"
             />,
         name:"Sending",
         subName:[
@@ -35,9 +35,9 @@ export const AccordionsRoutes =[
 ]
 export const ListRoute=[
     {
-        icon:<FcLibrary
+        icon:<AiOutlineHome
                 size="1.1rem"
-                color="white"
+                color="lightblue"
             />,
         name:"DashBoard",
         route:"/"

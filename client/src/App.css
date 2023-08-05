@@ -42,7 +42,7 @@
 .log{
   font-size:0.7rem;
 }.brandBg{
-  background-color: orange
+  background-color: #c2e7ff
 }
 .bg-progress-success{
   background-color: #c2e7ff;
@@ -154,9 +154,10 @@ input[id="upload"]{
 .accordion-button:not(.collapsed) {
   box-shadow:none;
   }
-  .accordion-button {
-    width:9rem;
-    }
+.accordion-button {
+    width: 7rem!important;
+    padding: 1rem 0.5rem!important;
+}
 .accordion-item{
   border:none;
 }
