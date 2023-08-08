@@ -24,7 +24,7 @@ export const Setup=({
             FromName:FromName,
             FromEmail:FromEmail,
             ReplyTo:ReplyTo,
-            sectionCompleted:2
+            sectionCompleted:localStorage.getItem('templateInfo') ? 3:2
         })
     }
 

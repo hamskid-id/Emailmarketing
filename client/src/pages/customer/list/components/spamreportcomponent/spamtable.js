@@ -1,15 +1,15 @@
-import {useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { Actions } from "./spamaction";
 import { NoData } from "../../../../../components/nodata";
 import { DeleteSpamReport } from "../../../../../store/SpamReportedSlice";
+import { DeleteBtn } from "../../../template/components/deleteBtn";
 
 export const SpamContainer = () => {
     const spam = useSelector(
         state => state.SpamReported
     )
-    const dispatch = useDispatch()
-    if (spam.GetSpamReportedStatus === 'pending' || spam.deleteSpamStatus === "pending") {
+    if (spam.GetSpamReportedStatus === 'pending') {
         return <Spinner />
     }
     return (
@@ -60,12 +60,10 @@ export const SpamContainer = () => {
                                                         > 
                                                         </button>
                                                         <ul className="dropdown-menu">
-                                                            <li
-                                                                className="dropdown-item fs-6"
-                                                                onClick={()=>dispatch(DeleteSpamReport({id}))}
-                                                            >
-                                                                Delete
-                                                            </li>
+                                                            <DeleteBtn
+                                                                status = {spam.deleteSpamStatus}
+                                                                deleteFunc ={DeleteSpamReport({id})}
+                                                            />
                                                         </ul>
                                                     </div>
                                                 </div>

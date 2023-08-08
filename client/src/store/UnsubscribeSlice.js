@@ -9,7 +9,7 @@ export const DeleteUnSubscribers = createAsyncThunk(
     async ({id},{dispatch}) =>{
     try{
         const response = await axios.delete(
-            `${apiBaseUrl}/api/deleteunsubscribe/${id}`,
+            `${apiBaseUrl}/deleteunsubscribe/${id}`,
                 setHeaders()
         )
         if(response?.data?.status){

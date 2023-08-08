@@ -1,12 +1,12 @@
 import {useSelector,useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Actions } from "./actions";
-import Spinner from "../../../../components/spinner/spinner";
 import { NoData } from "../../../../components/nodata";
 import { DeleteCampaigns } from "../../../../store/campaignSlice";
 import { Modal } from "../../../../components/modal/modal";
 import { useRef } from "react";
 import { CreateTag } from "../../list/components/tagcomponent/tagsmodalcontent";
+import { DeleteBtn } from "../../template/components/deleteBtn";
 
 export const AllcampaignView =()=>{
     const navigate = useNavigate();
@@ -15,10 +15,6 @@ export const AllcampaignView =()=>{
         state => state.campaign
     )
     const dispatch = useDispatch()
-
-    if(campaign.deleteStatus ==='pending'){
-        return <Spinner/>
-    }
 
     return(
         <>
@@ -77,12 +73,11 @@ export const AllcampaignView =()=>{
                                                     >
                                                         Email verification
                                                     </li> */}
-                                                    <li
-                                                        className="dropdown-item fs-6"
-                                                        onClick={()=>dispatch(DeleteCampaigns({id}))}
-                                                    >
-                                                        Delete
-                                                    </li>
+                                                    <DeleteBtn
+                                                            status = {campaign.deleteStatus }
+                                                            deleteFunc ={DeleteCampaigns({id})}
+
+                                                        />
                                                 </ul>
                                             </div>
                                         </div>

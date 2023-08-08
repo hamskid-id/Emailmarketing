@@ -80,7 +80,7 @@ const App =()=> {
             <Route exact path='/campaign/select-type'  element={ <SelectTypeView/>} />
             <Route exact path='/campaign/create/plaintext'  element={ <Plaintext/>} />
             <Route exact path='/templates'  element={ <TemplateList/>} />
-            <Route exact path='/edit/template/:category/:id'  element={ <EditView/>} />
+            <Route exact path='/edit/template/:category/:id/:action'  element={ <EditView/>} />
             <Route exact path='/automations'  element={ <AutoPage/>} />
             <Route exact path='/automations/design'  element={ <AutomationDesign/>} />
             <Route exact path="/create/template" element={<CreateView/>}/>

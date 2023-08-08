@@ -4,6 +4,7 @@ import Spinner from "../../../../../components/spinner/spinner";
 import { DeleteBlacklist, GetBlacklist } from "../../../../../store/BlacklistedSlice";
 import { Actions } from "./blacklistaction";
 import { NoData } from "../../../../../components/nodata";
+import { DeleteBtn } from "../../../template/components/deleteBtn";
 
 export const BlacklistTable =()=>{
     const blacklist = useSelector(
@@ -14,7 +15,7 @@ export const BlacklistTable =()=>{
         dispatch(GetBlacklist(null));
     },[dispatch])
 
-    if(blacklist.GetBlacklistStatus ==='pending' || blacklist.deleteStatus === "pending"){
+    if(blacklist.GetBlacklistStatus ==='pending'){
         return <Spinner/>
     }
     return(
@@ -58,12 +59,10 @@ export const BlacklistTable =()=>{
                                                     >
                                                     </button>
                                                     <ul className="dropdown-menu">
-                                                        <li
-                                                            className="dropdown-item"
-                                                            onClick={()=>dispatch(DeleteBlacklist({id}))}
-                                                        >
-                                                            Delete
-                                                        </li>
+                                                        <DeleteBtn
+                                                            status = {blacklist.deleteStatus}
+                                                            deleteFunc ={DeleteBlacklist({id})}
+                                                        />
                                                     </ul>
                                                 </div>
                                             </div>

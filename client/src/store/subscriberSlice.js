@@ -3,6 +3,7 @@ import  axios  from 'axios';
 import { toast } from 'react-toastify';
 import { UpdateActivities } from './activitiesSlice';
 import { apiBaseUrl, setHeaders } from './api';
+import { GetUnSubscribers } from './UnsubscribeSlice';
 
 
 export const DeleteSubscriber = createAsyncThunk(
@@ -81,7 +82,7 @@ export const CreatCsvSubscriber = createAsyncThunk(
             dispatch(UpdateActivities({
                 action:`You updated your subscriber's list`
             }));
-            dispatch(GetSubscribers())
+            dispatch(GetUnSubscribers())
         }
         return response?.data
     } catch(err){

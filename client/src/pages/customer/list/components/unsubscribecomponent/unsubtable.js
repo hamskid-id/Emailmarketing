@@ -1,10 +1,11 @@
 import {useRef } from "react";
-import {useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Spinner from "../../../../../components/spinner/spinner";
 import { HandleDownloadPdf } from "../../../campaign/statistics.js/components/download";
 import { Actions } from "./unsubaction";
 import { NoData } from "../../../../../components/nodata";
 import { DeleteUnSubscribers } from "../../../../../store/UnsubscribeSlice";
+import { DeleteBtn } from "../../../template/components/deleteBtn";
 
 export const UnSubContainer =()=>{
     
@@ -12,7 +13,6 @@ export const UnSubContainer =()=>{
     const unsub = useSelector(
         state => state.unsubscriber
     )
-    const dispatch = useDispatch();
     if(unsub.GetUnSubscribersStatus ==='pending'){
         return <Spinner/>
     }
@@ -95,23 +95,12 @@ export const UnSubContainer =()=>{
                                                         data-bs-toggle="dropdown" 
                                                         aria-expanded="false" 
                                                     >
-                                                        { 
-                                                            unsub.deleteStatus === "pending" && (       
-                                                            <span 
-                                                                className="spinner-border spinner-border-sm me-1" 
-                                                                role="status" 
-                                                                aria-hidden="true">
-                                                            </span> 
-                                                            )
-                                                        } 
                                                     </button>
                                                     <ul className="dropdown-menu">
-                                                        <li
-                                                            className="dropdown-item fs-6"
-                                                            onClick={()=>dispatch(DeleteUnSubscribers({id}))}
-                                                        >
-                                                            Delete
-                                                        </li>
+                                                        <DeleteBtn
+                                                            status = {unsub.deleteStatus}
+                                                            deleteFunc ={DeleteUnSubscribers({id})}
+                                                        />
                                                     </ul>
                                                 </div>
                                             </td>

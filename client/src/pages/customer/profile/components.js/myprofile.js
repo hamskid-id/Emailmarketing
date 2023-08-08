@@ -19,7 +19,7 @@ export const MyProfile =()=>{
             // formData.append('profile',file)
             // console.log(formData)
             dispatch(UploadProfilePicture({
-                pics:file,
+                profile:file,
                 id:auth.userdata?.user?.id
             }))
         }

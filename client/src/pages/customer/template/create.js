@@ -37,6 +37,8 @@ export const CreateView =()=>{
 
     const onReady = () => {
         // editor is ready
+        FetchTemplate()
+        console.log(EditedInfo.design_content)
         console.log('onReady');
     };
 
@@ -54,8 +56,7 @@ export const CreateView =()=>{
             <div className="w-overflow">
                 <EmailEditor 
                     editorId="editor_container"
-                    ref={emailEditorRef} 
-                    onLoad={onLoad} 
+                    ref={emailEditorRef}
                     onReady={onReady} 
                 />
             </div>          

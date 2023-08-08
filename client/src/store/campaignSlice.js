@@ -281,6 +281,7 @@ const campaign_Slice = createSlice({
                 }= action.payload
                 if(status === true){
                     toast(message);
+                    localStorage.removeItem('templateInfo')
                     window.location.replace("/campaigns")
                     return{
                         ...state,

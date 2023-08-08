@@ -34,7 +34,7 @@ export const ActivitiesLog =()=>{
                                 color="#bbb"
                                 size="4rem"
                             />
-                            <p className="fs-6 text-center c-grey">No campaign has being sent </p>
+                            <p className="fs-6 text-center c-grey">No data</p>
                         </div>
                     ) :(
                         <div className="mb-2 h5-overflow pb-1">
