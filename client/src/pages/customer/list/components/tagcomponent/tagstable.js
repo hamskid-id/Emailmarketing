@@ -4,6 +4,7 @@ import { Actions } from "../../../../../components/actions";
 import Spinner from "../../../../../components/spinner/spinner";
 import { DeleteTags, Tag_SliceActions } from "../../../../../store/tagSlice";
 import { NoData } from "../../../../../components/nodata";
+import { DeleteBtn } from "../../../template/components/deleteBtn";
 
 export const TagContainer =()=>{
     const navigate = useNavigate()
@@ -12,7 +13,7 @@ export const TagContainer =()=>{
         state => state.tag
     )
 
-    if(tag.GetTagsStatus ==='pending' || tag.deleteStatus === "pending"){
+    if(tag.GetTagsStatus ==='pending'){
         return <Spinner/>
     }
 
@@ -86,12 +87,11 @@ export const TagContainer =()=>{
                                                         >
                                                            Update
                                                         </li>
-                                                        <li
-                                                            className="dropdown-item fs-6"
-                                                            onClick={()=>dispatch(DeleteTags({id}))}
-                                                        >
-                                                            Delete
-                                                        </li>
+                                                        <DeleteBtn
+                                                            status = {tag.deleteStatus}
+                                                            deleteFunc ={DeleteTags({id})}
+
+                                                        />
                                                     </ul>
                                                 </div>
                                             </div>

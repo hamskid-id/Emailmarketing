@@ -3,14 +3,22 @@ import { Modal } from "../../../components/modal/modal";
 import { CreateNav } from "./components/createNav";
 import EmailEditor from 'react-email-editor';
 import { TemplateForm } from "./components/templateform";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { apiBaseUrl, setHeaders } from "../../../store/api";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { CreateTemplate } from "../../../store/templateSlice";
 
 export const EditView =()=>{
     const emailEditorRef = useRef(null);
+    const template = useSelector(
+        state => state.template
+    )
+    const dispatch = useDispatch();
+    const navigate =useNavigate();
     const {id,category} = useParams();
+    const [templateSaved, setTemplateSaved] = useState(false)
 
     const [
         EditedInfo, 
@@ -88,11 +96,42 @@ export const EditView =()=>{
         // console.log("html", EditedInfo.html);
         console.log("design", EditedInfo.design_content);
     }
-
+    const saveEditedTemplate =()=>{
+        emailEditorRef
+        .current.editor
+        .exportHtml((data) => {
+        const { design, html } = data;
+        console.log('exportHtml', html);
+        if(design){
+            dispatch(
+                CreateTemplate({
+                    template_name:EditedInfo.template_name,
+                    template_describ:EditedInfo.template_describ,
+                    design_content:JSON.stringify(design),
+                    design_html:html,
+                    template_type:"private"
+                })
+            )
+            setTemplateSaved(true);
+        }
+        });
+    }
+    useEffect(()=>{
+        if(templateSaved && template.CreateTemplateStatus === 'success'){
+            localStorage.setItem(
+                'templateInfo',
+                JSON.stringify(EditedInfo.html)
+            )
+            navigate("/campaigns/Create");
+        }
+    },[templateSaved,template.CreateTemplateStatus])
+    
     return(
         <>
             <CreateNav
                 handleSave={handleSave}
+                edit={true}
+                saveEditedTemplate={saveEditedTemplate}
             />
             <div className="w-overflow">
                 <EmailEditor 

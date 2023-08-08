@@ -24,11 +24,11 @@ export const CreateCampaignContent =()=>{
         setCampaignparams
     ]=useState({
         campaignType:localStorage.getItem("campaigns") ? localStorage.getItem("campaigns"):"",
-        content:"",
+        content:localStorage.getItem('templateInfo') ? localStorage.getItem('templateInfo'):"",
         NameYourCampaign:"",
         EmailSubject :"",
-        FromName:auth.userdata?.user?.name,
-        FromEmail:auth.userdata?.user?.email,
+        FromName:auth?.userdata?.user?.name,
+        FromEmail:auth?.userdata?.user?.email,
         ReplyTo:"",
         DeliveryDate:"",
         // DeliveryTime:"",

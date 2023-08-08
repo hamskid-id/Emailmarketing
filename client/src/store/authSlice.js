@@ -48,11 +48,11 @@ export const UploadProfilePicture = createAsyncThunk(
     'auth/UploadProfilePicture', 
     async ({
         id,
-        pics,
+        profile,
     },{dispatch}) =>{
     try{
         const response = await axios.post(
-            `${apiBaseUrl}/updateprofile/${id}`,{pics},{
+            `${apiBaseUrl}/updateprofile/${id}`,{profile},{
                 headers:{
                     "Authorization":`Bearer Bearer ${JSON.parse(localStorage.getItem('marketingUserToken'))?.access_token}`,
                     "Content-Type": 'multipart/form-data',

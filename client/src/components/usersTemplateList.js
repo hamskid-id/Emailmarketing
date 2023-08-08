@@ -5,6 +5,7 @@ import Spinner from "./spinner/spinner";
 import { DeleteTemplate, GetUserTemplate } from "../store/templateSlice";
 import { EditTemplateView } from "../pages/customer/campaign/component/editCampaignTemplate";
 import { Actions } from "./templateActions"
+import { DeleteBtn } from "../pages/customer/template/components/deleteBtn";
 
 export const MyTemplateList =({
     campaign,
@@ -16,12 +17,13 @@ export const MyTemplateList =({
     const template = useSelector(
         state => state.template
     )
+    const action = "edit";
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(GetUserTemplate(null));
     },[dispatch])
     
-    if(template.GetUserTemplateStatus ==='pending' || template.deleteStatus === "pending" ){
+    if(template.GetUserTemplateStatus ==='pending'){
         return <Spinner/>
     }
     return(
@@ -90,43 +92,34 @@ export const MyTemplateList =({
                                                     >
                                                     </button>
                                                     <ul className="dropdown-menu">
-                                                        {
-                                                            campaign?(
-                                                                <li
-                                                                    className="dropdown-item fs-6"
-                                                                    onClick={
-                                                                        ()=>{
-                                                                            setCampaignSection({
-                                                                                name:"Template",
-                                                                                components:<EditTemplateView 
-                                                                                    id={id}
-                                                                                    campaignParams={campaignParams}
-                                                                                    setCampaignparams={setCampaignparams}
-                                                                                    setCampaignSection={setCampaignSection}
-                                                                                />
-                                                                            })
-                                                                        }
-                                                                    }
-                                                                >
-                                                                Edit
-                                                                </li>
-                                                            ):(
-                                                                <li 
-                                                                    className="dropdown-item fs-6"
-                                                                    onClick={
-                                                                        ()=>navigate(`/edit/template/${category}/${id}`)
-                                                                    }
-                                                                >
-                                                                    Edit
-                                                                </li>
-                                                            )
-                                                        }
                                                         <li
                                                             className="dropdown-item fs-6"
-                                                            onClick={()=>dispatch(DeleteTemplate({id}))}
+                                                            onClick={
+                                                                ()=>{
+                                                                    if(campaign){
+                                                                        setCampaignSection({
+                                                                            name:"Template",
+                                                                            components:<EditTemplateView 
+                                                                                id={id}
+                                                                                campaignParams={campaignParams}
+                                                                                setCampaignparams={setCampaignparams}
+                                                                                setCampaignSection={setCampaignSection}
+                                                                            />
+                                                                        })
+                                                                    }else{
+                                                                        navigate(`/edit/template/${category}/${id}/${action}`)
+                                                                    }
+                                                                    
+                                                                }
+                                                            }
                                                         >
-                                                            Delete
+                                                        select
                                                         </li>
+                                                        <DeleteBtn
+                                                            status = {template.deleteStatus}
+                                                            deleteFunc ={DeleteTemplate({id})}
+
+                                                        />
                                                     </ul>
                                                 </div>
                                         </div>

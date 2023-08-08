@@ -2,12 +2,15 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomFormField } from "../../../../components/customFomField";
 import { CreateTemplate } from "../../../../store/templateSlice";
-import { useEffect } from "react";
+import {useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const TemplateForm =({EditedInfo,hidemodal})=>{
     const template = useSelector(
         state => state.template
     )
+    const navigate = useNavigate();
+    const [templateSaved, setTemplateSaved] = useState(false)
     const dispatch  = useDispatch()
     const { 
         handleSubmit, 
@@ -28,13 +31,22 @@ export const TemplateForm =({EditedInfo,hidemodal})=>{
                 template_type:"private"
             })
         )
+        setTemplateSaved(true);
     }
-
     useEffect(()=>{
-        if(template.CreateTemplateStatus ==="success"){
-            hidemodal.current.click()
+        if(templateSaved && template.CreateTemplateStatus === 'success'){
+            localStorage.setItem(
+                'templateInfo',
+                JSON.stringify(EditedInfo.html)
+            )
+            // navigate("/campaigns/Create");
         }
-    },[template])
+    },[templateSaved,template.CreateTemplateStatus])
+    // useEffect(()=>{
+    //     if(template.CreateTemplateStatus ==="success"){
+    //         hidemodal.current.click()
+    //     }
+    // },[template])
 
     return(
        

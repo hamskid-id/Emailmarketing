@@ -16,6 +16,7 @@ export const GeneralList =({
     const template = useSelector(
         state => state.template
     )
+    const action = "edit";
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(GetGeneralTemplate(null));
@@ -99,7 +100,7 @@ export const GeneralList =({
                                                     <li 
                                                         className="dropdown-item fs-6"
                                                         onClick={
-                                                            ()=>navigate(`/edit/template/${category}/${id}`)
+                                                            ()=>navigate(`/edit/template/${category}/${id}/${action}`)
                                                         }
                                                     >
                                                         Select

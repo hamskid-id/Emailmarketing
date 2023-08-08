@@ -1,8 +1,9 @@
-import {useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Spinner from "../../../../components/spinner/spinner";
 import { Actions } from "./subAction";
 import { NoData } from "../../../../components/nodata";
 import { DeleteSubscriber } from "../../../../store/subscriberSlice";
+import { DeleteBtn } from "../../template/components/deleteBtn";
 
 export const SubscriberTable=({
     content,
@@ -13,9 +14,8 @@ export const SubscriberTable=({
         const subsriber = useSelector(
             state => state.subscriber
         )
-        const dispatch = useDispatch();
 
-        if(subsriber.GetSubscribersStatus ==='pending' || content.deleteSubStatus ==='pending'){
+        if(subsriber.GetSubscribersStatus ==='pending'){
             return <Spinner/>
         }
 
@@ -74,12 +74,10 @@ export const SubscriberTable=({
                                                     >
                                                     </button>
                                                     <ul className="dropdown-menu">
-                                                        <li
-                                                            className="dropdown-item fs-6"
-                                                            onClick={()=>dispatch(DeleteSubscriber({id}))}
-                                                        >
-                                                            Delete
-                                                        </li>
+                                                        <DeleteBtn
+                                                            status = {content.deleteSubStatus}
+                                                            deleteFunc ={DeleteSubscriber({id})}
+                                                        />
                                                     </ul>
                                                 </div>
                                             </td>
