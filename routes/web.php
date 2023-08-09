@@ -23,6 +23,8 @@ Route::get('test', function () {
     return view('test');
 });
 Route::post('bulksubscribe', [EmailmarketingController::class, 'bulksubscribe'])->name('bulksubscribe');
+Route::get('resetpass', [UserController::class, 'resetpass']);
+Route::post('updatepassword', [UserController::class, 'updatepass']);
 
 
 // Auth::routes();

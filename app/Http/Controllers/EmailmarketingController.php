@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CommunicationJob;
-use App\Mail\sendemails;
-use App\Models\audithtrail;
-use App\Models\Blacklisted;
-use App\Models\campaign;
+use App\Models\tags;
+use App\Models\User;
 use App\Models\country;
-use App\Models\inviteduser;
+use App\Mail\sendemails;
+use App\Models\campaign;
+use App\Models\template;
 use App\Models\Spamreport;
 use App\Models\subscriber;
-use App\Models\tags;
-use App\Models\template;
-use App\Models\User;
+use App\Models\audithtrail;
+use App\Models\Blacklisted;
+use App\Models\inviteduser;
 use Illuminate\Http\Request;
+use App\Jobs\CommunicationJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class EmailmarketingController extends Controller
 {
@@ -935,4 +936,420 @@ class EmailmarketingController extends Controller
             ]);
         }
     }
+
+    //for tags under subscribe
+    public function tagsubscribe()
+    {
+        if (Auth::check()) {
+            $subscrib = subscriber::where('subscribe', 1)->get();
+            $tags = tags::whereIn('id', $subscrib->pluck('tag_id'))->get();
+            if($subscrib->count() > 0){
+                return response()->json([
+                    'status' => true,
+                    'message' => $tags,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No data found',
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+    }
+
+    //for tags under unsubscribe
+    public function tagunsubscrib()
+    {
+        if (Auth::check()) {
+            $subscrib = subscriber::where('subscribe', 0)->get();
+            $tagsunsubscrib = tags::whereIn('id', $subscrib->pluck('tag_id'))->get();
+            if($subscrib->count() > 0){
+                return response()->json([
+                    'status' => true,
+                    'message' => $tagsunsubscrib,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No data found',
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+    }
+
+    //for tags under spamreports
+    public function tagspam()
+    {
+        if (Auth::check()) {
+            $user = new User();
+            $tags = tags::all();
+            foreach($tags as $tag) {
+                // $user = $tag->user;
+                $tagspam = Spamreport::where('email', $tag->user->email)->get();
+                if($tagspam->count() > 0){
+                    return response()->json([
+                        'status' => true,
+                        'message' => $tagspam,
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'No record found',
+                    ]);
+                }
+
+            }
+
+
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+    }
+
+     //for tags under blacklist
+     public function tagblacklist()
+     {
+        if (Auth::check()) {
+            $user = new User();
+            $tags = tags::all();
+            foreach($tags as $tag) {
+                // $user = $tag->user;
+                $tagblacklist = Blacklisted::where('email', $tag->user->email)->get();
+                if($tagblacklist->count() > 0){
+                    return response()->json([
+                        'status' => true,
+                        'message' => $tagblacklist,
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'No record found',
+                    ]);
+                }
+
+            }
+
+
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+     }
+
+     public function deletesubscribe($id){
+        $subscrib = subscriber::find($id);
+        if(!$subscrib){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        if($subscrib->delete()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Subscriber deleted successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'unable to delete Subscriber!',
+            ]);
+        }
+
+     }
+
+     public function deletetags($id)
+     {
+        $tag = tags::where('id',$id)->where('business_id', Auth::user()->business_id);
+        if(!$tag){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        if($tag->delete()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Tag deleted successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to delete tag!',
+            ]);
+        }
+     }
+
+     public function deleteblacklist($id)
+     {
+        $blacklist = Blacklisted::where('id',$id)->where('business_id', Auth::user()->business_id);
+
+        if(!$blacklist){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        if($blacklist->delete()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Blacklist deleted successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to delete blacklist!',
+            ]);
+        }
+     }
+
+     public function deletespam($id){
+        $spam = Spamreport::where('id',$id)->where('business_id', Auth::user()->business_id);
+        if(!$spam){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        if($spam->delete()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Spam report deleted successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to delete spam report!',
+            ]);
+        }
+     }
+
+     public function deleteunsubscribe($id)
+     {
+        $unsubscribe = subscriber::where('id', $id)->where('subscribe', 0)->first();
+        if(!$unsubscribe){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        if($unsubscribe->delete()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Unsubscriber deleted successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to delete unsubscriber!',
+            ]);
+        }
+     }
+
+     public function deletecamp($id)
+     {
+        $campaign = campaign::where('id', $id)->where('business_id', Auth::user()->business_id)->first();
+        if(!$campaign){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        if($campaign->delete()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Campaign deleted successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to delete Campaign!',
+            ]);
+        }
+     }
+
+     public function deletetempl($id)
+     {
+        $template = template::where('id', $id)->where('business_id', Auth::user()->business_id)->where('template_type', 'private')->first();
+        if(!$template){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        if($template->delete()){
+            return response()->json([
+                'status' => true,
+                'message' => 'Template deleted successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to delete Template!',
+            ]);
+        }
+     }
+
+     public function updateuserinfo(Request $request, $id)
+     {
+         $userinfo = User::where('id',$id)->where('id', Auth::user()->id)->first();
+         if(!$userinfo){
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+        $userinfo->email = $request->email;
+        $userinfo->company = $request->company;
+        $userinfo->phone = $request->phone;
+        $userinfo->zip_code = $request->zip_code;
+        $userinfo->state = $request->state;
+        $userinfo->city = $request->city;
+        $userinfo->address1 = $request->address1;
+        $userinfo->address2 = $request->address2;
+        $userinfo->country = $request->country;
+
+        if($userinfo->update()){
+            return response()->json([
+                'status' => true,
+                'message' => 'User info updated successfully!',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Unable to update user Info!',
+            ]);
+        }
+
+     }
+
+    public function updateprofile(Request $request, $id)
+    {
+        // Validate the input data
+        $validator = Validator::make($request->all(), [
+            'profile' => 'required|image|max:2048',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        // Get the authenticated user
+        $user = User::where('id', $id)->where('id', Auth::user()->id)->first();
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Id not found!',
+            ]);
+        }
+
+        // Delete the old profile picture if it exists
+        if ($user->profile && file_exists(public_path('uploads/profile/' . $user->profile))) {
+            unlink(public_path('uploads/profile/' . $user->profile));
+        }
+
+        // Upload the new profile picture
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/profile/');
+            $image->move($destinationPath, $name);
+
+            // Update the user's profile picture in the database
+            $user->profile = $name;
+            $user->save();
+
+            // Return a success response
+            return response()->json([
+                'status' => true,
+                'message' => 'Profile picture updated successfully.',
+                'data' => [
+                    'profile' => $user->profile,
+                ],
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'No file uploaded.',
+            ]);
+        }
+    }
+
+     public function viewuserinfo($id)
+     {
+        if (Auth::check()) {
+            $viewauser = User::where('id', $id)->where('business_id', Auth::user()->business_id)->get();
+            if (!$viewauser) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'User details not found',
+                ]);
+            }
+            if($viewauser){
+                return response()->json([
+                    'status' => true,
+                    'message' => $viewauser,
+                ]);
+            }
+
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+     }
+
+     public function viewprofile($id)
+     {
+        if (Auth::check()) {
+            $viewaprofile = User::where('id', $id)->where('business_id', Auth::user()->business_id)->first();
+            if(!$viewaprofile){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'ID not found',
+                ]);
+            }
+            if($viewaprofile->profile == ""){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'You dont have a profile yet',
+                ]);
+            }
+            if ($viewaprofile) {
+                return response()->json([
+                    'status' => true,
+                    'message' => $viewaprofile->profile,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'ID not found',
+                ]);
+            }
+
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+     }
 }
