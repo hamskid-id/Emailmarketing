@@ -96,7 +96,7 @@ export const RecentlySent=()=>{
                                                             {title}
                                                         </span>
                                                     </div>
-                                                    <span className="text-dark break fs-6">
+                                                    <span className="text-dark break fs-6 ellipsis ">
                                                         {value}
                                                     </span>
                                                 </div>
