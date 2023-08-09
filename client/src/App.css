@@ -112,7 +112,11 @@
 input[id="upload"]{
   display:none;
 }
-
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  overflow: hidden; 
+}
 .border-bottom-slate-grey{
   border-bottom:4px solid #3B3C36;
 }

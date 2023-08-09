@@ -20,7 +20,6 @@ export const CreateView =()=>{
             .current.editor
             .exportHtml((data) => {
             const { design, html } = data;
-            console.log('exportHtml', html);
             setEditedInfo({
                 html,
                 design:JSON.stringify(design)
@@ -37,7 +36,6 @@ export const CreateView =()=>{
 
     const onReady = () => {
         // editor is ready
-        FetchTemplate()
         console.log(EditedInfo.design_content)
         console.log('onReady');
     };
@@ -45,7 +43,6 @@ export const CreateView =()=>{
     const handleSave=()=>{
         exportHtml();
         // console.log("html", EditedInfo.html);
-        console.log("design", EditedInfo.design);
     }
 
     return(

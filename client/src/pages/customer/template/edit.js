@@ -36,9 +36,6 @@ export const EditView =()=>{
                     `${apiBaseUrl}/generaltemp`,
                         setHeaders()
                 )
-            console.log(
-               response?.data
-            )
             const {
                 status,
                 message

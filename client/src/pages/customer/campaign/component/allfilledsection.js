@@ -101,9 +101,9 @@ export const AllFieldSection=({
                             className="d-flex justify-content-between align-items-center"
                             key={index}
                         >
-                            <div>
+                            <div className="ellipsis pe-2">
                                 <h6 className="fs-4 break">{name}</h6>
-                                <h6 className="fs-6 break">{content?content:"Unavailable"}</h6>
+                                <h6 className="fs-6 break ellipsis">{content?content:"Unavailable"}</h6>
                             </div>
                             <div>
                                 <button 

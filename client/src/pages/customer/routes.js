@@ -1,4 +1,4 @@
-import { AiOutlineHome, AiOutlineRadiusSetting } from "react-icons/ai";
+import { AiOutlineAppstore, AiOutlineRadiusSetting } from "react-icons/ai";
 import {FcTemplate,FcList,FcMindMap} from "react-icons/fc";
 export const AccordionsRoutes =[
     {
@@ -35,7 +35,7 @@ export const AccordionsRoutes =[
 ]
 export const ListRoute=[
     {
-        icon:<AiOutlineHome
+        icon:<AiOutlineAppstore
                 size="1.1rem"
                 color="lightblue"
             />,
