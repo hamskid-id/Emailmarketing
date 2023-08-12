@@ -1,6 +1,7 @@
 import { Recipient } from "./recipient"
 import { Schedule } from "./schedule"
 import { Setup } from "./setup"
+import { TemplateChoice } from "./templatechoice"
 
 export const AllFieldSection=({
     setCampaignSection,
@@ -87,6 +88,17 @@ export const AllFieldSection=({
                             setCampaignSection={setCampaignSection}
                         />,
                         active:3
+                    },
+                    {
+                        name:"Template *",
+                        content:campaignParams.content,
+                        section:"Template",
+                        components:<TemplateChoice
+                            campaignParams={campaignParams}
+                            setCampaignparams={setCampaignparams}
+                            setCampaignSection={setCampaignSection}
+                        />,
+                        active:2
                     }
                 ]?.map((sect,index)=>{
                     const{

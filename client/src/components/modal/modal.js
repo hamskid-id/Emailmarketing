@@ -10,21 +10,19 @@ export const Modal =({title,body,large,hidemodal,id})=>{
             aria-hidden="true">
             <div className={`modal-dialog ${large && `modal-xl`} modal-dialog-centered modal-dialog-scrollable`}>
                 <div className="modal-content">
-                    <div className="modal-header">
-                        {
+                    {
                             title &&(
-                                <h5 className="modal-title fw-bold fs-6">
-                                    {title}
-                                </h5>
+                                <div className="modal-header">
+                                    {
+                                        title &&(
+                                            <h5 className="modal-title fw-bold fs-6">
+                                                {title}
+                                            </h5>
+                                        )
+                                    }
+                                </div>
                             )
-                        }
-                        <button 
-                            type="button" 
-                            className="btn-close" 
-                            data-bs-dismiss="modal" 
-                            aria-label="Close">
-                        </button>
-                    </div>
+                    }
                     <div className="modal-body">
                         {body}
                     </div>

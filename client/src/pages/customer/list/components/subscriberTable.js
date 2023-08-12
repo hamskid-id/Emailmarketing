@@ -53,7 +53,7 @@ export const SubscriberTable=({
                                         phone,
                                         dob,
                                         id
-                                    }=sub
+                                    }=sub;
                                     return(
                                         <tr key={index}>
                                             <th scope="row" className="fs-6">{index+1}</th>
