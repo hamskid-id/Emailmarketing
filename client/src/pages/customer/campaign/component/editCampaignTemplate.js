@@ -15,6 +15,7 @@ export const EditTemplateView =({
     id
 })=>{
     const hidemodal = useRef(null);
+    const [showSavedButton, setShowSaveButton] = useState(false);
     const dispatch= useDispatch();
     const template = useSelector(
         state => state.template
@@ -116,6 +117,7 @@ export const EditTemplateView =({
 
     const onReady = () => {
         // editor is ready
+        setShowSaveButton(true);
         console.log('onReady');
     };
 
@@ -130,7 +132,7 @@ export const EditTemplateView =({
         <>
             <div className="d-flex fl-r me-3 mb-3">
                 {
-                    template?.CreateTemplateStatus == 'pending' && type!='create'?(
+                    (template?.CreateTemplateStatus == 'pending' && type!='create' && showSavedButton)?(
                         <button 
                             className="btn b-grey me-3 text-white"
                             type="button"  
@@ -140,7 +142,7 @@ export const EditTemplateView =({
                                 aria-hidden="true">
                             </span>Save & proceed
                         </button>
-                    ): type =='create'?(
+                    ): (type =='create' && showSavedButton)?(
                         <button 
                             className="btn b-grey me-3"
                             type="button"                            
@@ -149,7 +151,7 @@ export const EditTemplateView =({
                             onClick={handleSave}
                         >Save
                         </button>
-                    ):(
+                    ):showSavedButton?(
                         <button 
                             className="btn b-grey me-3"
                             type="button"                            
@@ -158,7 +160,7 @@ export const EditTemplateView =({
                             onClick={SubmitTemplate}  
                         >Save & Proceed
                         </button>
-                    )
+                    ):null
                 }
             </div>
             <div className="w-overflow">
