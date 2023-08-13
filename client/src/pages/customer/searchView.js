@@ -3,6 +3,7 @@ import { FaSistrix } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import Spinner from "../../components/spinner/spinner"
+import { AiOutlineSelect } from "react-icons/ai"
 
 export const SearchView=()=>{
     const campaign = useSelector(
@@ -156,6 +157,9 @@ export const SearchView=()=>{
                                             <h6 className="fs-6 ">{from_email}</h6>
                                             <h6 className="fs-6 ">{subject}</h6>
                                             <h6 className="fs-6">{reply_to}</h6>
+                                            <div className="d-flex  justify-content-end mt-1">
+                                                <AiOutlineSelect/>
+                                            </div>
                                         </div>
                                     )}
                                 )
@@ -184,6 +188,9 @@ export const SearchView=()=>{
                                             <h6 className="fs-6 fw-bold">{email}</h6>
                                             <h6 className="fs-6 ">{fname}</h6>
                                             <h6 className="fs-6 ">{lname}</h6>
+                                            <div className="d-flex  justify-content-end mt-1">
+                                                <AiOutlineSelect/>
+                                            </div>
                                         </div>
                                     )
                                 })
@@ -212,6 +219,9 @@ export const SearchView=()=>{
                                             <h6 className="fs-6 fw-bold">{email}</h6>
                                             <h6 className="fs-6 ">{fname}</h6>
                                             <h6 className="fs-6 ">{lname}</h6>
+                                            <div className="d-flex  justify-content-end mt-1">
+                                                <AiOutlineSelect/>
+                                            </div>
                                         </div>
                                     )
                                 })
