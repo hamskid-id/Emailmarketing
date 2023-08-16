@@ -37,7 +37,7 @@ export const SubscriberModalContent =({hidemodal})=>{
                 state,
                 phone,
                 dob,
-                tag_id:tag
+                tag
             })
         )
     }

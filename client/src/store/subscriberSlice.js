@@ -103,7 +103,7 @@ export const Createsubscriber = createAsyncThunk(
         state,
         phone,
         dob,
-        tag_id
+        tag
     },{dispatch}) =>{
     try{
         const response = await axios.post(
@@ -115,7 +115,7 @@ export const Createsubscriber = createAsyncThunk(
                 state,
                 phone,
                 dob,
-                tag_id
+                tag
             },
             setHeaders()
         )
@@ -317,6 +317,7 @@ const subscriber_Slice = createSlice({
                     }
                 }
             }else{
+                toast.error(action?.payload?.message);
                 return{
                     ...state,
                     CreatesubscriberStatus:"failed"
