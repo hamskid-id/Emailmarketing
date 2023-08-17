@@ -1282,6 +1282,7 @@ class EmailmarketingController extends Controller
                 'message' => 'Profile picture updated successfully.',
                 'data' => [
                     'profile' => $user->profile,
+                    'profilepath' => asset('uploads/profile/' . $name)
                 ],
             ]);
         } else {
