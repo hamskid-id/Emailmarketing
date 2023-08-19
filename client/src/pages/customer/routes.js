@@ -10,7 +10,7 @@ export const AccordionsRoutes =[
         name:"Lists",
         subName:[
             "Overview",
-            "Lists",
+            // "Lists",
             "Subscribers",
             "Unsubscribe",
             "Spam Report",
