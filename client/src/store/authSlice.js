@@ -49,7 +49,7 @@ export const UploadProfilePicture = createAsyncThunk(
     async ({
         id,
         profile,
-    },{dispatch}) =>{
+    }) =>{
     try{
         const response = await axios.post(
             `${apiBaseUrl}/updateprofile/${id}`,{profile},{
@@ -60,9 +60,6 @@ export const UploadProfilePicture = createAsyncThunk(
                 }
             }
         );
-        if(response?.data?.status){
-            dispatch(GetProfilePics({id:id}))
-        }
         return response?.data
     } catch(err){
         toast.error(
@@ -256,13 +253,14 @@ const auth_Slice = createSlice({
             if(action.payload){
                 const {
                     status,
-                    message
+                    message,
+                    data
                 }= action.payload
                 
                 if(status){
                     return{
                         ...state,
-                        profilePicture:message,
+                        profilePicture: message?.profilepath,
                         profilePictureStatus:"success",
                     }
                 }return{
@@ -369,13 +367,15 @@ const auth_Slice = createSlice({
             if(action.payload){
                 const {
                     message,
-                    status
+                    status,
+                    data
                 }= action.payload;
                 if(status){
                     toast(message)
                     return{
                         ...state,
-                        uploadProfilePicsStatus:"success"
+                        uploadProfilePicsStatus:"success",
+                        profilePicture:data?.profilepath
                     }
                 }else {
                     toast.error(message)

@@ -10,6 +10,7 @@ export const MyProfile =()=>{
     const auth = useSelector(
         state => state.auth
     )
+    console.log(auth.profilePicture)
     const dispatch = useDispatch();
 
     const handleChange =(e)=>{
@@ -40,9 +41,9 @@ export const MyProfile =()=>{
                             {
                                 auth.profilePicture?(
                                     <img 
-                                        src={`https://emailmarketing.staging.5starcompany.com.ng/Uploads/profile/account/${auth.profilePicture}`}
+                                        src={auth.profilePicture}
                                         alt="object not found"
-                                        className="profilePhoto"
+                                        className="profilePhoto w-100"
                                     />
                                 ):(
                                     <LetteredAvatar

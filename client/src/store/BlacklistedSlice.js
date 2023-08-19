@@ -182,7 +182,7 @@ const blacklist_Slice = createSlice({
         builder.addCase(GetBlacklist.rejected,(state, action)=>{
             return{
                 ...state,
-                CreateBlacklistStatus:'rejected'
+                GetBlacklistStatus:'rejected'
             }
         })
 
@@ -203,13 +203,13 @@ const blacklist_Slice = createSlice({
                     toast(message);
                     return{
                         ...state,
-                        GetBlacklistStatus:"success"
+                        CreateBlacklistStatus:"success"
                     }
                 }else {
                     toast.error(message);
                     return{
                     ...state,
-                    GetBlacklistStatus:"failed"
+                    CreateBlacklistStatus:"failed"
                     }
                 }
             }
