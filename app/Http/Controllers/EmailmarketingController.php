@@ -1322,6 +1322,7 @@ class EmailmarketingController extends Controller
      {
         if (Auth::check()) {
             $viewaprofile = User::where('id', $id)->where('business_id', Auth::user()->business_id)->first();
+
             if(!$viewaprofile){
                 return response()->json([
                     'status' => false,
@@ -1334,10 +1335,14 @@ class EmailmarketingController extends Controller
                     'message' => 'You dont have a profile yet',
                 ]);
             }
+            $profilePath = asset('uploads/profile/' . $viewaprofile->profile);
+
             if ($viewaprofile) {
                 return response()->json([
                     'status' => true,
                     'message' => $viewaprofile->profile,
+                    "profilepath" => $profilePath,
+
                 ]);
             } else {
                 return response()->json([
