@@ -43,7 +43,7 @@ export const MyProfile =()=>{
                                     <img 
                                         src={auth.profilePicture}
                                         alt="object not found"
-                                        className="profilePhoto w-100"
+                                        className="profilePhoto"
                                     />
                                 ):(
                                     <LetteredAvatar

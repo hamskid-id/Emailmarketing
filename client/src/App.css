@@ -24,6 +24,10 @@
   background-color: darkgray;
   border:1px solid aliceblue;
 }
+.profilePhoto{
+width:7rem;
+object-fit: contain;
+}
 .web-dash{
   display: block;
 }
