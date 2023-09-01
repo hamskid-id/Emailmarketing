@@ -111,23 +111,16 @@ export const SearchView=()=>{
     }
     return(
         <div className="df-lex flex-column">
-            <form className="d-flex w-100">
+            <form className="w-100">
                 <span className="w-100">
                     <input 
                         type="text" 
-                        placeholder="enter search" 
+                        placeholder="enter search..." 
                         className=" w-100 btn border p-2 bg-ddd"
                         onChange={(e)=>{
                             SearchAll(e.target.value.toString().toLowerCase());
                         }
                         }
-                    />
-                </span>
-                <span>
-                    <FaSistrix
-                        size="2.4rem"
-                        color="white"
-                        className="btn border bg-slate-grey"
                     />
                 </span>
             </form>

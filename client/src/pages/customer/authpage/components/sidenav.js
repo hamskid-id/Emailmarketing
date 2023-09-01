@@ -1,4 +1,4 @@
-import { FaCheckCircle, FaMailBulk} from "react-icons/fa";
+import { FaCheckCircle} from "react-icons/fa";
 export const AuthSideNav =({children})=>{
     return(
         <div className="container-fluid imgBg">
@@ -6,11 +6,6 @@ export const AuthSideNav =({children})=>{
             <div className="col-md-7 auth-side">
                     <div className="d-flex flex-column justify-content-center align-items-center p-4">
                         <div className="d-flex justify-content-center my-4">
-                            {/* <FaMailBulk
-                                size="13rem"
-                                color="white"
-                                className="authside-icon"
-                            /> */}
                             <img 
                                 src="https://demo.acellemail.com/images/automation-illustration.png"
                                 alt="object not found"

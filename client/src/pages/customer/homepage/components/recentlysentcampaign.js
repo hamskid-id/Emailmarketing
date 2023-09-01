@@ -5,9 +5,6 @@ export const RecentlySent=()=>{
     const recentCampaigns = useSelector(
         state => state.campaign
     )
-    const Tags = useSelector(
-        state => state.tag
-    )
 
     return(
         <>
@@ -18,36 +15,6 @@ export const RecentlySent=()=>{
                      Recently sent campaigns
                 </h2>
             </div>
-
-            {/*Tags Created*/}
-
-            {
-                Tags?.Tags?.length !==0 &&(
-                    <div>
-                        <select 
-                            name="campains" 
-                            id="campains"
-                            className="btn rounded text-dark border"
-                            >
-                            {
-                                Tags?.Tags?.map((drop,index)=>{
-                                    const {
-                                        name
-                                    }=drop
-                                    return(
-                                        <option 
-                                            value={name}
-                                            key={index}
-                                        >{name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div>
-                )
-            }
-
             {/*Recently sent campaign*/}
 
             <div className="mt-3">
