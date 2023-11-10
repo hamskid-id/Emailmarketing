@@ -100,7 +100,7 @@ export const GeneralList =({
                                                     <li 
                                                         className="dropdown-item fs-6"
                                                         onClick={
-                                                            ()=>navigate(`/edit/template/${category}/${id}/${action}`)
+                                                            ()=>window.location.replace(`/edit/template/${category}/${id}/${action}`)
                                                         }
                                                     >
                                                         Select

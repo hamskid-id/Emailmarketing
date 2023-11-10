@@ -107,7 +107,7 @@ export const MyTemplateList =({
                                                                             />
                                                                         })
                                                                     }else{
-                                                                        navigate(`/edit/template/${category}/${id}/${action}`)
+                                                                        window.location.replace(`/edit/template/${category}/${id}/${action}`)
                                                                     }
                                                                     
                                                                 }

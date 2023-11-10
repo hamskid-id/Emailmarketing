@@ -54,7 +54,7 @@ export const Layout=({routeChildren,main})=>{
                                 </span>
                                 { main && <span className="fs-3 cl-blue web-dash fw-bold">Dashboard</span>}
                                 <div className="d-flex align-items-center leftIcon">
-                                    <span className="me-2 p-2 rounded-circle bg bg-white">
+                                    {/* <span className="me-2 p-2 rounded-circle bg bg-white">
                                         <FaSistrix
                                             size="1.4rem"
                                             color="grey"
@@ -62,7 +62,7 @@ export const Layout=({routeChildren,main})=>{
                                             data-bs-target="#searchstaticBackdrop"
                                             className="pointer"
                                         />
-                                    </span>
+                                    </span> */}
                                     <span className="d-flex align-items-center justify-content-end">
                                         <div className="d-flex align-items-center my-3">
                                             <span className="me-2 dropdown">

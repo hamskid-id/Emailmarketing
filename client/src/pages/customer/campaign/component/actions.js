@@ -90,6 +90,15 @@ export const Actions =()=>{
                             </button>
                         )
                     }
+                    <button 
+                            type="button" 
+                            className="btn b-grey btn-md my-2 fl-r mb-2" 
+                            onClick={
+                                ()=>navigate("/campaigns_status")
+                            }
+                        >
+                        Check Campaign Status
+                    </button>
                 </div>
             </div>
         </div>

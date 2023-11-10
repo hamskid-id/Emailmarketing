@@ -125,7 +125,7 @@ export const Actions =({
                                 type="button" 
                                 className="btn b-grey btn-md my-2 fl-r mb-2"
                                 onClick={
-                                    ()=>navigate("/create/template")
+                                    ()=>window.location.replace("/create/template")
                                 }
                             >
                                 Create +

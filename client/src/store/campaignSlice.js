@@ -56,6 +56,21 @@ export const GetCampaigns = createAsyncThunk(
     }
 )
 
+export const GetSentCampaigns = createAsyncThunk(
+    'campaign/GetSentCampaigns', 
+    async () =>{
+    try{
+        const response = await axios.get(
+            `http://62.171.157.189:7777/emailservice.cheapmailing.com.ng/index.php/api/v1/track-campaign`,
+                setHeaders()
+        )
+        return response?.data
+    } catch(err){
+        return err.response?.data
+        }
+    }
+)
+
 export const CreateCampaigns  = createAsyncThunk(
     'campaign/CreateCampaigns', 
     async ({
@@ -110,6 +125,7 @@ const campaign_Slice = createSlice({
         recentCampaigns:[],
         // list:[],
         Campaigns:[],
+        sentCampaigns:{},
         campaignToFilter:[],
         CreateListStatus:'',
         deleteStatus:"",
@@ -118,6 +134,8 @@ const campaign_Slice = createSlice({
         CreateCampaignsError:'',
         GetCampaignsStatus:'',
         GetCampaignsError:'',
+        GetSentCampaignsStatus:'',
+        GetSentCampaignsError:'',
         GetListStatus:'',
         GetListError:'',
         GetRecentCampaignsStatus:'',
@@ -227,6 +245,40 @@ const campaign_Slice = createSlice({
             }
         })
 
+        builder.addCase(GetSentCampaigns.pending,(state, action)=>{
+            return {
+                ...state,
+                GetSentCampaignsStatus:'pending'
+            }
+
+        });
+        builder.addCase(GetSentCampaigns.fulfilled,(state, action)=>{
+            if(action.payload){
+                const {
+                    data
+                }= action.payload
+                if(data){
+                    return{
+                        ...state,
+                        sentCampaigns: data,
+                        GetSentCampaignsStatus:"success"
+                    }
+                }return{
+                    ...state,
+                    GetSentCampaignsStatus:"success"
+                }
+            }else return{
+                ...state,
+                GetSentCampaignsStatus:"failed"
+            }
+        })
+        builder.addCase(GetSentCampaigns.rejected,(state, action)=>{
+            return{
+                ...state,
+                GetSentCampaignsStatus:'rejected'
+            }
+        })
+
         builder.addCase(DeleteCampaigns.pending,(state, action)=>{
             return {
                 ...state,
@@ -282,7 +334,7 @@ const campaign_Slice = createSlice({
                 if(status === true){
                     toast(message);
                     localStorage.removeItem('templateInfo')
-                    window.location.replace("/campaigns")
+                    window.location.replace("/campaigns_status")
                     return{
                         ...state,
                         CreateCampaignsStatus:"success"
