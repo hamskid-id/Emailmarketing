@@ -58,7 +58,7 @@ export const CampaignStatus =()=>{
                                     }</td>
                                     <td 
                                         className="fs-6 text-success"
-                                        onClick={()=>navigate(`/campaign_list/${name}/${id}`)}
+                                        onClick={()=>window.location.replace(`/campaign_list/${name}/${id}`)}
 
                                     >see all</td>
                                 </tr>
