@@ -61,7 +61,7 @@ export const GetSentCampaigns = createAsyncThunk(
     async () =>{
     try{
         const response = await axios.get(
-            `http://62.171.157.189:7777/emailservice.cheapmailing.com.ng/index.php/api/v1/track-campaign`,
+            `https://emailservice.cheapmailing.com.ng/api/v1/track-campaign`,
                 setHeaders()
         )
         return response?.data
