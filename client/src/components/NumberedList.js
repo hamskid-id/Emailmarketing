@@ -34,7 +34,7 @@ export const NumberedList =({
                                 color="gainsboro"                                
                                 onClick={() => {
                                     navigator.clipboard.writeText(response)
-                                    toast("Copied to Clippard")
+                                    toast("Copied to Clipboard")
                                 }}
                             />
                         </div>
