@@ -7,6 +7,8 @@ import { apiBaseUrl, setHeaders } from "../../../../store/api";
 import { TemplateForm } from "./templateform";
 import { CreateTemplate } from "../../../../store/templateSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { AiMessage } from "../../../../components/Aimessage";
+import { BsStars } from "react-icons/bs";
 
 export const EditTemplateView =({
     campaignParams,
@@ -14,6 +16,13 @@ export const EditTemplateView =({
     type,
     id
 })=>{
+    const [
+        modalContent,
+        setModalContent
+    ]=useState({
+        title:null,
+        body:null
+    })
     const hidemodal = useRef(null);
     const [showSavedButton, setShowSaveButton] = useState(false);
     const dispatch= useDispatch();
@@ -133,33 +142,123 @@ export const EditTemplateView =({
             <div className="d-flex fl-r me-3 mb-3">
                 {
                     (template?.CreateTemplateStatus == 'pending' && type!='create' && showSavedButton)?(
-                        <button 
-                            className="btn b-grey me-3 text-white"
-                            type="button"  
-                            ><span 
-                                className="spinner-border spinner-border-sm me-1" 
-                                role="status" 
-                                aria-hidden="true">
-                            </span>Save & proceed
-                        </button>
+                        <div className="btn-group fl-r" role="group" aria-label="Basic example">
+                            <button 
+                                type="button" 
+                                className="btn b-grey btn-md text-white"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
+                                onClick={()=>{
+                                    setModalContent(()=>{
+                                        return{
+                                            title:"Ai Assistant",
+                                            body:<AiMessage/>
+                                        }
+                                    })
+                                }}
+                            >
+                                Ask
+                                <span 
+                                    className="ms-1"
+                                >
+                                    <BsStars 
+                                        size="1.5rem"
+                                        color="white"
+                                    />
+                                </span>
+                            </button>
+                            <button 
+                                className="btn b-grey me-3 text-white"
+                                type="button"  
+                                ><span 
+                                    className="spinner-border spinner-border-sm me-1" 
+                                    role="status" 
+                                    aria-hidden="true">
+                                </span>Save & proceed
+                            </button>
+                        </div>
                     ): (type =='create' && showSavedButton)?(
-                        <button 
-                            className="btn b-grey me-3"
-                            type="button"                            
-                            data-bs-toggle="modal" 
-                            data-bs-target="#staticBackdrop"
-                            onClick={handleSave}
-                        >Save
-                        </button>
+                        <div className="btn-group fl-r" role="group" aria-label="Basic example">
+                            <button 
+                                type="button" 
+                                className="btn b-grey btn-md text-white"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
+                                onClick={()=>{
+                                    setModalContent(()=>{
+                                        return{
+                                            title:"Ai Assistant",
+                                            body:<AiMessage/>
+                                        }
+                                    })
+                                }}
+                            >
+                                Ask
+                                <span 
+                                    className="ms-1"
+                                >
+                                    <BsStars 
+                                        size="1.5rem"
+                                        color="white"
+                                    />
+                                </span>
+                            </button>
+                            <button 
+                                type="button" 
+                                className="btn b-grey btn-md text-white"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
+                                onClick={()=>{
+                                    handleSave()
+                                    setModalContent(()=>{
+                                        return{
+                                            title:"Template Information",
+                                            body: <TemplateForm
+                                                campaignParams={campaignParams}
+                                                setCampaignparams={setCampaignparams}
+                                                EditedInfo={EditedInfo}
+                                                hidemodal={hidemodal}
+                                            />
+                                        }
+                                    })
+                                }}
+                            >
+                                Save
+                            </button>
+                        </div>
                     ):showSavedButton?(
-                        <button 
-                            className="btn b-grey me-3"
-                            type="button"                            
-                            // data-bs-toggle="modal" 
-                            // data-bs-target="#staticBackdrop"
-                            onClick={SubmitTemplate}  
-                        >Save & Proceed
-                        </button>
+                        <div className="btn-group fl-r" role="group" aria-label="Basic example">
+                            <button 
+                                type="button" 
+                                className="btn b-grey btn-md text-white"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdrop"
+                                onClick={()=>{
+                                    setModalContent(()=>{
+                                        return{
+                                            title:"Ai Assistant",
+                                            body:<AiMessage/>
+                                        }
+                                    })
+                                }}
+                            >
+                                Ask
+                                <span 
+                                    className="ms-1"
+                                >
+                                    <BsStars 
+                                        size="1.5rem"
+                                        color="white"
+                                    />
+                                </span>
+                            </button>
+                            <button 
+                                className="btn b-grey"
+                                type="button"                          
+                                onClick={SubmitTemplate}  
+                            >Save & Proceed
+                            </button>
+                        </div>
                     ):null
                 }
             </div>
@@ -172,13 +271,16 @@ export const EditTemplateView =({
             </div>                  
             <Modal
                 hidemodal={hidemodal}
-                title="Template Information"
-                body={<TemplateForm
-                    campaignParams={campaignParams}
-                    setCampaignparams={setCampaignparams}
-                    EditedInfo={EditedInfo}
-                    hidemodal={hidemodal}
-                />}
+                title={modalContent.title===null?"Template Information":modalContent.title}
+                body={
+                    modalContent.body===null?
+                    <TemplateForm
+                        campaignParams={campaignParams}
+                        setCampaignparams={setCampaignparams}
+                        EditedInfo={EditedInfo}
+                        hidemodal={hidemodal}
+                    />:modalContent.body
+                }
             />
         </>
     )

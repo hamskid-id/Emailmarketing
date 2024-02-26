@@ -1,11 +1,17 @@
 import { AiTwotoneMail } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { BsStars } from "react-icons/bs";
+import { TemplateForm } from "./createTemplateForm";
+import { AiMessage } from "../../../../components/Aimessage";
 
 export const CreateNav =({
     handleSave,
     saveEditedTemplate,
-    edit
+    EditedInfo,
+    hidemodal,
+    edit,
+    setModalContent
 })=>{
     const navigate = useNavigate();
     const template = useSelector(
@@ -33,32 +39,107 @@ export const CreateNav =({
                 <div>
                     {
                         edit?(
-                            <button 
-                                className="btn btn-success btn-md text-white fl-r"
-                                type="button"                
-                                onClick={saveEditedTemplate}
-                            >
-                                {
-                                    template.CreateTemplateStatus &&(
-                                        <span 
-                                            className="spinner-border spinner-border-sm me-1" 
-                                            role="status" 
-                                            aria-hidden="true">
-                                        </span>
-                                    )
-                                }
-                                save
-                            </button>
+                            <div className="btn-group fl-r" role="group" aria-label="Basic example">
+                                <button 
+                                    type="button" 
+                                    className="btn btn-primary btn-md text-white"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#staticBackdrop"
+                                    onClick={()=>{
+                                        setModalContent(()=>{
+                                            return{
+                                                title:"Ai Assistant",
+                                                body:<AiMessage/>
+                                            }
+                                        })
+                                    }}
+                                >
+                                    Ask
+                                    <span 
+                                        className="ms-1"
+                                    >
+                                        <BsStars 
+                                            size="1.5rem"
+                                            color="white"
+                                        />
+                                    </span>
+                                </button>
+                                <button 
+                                    className="btn btn-primary btn-md text-white fl-r"
+                                    type="button"                
+                                    onClick={()=>{
+                                        saveEditedTemplate()
+                                        setModalContent(()=>{
+                                            return{
+                                                title:"Template Information",
+                                                body:<TemplateForm
+                                                        EditedInfo={EditedInfo}
+                                                        hidemodal={hidemodal}
+                                                    />
+                                            }
+                                        })
+                                    }}
+                                >
+                                    {
+                                        template.CreateTemplateStatus &&(
+                                            <span 
+                                                className="spinner-border spinner-border-sm me-1" 
+                                                role="status" 
+                                                aria-hidden="true">
+                                            </span>
+                                        )
+                                    }
+                                    save
+                                </button>
+                            </div>
+                            
                         ):(
-                            <button 
-                                className="btn btn-success btn-md text-white fl-r"
-                                type="button"                            
-                                data-bs-toggle="modal" 
-                                data-bs-target="#staticBackdrop"
-                                onClick={handleSave}
-                            >
-                                save
-                            </button>
+                            <div className="btn-group fl-r" role="group" aria-label="Basic example">
+                                <button 
+                                    type="button" 
+                                    className="btn btn-primary btn-md text-white"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#staticBackdrop"
+                                    onClick={()=>{
+                                        setModalContent(()=>{
+                                            return{
+                                                title:"Ai Assistant",
+                                                body:<AiMessage/>
+                                            }
+                                        })
+                                    }}
+                                >
+                                    Ask
+                                    <span 
+                                        className="ms-1"
+                                    >
+                                        <BsStars 
+                                            size="1.5rem"
+                                            color="white"
+                                        />
+                                    </span>
+                                </button>
+                                <button 
+                                    type="button" 
+                                    className="btn btn-primary btn-md text-white"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#staticBackdrop"
+                                    onClick={()=>{
+                                        handleSave()
+                                        setModalContent(()=>{
+                                            return{
+                                                title:"Template Information",
+                                                body:<TemplateForm
+                                                        EditedInfo={EditedInfo}
+                                                        hidemodal={hidemodal}
+                                                    />
+                                            }
+                                        })
+                                    }}
+                                >
+                                    Save
+                                </button>
+                            </div>
                         )
                     }
                 </div>               

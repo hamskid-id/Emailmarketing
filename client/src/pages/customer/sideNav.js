@@ -72,9 +72,7 @@ export const SideNav =({navToggler,showNavToggler,setShowNavToggler})=>{
                             <div 
                                 className="d-flex align-items-center mb-4 pointer" 
                                 key={index}
-                                onClick={
-                                    ()=>navigate(route)
-                                }
+                                onClick={()=>window.location.replace(route)}
                             >
                                 <span className="me-2">
                                     {icon}

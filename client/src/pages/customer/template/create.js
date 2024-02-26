@@ -6,6 +6,13 @@ import { TemplateForm } from "./components/createTemplateForm";
 export const CreateView =()=>{
     const emailEditorRef = useRef(null);
     const [
+        modalContent,
+        setModalContent
+    ]=useState({
+        title:null,
+        body:null
+    })
+    const [
         EditedInfo, 
         setEditedInfo
     ] = useState({
@@ -49,6 +56,9 @@ export const CreateView =()=>{
         <>
             <CreateNav
                 handleSave={handleSave}
+                setModalContent={setModalContent}
+                EditedInfo={EditedInfo}
+                hidemodal={hidemodal}
             />
             <div className="w-overflow">
                 <EmailEditor 
@@ -58,11 +68,14 @@ export const CreateView =()=>{
                 />
             </div>          
             <Modal
-                title="Template Information"
-                body={<TemplateForm
-                    EditedInfo={EditedInfo}
-                    hidemodal={hidemodal}
-                />}
+                title={modalContent.title===null?"Template Information":modalContent.title}
+                body={
+                    modalContent.body===null?
+                    <TemplateForm
+                        EditedInfo={EditedInfo}
+                        hidemodal={hidemodal}
+                    />:modalContent.body
+                }
                 hidemodal={hidemodal}
             />
         </>

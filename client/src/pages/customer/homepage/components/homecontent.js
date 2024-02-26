@@ -5,13 +5,19 @@ import { ActivitiesLog } from "./activities"
 import { CreditWrapper } from "./credit"
 import { RecentlySent } from "./recentlysentcampaign"
 import { Subscribers } from "./subscriber"
+import axios from "axios"
+import { useState } from "react"
+import { apiBaseUrl } from "../../../../store/api"
+import { toast } from "react-toastify"
+import Spinner from "../../../../components/spinner/spinner"
 
 export const HomeView =()=>{
     const auth = useSelector(
         state => state.auth
     )
+    
     return(
-        <div className="pb-3">
+        <div>
             <div className="bg-lightBlue pt-2 pb-3 pdx-4">
                 <h6
                     className="fw-bold"

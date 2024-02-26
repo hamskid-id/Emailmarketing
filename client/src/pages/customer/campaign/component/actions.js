@@ -72,7 +72,7 @@ export const Actions =()=>{
                         tag.Tags?.length>0?(
                             <button 
                                 type="button" 
-                                className="btn b-grey btn-md my-2 fl-r mb-2 me-2" 
+                                className="btn b-grey btn-md my-2 fl-r mb-2 ms-2" 
                                 onClick={
                                     ()=>navigate("/campaign/select-type")
                                 }
@@ -81,7 +81,7 @@ export const Actions =()=>{
                             </button>
                         ):(
                              <button 
-                                className="btn b-grey btn-md my-2 fl-r mb-2 me-2"
+                                className="btn b-grey btn-md my-2 fl-r mb-2 ms-2"
                                 type="button"
                                 data-bs-toggle="modal" 
                                 data-bs-target="#staticBackdrop"
@@ -92,7 +92,7 @@ export const Actions =()=>{
                     }
                     <button 
                             type="button" 
-                            className="btn b-grey btn-md my-2 fl-r mb-2" 
+                            className="btn b-grey btn-md my-2 fl-r mb-2 ms-2" 
                             onClick={
                                 ()=>window.location.replace("/campaigns_status")
                             }

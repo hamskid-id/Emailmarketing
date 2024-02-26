@@ -11,6 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { CreateTemplate } from "../../../store/templateSlice";
 
 export const EditView =()=>{
+    const [
+        modalContent,
+        setModalContent
+    ]=useState({
+        title:null,
+        body:null
+    })
     const emailEditorRef = useRef(null);
     const template = useSelector(
         state => state.template
@@ -129,6 +136,9 @@ export const EditView =()=>{
                 handleSave={handleSave}
                 edit={true}
                 saveEditedTemplate={saveEditedTemplate}
+                setModalContent={setModalContent}
+                EditedInfo={EditedInfo}
+                hidemodal={hidemodal}
             />
             <div className="w-overflow">
                 <EmailEditor 
@@ -139,11 +149,14 @@ export const EditView =()=>{
                 />
             </div>          
             <Modal
-                title="Edit Template Information"
-                body={<TemplateForm
-                    EditedInfo={EditedInfo}
-                    hidemodal={hidemodal}
-                />}
+                title={modalContent.title===null?"Edit Template Information":modalContent.title}
+                body={
+                    modalContent.body===null?
+                    <TemplateForm
+                        EditedInfo={EditedInfo}
+                        hidemodal={hidemodal}
+                    />:modalContent.body
+                }
                 hidemodal={hidemodal}
             />
         </>

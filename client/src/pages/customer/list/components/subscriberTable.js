@@ -19,7 +19,7 @@ export const SubscriberTable=({
         if(subsriber.GetSubscribersStatus ==='pending'){
             return <Spinner/>
         }
-
+        console.log(content?.subscribers.length,content?.subscribers)
     return(
         <>
             <Actions
@@ -43,7 +43,8 @@ export const SubscriberTable=({
                         </tr>
                     </thead>
                     <tbody>
-                    <ViewportList viewportRef={listRef} items={content?.subscribers} margin={8}>
+                   { 
+                    (content?.subscribers.length >0 && content?.subscribers !=='[]') && <ViewportList viewportRef={listRef} items={content?.subscribers} margin={8}>
                         {
                              ((sub,index)=>{
                                     const{
@@ -88,6 +89,7 @@ export const SubscriberTable=({
                                 })
                         }
                         </ViewportList>
+                    }
                     </tbody>
                 </table>
             </div>
