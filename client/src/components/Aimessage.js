@@ -4,6 +4,7 @@ import { toast } from "react-toastify"
 import { apiBaseUrl } from "../store/api"
 import { NumberedList } from "./NumberedList"
 import Spinner from "./spinner/spinner"
+import { AiOutlineSend } from "react-icons/ai";
 
 export const AiMessage =()=>{
     const [aimessage, setAiMessage] = useState({
@@ -84,7 +85,9 @@ export const AiMessage =()=>{
                 <button
                     className="btn btn-md bg-slate-grey text-white"
                     type="submit"
-                >Ask</button>
+                >
+                    <AiOutlineSend size="1rem" color="white"/>
+                </button>
             </div>
         </form>
     )

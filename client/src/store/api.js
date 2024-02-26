@@ -1,4 +1,4 @@
-export const apiBaseUrl = "https://emailmarketing.staging.5starcompany.com.ng/api"
+export const apiBaseUrl = "https://emailing.prisca.5starcompany.com.ng/api"
 
 export const setHeaders = ()=>{
     const user = JSON.parse(localStorage.getItem('marketingUserToken'))
