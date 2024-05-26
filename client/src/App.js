@@ -38,6 +38,7 @@ import { UpdateTagPage } from './pages/customer/list/updateTag';
 import { Plaintext } from './pages/customer/campaign/plaintext/plaintextcampaign';
 import { AllSentCampaign } from './pages/customer/campaign/allSentCampaign';
 import { User_Campaign_sub_list_view } from './pages/customer/campaign/component/user_campaign_sub_list_view';
+import { Tracked_campaign_view } from './pages/customer/campaign/component/tracked_campaign_view';
 // import './interceptors/axios';
 
 
@@ -79,6 +80,7 @@ const App =()=> {
              <Route exact path='/campaigns_status'  element={ <AllSentCampaign/>} />
              <Route exact path='/campaign_list/:name/:id'  element={ <User_Campaign_sub_list_view/>} />
             <Route exact path='/campaigns/stat/:id'  element={ <CampaignStatistics/>} />
+            <Route exact path='/campaigns/track/:id' element={<Tracked_campaign_view/>}/>
              <Route exact path='/campaigns/Create'  element={ <CreateCampaignPage/>} />
              <Route exact path="/user/tag/update/:id"  element={ <UpdateTagPage/>} />
             <Route exact path='/campaign/select-type'  element={ <SelectTypeView/>} />

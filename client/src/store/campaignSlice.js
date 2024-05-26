@@ -21,6 +21,7 @@ export const GetRecentCampaigns = createAsyncThunk(
 )
 
 
+
 export const DeleteCampaigns = createAsyncThunk(
     'campaign/DeleteCampaigns', 
     async ({id},{dispatch}) =>{
@@ -58,10 +59,13 @@ export const GetCampaigns = createAsyncThunk(
 
 export const GetSentCampaigns = createAsyncThunk(
     'campaign/GetSentCampaigns', 
-    async () =>{
+    async ({
+        id,
+        page_number
+    }) =>{
     try{
         const response = await axios.get(
-            `https://emailservice.cheapmailing.com.ng/api/v1/track-campaign`,
+            `https://emailservice.cheapmailing.com.ng/api/v1/track-campaign/179?page=${page_number}`,
                 setHeaders()
         )
         return response?.data
@@ -254,9 +258,10 @@ const campaign_Slice = createSlice({
         });
         builder.addCase(GetSentCampaigns.fulfilled,(state, action)=>{
             if(action.payload){
+                console.log(action.payload);
                 const {
                     data
-                }= action.payload
+                }= action.payload;
                 if(data){
                     return{
                         ...state,

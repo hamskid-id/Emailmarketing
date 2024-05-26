@@ -32,5 +32,5 @@ store.dispatch(GetSpamReported(null));
 store.dispatch(GetUnSubscribers(null));
 store.dispatch(GetSubscribers(null));
 store.dispatch(GetRecentCampaigns(null));
-store.dispatch(GetSentCampaigns(null));
+// store.dispatch(GetSentCampaigns(null));
 export default store;

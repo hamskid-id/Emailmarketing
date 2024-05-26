@@ -11,7 +11,7 @@ import { ViewportList } from "react-viewport-list";
 
 export const AllcampaignView =()=>{
     const navigate = useNavigate();
-    const hidemodal = useRef(null)
+    const hidemodal = useRef(null);
     const campaign = useSelector(
         state => state.campaign
     )
@@ -64,12 +64,12 @@ export const AllcampaignView =()=>{
                                                 >
                                                 </button>
                                                 <ul className="dropdown-menu">
-                                                    {/* <li 
+                                                    <li 
                                                         className="dropdown-item fs-6"
-                                                        onClick={()=>navigate(`/campaigns/stat/${id}`)}
+                                                        onClick={()=>navigate(`/campaigns/track/${id}`)}
                                                     >
-                                                        Statistics
-                                                    </li> */}
+                                                        View Details
+                                                    </li>
                                                     {/* <li 
                                                         className="dropdown-item"
                                                     >
